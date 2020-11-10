@@ -1,7 +1,5 @@
 package com.test.api.api.vo;
 
-import lombok.Data;
-
 /**
  * @projectName api
  * @package com.test.api.api.vo
@@ -12,7 +10,7 @@ import lombok.Data;
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
-@Data
+//@Data
 public class CommonResult<T> {
     // 状态码
     private int status = 1;
