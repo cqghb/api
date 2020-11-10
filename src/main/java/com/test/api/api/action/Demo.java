@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @description TODO
  * @auther wangsheng
  * @creatTime 2020/10/29 12:51 下午
- * @company 四川省万源市一生活智能科技有限公司
- * @department 小程序-微信小程序
+ * @company demo
+ * @department demo
  */
 @RestController
 public class Demo {

@@ -12,8 +12,8 @@ import java.util.List;
  * @description 菜单服务接口
  * @auther wangsheng
  * @creatTime 2020/11/7 7:51 下午
- * @company 四川省万源市一生活智能科技有限公司
- * @department 小程序-微信小程序
+ * @company demo
+ * @department demo
  */
 public interface ITblMenuService {
     /**

@@ -10,8 +10,8 @@ import java.util.List;
  * @description TODO
  * @auther wangsheng
  * @creatTime 2020/11/6 12:31 上午
- * @company 四川省万源市一生活智能科技有限公司
- * @department 小程序-微信小程序
+ * @company demo
+ * @department demo
  */
 public interface ITblUserService {
 
@@ -20,7 +20,7 @@ public interface ITblUserService {
      * @param user
      * @return
      */
-    List<TblUser> select(TblUser user);
+    List<TblUser> queryList(TblUser user);
 
     /**
      * 用户登录
@@ -29,4 +29,5 @@ public interface ITblUserService {
      * @return
      */
     TblUser login(String id, String pass);
+
 }

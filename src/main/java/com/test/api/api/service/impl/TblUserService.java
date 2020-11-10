@@ -15,8 +15,8 @@ import java.util.List;
  * @description TODO
  * @auther wangsheng
  * @creatTime 2020/11/6 12:31 上午
- * @company 四川省万源市一生活智能科技有限公司
- * @department 小程序-微信小程序
+ * @company demo
+ * @department demo
  */
 @Service
 public class TblUserService implements ITblUserService {
@@ -25,7 +25,7 @@ public class TblUserService implements ITblUserService {
     private TblUserDao userDao;
 
     @Override
-    public List<TblUser> select(TblUser user) {
+    public List<TblUser> queryList(TblUser user) {
         return userDao.select(user);
     }
 

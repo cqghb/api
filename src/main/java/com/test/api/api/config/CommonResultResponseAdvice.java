@@ -18,8 +18,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @description TODO
  * @auther wangsheng
  * @creatTime 2020/11/9 12:27 上午
- * @company 四川省万源市一生活智能科技有限公司
- * @department 小程序-微信小程序
+ * @company demo
+ * @department demo
  */
 @Configuration
 @EnableWebMvc

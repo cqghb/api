@@ -10,8 +10,8 @@ import java.util.List;
  * @description 菜单实体
  * @auther wangsheng
  * @creatTime 2020/11/7 7:22 下午
- * @company 四川省万源市一生活智能科技有限公司
- * @department 小程序-微信小程序
+ * @company demo
+ * @department demo
  */
 public class TblMenu extends BaseBean implements java.io.Serializable {
 

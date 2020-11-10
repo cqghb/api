@@ -7,8 +7,8 @@ package com.test.api.api.constant;
  * @description 公共常量声明类
  * @auther wangsheng
  * @creatTime 2020/11/7 8:17 下午
- * @company 四川省万源市一生活智能科技有限公司
- * @department 小程序-微信小程序
+ * @company demo
+ * @department demo
  */
 public class CommConstant {
 

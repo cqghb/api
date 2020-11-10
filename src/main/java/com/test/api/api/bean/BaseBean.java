@@ -9,8 +9,8 @@ import java.util.Date;
  * @description 表实体对象基类
  * @auther wangsheng
  * @creatTime 2020/11/7 7:27 下午
- * @company 四川省万源市一生活智能科技有限公司
- * @department 小程序-微信小程序
+ * @company demo
+ * @department demo
  */
 public class BaseBean implements java.io.Serializable {
     // 创建人
