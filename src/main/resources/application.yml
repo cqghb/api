@@ -18,3 +18,8 @@ logging:
   level:
     com.test.api.api.dao: debug
   config: classpath:log4j2.xml # 指定log4j配置文件的位置
+pagehelper: # 分页配置
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

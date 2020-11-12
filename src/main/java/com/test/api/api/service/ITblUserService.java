@@ -1,6 +1,9 @@
 package com.test.api.api.service;
 
 import com.test.api.api.bean.TblUser;
+import com.test.api.api.vo.page.PageRequest;
+import com.test.api.api.vo.page.PageResult;
+
 import java.util.List;
 
 /**
@@ -29,5 +32,12 @@ public interface ITblUserService {
      * @return
      */
     TblUser login(String id, String pass);
+
+    /**
+     * 分页查询
+     * @param pageRequest 分页参数
+     * @return
+     */
+    PageResult findPage(PageRequest pageRequest);
 
 }

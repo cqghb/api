@@ -2,11 +2,9 @@ package com.test.api.api.action;
 
 import com.test.api.api.bean.TblUser;
 import com.test.api.api.service.ITblUserService;
+import com.test.api.api.vo.page.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @projectName api
@@ -31,4 +29,9 @@ public class UserAction {
 //    public TblUser queryList(@RequestBody TblUser user){
 //        return userService.queryList(user);
 //    }
+
+    @PostMapping(value="/findPage")
+    public Object findPage(@RequestBody PageRequest pageQuery) {
+        return userService.findPage(pageQuery);
+    }
 }
