@@ -1,5 +1,7 @@
 package com.test.api.api.bean;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 /**
@@ -16,10 +18,12 @@ public class BaseBean implements java.io.Serializable {
     // 创建人
     private String createUser;
     // 创建时间
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
     // 修改人
     private String updateUser;
     // 修改时间
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     public BaseBean() {

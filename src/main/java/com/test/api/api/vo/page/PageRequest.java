@@ -10,7 +10,7 @@ package com.test.api.api.vo.page;
  * @company
  * @department
  */
-public class PageRequest {
+public class PageRequest<T> {
     /**
      * 当前页码
      */
@@ -20,12 +20,20 @@ public class PageRequest {
      */
     private int pageSize;
 
+    private T params;
+
     public PageRequest() {
     }
 
     public PageRequest(int pageNum, int pageSize) {
         this.pageNum = pageNum;
         this.pageSize = pageSize;
+    }
+
+    public PageRequest(int pageNum, int pageSize, T params) {
+        this.pageNum = pageNum;
+        this.pageSize = pageSize;
+        this.params = params;
     }
 
     public int getPageNum() {
@@ -44,11 +52,20 @@ public class PageRequest {
         this.pageSize = pageSize;
     }
 
+    public T getParams() {
+        return params;
+    }
+
+    public void setParams(T params) {
+        this.params = params;
+    }
+
     @Override
     public String toString() {
         return "PageRequest{" +
                 "pageNum=" + pageNum +
                 ", pageSize=" + pageSize +
+                ", params=" + params +
                 '}';
     }
 }

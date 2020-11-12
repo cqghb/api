@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @company demo
  * @department demo
  */
-public class TblUser implements Serializable {
+public class TblUser extends BaseBean implements Serializable {
 
     private String id;
     private String name;

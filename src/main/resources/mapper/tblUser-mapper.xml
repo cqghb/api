@@ -11,7 +11,7 @@
         <result column="update_time" property="updateTime" jdbcType="DATE"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, name, pass
+        id, name, pass,create_user,create_time,update_user,update_time
     </sql>
     <select id="queryList" parameterType="com.test.api.api.bean.TblUser" resultMap="BaseResultMap">
         select
@@ -19,7 +19,7 @@
         from tbl_user
         <where>
             <if test="id!=null and id!=''">
-                id = #{id,jdbcType=VARCHAR}
+                and id = #{id,jdbcType=VARCHAR}
             </if>
             <if test="name!=null and name!=''">
                 and "name" = #{name,jdbcType=VARCHAR}
