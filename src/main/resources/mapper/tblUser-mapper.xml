@@ -22,7 +22,7 @@
                 and id = #{id,jdbcType=VARCHAR}
             </if>
             <if test="name!=null and name!=''">
-                and "name" = #{name,jdbcType=VARCHAR}
+                and name = #{name,jdbcType=VARCHAR}
             </if>
         </where>
     </select>

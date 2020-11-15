@@ -1,5 +1,7 @@
 package com.test.api.api.vo.page;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.util.List;
 
 /**
@@ -16,7 +18,7 @@ public class PageResult {
     /**
      * 当前页码
      */
-    private int pageNum;
+    private int currentPage;
     /**
      * 每页数量
      */
@@ -37,20 +39,20 @@ public class PageResult {
     public PageResult() {
     }
 
-    public PageResult(int pageNum, int pageSize, long totalSize, int totalPages, List<?> content) {
-        this.pageNum = pageNum;
+    public PageResult(int currentPage, int pageSize, long totalSize, int totalPages, List<?> content) {
+        this.currentPage = currentPage;
         this.pageSize = pageSize;
         this.totalSize = totalSize;
         this.totalPages = totalPages;
         this.content = content;
     }
 
-    public int getPageNum() {
-        return pageNum;
+    public int getCurrentPage() {
+        return currentPage;
     }
 
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
     }
 
     public int getPageSize() {
@@ -87,12 +89,6 @@ public class PageResult {
 
     @Override
     public String toString() {
-        return "PageResult{" +
-                "pageNum=" + pageNum +
-                ", pageSize=" + pageSize +
-                ", totalSize=" + totalSize +
-                ", totalPages=" + totalPages +
-                ", content=" + content +
-                '}';
+        return "PageResult{" + JSONObject.toJSONString(this) +'}';
     }
 }

@@ -1,5 +1,7 @@
 package com.test.api.api.vo.page;
 
+import com.alibaba.fastjson.JSONObject;
+
 /**
  * @projectName api
  * @package com.test.api.api.vo.page
@@ -14,7 +16,7 @@ public class PageRequest<T> {
     /**
      * 当前页码
      */
-    private int pageNum;
+    private int currentPage;
     /**
      * 每页数量
      */
@@ -25,23 +27,18 @@ public class PageRequest<T> {
     public PageRequest() {
     }
 
-    public PageRequest(int pageNum, int pageSize) {
-        this.pageNum = pageNum;
-        this.pageSize = pageSize;
-    }
-
-    public PageRequest(int pageNum, int pageSize, T params) {
-        this.pageNum = pageNum;
+    public PageRequest(int currentPage, int pageSize, T params) {
+        this.currentPage = currentPage;
         this.pageSize = pageSize;
         this.params = params;
     }
 
-    public int getPageNum() {
-        return pageNum;
+    public int getCurrentPage() {
+        return currentPage;
     }
 
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
     }
 
     public int getPageSize() {
@@ -62,10 +59,7 @@ public class PageRequest<T> {
 
     @Override
     public String toString() {
-        return "PageRequest{" +
-                "pageNum=" + pageNum +
-                ", pageSize=" + pageSize +
-                ", params=" + params +
+        return "PageRequest{" + JSONObject.toJSONString(this) +
                 '}';
     }
 }

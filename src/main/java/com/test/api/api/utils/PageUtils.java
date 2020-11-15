@@ -25,7 +25,7 @@ public class PageUtils {
         PageResult pageResult = new PageResult();
         int pageNum = pageInfo.getPageNum();
         int pageSize = pageInfo.getPageSize();
-        pageResult.setPageNum(pageNum < 1 ? 1 : pageNum);
+        pageResult.setCurrentPage(pageNum < 1 ? 1 : pageNum);
         pageResult.setPageSize(pageSize < 1 ? 10 : pageSize);
         pageResult.setTotalSize(pageInfo.getTotal());
         pageResult.setTotalPages(pageInfo.getPages());
