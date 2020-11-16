@@ -40,4 +40,10 @@ public interface ITblUserService {
      */
     PageResult findPage(PageRequest pageRequest);
 
+    /**
+     * 新增用户
+     * @param user 用户
+     * @return
+     */
+    int insert(TblUser user);
 }

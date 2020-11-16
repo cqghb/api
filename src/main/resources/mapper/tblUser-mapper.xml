@@ -35,4 +35,42 @@
         and pass = #{pass,jdbcType=VARCHAR}
     </select>
 
+    <insert id="insert" parameterType="com.test.api.api.bean.TblUser">
+        insert into tbl_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id !=null and id !=''">
+                id,
+            </if>
+            <if test="name !=null and name !=''">
+                name,
+            </if>
+            <if test="pass !=null and pass !=''">
+                pass,
+            </if>
+            <if test="createUser !=null and createUser !=''">
+                create_user,
+            </if>
+            <if test="createTime !=null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id !=null and id !=''">
+                #{id, jdbcType=VARCHAR},
+            </if>
+            <if test="name !=null and name !=''">
+                #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="pass !=null and pass !=''">
+                #{pass, jdbcType=VARCHAR},
+            </if>
+            <if test="createUser !=null and createUser !=''">
+                #{createUser, jdbcType=VARCHAR},
+            </if>
+            <if test="createTime !=null">
+                #{createTime, jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+
 </mapper>

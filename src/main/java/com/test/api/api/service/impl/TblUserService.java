@@ -45,6 +45,11 @@ public class TblUserService implements ITblUserService {
         return PageUtils.getPageResult(pageRequest, getPageInfo(pageRequest));
     }
 
+    @Override
+    public int insert(TblUser user) {
+        return userDao.insert(user);
+    }
+
     /**
      * 调用分页插件完成分页
      * @param pageRequest

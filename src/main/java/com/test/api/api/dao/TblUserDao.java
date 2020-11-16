@@ -32,4 +32,11 @@ public interface TblUserDao {
      * @return
      */
     TblUser login(@Param("id") String id, @Param("pass") String pass);
+
+    /**
+     * 新增用户
+     * @param user 用户
+     * @return
+     */
+    int insert(TblUser user);
 }

@@ -3,6 +3,7 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblUser;
 import com.test.api.api.service.ITblUserService;
 import com.test.api.api.vo.page.PageRequest;
+import com.test.api.api.vo.page.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,12 @@ public class UserAction {
 //    }
 
     @PostMapping(value="/findPage")
-    public Object findPage(@RequestBody PageRequest pageQuery) {
+    public PageResult findPage(@RequestBody PageRequest pageQuery) {
         return userService.findPage(pageQuery);
+    }
+
+    @PostMapping(value="/insertUser")
+    public int insertUser(@RequestBody TblUser user) {
+        return userService.insert(user);
     }
 }
