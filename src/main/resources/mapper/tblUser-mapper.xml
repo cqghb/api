@@ -72,5 +72,7 @@
             </if>
         </trim>
     </insert>
-
+    <delete id="deleteUser" parameterType="java.lang.String">
+        delete from tbl_user t where t.id = #{id, jdbcType=VARCHAR}
+    </delete>
 </mapper>

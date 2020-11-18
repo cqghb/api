@@ -39,4 +39,11 @@ public interface TblUserDao {
      * @return
      */
     int insert(TblUser user);
+
+    /**
+     * 删除用户
+     * @param id 主键
+     * @return
+     */
+    int deleteUser(String id);
 }

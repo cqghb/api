@@ -50,6 +50,11 @@ public class TblUserService implements ITblUserService {
         return userDao.insert(user);
     }
 
+    @Override
+    public int deleteUser(String id) {
+        return userDao.deleteUser(id);
+    }
+
     /**
      * 调用分页插件完成分页
      * @param pageRequest
