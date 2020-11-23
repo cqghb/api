@@ -55,6 +55,11 @@ public class TblUserService implements ITblUserService {
         return userDao.deleteUser(id);
     }
 
+    @Override
+    public TblUser queryUserById(String id) {
+        return userDao.queryUserById(id);
+    }
+
     /**
      * 调用分页插件完成分页
      * @param pageRequest

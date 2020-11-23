@@ -53,4 +53,11 @@ public interface ITblUserService {
      * @return
      */
     int deleteUser(String id);
+
+    /**
+     * 根据主键查询用户信息
+     * @param id 用户主键
+     * @return
+     */
+    TblUser queryUserById(String id);
 }

@@ -69,6 +69,16 @@ public class UserAction {
 //        if(!StringUtils.isEmpty(id)){
 //
 //        }
-        return userService.deleteUser(user.getId());
+        return userService.deleteUser(id);
+    }
+
+    @PostMapping(value="/queryUserById")
+    public TblUser queryUserById(@RequestBody TblUser user) {
+        String id = user.getId();
+//        TODO 验证后续再加
+//        if(!StringUtils.isEmpty(id)){
+//
+//        }
+        return userService.queryUserById(id);
     }
 }

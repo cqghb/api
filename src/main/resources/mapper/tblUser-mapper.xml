@@ -13,6 +13,9 @@
     <sql id="Base_Column_List">
         id, name, pass,create_user,create_time,update_user,update_time
     </sql>
+    <select id="queryUserById" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from tbl_user where id = #{id, jdbcType=VARCHAR}
+    </select>
     <select id="queryList" parameterType="com.test.api.api.bean.TblUser" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

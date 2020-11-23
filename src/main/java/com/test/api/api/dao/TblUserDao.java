@@ -45,5 +45,12 @@ public interface TblUserDao {
      * @param id 主键
      * @return
      */
-    int deleteUser(String id);
+    int deleteUser(@Param("id") String id);
+
+    /**
+     * 根据主键查询用户信息
+     * @param id 用户主键
+     * @return
+     */
+    TblUser queryUserById(@Param("id") String id);
 }
