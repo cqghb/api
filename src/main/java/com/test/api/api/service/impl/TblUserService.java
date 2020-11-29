@@ -1,5 +1,6 @@
 package com.test.api.api.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -69,7 +70,7 @@ public class TblUserService implements ITblUserService {
         int currentPage = pageRequest.getCurrentPage();
         int pageSize = pageRequest.getPageSize();
         PageHelper.startPage(currentPage, pageSize);
-        JSONObject jsonObject = (JSONObject)pageRequest.getParams();
+        JSONObject jsonObject = (JSONObject)JSON.toJSON(pageRequest.getParams());
         TblUser params = jsonObject.toJavaObject(TblUser.class);
         List<TblUser> usetList = userDao.queryList(params);
         return new PageInfo<TblUser>(usetList);

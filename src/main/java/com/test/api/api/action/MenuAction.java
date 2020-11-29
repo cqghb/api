@@ -1,7 +1,9 @@
 package com.test.api.api.action;
 
 
+import com.test.api.api.config.Result;
 import com.test.api.api.service.ITblMenuService;
+import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.MenuTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +27,8 @@ public class MenuAction {
     private ITblMenuService menuService;
 
     @RequestMapping(value = "/queryMenu")
-    public MenuTree queryMenu(){
-        return menuService.queryMenu();
+    public Result queryMenu(){
+        MenuTree menuTree = menuService.queryMenu();
+        return ResultUtil.success(menuTree);
     }
 }
