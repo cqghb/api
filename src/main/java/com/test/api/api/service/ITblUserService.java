@@ -60,4 +60,11 @@ public interface ITblUserService {
      * @return
      */
     TblUser queryUserById(String id);
+
+    /**
+     * 修改用户
+     * @param user 用户
+     * @return
+     */
+    int update(TblUser user);
 }

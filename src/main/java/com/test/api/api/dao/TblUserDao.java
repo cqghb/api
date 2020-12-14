@@ -53,4 +53,11 @@ public interface TblUserDao {
      * @return
      */
     TblUser queryUserById(@Param("id") String id);
+
+    /**
+     * 新增用户
+     * @param user 用户
+     * @return
+     */
+    int update(TblUser user);
 }

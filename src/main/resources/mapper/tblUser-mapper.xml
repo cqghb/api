@@ -78,4 +78,22 @@
     <delete id="deleteUser" parameterType="java.lang.String">
         delete from tbl_user t where t.id = #{id, jdbcType=VARCHAR}
     </delete>
+    <update id="update" parameterType="com.test.api.api.bean.TblUser">
+        update tbl_user t
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name!=null and name !=''">
+                t.name = #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="pass!=null and pass !=''">
+                t.pass = #{pass, jdbcType=VARCHAR},
+            </if>
+            <if test="updateUser!=null and updateUser!=''">
+                t.update_user = #{updateUser, jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null">
+                t.update_time = #{updateTime, jdbcType=DATE},
+            </if>
+        </trim>
+        where t.id = #{id, jdbcType=VARCHAR}
+    </update>
 </mapper>

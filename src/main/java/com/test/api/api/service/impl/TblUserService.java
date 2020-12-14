@@ -13,6 +13,7 @@ import com.test.api.api.vo.page.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,6 +49,7 @@ public class TblUserService implements ITblUserService {
 
     @Override
     public int insert(TblUser user) {
+        user.setCreateTime(new Date());
         return userDao.insert(user);
     }
 
@@ -59,6 +61,12 @@ public class TblUserService implements ITblUserService {
     @Override
     public TblUser queryUserById(String id) {
         return userDao.queryUserById(id);
+    }
+
+    @Override
+    public int update(TblUser user) {
+        user.setUpdateTime(new Date());
+        return userDao.update(user);
     }
 
     /**

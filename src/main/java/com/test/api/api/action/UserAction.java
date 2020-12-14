@@ -56,8 +56,9 @@ public class UserAction {
      * @return
      */
     @PostMapping(value="/insertUser")
-    public int insertUser(@RequestBody TblUser user) {
-        return userService.insert(user);
+    public Result insertUser(@RequestBody TblUser user) {
+        int num = userService.insert(user);
+        return ResultUtil.success(num);
     }
 
     /**
@@ -66,13 +67,14 @@ public class UserAction {
      * @return
      */
     @PostMapping(value="/deleteUser")
-    public int deleteUser(@RequestBody TblUser user) {
+    public Result deleteUser(@RequestBody TblUser user) {
         String id = user.getId();
 //        TODO 验证后续再加
 //        if(!StringUtils.isEmpty(id)){
 //
 //        }
-        return userService.deleteUser(id);
+        int num = userService.deleteUser(id);
+        return ResultUtil.success(num);
     }
 
     @PostMapping(value="/queryUserById")
@@ -84,5 +86,15 @@ public class UserAction {
 //        }
         TblUser tblUser = userService.queryUserById(id);
         return ResultUtil.success(tblUser);
+    }
+
+    @PostMapping(value="/updateUser")
+    public Result updateUser(@RequestBody TblUser user) {
+//        TODO 参数验证后续再加
+//        if(!StringUtils.isEmpty(id)){
+//
+//        }
+        int num = userService.update(user);
+        return ResultUtil.success(num);
     }
 }
