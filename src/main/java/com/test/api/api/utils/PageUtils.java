@@ -17,11 +17,11 @@ import com.test.api.api.vo.page.PageResult;
 public class PageUtils {
     /**
      * 将分页信息封装到统一的接口
-     * @param pageRequest
+//     * @param pageRequest
      * @param pageInfo
      * @return
      */
-    public static PageResult getPageResult(PageRequest pageRequest, PageInfo<?> pageInfo) {
+    public static PageResult getPageResult(PageInfo<?> pageInfo) {
         PageResult pageResult = new PageResult();
         int pageNum = pageInfo.getPageNum();
         int pageSize = pageInfo.getPageSize();

@@ -38,13 +38,13 @@ public class TblUserService implements ITblUserService {
     }
 
     @Override
-    public TblUser login(String id, String pass) {
-        return userDao.login(id, pass);
+    public TblUser login(String name, String pass) {
+        return userDao.login(name, pass);
     }
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(pageRequest, getPageInfo(pageRequest));
+        return PageUtils.getPageResult(getPageInfo(pageRequest));
     }
 
     @Override

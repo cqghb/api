@@ -27,11 +27,11 @@ public interface TblUserDao {
 
     /**
      * 用户登录
-     * @param id 用户号
+     * @param name 用户名
      * @param pass 密码
      * @return
      */
-    TblUser login(@Param("id") String id, @Param("pass") String pass);
+    TblUser login(@Param("name") String name, @Param("pass") String pass);
 
     /**
      * 新增用户
