@@ -2,6 +2,7 @@ package com.test.api.api.dao;
 
 import com.test.api.api.bean.TblUser;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.cursor.Cursor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -60,4 +61,6 @@ public interface TblUserDao {
      * @return
      */
     int update(TblUser user);
+
+    Cursor<TblUser> test();
 }

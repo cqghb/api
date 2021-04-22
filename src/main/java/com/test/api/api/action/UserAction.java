@@ -6,8 +6,14 @@ import com.test.api.api.service.ITblUserService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
+import org.apache.ibatis.cursor.Cursor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @projectName api
@@ -97,4 +103,28 @@ public class UserAction {
         int num = userService.update(user);
         return ResultUtil.success(num);
     }
+
+    /**
+     * 测试流式查询
+     * @return
+     */
+    @PostMapping(value="/test")
+    @Transactional
+    public Result test() {
+        List<TblUser> d = new ArrayList<>();
+        try {
+            try (Cursor<TblUser> list = userService.test()){
+                list.forEach(item ->{
+                    d.add(item);
+                    System.out.println(item.toString());
+                });
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return ResultUtil.success(d);
+    }
+
+
 }

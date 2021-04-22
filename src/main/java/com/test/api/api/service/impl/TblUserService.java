@@ -10,6 +10,7 @@ import com.test.api.api.service.ITblUserService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
+import org.apache.ibatis.cursor.Cursor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,6 +68,11 @@ public class TblUserService implements ITblUserService {
     public int update(TblUser user) {
         user.setUpdateTime(new Date());
         return userDao.update(user);
+    }
+
+    @Override
+    public Cursor<TblUser> test() {
+        return userDao.test();
     }
 
     /**

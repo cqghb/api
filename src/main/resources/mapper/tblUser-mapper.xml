@@ -96,4 +96,8 @@
         </trim>
         where t.id = #{id, jdbcType=VARCHAR}
     </update>
+
+    <select id="test" resultType="com.test.api.api.bean.TblUser" fetchSize="2" resultSetType="FORWARD_ONLY">
+        select * from tbl_user
+    </select>
 </mapper>

@@ -3,6 +3,7 @@ package com.test.api.api.service;
 import com.test.api.api.bean.TblUser;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
+import org.apache.ibatis.cursor.Cursor;
 
 import java.util.List;
 
@@ -67,4 +68,6 @@ public interface ITblUserService {
      * @return
      */
     int update(TblUser user);
+
+    Cursor<TblUser> test();
 }
