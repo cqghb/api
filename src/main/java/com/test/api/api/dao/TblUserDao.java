@@ -63,4 +63,16 @@ public interface TblUserDao {
     int update(TblUser user);
 
     Cursor<TblUser> test();
+
+    int deleteByPrimaryKey(String id);
+
+//    int insert(TblUser record);
+
+    int insertSelective(TblUser record);
+
+    TblUser selectByPrimaryKey(String id);
+
+    int updateByPrimaryKeySelective(TblUser record);
+
+    int updateByPrimaryKey(TblUser record);
 }
