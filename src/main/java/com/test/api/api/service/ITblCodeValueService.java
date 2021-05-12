@@ -1,5 +1,10 @@
 package com.test.api.api.service;
 
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * @projectName api
  * @package com.test.api.api.service
@@ -11,4 +16,12 @@ package com.test.api.api.service;
  * @department 小程序-微信小程序
  */
 public interface ITblCodeValueService {
+
+    /**
+     * 键值对查询
+     * @param codeType 键类型
+     * @return
+     */
+    List<Map<String, String>> searchCodeKeyValue(String codeType);
+
 }

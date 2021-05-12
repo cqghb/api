@@ -119,4 +119,11 @@
       and code = #{code,jdbcType=VARCHAR}
       and code_name = #{codeName,jdbcType=VARCHAR}
   </update>
+
+  <select id="searchCodeKeyValue" parameterType="java.lang.String" resultType="java.util.Map">
+    SELECT t.`code` as value,t.code_name label
+    from tbl_code_value t
+    WHERE t.code_type = #{codeType, jdbcType=VARCHAR}
+    ORDER BY t.`index` ASC
+  </select>
 </mapper>
