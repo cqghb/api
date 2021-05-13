@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @description 码值类型控制器
  * @auther wangsheng
  * @creatTime 2021/5/10 12:33 上午
- * @company 四川省万源市一生活智能科技有限公司
- * @department 小程序-微信小程序
+ * @company
+ * @department 
  */
 @RestController
 public class CodeTypeAction {
