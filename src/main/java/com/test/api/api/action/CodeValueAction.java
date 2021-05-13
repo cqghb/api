@@ -39,6 +39,7 @@ public class CodeValueAction {
         logger.info("[码值查询] action start: codeType=" + codeType);
         List<Map<String, String>> codeKeyValueList = iTblCodeValueService.searchCodeKeyValue(codeType);
         logger.info("[码值查询] action end");
+
         return ResultUtil.success(codeKeyValueList);
     }
 }
