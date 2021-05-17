@@ -14,4 +14,6 @@ public class CommConstant {
 
     // 根菜单标识 即是parent_node值为0的就是根菜单
     public static final String MENU_PRENT_NODE = "0";
+    // 横线
+    public static final String HORIZONTAL_LINE = "-";
 }

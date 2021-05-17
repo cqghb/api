@@ -1,6 +1,7 @@
 package com.test.api.api.service;
 
 import com.test.api.api.bean.TblUser;
+import com.test.api.api.bo.UserVo;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import org.apache.ibatis.cursor.Cursor;
@@ -46,7 +47,7 @@ public interface ITblUserService {
      * @param user 用户
      * @return
      */
-    int insert(TblUser user);
+    String insert(UserVo user);
 
     /**
      * 删除用户

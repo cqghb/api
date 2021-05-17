@@ -61,9 +61,7 @@
             <if test="createUser !=null and createUser !=''">
                 create_user,
             </if>
-            <if test="createTime !=null">
-                create_time,
-            </if>
+            create_time
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id !=null and id !=''">
@@ -78,9 +76,7 @@
             <if test="createUser !=null and createUser !=''">
                 #{createUser, jdbcType=VARCHAR},
             </if>
-            <if test="createTime !=null">
-                #{createTime, jdbcType=DATE},
-            </if>
+            sysdate()
         </trim>
     </insert>
     <delete id="deleteUser" parameterType="java.lang.String">

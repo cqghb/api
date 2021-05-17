@@ -1,5 +1,6 @@
 package com.test.api.api.service.impl;
 
+import com.test.api.api.bean.TblUserLikes;
 import com.test.api.api.dao.TblUserLikesDao;
 import com.test.api.api.service.ITblUserLikesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,35 @@ import org.springframework.stereotype.Service;
 public class TblUserLikesService implements ITblUserLikesService {
 
     @Autowired
-    private TblUserLikesDao tblUserLikesDao;
+    private TblUserLikesDao userLikesDao;
+
+    @Override
+    public int deleteByPrimaryKey(String id) {
+        return userLikesDao.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int insert(TblUserLikes record) {
+        return userLikesDao.insert(record);
+    }
+
+    @Override
+    public int insertSelective(TblUserLikes record) {
+        return userLikesDao.insertSelective(record);
+    }
+
+    @Override
+    public TblUserLikes selectByPrimaryKey(String id) {
+        return userLikesDao.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(TblUserLikes record) {
+        return userLikesDao.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public int updateByPrimaryKey(TblUserLikes record) {
+        return userLikesDao.updateByPrimaryKey(record);
+    }
 }

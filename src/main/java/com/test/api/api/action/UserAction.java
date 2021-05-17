@@ -1,6 +1,7 @@
 package com.test.api.api.action;
 
 import com.test.api.api.bean.TblUser;
+import com.test.api.api.bo.UserVo;
 import com.test.api.api.config.Result;
 import com.test.api.api.service.ITblUserService;
 import com.test.api.api.utils.ResultUtil;
@@ -62,9 +63,9 @@ public class UserAction {
      * @return
      */
     @PostMapping(value="/insertUser")
-    public Result insertUser(@RequestBody TblUser user) {
-        int num = userService.insert(user);
-        return ResultUtil.success(num);
+    public Result insertUser(@RequestBody UserVo user) {
+        String userId = userService.insert(user);
+        return ResultUtil.success(userId);
     }
 
     /**

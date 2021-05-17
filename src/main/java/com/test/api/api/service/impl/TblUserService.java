@@ -5,12 +5,19 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.test.api.api.bean.TblUser;
+import com.test.api.api.bean.TblUserLikes;
+import com.test.api.api.bo.UserVo;
 import com.test.api.api.dao.TblUserDao;
+import com.test.api.api.service.ICommonService;
+import com.test.api.api.service.ITblUserLikesService;
 import com.test.api.api.service.ITblUserService;
 import com.test.api.api.utils.PageUtils;
+import com.test.api.api.utils.StringUtil;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import org.apache.ibatis.cursor.Cursor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +37,15 @@ import java.util.List;
 @Service
 public class TblUserService implements ITblUserService {
 
+    protected static Logger logger = LoggerFactory.getLogger(TblUserService.class);
     @Autowired
     private TblUserDao userDao;
+
+    @Autowired
+    private ICommonService commonService;
+
+    @Autowired
+    private ITblUserLikesService userLikesService;
 
     @Override
     public List<TblUser> queryList(TblUser user) {
@@ -49,9 +63,28 @@ public class TblUserService implements ITblUserService {
     }
 
     @Override
-    public int insert(TblUser user) {
-        user.setCreateTime(new Date());
-        return userDao.insert(user);
+    public String insert(UserVo user) {
+        // 用户主键
+        String userId = commonService.getUserId();
+        user.setId(userId);
+        // 保存用户信息
+        userDao.insert(user);
+        logger.info("用户数据基础保存完成");
+
+        String[] likes = user.getLikes();
+        // 循环保存用户喜好
+        for (String item : likes){
+            TblUserLikes userLikes = new TblUserLikes();
+            String likesId = StringUtil.uuid();
+            userLikes.setTitleCode(item);
+            userLikes.setId(likesId);
+            userLikes.setUserId(userId);
+            // TODO 暂时先用这个客户号来填入，后期登录功能完善之后，再来改这里
+            userLikes.setCreateUser(userId);
+            userLikesService.insertSelective(userLikes);
+            logger.info("用户喜好数据保存完成");
+        }
+        return userId;
     }
 
     @Override
