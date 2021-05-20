@@ -23,3 +23,7 @@ pagehelper: # 分页配置
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
+head:
+  portrai:
+    path: /Users/wangsheng/headPortrai/
