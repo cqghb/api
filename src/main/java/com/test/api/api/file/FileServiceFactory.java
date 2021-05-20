@@ -13,7 +13,7 @@ import java.util.List;
  * @projectName api
  * @package com.test.api.api.file
  * @className FileServiceFactory
- * @description TODO
+ * @description 文件处理工厂
  * @auther wangsheng
  * @creatTime 2021/5/20 10:49 下午
  * @company 四川省万源市一生活智能科技有限公司
@@ -55,7 +55,6 @@ public class FileServiceFactory {
      */
     public static void getFileDetailList(){
         try {
-            //String path = FileServiceFactory.class.getResource("/") + SCAN_PACKAGE.replace(".", File.separator) + File.separator;
             String path = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "java" + File.separator + "" + SCAN_PACKAGE.replace(".", File.separator) + File.separator;
             File file = new File(path);
             String[] strs = file.list();
