@@ -68,7 +68,12 @@ public class TblUserService implements ITblUserService {
         String userId = commonService.getUserId();
         user.setId(userId);
         // 保存用户信息
-        userDao.insert(user);
+        try {
+            userDao.insert(user);
+        }catch (Exception e){
+            logger.error("hahah",e.getMessage(),e);
+        }
+
         logger.info("用户数据基础保存完成");
 
         String[] likes = user.getLikes();

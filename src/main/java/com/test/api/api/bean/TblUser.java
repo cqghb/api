@@ -57,6 +57,10 @@ public class TblUser extends BaseBean implements Serializable {
      * 学历
      */
     private String education;
+    /**
+     * 头像地址
+     */
+    private String headPortraitUrl;
 
     private static final long serialVersionUID = 1L;
 
@@ -157,6 +161,14 @@ public class TblUser extends BaseBean implements Serializable {
         this.education = education;
     }
 
+    public String getHeadPortraitUrl() {
+        return headPortraitUrl;
+    }
+
+    public void setHeadPortraitUrl(String headPortraitUrl) {
+        this.headPortraitUrl = headPortraitUrl;
+    }
+
     @Override
     public String toString() {
         return "TblUser{" +
@@ -170,6 +182,7 @@ public class TblUser extends BaseBean implements Serializable {
                 ", weChat='" + weChat + '\'' +
                 ", email='" + email + '\'' +
                 ", education='" + education + '\'' +
+                ", headPortraitUrl='" + headPortraitUrl + '\'' +
                 '}';
     }
 }

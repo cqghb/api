@@ -25,12 +25,12 @@ import java.io.IOException;
 @FileType(CommConstant.FILE_TYPE_HEAD_PORTRAIT)
 public class HeadPortraitService implements FileDetail {
     protected static Logger logger = LoggerFactory.getLogger(HeadPortraitService.class);
-    // 头像上传路径
-    @Value("${head.portrai.path}")
-    private String headPortraiPath;
+//    // 头像上传路径
+//    @Value("${head.portrai.path}")
+//    private String headPortraiPath;
 
     @Override
-    public String uploadFile(MultipartFile[] files) {
+    public String uploadFile(MultipartFile[] files, String path) {
         long fileSize = files[0].getSize();
         logger.info("头像大小为: " + fileSize);
         String fileType = files[0].getContentType();
@@ -38,7 +38,7 @@ public class HeadPortraitService implements FileDetail {
 
         // TODO 暂时就用上传的文件名作为保存的文件名
         String fileName = files[0].getOriginalFilename();  // 文件名
-        File dest = new File(headPortraiPath + File.separator + fileName);
+        File dest = new File(path + File.separator + fileName);
         if (!dest.getParentFile().exists()) {
             dest.getParentFile().mkdirs();
         }
@@ -50,7 +50,7 @@ public class HeadPortraitService implements FileDetail {
 //            object.put("result","程序错误，请重新上传");
             return null;
         }
-        return fileName;
+        return path + fileName;
     }
 
     @Override

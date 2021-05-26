@@ -16,10 +16,11 @@
         <result column="we_chat" jdbcType="VARCHAR" property="weChat" />
         <result column="email" jdbcType="VARCHAR" property="email" />
         <result column="education" jdbcType="VARCHAR" property="education" />
+        <result column="head_portrait_url" jdbcType="VARCHAR" property="headPortraitUrl" />
     </resultMap>
     <sql id="Base_Column_List">
     id, `name`, pass, create_user, create_time, update_user, update_time, age, sex, birthday,
-    qq, we_chat, email, education
+    qq, we_chat, email, education, head_portrait_url
   </sql>
     <select id="queryUserById" parameterType="java.lang.String" resultMap="BaseResultMap">
         select * from tbl_user where id = #{id, jdbcType=VARCHAR}
@@ -61,6 +62,30 @@
             <if test="createUser !=null and createUser !=''">
                 create_user,
             </if>
+            <if test="age !=null">
+                age,
+            </if>
+            <if test="sex !=null and sex !=''">
+                sex,
+            </if>
+            <if test="birthday !=null">
+                birthday,
+            </if>
+            <if test="qq !=null and qq !=''">
+                qq,
+            </if>
+            <if test="weChat !=null and weChat !=''">
+                we_chat,
+            </if>
+            <if test="email !=null and email !=''">
+                email,
+            </if>
+            <if test="education !=null and education !=''">
+                education,
+            </if>
+            <if test="headPortraitUrl !=null and headPortraitUrl !=''">
+                head_portrait_url,
+            </if>
             create_time
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -75,6 +100,30 @@
             </if>
             <if test="createUser !=null and createUser !=''">
                 #{createUser, jdbcType=VARCHAR},
+            </if>
+            <if test="age !=null">
+                #{age, jdbcType=INTEGER},
+            </if>
+            <if test="sex !=null and sex !=''">
+                #{sex, jdbcType=VARCHAR},
+            </if>
+            <if test="birthday !=null">
+                #{birthday, jdbcType=DATE},
+            </if>
+            <if test="qq !=null and qq !=''">
+                #{qq, jdbcType=VARCHAR},
+            </if>
+            <if test="weChat !=null and weChat !=''">
+                #{weChat, jdbcType=VARCHAR},
+            </if>
+            <if test="email !=null and email !=''">
+                #{email, jdbcType=VARCHAR},
+            </if>
+            <if test="education !=null and education !=''">
+                #{education, jdbcType=VARCHAR},
+            </if>
+            <if test="headPortraitUrl !=null and headPortraitUrl !=''">
+                #{headPortraitUrl, jdbcType=VARCHAR},
             </if>
             sysdate()
         </trim>
