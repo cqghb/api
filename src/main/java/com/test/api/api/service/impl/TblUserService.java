@@ -7,10 +7,12 @@ import com.github.pagehelper.PageInfo;
 import com.test.api.api.bean.TblUser;
 import com.test.api.api.bean.TblUserLikes;
 import com.test.api.api.bo.UserVo;
+import com.test.api.api.constant.CommConstant;
 import com.test.api.api.dao.TblUserDao;
 import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblUserLikesService;
 import com.test.api.api.service.ITblUserService;
+import com.test.api.api.utils.FileUtil;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
 import com.test.api.api.vo.page.PageRequest;
@@ -20,7 +22,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -68,11 +72,14 @@ public class TblUserService implements ITblUserService {
         String userId = commonService.getUserId();
         user.setId(userId);
         // 保存用户信息
-        try {
-            userDao.insert(user);
-        }catch (Exception e){
-            logger.error("hahah",e.getMessage(),e);
+        String oldPath = user.getHeadPortraitUrl();
+        if(!StringUtils.isEmpty(oldPath)){
+            String fileName = userId + CommConstant.UNDERLINE + oldPath.substring(oldPath.lastIndexOf(File.separator) + 1, oldPath.length());
+            String newPath = FileUtil.fixFileName(oldPath,fileName);
+            user.setHeadPortraitUrl(newPath);
         }
+
+        userDao.insert(user);
 
         logger.info("用户数据基础保存完成");
 

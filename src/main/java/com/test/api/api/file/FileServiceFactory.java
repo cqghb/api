@@ -14,6 +14,7 @@ import java.util.List;
  * @package com.test.api.api.file
  * @className FileServiceFactory
  * @description 文件处理工厂
+ * @deprecated 策略服务不能注入自定义参数，废弃这个工厂
  * @auther wangsheng
  * @creatTime 2021/5/20 10:49 下午
  * @company 四川省万源市一生活智能科技有限公司
@@ -65,7 +66,7 @@ public class FileServiceFactory {
                     fileDetailList.add(clazz);
                 }
             }
-            logger.info("文件操作策略类加载完成: " + fileDetailList);
+//            logger.info("文件操作策略类加载完成: " + fileDetailList);
 
         } catch (ClassNotFoundException e) {
             logger.error("文件下载策略加载失败: " + e.getMessage(), e);

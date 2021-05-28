@@ -17,10 +17,9 @@ public interface FileDetail {
     /**
      * 文件上传
      * @param files 上传文件列表
-     * @param path 文件上传路径
      * @return
      */
-    String uploadFile(MultipartFile files[], String path);
+    String uploadFile(MultipartFile files[]);
 
     /**
      * 文件下载

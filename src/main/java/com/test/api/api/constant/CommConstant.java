@@ -16,6 +16,10 @@ public class CommConstant {
     public static final String MENU_PRENT_NODE = "0";
     // 横线
     public static final String HORIZONTAL_LINE = "-";
+    // 下划线
+    public static final String UNDERLINE = "_";
+    // 点号
+    public static final String DOT = ".";
 
     /** 文件类型常量 start **/
     // 头像文件
