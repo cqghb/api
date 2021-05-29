@@ -131,7 +131,7 @@ public class TblUserService implements ITblUserService {
         PageHelper.startPage(currentPage, pageSize);
         JSONObject jsonObject = (JSONObject)JSON.toJSON(pageRequest.getParams());
         TblUser params = jsonObject.toJavaObject(TblUser.class);
-        List<TblUser> usetList = userDao.queryList(params);
-        return new PageInfo<>(usetList);
+        List<TblUser> userList = userDao.queryList(params);
+        return new PageInfo<>(userList);
     }
 }
