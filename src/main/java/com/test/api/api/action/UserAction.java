@@ -38,7 +38,7 @@ public class UserAction {
      */
     @RequestMapping(value = "/login")
     public Result login(@RequestBody TblUser user){
-        TblUser resUser = userService.login(user.getName(), user.getPass());
+        TblUser resUser = userService.login(user.getId(), user.getPass());
         return ResultUtil.success(resUser);
     }
 //    @RequestMapping(value = "/queryList")

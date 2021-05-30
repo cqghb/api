@@ -43,7 +43,7 @@
         <include refid="Base_Column_List"/>
         from tbl_user
         where
-        name = #{name,jdbcType=VARCHAR}
+        id = #{id,jdbcType=VARCHAR}
         and pass = #{pass,jdbcType=VARCHAR}
     </select>
 

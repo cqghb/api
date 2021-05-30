@@ -29,11 +29,11 @@ public interface ITblUserService {
 
     /**
      * 用户登录
-     * @param name 用户名
+     * @param id 用户编号
      * @param pass 密码
      * @return
      */
-    TblUser login(String name, String pass);
+    TblUser login(String id, String pass);
 
     /**
      * 分页查询

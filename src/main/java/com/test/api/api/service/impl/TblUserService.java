@@ -57,8 +57,8 @@ public class TblUserService implements ITblUserService {
     }
 
     @Override
-    public TblUser login(String name, String pass) {
-        return userDao.login(name, pass);
+    public TblUser login(String id, String pass) {
+        return userDao.login(id, pass);
     }
 
     @Override
