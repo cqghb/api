@@ -137,15 +137,31 @@
             <if test="name!=null and name !=''">
                 t.name = #{name, jdbcType=VARCHAR},
             </if>
-            <if test="pass!=null and pass !=''">
-                t.pass = #{pass, jdbcType=VARCHAR},
-            </if>
             <if test="updateUser!=null and updateUser!=''">
                 t.update_user = #{updateUser, jdbcType=VARCHAR},
             </if>
-            <if test="updateTime!=null">
-                t.update_time = #{updateTime, jdbcType=DATE},
+            <if test="age != null">
+                age = #{age,jdbcType=INTEGER},
             </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=DATE},
+            </if>
+            <if test="qq != null">
+                qq = #{qq,jdbcType=VARCHAR},
+            </if>
+            <if test="weChat != null">
+                we_chat = #{weChat,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="education != null">
+                education = #{education,jdbcType=VARCHAR},
+            </if>
+            t.update_time = sysdate()
         </trim>
         where t.id = #{id, jdbcType=VARCHAR}
     </update>
@@ -160,120 +176,14 @@
         where id = #{id,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from tbl_user
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-<!--    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblUser" useGeneratedKeys="true">-->
-<!--    insert into tbl_user (`name`, pass, create_user,-->
-<!--      create_time, update_user, update_time,-->
-<!--      age, sex, birthday, qq,-->
-<!--      we_chat, email, education-->
-<!--      )-->
-<!--    values (#{name,jdbcType=VARCHAR}, #{pass,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR},-->
-<!--      #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP},-->
-<!--      #{age,jdbcType=INTEGER}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{qq,jdbcType=VARCHAR},-->
-<!--      #{weChat,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}-->
-<!--      )-->
-<!--  </insert>-->
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblUser" useGeneratedKeys="true">
-        insert into tbl_user
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="name != null">
-                `name`,
-            </if>
-            <if test="pass != null">
-                pass,
-            </if>
-            <if test="createUser != null">
-                create_user,
-            </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
-            <if test="updateUser != null">
-                update_user,
-            </if>
-            <if test="updateTime != null">
-                update_time,
-            </if>
-            <if test="age != null">
-                age,
-            </if>
-            <if test="sex != null">
-                sex,
-            </if>
-            <if test="birthday != null">
-                birthday,
-            </if>
-            <if test="qq != null">
-                qq,
-            </if>
-            <if test="weChat != null">
-                we_chat,
-            </if>
-            <if test="email != null">
-                email,
-            </if>
-            <if test="education != null">
-                education,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="name != null">
-                #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="pass != null">
-                #{pass,jdbcType=VARCHAR},
-            </if>
-            <if test="createUser != null">
-                #{createUser,jdbcType=VARCHAR},
-            </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateUser != null">
-                #{updateUser,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime != null">
-                #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="age != null">
-                #{age,jdbcType=INTEGER},
-            </if>
-            <if test="sex != null">
-                #{sex,jdbcType=VARCHAR},
-            </if>
-            <if test="birthday != null">
-                #{birthday,jdbcType=DATE},
-            </if>
-            <if test="qq != null">
-                #{qq,jdbcType=VARCHAR},
-            </if>
-            <if test="weChat != null">
-                #{weChat,jdbcType=VARCHAR},
-            </if>
-            <if test="email != null">
-                #{email,jdbcType=VARCHAR},
-            </if>
-            <if test="education != null">
-                #{education,jdbcType=VARCHAR},
-            </if>
-        </trim>
-    </insert>
+        delete from tbl_user
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
     <update id="updateByPrimaryKeySelective" parameterType="com.test.api.api.bean.TblUser">
         update tbl_user
         <set>
             <if test="name != null">
                 `name` = #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="pass != null">
-                pass = #{pass,jdbcType=VARCHAR},
-            </if>
-            <if test="createUser != null">
-                create_user = #{createUser,jdbcType=VARCHAR},
-            </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
             </if>
             <if test="updateUser != null">
                 update_user = #{updateUser,jdbcType=VARCHAR},
@@ -305,21 +215,10 @@
         </set>
         where id = #{id,jdbcType=VARCHAR}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.test.api.api.bean.TblUser">
-    update tbl_user
-    set `name` = #{name,jdbcType=VARCHAR},
-      pass = #{pass,jdbcType=VARCHAR},
-      create_user = #{createUser,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_user = #{updateUser,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      age = #{age,jdbcType=INTEGER},
-      sex = #{sex,jdbcType=VARCHAR},
-      birthday = #{birthday,jdbcType=DATE},
-      qq = #{qq,jdbcType=VARCHAR},
-      we_chat = #{weChat,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      education = #{education,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
+
+    <!-- 重置密码，密码是有用户自定义 -->
+    <update id="resetPass" parameterType="com.test.api.api.bo.UserBo">
+        update tbl_user t set t.pass = #{pass,jdbcType=VARCHAR},t.update_time = sysdate()
+        where t.id = #{id,jdbcType=VARCHAR}
     </update>
 </mapper>

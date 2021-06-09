@@ -6,7 +6,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.test.api.api.bean.TblUser;
 import com.test.api.api.bean.TblUserLikes;
-import com.test.api.api.bo.UserVo;
+import com.test.api.api.bo.UserBo;
 import com.test.api.api.constant.CommConstant;
 import com.test.api.api.dao.TblUserDao;
 import com.test.api.api.service.ICommonService;
@@ -25,14 +25,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.File;
-import java.util.Date;
 import java.util.List;
 
 /**
  * @projectName api
  * @package com.test.api.api.service
  * @className TblUserService
- * @description TODO
+ * @description 用户管理业务逻辑接口实现类
  * @auther wangsheng
  * @creatTime 2020/11/6 12:31 上午
  * @company demo
@@ -67,7 +66,7 @@ public class TblUserService implements ITblUserService {
     }
 
     @Override
-    public String insert(UserVo user) {
+    public String insert(UserBo user) {
         // 用户主键
         String userId = commonService.getUserId();
         user.setId(userId);
@@ -111,13 +110,17 @@ public class TblUserService implements ITblUserService {
 
     @Override
     public int update(TblUser user) {
-        user.setUpdateTime(new Date());
         return userDao.update(user);
     }
 
     @Override
     public Cursor<TblUser> test() {
         return userDao.test();
+    }
+
+    @Override
+    public int resetPass(UserBo user) {
+        return userDao.resetPass(user);
     }
 
     /**

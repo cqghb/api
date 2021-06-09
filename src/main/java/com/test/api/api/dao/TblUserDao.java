@@ -1,6 +1,7 @@
 package com.test.api.api.dao;
 
 import com.test.api.api.bean.TblUser;
+import com.test.api.api.bo.UserBo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.cursor.Cursor;
 import org.springframework.stereotype.Repository;
@@ -68,11 +69,14 @@ public interface TblUserDao {
 
 //    int insert(TblUser record);
 
-    int insertSelective(TblUser record);
-
     TblUser selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(TblUser record);
 
-    int updateByPrimaryKey(TblUser record);
+    /**
+     * 重置密码
+     * @param user
+     * @return
+     */
+    int resetPass(UserBo user);
 }

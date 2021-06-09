@@ -1,7 +1,7 @@
 package com.test.api.api.service;
 
 import com.test.api.api.bean.TblUser;
-import com.test.api.api.bo.UserVo;
+import com.test.api.api.bo.UserBo;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import org.apache.ibatis.cursor.Cursor;
@@ -47,7 +47,7 @@ public interface ITblUserService {
      * @param user 用户
      * @return
      */
-    String insert(UserVo user);
+    String insert(UserBo user);
 
     /**
      * 删除用户
@@ -71,4 +71,11 @@ public interface ITblUserService {
     int update(TblUser user);
 
     Cursor<TblUser> test();
+
+    /**
+     * 重置密码
+     * @param user 密码登参数
+     * @return
+     */
+    int resetPass(UserBo user);
 }

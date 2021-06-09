@@ -1,7 +1,7 @@
 package com.test.api.api.action;
 
 import com.test.api.api.bean.TblUser;
-import com.test.api.api.bo.UserVo;
+import com.test.api.api.bo.UserBo;
 import com.test.api.api.config.Result;
 import com.test.api.api.service.ITblUserService;
 import com.test.api.api.utils.ResultUtil;
@@ -63,7 +63,7 @@ public class UserAction {
      * @return
      */
     @PostMapping(value="/insertUser")
-    public Result insertUser(@RequestBody UserVo user) {
+    public Result insertUser(@RequestBody UserBo user) {
         String userId = userService.insert(user);
         return ResultUtil.success(userId);
     }
@@ -127,5 +127,14 @@ public class UserAction {
         return ResultUtil.success(d);
     }
 
-
+    /**
+     * 重置密码
+     * @param user
+     * @return
+     */
+    @PostMapping(value="/resetPass")
+    public Result resetPass(@RequestBody UserBo user) {
+        int num = userService.resetPass(user);
+        return ResultUtil.success(num);
+    }
 }
