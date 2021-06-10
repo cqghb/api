@@ -21,14 +21,17 @@ public class UserBo extends TblUser implements Serializable {
     String[] likes;
     // 确认密码
     String pass2;
+    // 验证码
+    String verificationCode;
 
     public UserBo() {
     }
 
-    public UserBo(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name, String pass, Integer age, String sex, Date birthday, String qq, String weChat, String email, String education, String[] likes, String pass2) {
+    public UserBo(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name, String pass, Integer age, String sex, Date birthday, String qq, String weChat, String email, String education, String[] likes, String pass2, String verificationCode) {
         super(createUser, createTime, updateUser, updateTime, id, name, pass, age, sex, birthday, qq, weChat, email, education);
         this.likes = likes;
         this.pass2 = pass2;
+        this.verificationCode = verificationCode;
     }
 
     public String[] getLikes() {
@@ -45,6 +48,14 @@ public class UserBo extends TblUser implements Serializable {
 
     public void setPass2(String pass2) {
         this.pass2 = pass2;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
     }
 
     @Override

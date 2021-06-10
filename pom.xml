@@ -29,6 +29,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- 邮件模块依赖包 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
