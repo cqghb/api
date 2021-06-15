@@ -11,6 +11,16 @@ spring:
     username: root
     password: helloser
     driver-class-name: com.mysql.cj.jdbc.Driver
+  mail: # 邮件配置
+    host: smtp.qq.com
+    username: 1689841661@qq.com
+    password: nkfpmbygbjpubbeh # 邮件客户端授权码
+    port: 465
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
 mybatis:
   mapper-locations: classpath:mapper/*.xml # xml映射文件位置
   type-aliases-package: com.test.api.api.bean # 对应实体类的路径

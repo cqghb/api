@@ -42,7 +42,25 @@ public class StringUtil {
         return UUID.randomUUID().toString().replace(CommConstant.HORIZONTAL_LINE,"").toUpperCase();
     }
 
+    /**
+     * 生成charCount位验证码
+     * @param charCount 验证码位数
+     * @return
+     */
+    public static String getRandNum(int charCount) {
+        String charValue = "";
+        for (int i = 0; i < charCount; i++) {
+            char c = (char) (randomInt(0, 10) + '0');
+            charValue += String.valueOf(c);
+        }
+        return charValue;
+    }
+
+    public static int randomInt(int from, int to) {
+        Random r = new Random();
+        return from + r.nextInt(to - from);
+    }
     public static void main(String[] args) {
-        logger.info(uuid());
+        logger.info(getRandNum(6));
     }
 }
