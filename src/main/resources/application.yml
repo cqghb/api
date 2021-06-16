@@ -8,13 +8,13 @@ server:
 spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/api?serverTimezone=GMT%2B8
-    username: root
-    password: helloser
+    username: ENC(lgpCOb0fh+3clp4Euo9BXA==)
+    password: ENC(5Uhur3mwlqJA3+bdxzKrRlIuqUjed/W3)
     driver-class-name: com.mysql.cj.jdbc.Driver
   mail: # 邮件配置
     host: smtp.qq.com
-    username: 1689841661@qq.com
-    password: aaaa # 邮件客户端授权码
+    username: ENC(6A63N3lvQmd/NCKURbJ6QvoJLliSx2Q5HCJGvOf0zww=)
+    password: ENC(a6703L7xSqI3iMxPA/pcBsTij/N3OqyM4K/H/Ie0130=) # 邮件客户端授权码
     port: 465
     properties:
       mail:
@@ -37,3 +37,4 @@ pagehelper: # 分页配置
 head:
   portrai:
     path: /Users/wangsheng/headPortrai/
+
