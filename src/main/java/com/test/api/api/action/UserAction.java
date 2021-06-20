@@ -7,10 +7,16 @@ import com.test.api.api.service.ITblUserService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.cursor.Cursor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,6 +33,7 @@ import java.util.List;
  * @department demo
  */
 @RestController
+@Api(value = "测试接口", tags = "用户管理相关的接口", description = "用户测试接口")
 public class UserAction {
     @Autowired
     private ITblUserService userService;
@@ -63,6 +70,10 @@ public class UserAction {
      * @return
      */
     @PostMapping(value="/insertUser")
+    //方法参数说明，name参数名；value参数说明，备注；dataType参数类型；required 是否必传；defaultValue 默认值
+    @ApiImplicitParam(name = "user", value = "新增用户数据")
+    //说明是什么方法(可以理解为方法注释)
+    @ApiOperation(value = "添加用户", notes = "添加用户")
     public Result insertUser(@RequestBody UserBo user) {
         String userId = userService.insert(user);
         return ResultUtil.success(userId);

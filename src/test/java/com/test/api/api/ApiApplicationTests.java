@@ -25,11 +25,17 @@ class ApiApplicationTests {
     void contextLoads() {
     }
 
+    /**
+     * 加密
+     */
     @Test
     public void encrypt() {
         System.out.println("encrypt: " + jasyptStringEncryptor.encrypt("helloser"));
     }
 
+    /**
+     * 解密
+     */
     @Test
     public void decrypt() {
         System.out.println("decrypt: " + jasyptStringEncryptor.decrypt("o9uLVKcJV4C7SkdF9sZJzQ=="));

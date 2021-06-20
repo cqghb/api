@@ -13,6 +13,7 @@ import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblUserLikesService;
 import com.test.api.api.service.ITblUserService;
 import com.test.api.api.utils.FileUtil;
+import com.test.api.api.utils.JsonUtils;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
 import com.test.api.api.vo.page.PageRequest;
@@ -21,11 +22,14 @@ import org.apache.ibatis.cursor.Cursor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.File;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @projectName api
@@ -41,6 +45,14 @@ import java.util.List;
 public class TblUserService implements ITblUserService {
 
     protected static Logger logger = LoggerFactory.getLogger(TblUserService.class);
+
+    @Value("login.time")
+    private String time;
+
+
+    @Autowired
+    RedisTemplate<String, Object> redisTemplate;
+
     @Autowired
     private TblUserDao userDao;
 
@@ -57,7 +69,10 @@ public class TblUserService implements ITblUserService {
 
     @Override
     public TblUser login(String id, String pass) {
-        return userDao.login(id, pass);
+        TblUser userInfo = userDao.login(id, pass);
+
+        redisTemplate.opsForValue().set("", JsonUtils.objectToJson(userInfo), Long.valueOf(time), TimeUnit.SECONDS);
+        return userInfo;
     }
 
     @Override

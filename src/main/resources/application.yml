@@ -2,10 +2,9 @@ server:
   port: 8081
   servlet:
     context-path: /server
-#spring:
-#  application:
-#    name: api
 spring:
+  application:
+    name: api
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/api?serverTimezone=GMT%2B8
     username: ENC(lgpCOb0fh+3clp4Euo9BXA==)
@@ -48,3 +47,15 @@ pagehelper: # 分页配置
 head:
   portrai:
     path: /Users/wangsheng/headPortrai/
+
+login: # 用户登录过期时间 1h
+  time: 3600000
+# 自定义swagger配置 访问地址 http://localhost:8081/server/swagger-ui/index.html#/
+swagger:
+  enable: true
+  application-name: ${spring.application.name}
+  application-version: 1.0.0
+  application-description: springfox swagger 3.0整合Demo
+  try-host: http://localhost:${server.port}
+
+
