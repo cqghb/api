@@ -45,7 +45,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .pathMapping("/")
                 .apiInfo(apiInfo())
                 .enable(swaggerProperties.getEnable())
-                .host(swaggerProperties.getTryHost())
+                .host(swaggerProperties.getTryHost())//之前一直无法访问页面就是因为这个没有配置
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.test.api.api.action"))
                 .paths(PathSelectors.any())
