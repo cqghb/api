@@ -1,9 +1,12 @@
 package com.test.api.api.config;
 
 import com.test.api.api.config.properties.SwaggerProperties;
+import com.test.api.api.myinterceptor.RedisSessionInterceptor;
 import io.swagger.models.auth.In;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -30,10 +33,17 @@ public class SwaggerConfig implements WebMvcConfigurer {
 
     private final SwaggerProperties swaggerProperties;
 
+    @Autowired
+    private RedisSessionInterceptor redisSessionInterceptor;
+
     public SwaggerConfig(SwaggerProperties swaggerProperties) {
         this.swaggerProperties = swaggerProperties;
     }
 
+//    @Bean
+//    public RedisSessionInterceptor getSessionInterceptor(){
+//        return new RedisSessionInterceptor();
+//    }
     @Bean
     public Docket createRestApi(){
         return new Docket(DocumentationType.OAS_30)
@@ -86,48 +96,43 @@ public class SwaggerConfig implements WebMvcConfigurer {
                         .build()
         );
     }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry){
+        /**
+         * 所有已api开头的访问都要进入RedisSessionInterceptor拦截器进行登录验证，并排除login接口(全路径)。
+         * 必须写成链式，分别设置的话会创建多个拦截器。
+         * 必须写成getSessionInterceptor()，否则SessionInterceptor中的@Autowired会无效
+         * http://127.0.0.1:8081/server/login
+         * **/
+        registry.addInterceptor(redisSessionInterceptor).addPathPatterns("/**")
+                .excludePathPatterns("/login")
+                .excludePathPatterns("/registerUser");
+    }
 
-//    /**
-//     * 通用拦截器排除swagger设置，所有拦截器都会自动加swagger相关的资源排除信息
-//     */
-//    @SuppressWarnings("unchecked")
 //    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        try {
-//            Field registrationsField = FieldUtils.getField(InterceptorRegistry.class, "registrations", true);
-//            List<InterceptorRegistration> registrations = (List<InterceptorRegistration>) ReflectionUtils.getField(registrationsField, registry);
-//            if (registrations != null) {
-//                for (InterceptorRegistration interceptorRegistration : registrations) {
-//                    interceptorRegistration
-//                            .excludePathPatterns("/swagger**/**")
-//                            .excludePathPatterns("/webjars/**")
-//                            .excludePathPatterns("/v3/**")
-//                            .excludePathPatterns("/doc.html");
-//                }
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**")
+//                .allowedOrigins("http://localhost:8080")
+//                .allowedMethods("*")
+//                .allowedHeaders("*")
+//                .maxAge(3600)
+//                .exposedHeaders("Access-Control-Allow-Origin")
+//                .allowCredentials(true);
 //    }
 
-//    /**
-//     * 解决swagger-ui.html 404无法访问的问题
-//     */
-//    @Override
-//    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        // 解决静态资源无法访问
-//        registry.addResourceHandler("/**")
-//                .addResourceLocations("classpath:/static/");
-//        // 解决swagger无法访问
-//        registry.addResourceHandler("/swagger-ui.html")
-//                .addResourceLocations("classpath:/META-INF/resources/");
-//        // 解决swagger的js文件无法访问
-//        registry.addResourceHandler("/webjars/**")
-//                .addResourceLocations("classpath:/META-INF/resources/webjars/");
+//    @Bean
+//    public CorsFilter corsFilter(){
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", this.buildConfig());
+//        return new CorsFilter(source);
 //    }
 //
-//    @Override
-//    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-//        configurer.enable();
+//    private CorsConfiguration buildConfig() {
+//        CorsConfiguration corsConfiguration = new CorsConfiguration();
+//        corsConfiguration.addAllowedOrigin("*");
+//        corsConfiguration.addAllowedHeader("*");
+//        corsConfiguration.addAllowedMethod("*");
+//        corsConfiguration.setAllowCredentials(true);
+//        return corsConfiguration;
 //    }
 }

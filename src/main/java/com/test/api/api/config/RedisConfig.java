@@ -21,6 +21,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @department 小程序-微信小程序
  */
 @Configuration
+//@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 1800)
 public class RedisConfig {
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory){

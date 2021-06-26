@@ -24,4 +24,6 @@ public class MsgCodeConstant {
      */
     public static final String ERROR_CODE = "999999";
 
+    public static final String[] LOING_INFO_INVALID = new String[]{"000001","登录失效"};
+
 }

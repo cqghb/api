@@ -30,4 +30,9 @@ public class CommConstant {
     public static final String FILE_TYPE_EXCELE = "3";
 
     /** 文件类型常量 end **/
+
+    /** g公共常量 start **/
+    // 用户信息存入Redis中的key
+    public static final String REDIS_USER_KEY = "redisUserKey";
+    /** g公共常量 end **/
 }

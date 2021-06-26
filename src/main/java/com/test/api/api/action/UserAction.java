@@ -3,21 +3,25 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblUser;
 import com.test.api.api.bo.UserBo;
 import com.test.api.api.config.Result;
+import com.test.api.api.constant.CommConstant;
 import com.test.api.api.service.ITblUserService;
 import com.test.api.api.utils.ResultUtil;
+import com.test.api.api.utils.StringUtil;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.cursor.Cursor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +39,12 @@ import java.util.List;
 @RestController
 @Api(value = "测试接口", tags = "用户管理相关的接口", description = "用户测试接口")
 public class UserAction {
+
+    protected static final Logger logger = LoggerFactory.getLogger(UserAction.class);
+
+//    @Autowired
+//    private HttpSession session;
+
     @Autowired
     private ITblUserService userService;
 
@@ -44,8 +54,18 @@ public class UserAction {
      * @return
      */
     @RequestMapping(value = "/login")
-    public Result login(@RequestBody TblUser user){
-        TblUser resUser = userService.login(user.getId(), user.getPass());
+    public Result login(@RequestBody TblUser user, HttpServletRequest request, HttpServletResponse response){
+        String id = user.getId();
+        String userKey = id + StringUtil.uuid();
+        TblUser resUser = userService.login(id, user.getPass(),userKey);
+        if(null != resUser){
+//            HttpSession session = request.getSession();
+//            logger.info("[登录] sessionID= " + session.getId());
+//            session.setAttribute(CommConstant.REDIS_USER_KEY, userKey);
+
+            Cookie cookie = new Cookie(CommConstant.REDIS_USER_KEY, userKey);
+            response.addCookie(cookie);
+        }
         return ResultUtil.success(resUser);
     }
 //    @RequestMapping(value = "/queryList")
@@ -58,6 +78,7 @@ public class UserAction {
      * @param pageQuery
      * @return
      */
+    @CrossOrigin(origins = "*", maxAge = 3600,allowCredentials="true")
     @PostMapping(value="/findPage")
     public Result findPage(@RequestBody PageRequest pageQuery) {
         PageResult pageResult = userService.findPage(pageQuery);
@@ -75,6 +96,21 @@ public class UserAction {
     //说明是什么方法(可以理解为方法注释)
     @ApiOperation(value = "添加用户", notes = "添加用户")
     public Result insertUser(@RequestBody UserBo user) {
+        String userId = userService.insert(user);
+        return ResultUtil.success(userId);
+    }
+
+    /**
+     * 新增用户
+     * @param user
+     * @return
+     */
+    @PostMapping(value="/registerUser")
+    //方法参数说明，name参数名；value参数说明，备注；dataType参数类型；required 是否必传；defaultValue 默认值
+    @ApiImplicitParam(name = "user", value = "新增用户数据")
+    //说明是什么方法(可以理解为方法注释)
+    @ApiOperation(value = "添加用户", notes = "添加用户")
+    public Result registerUser(@RequestBody UserBo user) {
         String userId = userService.insert(user);
         return ResultUtil.success(userId);
     }

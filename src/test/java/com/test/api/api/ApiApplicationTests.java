@@ -80,7 +80,7 @@ class ApiApplicationTests {
     @Test
     public void test22() {
         String key = "zszxz";
-        long time = 60;
+        long time = 5;
         redisTemplate.expire(key, time, TimeUnit.SECONDS);
     }
     // 获取key过期时间

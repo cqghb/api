@@ -46,9 +46,8 @@ public class TblUserService implements ITblUserService {
 
     protected static Logger logger = LoggerFactory.getLogger(TblUserService.class);
 
-    @Value("login.time")
+    @Value("${login.time}")
     private String time;
-
 
     @Autowired
     RedisTemplate<String, Object> redisTemplate;
@@ -68,10 +67,10 @@ public class TblUserService implements ITblUserService {
     }
 
     @Override
-    public TblUser login(String id, String pass) {
+    public TblUser login(String id, String pass, String userKey) {
         TblUser userInfo = userDao.login(id, pass);
 
-        redisTemplate.opsForValue().set("", JsonUtils.objectToJson(userInfo), Long.valueOf(time), TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(userKey, JsonUtils.objectToJson(userInfo), Long.valueOf(time), TimeUnit.SECONDS);
         return userInfo;
     }
 
