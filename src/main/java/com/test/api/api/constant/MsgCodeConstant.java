@@ -23,6 +23,10 @@ public class MsgCodeConstant {
      * 异常码
      */
     public static final String ERROR_CODE = "999999";
+    /**
+     * 异常消息
+     */
+    public static final String ERROR_MSG = "系统异常";
 
     public static final String[] LOING_INFO_INVALID = new String[]{"000001","登录失效"};
 

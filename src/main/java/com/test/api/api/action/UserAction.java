@@ -3,10 +3,8 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblUser;
 import com.test.api.api.bo.UserBo;
 import com.test.api.api.config.Result;
-import com.test.api.api.constant.CommConstant;
 import com.test.api.api.service.ITblUserService;
 import com.test.api.api.utils.ResultUtil;
-import com.test.api.api.utils.StringUtil;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import io.swagger.annotations.Api;
@@ -19,9 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,17 +49,11 @@ public class UserAction {
      * @return
      */
     @RequestMapping(value = "/login")
-    public Result login(@RequestBody TblUser user, HttpServletRequest request, HttpServletResponse response){
+    public Result login(@RequestBody TblUser user){
         String id = user.getId();
-        String userKey = id + StringUtil.uuid();
-        TblUser resUser = userService.login(id, user.getPass(),userKey);
-        if(null != resUser){
-//            HttpSession session = request.getSession();
-//            logger.info("[登录] sessionID= " + session.getId());
-//            session.setAttribute(CommConstant.REDIS_USER_KEY, userKey);
-
-            Cookie cookie = new Cookie(CommConstant.REDIS_USER_KEY, userKey);
-            response.addCookie(cookie);
+        TblUser resUser = userService.login(id, user.getPass());
+        if(null == resUser){
+            return ResultUtil.error("000002","用户未注册");
         }
         return ResultUtil.success(resUser);
     }

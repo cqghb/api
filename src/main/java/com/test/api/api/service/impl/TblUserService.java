@@ -12,10 +12,7 @@ import com.test.api.api.dao.TblUserDao;
 import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblUserLikesService;
 import com.test.api.api.service.ITblUserService;
-import com.test.api.api.utils.FileUtil;
-import com.test.api.api.utils.JsonUtils;
-import com.test.api.api.utils.PageUtils;
-import com.test.api.api.utils.StringUtil;
+import com.test.api.api.utils.*;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import org.apache.ibatis.cursor.Cursor;
@@ -27,6 +24,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -67,8 +65,12 @@ public class TblUserService implements ITblUserService {
     }
 
     @Override
-    public TblUser login(String id, String pass, String userKey) {
+    public TblUser login(String id, String pass) {
         TblUser userInfo = userDao.login(id, pass);
+        String userKey = id + StringUtil.uuid();
+        HttpSession session = SessionUtils.getHttpSession();
+        logger.info("[登录] sessionID= " + session.getId());
+        session.setAttribute(CommConstant.REDIS_USER_KEY, userKey);
 
         redisTemplate.opsForValue().set(userKey, JsonUtils.objectToJson(userInfo), Long.valueOf(time), TimeUnit.SECONDS);
         return userInfo;

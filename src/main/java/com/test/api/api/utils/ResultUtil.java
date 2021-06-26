@@ -48,4 +48,14 @@ public class ResultUtil {
         result.setMsg(msg);
         return result;
     }
+    /**
+     * 异常时响应对象，返回默认消息
+     * @return
+     */
+    public static Result error() {
+        Result result = new Result();
+        result.setCode(MsgCodeConstant.ERROR_CODE);
+        result.setMsg(MsgCodeConstant.ERROR_MSG);
+        return result;
+    }
 }

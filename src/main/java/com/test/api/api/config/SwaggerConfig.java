@@ -1,6 +1,7 @@
 package com.test.api.api.config;
 
 import com.test.api.api.config.properties.SwaggerProperties;
+import com.test.api.api.myinterceptor.CommonInterceptor;
 import com.test.api.api.myinterceptor.RedisSessionInterceptor;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,9 @@ public class SwaggerConfig implements WebMvcConfigurer {
 
     @Autowired
     private RedisSessionInterceptor redisSessionInterceptor;
+
+    @Autowired
+    private CommonInterceptor commonInterceptor;
 
     public SwaggerConfig(SwaggerProperties swaggerProperties) {
         this.swaggerProperties = swaggerProperties;
@@ -104,6 +108,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
          * 必须写成getSessionInterceptor()，否则SessionInterceptor中的@Autowired会无效
          * http://127.0.0.1:8081/server/login
          * **/
+        registry.addInterceptor(commonInterceptor).addPathPatterns("/**");// 这个拦截器拦截所有请求
         registry.addInterceptor(redisSessionInterceptor).addPathPatterns("/**")
                 .excludePathPatterns("/login")
                 .excludePathPatterns("/registerUser");

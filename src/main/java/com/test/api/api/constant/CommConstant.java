@@ -31,8 +31,10 @@ public class CommConstant {
 
     /** 文件类型常量 end **/
 
-    /** g公共常量 start **/
+    /** 公共常量 start **/
     // 用户信息存入Redis中的key
     public static final String REDIS_USER_KEY = "redisUserKey";
-    /** g公共常量 end **/
+    // session ID
+    public static final String JSESSIONID = "JSESSIONID";
+    /** 公共常量 end **/
 }

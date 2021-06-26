@@ -33,7 +33,7 @@ public interface ITblUserService {
      * @param pass 密码
      * @return
      */
-    TblUser login(String id, String pass, String userKey);
+    TblUser login(String id, String pass);
 
     /**
      * 分页查询
