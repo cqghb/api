@@ -110,8 +110,12 @@ public class SwaggerConfig implements WebMvcConfigurer {
          * **/
         registry.addInterceptor(commonInterceptor).addPathPatterns("/**");// 这个拦截器拦截所有请求
         registry.addInterceptor(redisSessionInterceptor).addPathPatterns("/**")
-                .excludePathPatterns("/login")
-                .excludePathPatterns("/registerUser");
+                .excludePathPatterns("/login")// 路径从controller开始，不要加/server
+                .excludePathPatterns("/file/uploadFile")// TODO 上传图片暂时不要拦截了,注册的时候可能会上传图片
+                .excludePathPatterns("/codeValue/searchCodeKeyValue")// TODO 上传图片暂时不要拦截了,注册的时候可能会上传图片
+                .excludePathPatterns("/mail/sendVerificationCode")// TODO 上传图片暂时不要拦截了,注册的时候可能会上传图片
+                .excludePathPatterns("/resetPass")
+                .excludePathPatterns("/insertUser");
     }
 
 //    @Override

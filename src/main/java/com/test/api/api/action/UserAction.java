@@ -3,6 +3,7 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblUser;
 import com.test.api.api.bo.UserBo;
 import com.test.api.api.config.Result;
+import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.service.ITblUserService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.page.PageRequest;
@@ -53,7 +54,7 @@ public class UserAction {
         String id = user.getId();
         TblUser resUser = userService.login(id, user.getPass());
         if(null == resUser){
-            return ResultUtil.error("000002","用户未注册");
+            return ResultUtil.error(MsgCodeConstant.USER_NOT_REGISTER);
         }
         return ResultUtil.success(resUser);
     }
@@ -164,12 +165,22 @@ public class UserAction {
     }
 
     /**
-     * 重置密码
+     * 重置密码，没有登录的时候修改密码调用这个
      * @param user
      * @return
      */
     @PostMapping(value="/resetPass")
     public Result resetPass(@RequestBody UserBo user) {
+        int num = userService.resetPass(user);
+        return ResultUtil.success(num);
+    }
+    /**
+     * 重置密码，登录之后修改密码调用这个
+     * @param user
+     * @return
+     */
+    @PostMapping(value="/resetPass2")
+    public Result resetPass2(@RequestBody UserBo user) {
         int num = userService.resetPass(user);
         return ResultUtil.success(num);
     }

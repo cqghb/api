@@ -22,6 +22,7 @@ import java.util.Map;
  * @department 
  */
 @RestController
+@RequestMapping("codeValue")
 public class CodeValueAction {
 
     protected static Logger logger = LoggerFactory.getLogger(CodeValueAction.class);

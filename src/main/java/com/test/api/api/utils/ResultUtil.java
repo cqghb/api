@@ -48,6 +48,12 @@ public class ResultUtil {
         result.setMsg(msg);
         return result;
     }
+    public static Result error(String[] msg) {
+        Result result = new Result();
+        result.setCode(msg[0]);
+        result.setMsg(msg[1]);
+        return result;
+    }
     /**
      * 异常时响应对象，返回默认消息
      * @return
