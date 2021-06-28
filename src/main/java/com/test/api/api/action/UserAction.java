@@ -2,6 +2,7 @@ package com.test.api.api.action;
 
 import com.test.api.api.bean.TblUser;
 import com.test.api.api.bo.UserBo;
+import com.test.api.api.config.AppException;
 import com.test.api.api.config.Result;
 import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.service.ITblUserService;
@@ -68,7 +69,6 @@ public class UserAction {
      * @param pageQuery
      * @return
      */
-    @CrossOrigin(origins = "*", maxAge = 3600,allowCredentials="true")
     @PostMapping(value="/findPage")
     public Result findPage(@RequestBody PageRequest pageQuery) {
         PageResult pageResult = userService.findPage(pageQuery);
@@ -183,5 +183,38 @@ public class UserAction {
     public Result resetPass2(@RequestBody UserBo user) {
         int num = userService.resetPass(user);
         return ResultUtil.success(num);
+    }
+
+    /**
+     * 退出登录
+     * 清除Redis中保存的登录信息
+     * @return
+     */
+    @PostMapping(value="/signOut")
+    @ApiOperation(value = "退出登录", notes = "退出登录，删除Redis中的登录信息")
+    public Result signOut() {
+        userService.signOut();
+        return ResultUtil.success();
+    }
+
+    /**
+     * 自定义异常测试接口
+     * @return
+     */
+    @PostMapping(value="/testAppException")
+    @ApiOperation(value = "测试AppException是否起了作用", notes = "测试AppException是否起了作用,这个接口不开放给前端调用")
+    public Result testAppException() {
+
+        throw new AppException("123456","测试AppException");
+    }
+    /**
+     * 自定义异常测试接口
+     * @return
+     */
+    @PostMapping(value="/testException")
+    @ApiOperation(value = "测试Exception是否起了作用", notes = "测试Exception是否起了作用,这个接口不开放给前端调用")
+    public Result testException() {
+        int a = 1/0;
+        return ResultUtil.success();
     }
 }

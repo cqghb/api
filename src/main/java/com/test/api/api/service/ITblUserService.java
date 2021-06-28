@@ -78,4 +78,9 @@ public interface ITblUserService {
      * @return
      */
     int resetPass(UserBo user);
+
+    /**
+     * 退出登录
+     */
+    void signOut();
 }

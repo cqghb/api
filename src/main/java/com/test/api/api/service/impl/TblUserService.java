@@ -93,7 +93,8 @@ public class TblUserService implements ITblUserService {
             String newPath = FileUtil.fixFileName(oldPath,fileName);
             user.setHeadPortraitUrl(newPath);
         }
-
+        // 设置默认密码
+        user.setPass(CommConstant.DEFAULT_PASSS);
         userDao.insert(user);
 
         logger.info("用户数据基础保存完成");
@@ -137,6 +138,14 @@ public class TblUserService implements ITblUserService {
     @Override
     public int resetPass(UserBo user) {
         return userDao.resetPass(user);
+    }
+
+    @Override
+    public void signOut() {
+        HttpSession session = SessionUtils.getHttpSession();
+        String userKey = (String)session.getAttribute(CommConstant.REDIS_USER_KEY);
+        boolean b = redisTemplate.delete(userKey);
+        logger.info("[退出登录] Redis 删除用户登录新消息删除结果: " + b);
     }
 
     /**

@@ -49,7 +49,7 @@ head:
     path: /Users/wangsheng/headPortrai/
 
 login: # 用户登录过期时间 1h
-  time: 5
+  time: 20
 # 自定义swagger配置 访问地址 http://localhost:8081/server/swagger-ui/index.html#/
 swagger:
   enable: true

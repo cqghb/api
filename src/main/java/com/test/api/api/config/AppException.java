@@ -6,7 +6,7 @@ import com.alibaba.fastjson.JSON;
  * @projectName api
  * @package com.test.api.api.config
  * @className AppException
- * @description TODO
+ * @description 自定义异常类
  * @auther wangsheng
  * @creatTime 2020/11/29 5:12 下午
  * @company 四川省万源市一生活智能科技有限公司

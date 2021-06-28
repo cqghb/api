@@ -36,5 +36,7 @@ public class CommConstant {
     public static final String REDIS_USER_KEY = "redisUserKey";
     // session ID
     public static final String JSESSIONID = "JSESSIONID";
+    // 默认密码
+    public static final String DEFAULT_PASSS = "666666";
     /** 公共常量 end **/
 }

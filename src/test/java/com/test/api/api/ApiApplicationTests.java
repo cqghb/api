@@ -94,8 +94,9 @@ class ApiApplicationTests {
     // 删除key
     @Test
     public void test44() {
-        String key = "zszxz";
-        redisTemplate.delete(key);
+        String key = "zszxz22";
+        boolean b = redisTemplate.delete(key);
+        System.out.println(b);
     }
 
     // 放入一个 hash ( key value )

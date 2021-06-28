@@ -2,9 +2,10 @@ package com.test.api.api.config;
 
 import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.utils.ResultUtil;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * @projectName api
@@ -16,17 +17,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
-@ControllerAdvice
+@RestControllerAdvice
 public class ExceptionHandle {
 
+    protected static final Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
+
     @ExceptionHandler(value = Exception.class)
-    @ResponseBody
     public Result customException(Exception e){
-        if(e instanceof AppException){
-            AppException appException = (AppException) e;
-            return ResultUtil.error(appException.getErrorCode(), appException.getErrorMsg());
-        } else {
-            return ResultUtil.error(MsgCodeConstant.ERROR_CODE, e.getMessage());
-        }
+        logger.info("已进入Exception异常处理逻辑");
+        return ResultUtil.error(MsgCodeConstant.ERROR_CODE, e.getMessage());
+    }
+    @ExceptionHandler(value = AppException.class)
+    public Result customException2(AppException appException){
+        logger.info("已进入AppException异常处理逻辑");
+        return ResultUtil.error(appException.getErrorCode(), appException.getErrorMsg());
     }
 }
