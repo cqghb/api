@@ -4,8 +4,14 @@ import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.validation.BindException;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.stream.Collectors;
 
 /**
  * @projectName api
@@ -31,5 +37,27 @@ public class ExceptionHandle {
     public Result customException2(AppException appException){
         logger.info("已进入AppException异常处理逻辑");
         return ResultUtil.error(appException.getErrorCode(), appException.getErrorMsg());
+    }
+    // get
+    @ExceptionHandler(value = BindException.class)
+    public Result bindExceptionHandler(BindException e){
+        logger.info("已进入BindException异常处理逻辑");
+        String message = e.getBindingResult().getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining());
+        return ResultUtil.error(MsgCodeConstant.ERROR_CODE, message);
+    }
+    // post
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    public Result methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
+        logger.info("已进入BindException异常处理逻辑");
+        StringBuilder errorMsg = new StringBuilder();
+
+        for (int i = 0; i < e.getBindingResult().getAllErrors().size(); i++) {
+            if (i > 0) {
+                errorMsg.append(";");
+            }
+            ObjectError objectError = e.getBindingResult().getAllErrors().get(i);
+            errorMsg.append(objectError.getDefaultMessage());
+        }
+        return ResultUtil.error(MsgCodeConstant.ERROR_CODE, errorMsg.toString());
     }
 }

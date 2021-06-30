@@ -5,6 +5,7 @@ import com.test.api.api.bo.UserBo;
 import com.test.api.api.config.AppException;
 import com.test.api.api.config.Result;
 import com.test.api.api.constant.MsgCodeConstant;
+import com.test.api.api.dto.usermanager.TblUserDto;
 import com.test.api.api.service.ITblUserService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.page.PageRequest;
@@ -17,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -76,7 +78,7 @@ public class UserAction {
     }
 
     /**
-     * 新增用户
+     * 新增用户,登录之后新增用户，接口有验证
      * @param user
      * @return
      */
@@ -85,9 +87,10 @@ public class UserAction {
     @ApiImplicitParam(name = "user", value = "新增用户数据")
     //说明是什么方法(可以理解为方法注释)
     @ApiOperation(value = "添加用户", notes = "添加用户")
-    public Result insertUser(@RequestBody UserBo user) {
-        String userId = userService.insert(user);
-        return ResultUtil.success(userId);
+    public Result insertUser(@RequestBody @Validated TblUserDto user) {
+//        String userId = userService.insert(user);
+//        return ResultUtil.success(userId);
+        return ResultUtil.success();
     }
 
     /**
