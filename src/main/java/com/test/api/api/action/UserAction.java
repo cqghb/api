@@ -16,6 +16,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.cursor.Cursor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -88,9 +89,10 @@ public class UserAction {
     //说明是什么方法(可以理解为方法注释)
     @ApiOperation(value = "添加用户", notes = "添加用户")
     public Result insertUser(@RequestBody @Validated TblUserDto user) {
-//        String userId = userService.insert(user);
-//        return ResultUtil.success(userId);
-        return ResultUtil.success();
+        UserBo user2 = new UserBo();
+        BeanUtils.copyProperties(user, user2);
+        String userId = userService.insert(user2);
+        return ResultUtil.success(userId);
     }
 
     /**

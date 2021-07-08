@@ -81,10 +81,13 @@ public class TblUserDto implements Serializable {
      */
     private String headPortraitUrl;
 
+    // 喜好
+    String[] likes;
+
     public TblUserDto() {
     }
 
-    public TblUserDto(String id, @NotNull(message = "姓名不能为空") @NotBlank(message = "姓名不能为空") String name, String pass, Integer age, String sex, Date birthday, String qq, String weChat, @NotBlank(message = "邮箱不能为空") @NotNull(message = "邮箱不能为空") String email, @NotBlank(message = "{education.not.null}") @NotNull(message = "{education.not.null}") String education, String headPortraitUrl) {
+    public TblUserDto(String id, @NotNull(message = "姓名不能为空") @NotBlank(message = "姓名不能为空") String name, String pass, Integer age, String sex, Date birthday, String qq, String weChat, @NotBlank(message = "邮箱不能为空") @NotNull(message = "邮箱不能为空") String email, @NotBlank(message = "{education.not.null}") @NotNull(message = "{education.not.null}") String education, String headPortraitUrl, String[] likes) {
         this.id = id;
         this.name = name;
         this.pass = pass;
@@ -96,6 +99,7 @@ public class TblUserDto implements Serializable {
         this.email = email;
         this.education = education;
         this.headPortraitUrl = headPortraitUrl;
+        this.likes = likes;
     }
 
     public String getId() {
@@ -184,6 +188,14 @@ public class TblUserDto implements Serializable {
 
     public void setHeadPortraitUrl(String headPortraitUrl) {
         this.headPortraitUrl = headPortraitUrl;
+    }
+
+    public String[] getLikes() {
+        return likes;
+    }
+
+    public void setLikes(String[] likes) {
+        this.likes = likes;
     }
 
     @Override
