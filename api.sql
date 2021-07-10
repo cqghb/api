@@ -11,11 +11,71 @@
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 12/01/2021 00:26:00
+ Date: 11/07/2021 01:37:15
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for tbl_code_type
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_code_type`;
+CREATE TABLE `tbl_code_type` (
+  `code_type` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '码类型',
+  `code_type_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '码类型中文',
+  `create_user` varchar(6) DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_user` varchar(6) DEFAULT NULL COMMENT '修改人',
+  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`code_type`) USING BTREE,
+  KEY `code_type` (`code_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='码值类型表';
+
+-- ----------------------------
+-- Records of tbl_code_type
+-- ----------------------------
+BEGIN;
+INSERT INTO `tbl_code_type` VALUES ('education', '学历', '2', '2021-04-29 13:26:16', NULL, NULL);
+INSERT INTO `tbl_code_type` VALUES ('likes', '喜好', '2', '2021-04-29 12:50:32', NULL, NULL);
+INSERT INTO `tbl_code_type` VALUES ('sex', '性别', '2', '2021-05-13 22:31:08', NULL, NULL);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for tbl_code_value
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_code_value`;
+CREATE TABLE `tbl_code_value` (
+  `code_type` varchar(50) NOT NULL COMMENT '码类型',
+  `code` varchar(50) NOT NULL COMMENT '码',
+  `code_name` varchar(50) NOT NULL COMMENT '中文',
+  `index` int(11) DEFAULT NULL COMMENT '序号',
+  `create_user` varchar(6) DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_user` varchar(6) DEFAULT NULL COMMENT '修改人',
+  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`code_type`,`code`,`code_name`),
+  CONSTRAINT `fk_code_value_ct` FOREIGN KEY (`code_type`) REFERENCES `tbl_code_type` (`code_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='码值表';
+
+-- ----------------------------
+-- Records of tbl_code_value
+-- ----------------------------
+BEGIN;
+INSERT INTO `tbl_code_value` VALUES ('education', '1', '小学', 1, '2', '2021-04-29 13:26:37', NULL, NULL);
+INSERT INTO `tbl_code_value` VALUES ('education', '2', '中学', 2, '2', '2021-04-29 13:29:02', NULL, NULL);
+INSERT INTO `tbl_code_value` VALUES ('education', '3', '高中', 3, '2', '2021-04-29 13:29:05', NULL, NULL);
+INSERT INTO `tbl_code_value` VALUES ('education', '4', '专科', 4, '2', '2021-04-29 13:29:09', NULL, NULL);
+INSERT INTO `tbl_code_value` VALUES ('education', '5', '本科', 5, '2', '2021-04-29 13:29:12', NULL, NULL);
+INSERT INTO `tbl_code_value` VALUES ('education', '6', '研究生', 6, '2', '2021-04-29 13:29:15', NULL, NULL);
+INSERT INTO `tbl_code_value` VALUES ('education', '7', '博士', 7, '2', '2021-04-29 13:29:18', NULL, NULL);
+INSERT INTO `tbl_code_value` VALUES ('education', '8', '其它', 8, '2', '2021-04-29 13:29:22', NULL, NULL);
+INSERT INTO `tbl_code_value` VALUES ('likes', '1', '唱歌', 1, '2', '2021-04-29 13:14:49', NULL, NULL);
+INSERT INTO `tbl_code_value` VALUES ('likes', '2', '打篮球', 2, '2', '2021-04-29 13:15:10', NULL, NULL);
+INSERT INTO `tbl_code_value` VALUES ('likes', '3', '游泳', 3, '2', '2021-04-29 13:15:31', NULL, NULL);
+INSERT INTO `tbl_code_value` VALUES ('sex', '1', '男', 1, '2', '2021-05-13 22:32:17', NULL, NULL);
+INSERT INTO `tbl_code_value` VALUES ('sex', '2', '女', 2, '2', '2021-05-13 22:32:37', NULL, NULL);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for tbl_menu
@@ -331,6 +391,14 @@ CREATE TABLE `tbl_user` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_user` varchar(6) DEFAULT NULL COMMENT '修改人',
   `update_time` datetime DEFAULT NULL COMMENT '修改人',
+  `age` int(11) DEFAULT NULL COMMENT '年龄',
+  `sex` varchar(4) DEFAULT NULL COMMENT '性别',
+  `birthday` date DEFAULT NULL COMMENT '生日',
+  `qq` varchar(30) DEFAULT NULL COMMENT 'qq号',
+  `we_chat` varchar(50) DEFAULT NULL COMMENT '微信号',
+  `email` varchar(50) DEFAULT NULL COMMENT '邮箱',
+  `education` varchar(4) DEFAULT NULL COMMENT '学历',
+  `head_portrait_url` varchar(255) DEFAULT NULL COMMENT '头像地址',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 
@@ -338,8 +406,126 @@ CREATE TABLE `tbl_user` (
 -- Records of tbl_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_user` VALUES ('666666', '组件', '123456', '4567', '2020-11-13 00:19:41', '234', '2020-11-13 00:19:53');
-INSERT INTO `tbl_user` VALUES ('888888', '小明waz', '123456', '234', '2020-11-13 00:17:31', '666666', '2020-12-14 00:00:00');
+INSERT INTO `tbl_user` VALUES ('107768', '1', '1', '666666', '2021-05-18 00:35:06', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('112619', '45', '45', '666666', '2021-05-29 00:56:10', NULL, '2021-06-17 01:32:11', 1, '2', NULL, '34', 'e', NULL, NULL, '/Users/wangsheng/headPortrai/出租车3.jpeg');
+INSERT INTO `tbl_user` VALUES ('117621', NULL, NULL, '666666', '2021-05-29 02:17:23', NULL, NULL, 1, '2', NULL, '1', '1', '1', '8', '/Users/wangsheng/headPortrai/117621-/AADA0184464D47889193F82F6B610D9B..jpeg.jpeg');
+INSERT INTO `tbl_user` VALUES ('130469', '小张', '123333', '666666', '2021-05-18 00:33:02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('150259', '666', '66', '666666', '2021-06-02 13:22:08', NULL, NULL, 3, '2', NULL, '6', '6', '6', '8', '/Users/wangsheng/headPortrai/150259_BBE0F53B47534BA2A083F93AFE7B140A.jpeg');
+INSERT INTO `tbl_user` VALUES ('162240', '34', '34', '666666', '2021-05-29 02:23:36', NULL, NULL, 1, '2', NULL, NULL, NULL, NULL, NULL, '/Users/wangsheng/headPortrai/162240-16AB06159C2643F78F2B8FE12011BBA4.jpeg');
+INSERT INTO `tbl_user` VALUES ('162420', 'wangsheng5', '666666', NULL, '2021-07-08 01:08:58', NULL, NULL, 3, '1', NULL, '1', '1', '1', '7', NULL);
+INSERT INTO `tbl_user` VALUES ('172492', '2', '123456', '666666', '2021-05-27 00:39:53', NULL, NULL, 1, '1', NULL, '2', '2', '2', '3', NULL);
+INSERT INTO `tbl_user` VALUES ('182454', '王健林', '111111', '666666', '2021-05-17 23:40:04', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('188148', 'wangsheng2', '666666', NULL, '2021-07-08 01:04:39', NULL, NULL, 3, '1', NULL, '1', '1', '1', '7', NULL);
+INSERT INTO `tbl_user` VALUES ('2', '张杰', '111111', '666666', '2021-04-26 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('239525', '1', '666666', NULL, '2021-07-08 01:37:48', NULL, NULL, 1, '2', NULL, '1', '1', '1', '1', '/Users/wangsheng/headPortrai/239525_32EA60CD43A6443DAAD9AA863D7CC562.jpeg');
+INSERT INTO `tbl_user` VALUES ('252190', '小明', '111111', '666666', '2021-05-18 00:31:17', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('320992', NULL, NULL, '666666', '2021-06-27 01:15:30', NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('325522', 'liming', '123456', '666666', '2021-06-27 11:35:24', NULL, NULL, 1, '2', NULL, '1', '1', '1', '5', NULL);
+INSERT INTO `tbl_user` VALUES ('337172', 'zhangjie', '123456', '666666', '2021-06-27 11:29:17', NULL, NULL, 9, '2', NULL, '1', '1', '1', '7', '/Users/wangsheng/headPortrai/337172_D52F292B18DF4AE197C3C673A7FA8EA8.jpeg');
+INSERT INTO `tbl_user` VALUES ('343146', '34', '34', '666666', '2021-05-29 02:19:50', NULL, NULL, 1, '2', NULL, NULL, NULL, NULL, NULL, '/Users/wangsheng/headPortrai/343146-9891F842CE5B4C08B5070AE99692B221.jpeg.jpeg');
+INSERT INTO `tbl_user` VALUES ('346266', NULL, NULL, '666666', '2021-06-27 01:22:13', NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, '/Users/wangsheng/headPortrai/346266_92BBAB8148484D668A2F95C6CF6B76CC.jpeg');
+INSERT INTO `tbl_user` VALUES ('390175', '3232', '666666', NULL, '2021-07-08 01:12:09', NULL, NULL, 1, '2', NULL, '1', '1', '1', '8', NULL);
+INSERT INTO `tbl_user` VALUES ('395823', '晓东', '333333', '666666', '2021-05-18 00:34:02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('450977', '33', '33', '666666', '2021-05-27 00:47:32', NULL, NULL, 3, '2', NULL, '33', '333', '33', '6', '/Users/wangsheng/headPortrai/出租1.jpeg');
+INSERT INTO `tbl_user` VALUES ('523964', 'er', 'df', '666666', '2021-05-29 00:46:19', NULL, NULL, 3, '2', NULL, 'e', 'd', '1', '6', NULL);
+INSERT INTO `tbl_user` VALUES ('528107', 'wangsheng1', '666666', NULL, '2021-07-08 01:01:57', NULL, NULL, 3, '1', NULL, '1', '1', '1', '7', NULL);
+INSERT INTO `tbl_user` VALUES ('540861', 'wangsheng4', '666666', NULL, '2021-07-08 01:06:57', NULL, NULL, 3, '1', NULL, '1', '1', '1', '7', NULL);
+INSERT INTO `tbl_user` VALUES ('600928', NULL, NULL, '666666', '2021-06-27 01:14:18', NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('611520', '刘备', '666666', NULL, '2021-07-11 00:30:31', NULL, NULL, 100, '1', NULL, '1', '1', '1@qq.com', '3', '/Users/wangsheng/headPortrai/611520_8445589F53884233AB67312F4A5861BE.jpeg');
+INSERT INTO `tbl_user` VALUES ('613426', 'wangsheng3', '666666', NULL, '2021-07-08 01:05:41', NULL, NULL, 3, '1', NULL, '1', '1', '1', '7', NULL);
+INSERT INTO `tbl_user` VALUES ('625288', '1', '1', '666666', '2021-05-18 00:36:26', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('630163', 'wangsheng5', '666666', NULL, '2021-07-08 01:08:37', NULL, NULL, 3, '1', NULL, '1', '1', '1', '7', NULL);
+INSERT INTO `tbl_user` VALUES ('666666', '组件', '123456', '4567', '2020-11-13 00:19:41', '234', '2021-07-11 00:29:41', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('705089', '88888', '88888888', '666666', '2021-06-02 01:33:49', NULL, NULL, 8, '2', NULL, '88', '88', '88', '5', '/Users/wangsheng/headPortrai/705089_6C51DC7856F642739ABD791983E6B836.jpg');
+INSERT INTO `tbl_user` VALUES ('722762', '刘备', '666666', NULL, '2021-07-11 00:31:10', NULL, NULL, 100, '1', NULL, '1', '1', '1@qq.com', '1', '/Users/wangsheng/headPortrai/722762_21EE6E5EDB534EE2967B05C5E7036C30.jpeg');
+INSERT INTO `tbl_user` VALUES ('739813', '小明', '111111', '666666', '2021-05-18 00:27:01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('755849', 'wwww', 'wwww', '666666', '2021-06-02 00:36:57', NULL, NULL, 3, '2', NULL, 'www', 'www', 'ww', '5', '/Users/wangsheng/headPortrai/755849_12F35D59D6F043EFBCC58117C0649DB3.jpg');
+INSERT INTO `tbl_user` VALUES ('775217', '王麻子', '666666', '666666', '2021-06-29 00:49:56', NULL, NULL, 1, '2', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('781488', '2', '2', '666666', '2021-05-18 00:41:44', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('794722', NULL, NULL, '666666', '2021-05-29 02:17:38', NULL, NULL, 1, '2', NULL, '1', '1', '1', '8', '/Users/wangsheng/headPortrai/794722-9F999EEFFBD84E6F85B0C30B9FFEB2C0..jpeg.jpeg');
+INSERT INTO `tbl_user` VALUES ('794783', '3444', '444', '666666', '2021-06-02 13:21:12', NULL, NULL, 5, '2', NULL, '44', '44', '44', '2', '/Users/wangsheng/headPortrai/794783_123E2C64E8D844AC830052E4A8E2C3ED.jpeg');
+INSERT INTO `tbl_user` VALUES ('805061', '12', '666666', NULL, '2021-07-08 01:35:58', NULL, NULL, 1, '2', NULL, '1', '1', '1', '3', '/Users/wangsheng/headPortrai/805061_659FFCDF819B4443A9092031BED9DCF9.jpeg');
+INSERT INTO `tbl_user` VALUES ('818917', 'as', '34', '666666', '2021-05-29 00:52:44', NULL, NULL, 3, '2', NULL, '23', '34', '34', '4', NULL);
+INSERT INTO `tbl_user` VALUES ('888888', '小明waz', '123456', '234', '2020-11-13 00:17:31', '666666', '2020-12-14 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('919798', 'hhh', '666666', NULL, '2021-07-08 01:10:14', NULL, NULL, 1, '2', NULL, 'q', 'q', 'q', '1', NULL);
+INSERT INTO `tbl_user` VALUES ('926854', NULL, NULL, '666666', '2021-06-27 01:18:01', NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('973852', 'as', 'we', '666666', '2021-05-29 00:47:52', NULL, NULL, 3, '2', NULL, 'we', 'we', 'we', '5', NULL);
+INSERT INTO `tbl_user` VALUES ('974738', '12', '12', '666666', '2021-05-27 00:42:26', NULL, NULL, 11, '2', NULL, '12', '21', '21', '7', NULL);
+INSERT INTO `tbl_user` VALUES ('980812', '王校长', '111111', '666666', '2021-05-17 23:14:15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('981191', '王健林', '111111', '666666', '2021-05-17 23:40:11', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user` VALUES ('993443', '1', '1', '666666', '2021-05-27 00:37:01', NULL, NULL, 3, '1', NULL, '1', '1', '1', '8', NULL);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for tbl_user_likes
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_user_likes`;
+CREATE TABLE `tbl_user_likes` (
+  `id` varchar(32) NOT NULL COMMENT '爱好主键',
+  `title_code` varchar(4) DEFAULT NULL COMMENT '爱好代码',
+  `user_id` varchar(32) DEFAULT NULL COMMENT '用户主键',
+  `create_user` varchar(6) DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_user` varchar(6) DEFAULT NULL COMMENT '修改人',
+  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`),
+  KEY `fk_user_id` (`user_id`),
+  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户喜好表';
+
+-- ----------------------------
+-- Records of tbl_user_likes
+-- ----------------------------
+BEGIN;
+INSERT INTO `tbl_user_likes` VALUES ('0B3EFD7333EA43CC848E146FA17E7139', '1', '182454', '182454', '2021-05-17 23:40:04', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('0C46140BCD944BA99E49EC03F71E2D22', '2', '337172', '337172', '2021-06-27 11:29:17', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('0EB11F56B7BE48CFBFF8F616AF9AAC1D', '2', '722762', '722762', '2021-07-11 00:31:10', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('1', '1', '2', NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('137338D9A0E04AB1B786EB4528726D36', '1', '980812', '980812', '2021-05-17 23:14:25', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('14E49EDBC2EC442D94B915A224A65323', '3', '337172', '337172', '2021-06-27 11:29:17', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('2', '2', '2', NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('21B21082D4AE453D95CAFF5A2A46B84E', '1', '172492', '172492', '2021-05-27 00:39:53', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('237AE4761D9A4609B06F9141A220D88F', '2', '818917', '818917', '2021-05-29 00:52:44', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('333B95DEAD914366BFEAACC548803618', '1', '107768', '107768', '2021-05-18 00:35:06', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('3543FBE46B2F436A977E672E2C2DF2C9', '2', '611520', '611520', '2021-07-11 00:30:31', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('35C897155EC343628DB0E799B68709EF', '1', '739813', '739813', '2021-05-18 00:27:01', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('3A89F9B085134AC1833AD9C6A156A398', '3', '973852', '973852', '2021-05-29 00:47:52', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('3C439427FC9F41DE9A60633F40FDA89F', '1', '722762', '722762', '2021-07-11 00:31:10', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('3D0C640923CE44ADB71007C4FDB72D81', '1', '625288', '625288', '2021-05-18 00:36:26', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('426E2651437742D78AE57039A8936DE6', '1', '630163', '630163', '2021-07-08 01:08:40', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('42A29292075542198B24B10DAFA3BBCD', '3', '705089', '705089', '2021-06-02 01:33:49', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('443D68A3AC1B480FA510C11AAF076407', '1', '395823', '395823', '2021-05-18 00:34:02', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('4A9A64BA83154D82A5440D0F5F5C7792', '3', '523964', '523964', '2021-05-29 00:46:19', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('4D49D793D5164F4293B898E462A2B2BB', '1', '993443', '993443', '2021-05-27 00:37:01', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('5434CB12DD6E4595A0F5DE5B57B81E22', '2', '775217', '775217', '2021-06-29 00:49:56', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('60FED025D8894ACF91FEC127D59EA16C', '2', '755849', '755849', '2021-06-02 00:36:57', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('6DAF47F9FA90422E96C019F96FEB54EE', '2', '974738', '974738', '2021-05-27 00:42:26', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('6FAD2A23D6AE48B3B21F20D2C7AF481D', '3', '130469', '130469', '2021-05-18 00:33:02', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('704F64922658487F9DF25BD1F9680BE4', '2', '150259', '150259', '2021-06-02 13:22:08', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('7659FE7BF1E74C8EA5961E5A11863D0A', '2', '343146', '343146', '2021-05-29 02:19:50', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('799EE3F65E634489BCEBB014784E890B', '2', '182454', '182454', '2021-05-17 23:40:04', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('7A11F89938B147A39267567C610E1D00', '2', '980812', '980812', '2021-05-17 23:14:29', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('7D6C0937EC9440C78AE2C709DF38ECBC', '2', '794783', '794783', '2021-06-02 13:21:12', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('815F58C147A647FDB69D3D6455E3E65E', '2', '112619', '112619', '2021-05-29 00:56:10', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('8634B4792EAB47458FE7EF0AB646AC08', '3', '755849', '755849', '2021-06-02 00:36:57', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('8A5EFFCDFB084C5AA86E0B343D51FE5E', '2', '325522', '325522', '2021-06-27 11:35:24', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('8AE0A5B2BB334C3CAF624C240487F64E', '1', '162420', '162420', '2021-07-08 01:08:58', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('8D9BDA52CD9F45639425E1D568904CC1', '2', '705089', '705089', '2021-06-02 01:33:49', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('986FF42357CB4230A0E7526ADC48CE9D', '2', '981191', '981191', '2021-05-17 23:40:11', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('A0B75E33BF0A403AB9186BBB9FC565B8', '1', '981191', '981191', '2021-05-17 23:40:11', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('A4E4C49F44684896BD3C143A214E0535', '2', '239525', '239525', '2021-07-08 01:37:48', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('B3FF2861563F4241924B67BF4403687A', '2', '805061', '805061', '2021-07-08 01:35:58', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('BA98D34E31014E1D9C995D410B94AE9D', '1', '390175', '390175', '2021-07-08 01:12:09', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('BAEB1780518840CB9CFEBA5FCEE9EDFE', '2', '252190', '252190', '2021-05-18 00:31:17', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('BC36ED204DBB4EDF8D4453A6C2FD1D9E', '2', '162240', '162240', '2021-05-29 02:23:36', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('C7D6A1511401486D9217BA5EA07F2531', '3', '980812', '980812', '2021-05-17 23:14:31', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('E153DCD367BA46E99B64D479CE8D387E', '1', '611520', '611520', '2021-07-11 00:30:31', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('EBF961CB72964F66BB1419A10B2024D2', '3', '395823', '395823', '2021-05-18 00:34:02', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('ED7DF717C037442681E3850566DF50E2', '2', '117621', '117621', '2021-05-29 02:17:23', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('EFBEB51D0D7F463C8B232333C06D5382', '1', '781488', '781488', '2021-05-18 00:41:44', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('F73525F30E33487295F171BECB3D581C', '2', '450977', '450977', '2021-05-27 00:47:32', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('FAA43215F81946A2ADA24C9B1340D0B4', '2', '794722', '794722', '2021-05-29 02:17:38', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('FB6426DCB18A454AB0327929F87749C7', '1', '755849', '755849', '2021-06-02 00:36:57', NULL, NULL);
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
