@@ -6,6 +6,8 @@ import com.test.api.api.service.ITblUserLikesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @projectName api
  * @package com.test.api.api.service.impl
@@ -50,5 +52,10 @@ public class TblUserLikesService implements ITblUserLikesService {
     @Override
     public int updateByPrimaryKey(TblUserLikes record) {
         return userLikesDao.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<String> queryUserLikeIds(String userId) {
+        return userLikesDao.queryUserLikeIds(userId);
     }
 }

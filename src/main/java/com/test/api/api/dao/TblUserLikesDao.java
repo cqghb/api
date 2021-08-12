@@ -4,6 +4,8 @@ import com.test.api.api.bean.TblUserLikes;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface TblUserLikesDao {
     /**
@@ -47,4 +49,6 @@ public interface TblUserLikesDao {
      * @return
      */
     int updateByPrimaryKey(TblUserLikes record);
+
+    List<String> queryUserLikeIds(@Param("userId") String userId);
 }

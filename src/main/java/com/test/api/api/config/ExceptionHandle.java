@@ -31,6 +31,7 @@ public class ExceptionHandle {
     @ExceptionHandler(value = Exception.class)
     public Result customException(Exception e){
         logger.info("已进入Exception异常处理逻辑");
+        logger.error(e.getMessage(), e);
         return ResultUtil.error(MsgCodeConstant.ERROR_CODE, e.getMessage());
     }
     @ExceptionHandler(value = AppException.class)

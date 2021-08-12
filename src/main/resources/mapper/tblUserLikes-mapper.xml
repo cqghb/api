@@ -19,6 +19,12 @@
     from tbl_user_likes
     where id = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="queryUserLikeIds" parameterType="java.lang.String" resultType="java.lang.String">
+    select
+    title_code
+    from tbl_user_likes
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tbl_user_likes
     where id = #{id,jdbcType=VARCHAR}

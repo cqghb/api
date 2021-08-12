@@ -8,6 +8,7 @@ import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.dto.usermanager.TblUserDto;
 import com.test.api.api.service.ITblUserService;
 import com.test.api.api.utils.ResultUtil;
+import com.test.api.api.vo.UserVO;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import io.swagger.annotations.Api;
@@ -20,7 +21,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -133,8 +137,11 @@ public class UserAction {
 //        if(!StringUtils.isEmpty(id)){
 //
 //        }
-        TblUser tblUser = userService.queryUserById(id);
-        return ResultUtil.success(tblUser);
+        UserVO vo = userService.queryUserById(id);
+//        if(vo.getLikes()==null){
+//            vo.setLikes(new String[]{});
+//        }
+        return ResultUtil.success(vo);
     }
 
     @PostMapping(value="/updateUser")

@@ -60,6 +60,6 @@ public class UserBo extends TblUser implements Serializable {
 
     @Override
     public String toString() {
-        return "UserVo{" + Arrays.toString(likes) + '}';
+        return "UserBo{" + Arrays.toString(likes) + '}';
     }
 }

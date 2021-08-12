@@ -13,11 +13,13 @@ import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblUserLikesService;
 import com.test.api.api.service.ITblUserService;
 import com.test.api.api.utils.*;
+import com.test.api.api.vo.UserVO;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import org.apache.ibatis.cursor.Cursor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -26,6 +28,7 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -121,8 +124,14 @@ public class TblUserService implements ITblUserService {
     }
 
     @Override
-    public TblUser queryUserById(String id) {
-        return userDao.queryUserById(id);
+    public UserVO queryUserById(String id) {
+        TblUser user = userDao.queryUserById(id);
+        UserVO vo = new UserVO();
+        BeanUtils.copyProperties(user, vo);
+        List<String> likes = userLikesService.queryUserLikeIds(id);
+        likes = likes == null ? new ArrayList<>() : likes;
+        vo.setLikes(likes);
+        return vo;
     }
 
     @Override

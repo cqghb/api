@@ -2,6 +2,7 @@ package com.test.api.api.service;
 
 import com.test.api.api.bean.TblUser;
 import com.test.api.api.bo.UserBo;
+import com.test.api.api.vo.UserVO;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import org.apache.ibatis.cursor.Cursor;
@@ -61,7 +62,7 @@ public interface ITblUserService {
      * @param id 用户主键
      * @return
      */
-    TblUser queryUserById(String id);
+    UserVO queryUserById(String id);
 
     /**
      * 修改用户

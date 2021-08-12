@@ -2,6 +2,8 @@ package com.test.api.api.service;
 
 import com.test.api.api.bean.TblUserLikes;
 
+import java.util.List;
+
 /**
  * @projectName api
  * @package com.test.api.api.service
@@ -55,4 +57,11 @@ public interface ITblUserLikesService {
      * @return
      */
     int updateByPrimaryKey(TblUserLikes record);
+
+    /**
+     * 查询用户爱好
+     * @param userId 客户编号
+     * @return
+     */
+    List<String> queryUserLikeIds(String userId);
 }
