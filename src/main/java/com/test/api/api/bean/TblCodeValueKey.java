@@ -1,5 +1,7 @@
 package com.test.api.api.bean;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -40,5 +42,34 @@ public class TblCodeValueKey extends BaseBean implements Serializable {
         this.codeType = codeType;
         this.code = code;
         this.codeName = codeName;
+    }
+
+    public String getCodeType() {
+        return codeType;
+    }
+
+    public void setCodeType(String codeType) {
+        this.codeType = codeType;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getCodeName() {
+        return codeName;
+    }
+
+    public void setCodeName(String codeName) {
+        this.codeName = codeName;
+    }
+
+    @Override
+    public String toString() {
+        return "TblCodeValueKey{" + JSONObject.toJSONString(this) + "}";
     }
 }

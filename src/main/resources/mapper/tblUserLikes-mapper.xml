@@ -29,6 +29,12 @@
     delete from tbl_user_likes
     where id = #{id,jdbcType=VARCHAR}
   </delete>
+
+  <delete id="deleteByUserId" parameterType="java.lang.String">
+    delete from tbl_user_likes
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblUserLikes" useGeneratedKeys="true">
     insert into tbl_user_likes (title_code, user_id, create_user, 
       create_time, update_user, update_time

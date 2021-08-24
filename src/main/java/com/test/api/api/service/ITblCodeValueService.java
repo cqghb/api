@@ -1,6 +1,6 @@
 package com.test.api.api.service;
 
-import org.apache.ibatis.annotations.Param;
+import com.test.api.api.bo.CodeValueBO;
 
 import java.util.List;
 import java.util.Map;
@@ -19,10 +19,10 @@ public interface ITblCodeValueService {
 
     /**
      * 键值对查询
-     * @param codeType 键类型
+     * @param codeValueBO 键类型
      * @return
      */
-    List<Map<String, String>> searchCodeKeyValue(String codeType);
+    List<Map<String, String>> searchCodeKeyValue(CodeValueBO codeValueBO);
 
 
 }

@@ -24,6 +24,13 @@ public interface ITblUserLikesService {
     int deleteByPrimaryKey(String id);
 
     /**
+     * 通过用户号删除爱好数据
+     * @param userId 用户号
+     * @return
+     */
+    int deleteByUserId(String userId);
+
+    /**
      * 新增，没做费控判断
      * @param record 喜好
      * @return
@@ -45,7 +52,7 @@ public interface ITblUserLikesService {
     TblUserLikes selectByPrimaryKey(String id);
 
     /**
-     * 更新喜好数据，做了费控判断
+     * 更新喜好数据，做了非空判断
      * @param record 喜好
      * @return
      */

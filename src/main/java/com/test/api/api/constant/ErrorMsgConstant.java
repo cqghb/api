@@ -13,4 +13,5 @@ package com.test.api.api.constant;
 public class ErrorMsgConstant {
 
     public static final String CODE_TYPE_NOT_NULL = "码值类型不能为空";
+    public static final String USER_INFO_IS_NULL = "用户信息不存在";
 }

@@ -145,7 +145,7 @@ public class UserAction {
     }
 
     @PostMapping(value="/updateUser")
-    public Result updateUser(@RequestBody TblUser user) {
+    public Result updateUser(@RequestBody UserBo user) {
 //        TODO 参数验证后续再加
 //        if(!StringUtils.isEmpty(id)){
 //

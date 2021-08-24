@@ -30,6 +30,11 @@ public class TblUserLikesService implements ITblUserLikesService {
     }
 
     @Override
+    public int deleteByUserId(String userId) {
+        return userLikesDao.deleteByUserId(userId);
+    }
+
+    @Override
     public int insert(TblUserLikes record) {
         return userLikesDao.insert(record);
     }

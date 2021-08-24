@@ -120,10 +120,16 @@
       and code_name = #{codeName,jdbcType=VARCHAR}
   </update>
 
-  <select id="searchCodeKeyValue" parameterType="java.lang.String" resultType="java.util.Map">
+  <select id="searchCodeKeyValue" parameterType="com.test.api.api.bo.CodeValueBO" resultType="java.util.Map">
     SELECT t.`code` as value,t.code_name label
     from tbl_code_value t
     WHERE t.code_type = #{codeType, jdbcType=VARCHAR}
+    <if test="codeList != null and codeList.size()>0">
+      and t.code in
+      <foreach collection="codeList" item="item" index="i" open="(" close=")" separator=",">
+        #{item, jdbcType=VARCHAR}
+      </foreach>
+    </if>
     ORDER BY t.`index` ASC
   </select>
 </mapper>

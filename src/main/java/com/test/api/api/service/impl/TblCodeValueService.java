@@ -1,5 +1,6 @@
 package com.test.api.api.service.impl;
 
+import com.test.api.api.bo.CodeValueBO;
 import com.test.api.api.config.AppException;
 import com.test.api.api.constant.ErrorMsgConstant;
 import com.test.api.api.constant.MsgCodeConstant;
@@ -33,11 +34,11 @@ public class TblCodeValueService implements ITblCodeValueService {
     private TblCodeValueDao tblCodeValueDao;
 
     @Override
-    public List<Map<String, String>> searchCodeKeyValue(String codeType) {
-        if(StringUtils.isEmpty(codeType)){
+    public List<Map<String, String>> searchCodeKeyValue(CodeValueBO codeValueBO) {
+        if(StringUtils.isEmpty(codeValueBO.getCodeType())){
             logger.error(ErrorMsgConstant.CODE_TYPE_NOT_NULL);
             throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.CODE_TYPE_NOT_NULL);
         }
-        return tblCodeValueDao.searchCodeKeyValue(codeType);
+        return tblCodeValueDao.searchCodeKeyValue(codeValueBO);
     }
 }

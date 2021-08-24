@@ -2,7 +2,7 @@ package com.test.api.api.dao;
 
 import com.test.api.api.bean.TblCodeValue;
 import com.test.api.api.bean.TblCodeValueKey;
-import org.apache.ibatis.annotations.Param;
+import com.test.api.api.bo.CodeValueBO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,10 +24,10 @@ public interface TblCodeValueDao {
 
     /**
      * 键值对查询
-     * @param codeType 键类型
+     * @param codeValueBO 键类型
      * @return
      */
-    List<Map<String, String>> searchCodeKeyValue(@Param("codeType") String codeType);
+    List<Map<String, String>> searchCodeKeyValue(CodeValueBO codeValueBO);
 
 
 

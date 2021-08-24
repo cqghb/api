@@ -2,6 +2,7 @@ package com.test.api.api.service;
 
 import com.test.api.api.bean.TblUser;
 import com.test.api.api.bo.UserBo;
+import com.test.api.api.config.AppException;
 import com.test.api.api.vo.UserVO;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
@@ -69,7 +70,7 @@ public interface ITblUserService {
      * @param user 用户
      * @return
      */
-    int update(TblUser user);
+    int update(UserBo user) throws AppException;
 
     Cursor<TblUser> test();
 

@@ -7,7 +7,10 @@ import com.github.pagehelper.PageInfo;
 import com.test.api.api.bean.TblUser;
 import com.test.api.api.bean.TblUserLikes;
 import com.test.api.api.bo.UserBo;
+import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
+import com.test.api.api.constant.ErrorMsgConstant;
+import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.dao.TblUserDao;
 import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblUserLikesService;
@@ -106,17 +109,7 @@ public class TblUserService implements ITblUserService {
 
         String[] likes = user.getLikes();
         // 循环保存用户喜好
-        for (String item : likes){
-            TblUserLikes userLikes = new TblUserLikes();
-            String likesId = StringUtil.uuid();
-            userLikes.setTitleCode(item);
-            userLikes.setId(likesId);
-            userLikes.setUserId(userId);
-            // TODO 暂时先用这个客户号来填入，后期登录功能完善之后，再来改这里
-            userLikes.setCreateUser(userId);
-            userLikesService.insertSelective(userLikes);
-            logger.info("用户喜好数据保存完成");
-        }
+        this.addUserLikes(likes, userId);
         return userId;
     }
 
@@ -137,7 +130,22 @@ public class TblUserService implements ITblUserService {
     }
 
     @Override
-    public int update(TblUser user) {
+    @Transactional
+    public int update(UserBo user) throws AppException {
+        String userId = user.getId();
+        // 先查出原来的用户信息
+        UserVO oldUser = this.queryUserById(userId);
+        if(oldUser == null){
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.USER_INFO_IS_NULL);
+        }
+        // 处理爱好数据，处理逻辑是：把原来的献删除，新的爱好直接新增
+        // 删除原来的爱好
+        if(oldUser.getLikes().size()>0){
+            userLikesService.deleteByUserId(userId);
+        }
+        // 添加新的爱好
+        String[] likes = user.getLikes();
+        this.addUserLikes(likes, userId);
         return userDao.update(user);
     }
 
@@ -172,5 +180,33 @@ public class TblUserService implements ITblUserService {
         TblUser params = jsonObject.toJavaObject(TblUser.class);
         List<TblUser> userList = userDao.queryList(params);
         return new PageInfo<>(userList);
+    }
+
+    /**
+     * 循环保存用户爱好
+     * @param likes 爱好
+     * @param userId 用户编号
+     */
+    private void addUserLikes(String[] likes, String userId){
+        HttpSession session = SessionUtils.getHttpSession();
+        String userKey = (String)session.getAttribute(CommConstant.REDIS_USER_KEY);
+        String loginUserId = "";
+        // 兼容没有登录时，用户注册
+        if(userKey != null){
+            String loginUserStr = (String)redisTemplate.opsForValue().get(userKey);
+            TblUser loginUser = JsonUtils.jsonToPojo(loginUserStr, TblUser.class);
+            loginUserId = loginUser.getId();
+        }
+        // 循环保存用户喜好
+        for (String item : likes){
+            TblUserLikes userLikes = new TblUserLikes();
+            String likesId = StringUtil.uuid();
+            userLikes.setTitleCode(item);
+            userLikes.setId(likesId);
+            userLikes.setUserId(userId);
+            userLikes.setCreateUser(loginUserId);
+            userLikesService.insertSelective(userLikes);
+            logger.info("用户喜好数据保存完成");
+        }
     }
 }

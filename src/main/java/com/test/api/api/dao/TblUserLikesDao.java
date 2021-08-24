@@ -16,6 +16,13 @@ public interface TblUserLikesDao {
     int deleteByPrimaryKey(@Param("id") String id);
 
     /**
+     * 通过用户号删除爱好数据
+     * @param userId 用户号
+     * @return
+     */
+    int deleteByUserId(@Param("userId")String userId);
+
+    /**
      * 新增，没做费控判断
      * @param record 喜好
      * @return
