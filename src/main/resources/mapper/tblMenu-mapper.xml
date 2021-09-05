@@ -12,15 +12,22 @@
         <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
         <result column="update_time" property="updateTime" jdbcType="DATE"/>
     </resultMap>
-
+    <sql id="baseField">
+        id, name, icon, parent_node, default_select, uri, create_user, create_time, update_user, update_time
+    </sql>
     <select id="queryList" parameterType="com.test.api.api.bean.TblMenu" resultMap="BaseResultMap">
-        select * from tbl_menu t
+        select
+        <include refid="baseField"/>
+        from tbl_menu t
         <where>
             <if test="id != null and id != ''">
                 t.id = #{id, jdbcType=VARCHAR}
             </if>
             <if test="name != null and name != ''">
                 t.name = #{name, jdbcType=VARCHAR}
+            </if>
+            <if test="parentNode != null and parentNode != ''">
+                t.parent_node = #{parentNode, jdbcType=VARCHAR}
             </if>
         </where>
     </select>

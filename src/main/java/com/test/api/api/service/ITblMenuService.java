@@ -1,9 +1,8 @@
 package com.test.api.api.service;
 
-import com.test.api.api.bean.TblMenu;
 import com.test.api.api.vo.MenuTree;
-
-import java.util.List;
+import com.test.api.api.vo.page.PageRequest;
+import com.test.api.api.vo.page.PageResult;
 
 /**
  * @projectName api
@@ -21,4 +20,11 @@ public interface ITblMenuService {
      * @return
      */
     MenuTree queryMenu();
+
+    /**
+     * 菜单管理列表查询
+     * @param pageQuery 查询条件
+     * @return
+     */
+    PageResult queryMenuList(PageRequest pageQuery);
 }
