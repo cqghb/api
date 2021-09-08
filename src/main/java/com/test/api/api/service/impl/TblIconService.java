@@ -66,6 +66,11 @@ public class TblIconService implements ITblIconService {
         return PageUtils.getPageResult(getPageInfo(pageRequest));
     }
 
+    @Override
+    public List<TblIcon> queryAll() {
+        return tblIconDao.queryList(null);
+    }
+
     /**
      * 调用分页插件完成分页
      * @param pageRequest

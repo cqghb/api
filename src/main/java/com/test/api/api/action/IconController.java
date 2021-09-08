@@ -1,5 +1,6 @@
 package com.test.api.api.action;
 
+import com.test.api.api.bean.TblIcon;
 import com.test.api.api.config.Result;
 import com.test.api.api.service.ITblIconService;
 import com.test.api.api.utils.ResultUtil;
@@ -7,10 +8,9 @@ import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @projectName api
@@ -38,6 +38,16 @@ public class IconController {
     @PostMapping(value="/findPage")
     public Result findPage(@RequestBody PageRequest pageQuery) {
         PageResult pageResult = iconService.findPage(pageQuery);
+        return ResultUtil.success(pageResult);
+    }
+
+    /**
+     * 查询所有图标
+     * @return
+     */
+    @GetMapping(value="/queryAll")
+    public Result queryAll() {
+        List<TblIcon> pageResult = iconService.queryAll();
         return ResultUtil.success(pageResult);
     }
 }

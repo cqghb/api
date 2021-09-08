@@ -4,6 +4,8 @@ import com.test.api.api.bean.TblIcon;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 
+import java.util.List;
+
 /**
  * @projectName api
  * @package com.test.api.api.service
@@ -34,4 +36,10 @@ public interface ITblIconService {
      * @return
      */
     PageResult findPage(PageRequest pageRequest);
+
+    /**
+     * 查询所有图标
+     * @return
+     */
+    List<TblIcon> queryAll();
 }
