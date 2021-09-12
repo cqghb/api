@@ -30,4 +30,11 @@ public interface TblMenuDao {
      */
     List<String> queryDefaultSelect();
 
+    /**
+     * 新增
+     * @param menu
+     * @return
+     */
+    int insertSelective(TblMenu menu);
+
 }

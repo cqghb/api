@@ -5,9 +5,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.test.api.api.bean.TblIcon;
+import com.test.api.api.bean.TblUser;
 import com.test.api.api.dao.TblIconDao;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblIconService;
 import com.test.api.api.utils.PageUtils;
+import com.test.api.api.utils.StringUtil;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,9 @@ public class TblIconService implements ITblIconService {
     @Autowired
     private TblIconDao tblIconDao;
 
+    @Autowired
+    private ICommonService commonService;
+
     @Override
     public int deleteByPrimaryKey(String id) {
         return tblIconDao.deleteByPrimaryKey(id);
@@ -43,6 +49,10 @@ public class TblIconService implements ITblIconService {
 
     @Override
     public int insertSelective(TblIcon record) {
+        TblUser loginUser = commonService.getLoginUser();
+        String loginUserId = loginUser.getId();
+        record.setId(StringUtil.uuid());
+        record.setCreateUser(loginUserId);
         return tblIconDao.insertSelective(record);
     }
 

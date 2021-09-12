@@ -1,5 +1,7 @@
 package com.test.api.api.service;
 
+import com.test.api.api.bean.TblUser;
+
 /**
  * @projectName api
  * @package com.test.api.api.service
@@ -16,4 +18,10 @@ public interface ICommonService {
      * @return
      */
     String getUserId();
+
+    /**
+     * 获取登录的用户信息
+     * @return
+     */
+    TblUser getLoginUser();
 }

@@ -1,5 +1,6 @@
 package com.test.api.api.service;
 
+import com.test.api.api.bean.TblMenu;
 import com.test.api.api.vo.MenuTree;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
@@ -27,4 +28,11 @@ public interface ITblMenuService {
      * @return
      */
     PageResult queryMenuList(PageRequest pageQuery);
+
+    /**
+     * 新增菜单-空值不落表
+     * @param menu
+     * @return
+     */
+    int insertSelective(TblMenu menu);
 }

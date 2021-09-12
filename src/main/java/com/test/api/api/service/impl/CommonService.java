@@ -1,14 +1,20 @@
 package com.test.api.api.service.impl;
 
 import com.test.api.api.bean.TblUser;
+import com.test.api.api.constant.CommConstant;
 import com.test.api.api.dao.TblUserDao;
 import com.test.api.api.service.ICommonService;
+import com.test.api.api.utils.JsonUtils;
+import com.test.api.api.utils.SessionUtils;
 import com.test.api.api.utils.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * @projectName api
@@ -27,6 +33,9 @@ public class CommonService implements ICommonService {
 
     @Autowired
     private TblUserDao userDao;
+
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
 
 
     @Override
@@ -49,5 +58,14 @@ public class CommonService implements ICommonService {
         logger.info("共循环了 " + num + " 次后生成了可用的userNo");
         logger.info("生成的userNo: " + userId);
         return userId;
+    }
+
+    @Override
+    public TblUser getLoginUser() {
+        HttpSession session = SessionUtils.getHttpSession();
+        String userKey = (String)session.getAttribute(CommConstant.REDIS_USER_KEY);
+        String loginUserStr = (String)redisTemplate.opsForValue().get(userKey);
+        TblUser loginUser = JsonUtils.jsonToPojo(loginUserStr, TblUser.class);
+        return loginUser;
     }
 }

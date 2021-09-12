@@ -5,10 +5,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.test.api.api.bean.TblMenu;
+import com.test.api.api.bean.TblUser;
 import com.test.api.api.constant.CommConstant;
 import com.test.api.api.dao.TblMenuDao;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblMenuService;
 import com.test.api.api.utils.PageUtils;
+import com.test.api.api.utils.StringUtil;
 import com.test.api.api.vo.MenuTree;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
@@ -34,6 +37,9 @@ public class TblMenuService implements ITblMenuService {
     @Autowired
     private TblMenuDao menuDao;
 
+    @Autowired
+    private ICommonService commonService;
+
     @Override
     public MenuTree queryMenu() {
         MenuTree menuTree = new MenuTree();
@@ -55,6 +61,15 @@ public class TblMenuService implements ITblMenuService {
         List<TblMenu> treeList = this.getChildren(parentList);
         pageInfo.setList(treeList);
         return PageUtils.getPageResult(pageInfo);
+    }
+
+    @Override
+    public int insertSelective(TblMenu menu) {
+        TblUser loginUser = commonService.getLoginUser();
+        String loginUserId = loginUser.getId();
+        menu.setId(StringUtil.uuid());
+        menu.setCreateUser(loginUserId);
+        return menuDao.insertSelective(menu);
     }
 
     /**

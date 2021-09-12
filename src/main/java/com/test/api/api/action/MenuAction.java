@@ -1,6 +1,7 @@
 package com.test.api.api.action;
 
 
+import com.test.api.api.bean.TblMenu;
 import com.test.api.api.config.Result;
 import com.test.api.api.service.ITblMenuService;
 import com.test.api.api.utils.ResultUtil;
@@ -8,8 +9,11 @@ import com.test.api.api.vo.MenuTree;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,5 +53,13 @@ public class MenuAction {
     public Result queryMenuList(@RequestBody PageRequest pageQuery) {
         PageResult pageResult = menuService.queryMenuList(pageQuery);
         return ResultUtil.success(pageResult);
+    }
+
+    @PostMapping(value="/insertMenu")
+    @ApiImplicitParam(name = "icon", value = "新增菜单的参数")
+    @ApiOperation(value = "添加菜单", notes = "添加菜单")
+    public Result insertMenu(@RequestBody @Validated TblMenu menu) {
+        int num = menuService.insertSelective(menu);
+        return ResultUtil.success(num);
     }
 }

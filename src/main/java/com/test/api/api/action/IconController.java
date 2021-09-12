@@ -7,7 +7,10 @@ import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,5 +52,13 @@ public class IconController {
     public Result queryAll() {
         List<TblIcon> pageResult = iconService.queryAll();
         return ResultUtil.success(pageResult);
+    }
+
+    @PostMapping(value="/insertIcon")
+    @ApiImplicitParam(name = "icon", value = "新增的图标参数")
+    @ApiOperation(value = "添加图标", notes = "添加图标")
+    public Result insertUser(@RequestBody @Validated TblIcon icon) {
+        int num = iconService.insertSelective(icon);
+        return ResultUtil.success(num);
     }
 }

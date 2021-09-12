@@ -30,9 +30,12 @@
     values (#{name,jdbcType=VARCHAR}, #{englishName,jdbcType=VARCHAR}, #{index,jdbcType=INTEGER}, 
       #{createUser,jdbcType=VARCHAR}, sysdate())
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblIcon" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.test.api.api.bean.TblIcon">
     insert into tbl_icon
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null and id !=''">
+        id,
+      </if>
       <if test="name != null">
         `name`,
       </if>
@@ -48,6 +51,9 @@
         create_time
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null and id != ''">
+        #{id,jdbcType=VARCHAR},
+      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
