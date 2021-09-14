@@ -14,4 +14,6 @@ public class ErrorMsgConstant {
 
     public static final String CODE_TYPE_NOT_NULL = "码值类型不能为空";
     public static final String USER_INFO_IS_NULL = "用户信息不存在";
+    public static final String MENU_INFO_IS_NULL = "菜单信息不存在";
+    public static final String MENU_CHILDREN_IS_NOT_NULL = "菜单包含子菜单，不能直接删除，请选择子菜单删除";
 }

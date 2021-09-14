@@ -6,7 +6,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.test.api.api.bean.TblMenu;
 import com.test.api.api.bean.TblUser;
+import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
+import com.test.api.api.constant.ErrorMsgConstant;
+import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.dao.TblMenuDao;
 import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblMenuService;
@@ -70,6 +73,23 @@ public class TblMenuService implements ITblMenuService {
         menu.setId(StringUtil.uuid());
         menu.setCreateUser(loginUserId);
         return menuDao.insertSelective(menu);
+    }
+
+    @Override
+    public int deleteById(String id) throws AppException {
+        // 检查原数据是否还存在
+        TblMenu menu = menuDao.selectByPrimaryKey(id);
+        if(StringUtil.objIsEmpty(menu)){
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.MENU_INFO_IS_NULL);
+        }
+        // 检查是否有子节点
+        TblMenu queryParam = new TblMenu();
+        queryParam.setParentNode(id);
+        List<TblMenu> childrenList = menuDao.queryList(queryParam);
+        if(StringUtil.objIsNotEmpty(childrenList)){
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.MENU_CHILDREN_IS_NOT_NULL);
+        }
+        return menuDao.deleteById(id);
     }
 
     /**

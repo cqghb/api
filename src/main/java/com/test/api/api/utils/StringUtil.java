@@ -4,6 +4,7 @@ import com.test.api.api.constant.CommConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -59,6 +60,32 @@ public class StringUtil {
     public static int randomInt(int from, int to) {
         Random r = new Random();
         return from + r.nextInt(to - from);
+    }
+
+    /**
+     * 判断对象是否为空
+     * @param obj 待判断对象
+     * @return
+     */
+    public static boolean objIsEmpty(Object obj){
+        if(obj==null){
+            return true;
+        }
+        if(obj instanceof List){
+            return ((List) obj).size()==0;
+        }
+        if(obj instanceof String){
+            return ((String) obj).trim().equals("");
+        }
+        return false;
+    }
+    /**
+     * 判断对象是否不为空
+     * @param obj 待判断对象
+     * @return
+     */
+    public static boolean objIsNotEmpty(Object obj){
+        return !objIsEmpty(obj);
     }
     public static void main(String[] args) {
         logger.info(getRandNum(6));

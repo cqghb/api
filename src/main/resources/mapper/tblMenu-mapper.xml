@@ -88,4 +88,16 @@
 
         </trim>
     </insert>
+
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from tbl_menu t where t.id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="baseField"/>
+        from tbl_menu t
+        where t.id = #{id, jdbcType=VARCHAR}
+
+    </select>
 </mapper>

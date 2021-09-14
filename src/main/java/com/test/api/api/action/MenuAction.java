@@ -3,6 +3,7 @@ package com.test.api.api.action;
 
 import com.test.api.api.bean.TblMenu;
 import com.test.api.api.config.Result;
+import com.test.api.api.dto.menumanager.TblMenuDelDto;
 import com.test.api.api.service.ITblMenuService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.MenuTree;
@@ -60,6 +61,12 @@ public class MenuAction {
     @ApiOperation(value = "添加菜单", notes = "添加菜单")
     public Result insertMenu(@RequestBody @Validated TblMenu menu) {
         int num = menuService.insertSelective(menu);
+        return ResultUtil.success(num);
+    }
+
+    @PostMapping(value="/deleteMenu")
+    public Result deleteMenu(@RequestBody @Validated TblMenuDelDto dto) {
+        int num = menuService.deleteById(dto.getId());
         return ResultUtil.success(num);
     }
 }

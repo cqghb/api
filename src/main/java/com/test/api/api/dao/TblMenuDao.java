@@ -1,6 +1,7 @@
 package com.test.api.api.dao;
 
 import com.test.api.api.bean.TblMenu;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -36,5 +37,18 @@ public interface TblMenuDao {
      * @return
      */
     int insertSelective(TblMenu menu);
+
+    /**
+     * 通过ID删除菜单
+     * @param id 主键
+     * @return
+     */
+    int deleteById(@Param("id") String id);
+
+    /**
+     * 查询默认选中的菜单
+     * @return
+     */
+    TblMenu selectByPrimaryKey(@Param("id") String id);
 
 }
