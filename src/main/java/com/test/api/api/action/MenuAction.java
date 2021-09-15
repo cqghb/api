@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Api(value = "菜单管理")
+@RequestMapping("/menu")
 public class MenuAction {
 
     @Autowired
@@ -57,16 +58,25 @@ public class MenuAction {
     }
 
     @PostMapping(value="/insertMenu")
-    @ApiImplicitParam(name = "icon", value = "新增菜单的参数")
+    @ApiImplicitParam(name = "menu", value = "新增菜单的参数")
     @ApiOperation(value = "添加菜单", notes = "添加菜单")
     public Result insertMenu(@RequestBody @Validated TblMenu menu) {
         int num = menuService.insertSelective(menu);
         return ResultUtil.success(num);
     }
-
+    @ApiImplicitParam(name = "dto", value = "删除菜单的参数")
+    @ApiOperation(value = "删除菜单", notes = "删除菜单")
     @PostMapping(value="/deleteMenu")
     public Result deleteMenu(@RequestBody @Validated TblMenuDelDto dto) {
         int num = menuService.deleteById(dto.getId());
         return ResultUtil.success(num);
+    }
+
+    @ApiImplicitParam(name = "dto", value = "查询菜单的参数")
+    @ApiOperation(value = "通过ID查询菜单", notes = "通过ID查询菜单")
+    @PostMapping(value="/queryMenuById")
+    public Result queryMenuById(@RequestBody @Validated TblMenuDelDto dto) {
+        TblMenu menu = menuService.queryMenuById(dto.getId());
+        return ResultUtil.success(menu);
     }
 }

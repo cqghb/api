@@ -43,4 +43,12 @@ public interface ITblMenuService {
      * @return
      */
     int deleteById(String id) throws AppException;
+
+    /**
+     * 通过ID主键查询菜单
+     * @param id 主键
+     * @return
+     * @throws AppException
+     */
+    TblMenu queryMenuById(String id) throws AppException;
 }

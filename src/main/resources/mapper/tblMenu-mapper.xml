@@ -98,6 +98,5 @@
         <include refid="baseField"/>
         from tbl_menu t
         where t.id = #{id, jdbcType=VARCHAR}
-
     </select>
 </mapper>

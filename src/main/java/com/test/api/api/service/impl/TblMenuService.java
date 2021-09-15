@@ -92,6 +92,15 @@ public class TblMenuService implements ITblMenuService {
         return menuDao.deleteById(id);
     }
 
+    @Override
+    public TblMenu queryMenuById(String id) throws AppException {
+        TblMenu menu = menuDao.selectByPrimaryKey(id);
+        if(StringUtil.objIsEmpty(menu)){
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.MENU_INFO_IS_NULL);
+        }
+        return menu;
+    }
+
     /**
      * 根据父节点ID查出子节点
      * @param parentId 父节点ID
