@@ -51,4 +51,11 @@ public interface ITblMenuService {
      * @throws AppException
      */
     TblMenu queryMenuById(String id) throws AppException;
+
+    /**
+     * 分页查询所有父目录
+     * @param pageQuery 查询条件
+     * @return
+     */
+    PageResult queryParentMenu(PageRequest pageQuery);
 }

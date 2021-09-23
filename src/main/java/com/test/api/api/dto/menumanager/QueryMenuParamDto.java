@@ -15,16 +15,16 @@ import java.io.Serializable;
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
-public class TblMenuDelDto implements Serializable {
+public class QueryMenuParamDto implements Serializable {
     private static final long serialVersionUID = -8751835891322753595L;
 
     @NotBlank(message = "ID不能为空")
     private String id;
 
-    public TblMenuDelDto() {
+    public QueryMenuParamDto() {
     }
 
-    public TblMenuDelDto(@NotBlank(message = "ID不能为空") String id) {
+    public QueryMenuParamDto(@NotBlank(message = "ID不能为空") String id) {
         this.id = id;
     }
 
@@ -38,6 +38,6 @@ public class TblMenuDelDto implements Serializable {
 
     @Override
     public String toString() {
-        return "TblMenuDelDto{" + JSONObject.toJSONString(this) + "}";
+        return "QueryMenuParamDto{" + JSONObject.toJSONString(this) + "}";
     }
 }

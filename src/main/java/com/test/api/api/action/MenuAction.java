@@ -3,7 +3,7 @@ package com.test.api.api.action;
 
 import com.test.api.api.bean.TblMenu;
 import com.test.api.api.config.Result;
-import com.test.api.api.dto.menumanager.TblMenuDelDto;
+import com.test.api.api.dto.menumanager.QueryMenuParamDto;
 import com.test.api.api.service.ITblMenuService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.MenuTree;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @projectName api
  * @package com.test.api.api.action
  * @className MenuAction
- * @description TODO
+ * @description 菜单管理控制器
  * @auther wangsheng
  * @creatTime 2020/11/8 8:31 下午
  * @company demo
@@ -67,7 +67,7 @@ public class MenuAction {
     @ApiImplicitParam(name = "dto", value = "删除菜单的参数")
     @ApiOperation(value = "删除菜单", notes = "删除菜单")
     @PostMapping(value="/deleteMenu")
-    public Result deleteMenu(@RequestBody @Validated TblMenuDelDto dto) {
+    public Result deleteMenu(@RequestBody @Validated QueryMenuParamDto dto) {
         int num = menuService.deleteById(dto.getId());
         return ResultUtil.success(num);
     }
@@ -75,8 +75,16 @@ public class MenuAction {
     @ApiImplicitParam(name = "dto", value = "查询菜单的参数")
     @ApiOperation(value = "通过ID查询菜单", notes = "通过ID查询菜单")
     @PostMapping(value="/queryMenuById")
-    public Result queryMenuById(@RequestBody @Validated TblMenuDelDto dto) {
+    public Result queryMenuById(@RequestBody @Validated QueryMenuParamDto dto) {
         TblMenu menu = menuService.queryMenuById(dto.getId());
         return ResultUtil.success(menu);
+    }
+
+    @ApiImplicitParam(name = "dto", value = "分页查询所有父菜单的参数")
+    @ApiOperation(value = "分页查询所有父菜单", notes = "分页查询所有父菜单")
+    @PostMapping(value="/queryParentMenu")
+    public Result queryParentMenu(@RequestBody PageRequest pageQuery) {
+        PageResult pageResult = menuService.queryParentMenu(pageQuery);
+        return ResultUtil.success(pageResult);
     }
 }

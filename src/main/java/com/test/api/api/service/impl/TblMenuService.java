@@ -11,6 +11,7 @@ import com.test.api.api.constant.CommConstant;
 import com.test.api.api.constant.ErrorMsgConstant;
 import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.dao.TblMenuDao;
+import com.test.api.api.dto.menumanager.QueryParentMenuParamsDto;
 import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblMenuService;
 import com.test.api.api.utils.PageUtils;
@@ -101,6 +102,12 @@ public class TblMenuService implements ITblMenuService {
         return menu;
     }
 
+    @Override
+    public PageResult queryParentMenu(PageRequest pageQuery) {
+        PageInfo<TblMenu> pageInfo = this.queryPageParentMenu(pageQuery);
+        return PageUtils.getPageResult(pageInfo);
+    }
+
     /**
      * 根据父节点ID查出子节点
      * @param parentId 父节点ID
@@ -181,5 +188,20 @@ public class TblMenuService implements ITblMenuService {
             item.setChildrenList(childrenTree);
         }
         return parentTree;
+    }
+
+    /**
+     * 分页查询所有父菜单
+     * @param pageQuery
+     * @return
+     */
+    private PageInfo<TblMenu> queryPageParentMenu(PageRequest pageQuery) {
+        int currentPage = pageQuery.getCurrentPage();
+        int pageSize = pageQuery.getPageSize();
+        PageHelper.startPage(currentPage, pageSize);
+        JSONObject jsonObject = (JSONObject) JSON.toJSON(pageQuery.getParams());
+        QueryParentMenuParamsDto params = jsonObject.toJavaObject(QueryParentMenuParamsDto.class);
+        List<TblMenu> menuList = menuDao.queryPageParentMenu(params);
+        return new PageInfo<>(menuList);
     }
 }

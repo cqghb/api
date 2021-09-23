@@ -51,4 +51,10 @@ public interface TblMenuDao {
      */
     TblMenu selectByPrimaryKey(@Param("id") String id);
 
+    /**
+     * 查询所有父菜单
+     * @param params 查询条件
+     * @return
+     */
+    List<TblMenu> queryPageParentMenu(TblMenu params);
 }

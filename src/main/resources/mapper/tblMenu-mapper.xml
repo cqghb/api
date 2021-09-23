@@ -24,7 +24,7 @@
                 t.id = #{id, jdbcType=VARCHAR}
             </if>
             <if test="name != null and name != ''">
-                t.name = #{name, jdbcType=VARCHAR}
+                t.name = concat('%', #{name,jdbcType=VARCHAR}, '%')
             </if>
             <if test="parentNode != null and parentNode != ''">
                 t.parent_node = #{parentNode, jdbcType=VARCHAR}
@@ -98,5 +98,28 @@
         <include refid="baseField"/>
         from tbl_menu t
         where t.id = #{id, jdbcType=VARCHAR}
+    </select>
+
+    <select id="queryPageParentMenu" parameterType="com.test.api.api.dto.menumanager.QueryParentMenuParamsDto" resultMap="BaseResultMap">
+        SELECT a.* FROM (
+            SELECT t3.* FROM (
+            SELECT DISTINCT t1.parent_node FROM tbl_menu t1 ) t2
+            LEFT JOIN tbl_menu t3 ON t2.parent_node=t3.id
+            WHERE t3.id!=''
+            UNION
+            SELECT t.* FROM tbl_menu t where t.parent_node = '0'
+        ) a
+        <where>
+            <if test="id != null and id != ''">
+                and a.id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null and name !=''">
+                and a.name like concat('%', #{name,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="theId != null and theId != ''">
+                and a.id != #{theId,jdbcType=VARCHAR}
+            </if>
+        </where>
+
     </select>
 </mapper>
