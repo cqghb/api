@@ -57,4 +57,6 @@ public interface TblMenuDao {
      * @return
      */
     List<TblMenu> queryPageParentMenu(TblMenu params);
+
+    int updateByPrimaryKeySelective(TblMenu params);
 }

@@ -12,6 +12,7 @@ import com.test.api.api.constant.ErrorMsgConstant;
 import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.dao.TblMenuDao;
 import com.test.api.api.dto.menumanager.QueryParentMenuParamsDto;
+import com.test.api.api.dto.menumanager.TblMenuDto;
 import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblMenuService;
 import com.test.api.api.utils.PageUtils;
@@ -19,6 +20,7 @@ import com.test.api.api.utils.StringUtil;
 import com.test.api.api.vo.MenuTree;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -106,6 +108,20 @@ public class TblMenuService implements ITblMenuService {
     public PageResult queryParentMenu(PageRequest pageQuery) {
         PageInfo<TblMenu> pageInfo = this.queryPageParentMenu(pageQuery);
         return PageUtils.getPageResult(pageInfo);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(TblMenuDto record) throws AppException {
+        String id = record.getId();
+        TblMenu menu = menuDao.selectByPrimaryKey(id);
+        if(StringUtil.objIsEmpty(menu)){
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.MENU_INFO_IS_NULL);
+        }
+        BeanUtils.copyProperties(record, menu);
+        TblUser loginUser = commonService.getLoginUser();
+        String loginUserId = loginUser.getId();
+        menu.setUpdateUser(loginUserId);
+        return menuDao.updateByPrimaryKeySelective(menu);
     }
 
     /**

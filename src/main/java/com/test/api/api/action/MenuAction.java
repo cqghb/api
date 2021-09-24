@@ -4,6 +4,7 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblMenu;
 import com.test.api.api.config.Result;
 import com.test.api.api.dto.menumanager.QueryMenuParamDto;
+import com.test.api.api.dto.menumanager.TblMenuDto;
 import com.test.api.api.service.ITblMenuService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.MenuTree;
@@ -86,5 +87,13 @@ public class MenuAction {
     public Result queryParentMenu(@RequestBody PageRequest pageQuery) {
         PageResult pageResult = menuService.queryParentMenu(pageQuery);
         return ResultUtil.success(pageResult);
+    }
+
+    @ApiImplicitParam(name = "menu", value = "菜单参数")
+    @ApiOperation(value = "修改菜单", notes = "修改菜单")
+    @PostMapping(value="/updateMenu")
+    public Result updateMenu(@RequestBody @Validated TblMenuDto menu) {
+        int num = menuService.updateByPrimaryKeySelective(menu);
+        return ResultUtil.success(num);
     }
 }

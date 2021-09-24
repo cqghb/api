@@ -2,6 +2,7 @@ package com.test.api.api.service;
 
 import com.test.api.api.bean.TblMenu;
 import com.test.api.api.config.AppException;
+import com.test.api.api.dto.menumanager.TblMenuDto;
 import com.test.api.api.vo.MenuTree;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
@@ -58,4 +59,12 @@ public interface ITblMenuService {
      * @return
      */
     PageResult queryParentMenu(PageRequest pageQuery);
+
+    /**
+     * 修改菜单
+     * @param menu 新的菜单数据
+     * @return
+     * @throws AppException
+     */
+    int updateByPrimaryKeySelective(TblMenuDto menu) throws AppException;
 }

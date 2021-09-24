@@ -8,9 +8,9 @@
         <result column="default_select" property="defaultSelect" jdbcType="VARCHAR"/>
         <result column="uri" property="uri" jdbcType="VARCHAR"/>
         <result column="create_user" property="createUser" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
-        <result column="update_time" property="updateTime" jdbcType="DATE"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="baseField">
         id, name, icon, parent_node, default_select, uri, create_user, create_time, update_user, update_time
@@ -122,4 +122,27 @@
         </where>
 
     </select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.test.api.api.bean.TblMenu">
+        update tbl_menu
+        <set>
+            <if test="name != null and name !=''">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null and icon !=''">
+                icon = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="parentNode != null and parentNode != ''">
+                parent_node = #{parentNode,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultSelect != null and defaultSelect != ''">
+                default_select = #{defaultSelect,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser,jdbcType=VARCHAR},
+            </if>
+            update_time = sysdate()
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
 </mapper>
