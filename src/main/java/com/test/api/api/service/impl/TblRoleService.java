@@ -62,6 +62,6 @@ public class TblRoleService extends CommonService implements ITblRoleService {
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo(roleDao, CommConstant.QUERY_LIST,pageRequest));
+        return PageUtils.getPageResult(getPageInfo(roleDao, CommConstant.QUERY_LIST, pageRequest));
     }
 }
