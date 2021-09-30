@@ -1,5 +1,7 @@
 package com.test.api.api.service;
 
+import com.test.api.api.bean.TblDataOperate;
+
 /**
  * @projectName api
  * @package com.test.api.api.service
@@ -11,4 +13,16 @@ package com.test.api.api.service;
  * @department 小程序-微信小程序
  */
 public interface ITblDataOperateService {
+
+    int deleteByPrimaryKey(String id);
+
+    int insert(TblDataOperate record);
+
+    int insertSelective(TblDataOperate record);
+
+    TblDataOperate selectByPrimaryKey(String id);
+
+    int updateByPrimaryKeySelective(TblDataOperate record);
+
+    int updateByPrimaryKey(TblDataOperate record);
 }

@@ -1,5 +1,6 @@
 package com.test.api.api.service.impl;
 
+import com.test.api.api.bean.TblRoleMenuRelation;
 import com.test.api.api.dao.TblRoleMenuRelationDao;
 import com.test.api.api.service.ITblRoleMenuRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,4 +21,34 @@ public class TblRoleMenuRelationService implements ITblRoleMenuRelationService {
 
     @Autowired
     private TblRoleMenuRelationDao roleMenuRelationDao;
+
+    @Override
+    public int deleteByPrimaryKey(String id) {
+        return roleMenuRelationDao.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int insert(TblRoleMenuRelation record) {
+        return roleMenuRelationDao.insert(record);
+    }
+
+    @Override
+    public int insertSelective(TblRoleMenuRelation record) {
+        return roleMenuRelationDao.insertSelective(record);
+    }
+
+    @Override
+    public TblRoleMenuRelation selectByPrimaryKey(String id) {
+        return roleMenuRelationDao.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(TblRoleMenuRelation record) {
+        return roleMenuRelationDao.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public int updateByPrimaryKey(TblRoleMenuRelation record) {
+        return roleMenuRelationDao.updateByPrimaryKey(record);
+    }
 }

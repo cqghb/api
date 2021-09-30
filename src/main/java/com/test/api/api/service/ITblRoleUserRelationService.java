@@ -1,5 +1,7 @@
 package com.test.api.api.service;
 
+import com.test.api.api.bean.TblRoleUserRelation;
+
 /**
  * @projectName api
  * @package com.test.api.api.service
@@ -11,4 +13,16 @@ package com.test.api.api.service;
  * @department 小程序-微信小程序
  */
 public interface ITblRoleUserRelationService {
+
+    int deleteByPrimaryKey(String id);
+
+    int insert(TblRoleUserRelation record);
+
+    int insertSelective(TblRoleUserRelation record);
+
+    TblRoleUserRelation selectByPrimaryKey(String id);
+
+    int updateByPrimaryKeySelective(TblRoleUserRelation record);
+
+    int updateByPrimaryKey(TblRoleUserRelation record);
 }

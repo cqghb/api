@@ -1,6 +1,9 @@
 package com.test.api.api.service;
 
+import com.github.pagehelper.PageInfo;
 import com.test.api.api.bean.TblUser;
+import com.test.api.api.config.AppException;
+import com.test.api.api.vo.page.PageRequest;
 
 /**
  * @projectName api
@@ -24,4 +27,11 @@ public interface ICommonService {
      * @return
      */
     TblUser getLoginUser();
+
+    /**
+     * 分页查询公共方法
+     * @param pageRequest 查询条件
+     * @return
+     */
+    PageInfo<?> getPageInfo(Object dao, String methodName, PageRequest pageRequest) throws AppException;
 }

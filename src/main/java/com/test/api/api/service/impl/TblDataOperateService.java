@@ -1,5 +1,6 @@
 package com.test.api.api.service.impl;
 
+import com.test.api.api.bean.TblDataOperate;
 import com.test.api.api.dao.TblDataOperateDao;
 import com.test.api.api.service.ITblDataOperateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,4 +23,33 @@ public class TblDataOperateService implements ITblDataOperateService {
     private TblDataOperateDao dataOperateDao;
 
 
+    @Override
+    public int deleteByPrimaryKey(String id) {
+        return dataOperateDao.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int insert(TblDataOperate record) {
+        return dataOperateDao.insert(record);
+    }
+
+    @Override
+    public int insertSelective(TblDataOperate record) {
+        return dataOperateDao.insertSelective(record);
+    }
+
+    @Override
+    public TblDataOperate selectByPrimaryKey(String id) {
+        return dataOperateDao.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(TblDataOperate record) {
+        return dataOperateDao.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public int updateByPrimaryKey(TblDataOperate record) {
+        return dataOperateDao.updateByPrimaryKey(record);
+    }
 }

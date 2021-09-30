@@ -1,12 +1,19 @@
 package com.test.api.api.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.test.api.api.bean.TblUser;
+import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
+import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.dao.TblUserDao;
 import com.test.api.api.service.ICommonService;
 import com.test.api.api.utils.JsonUtils;
 import com.test.api.api.utils.SessionUtils;
 import com.test.api.api.utils.StringUtil;
+import com.test.api.api.vo.page.PageRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +22,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @projectName api
@@ -67,5 +77,25 @@ public class CommonService implements ICommonService {
         String loginUserStr = (String)redisTemplate.opsForValue().get(userKey);
         TblUser loginUser = JsonUtils.jsonToPojo(loginUserStr, TblUser.class);
         return loginUser;
+    }
+
+    @Override
+    public PageInfo<?> getPageInfo(Object dao, String methodName, PageRequest pageRequest) throws AppException {
+        int currentPage = pageRequest.getCurrentPage();
+        int pageSize = pageRequest.getPageSize();
+        PageHelper.startPage(currentPage, pageSize);
+        JSONObject jsonObject = (JSONObject) JSON.toJSON(pageRequest.getParams());
+        List<?> dataList = new ArrayList<>();
+        try {
+            Class clazz = dao.getClass();
+            Method method = clazz.getMethod(methodName, new Class[]{JSONObject.class});
+            method.setAccessible(true);
+            // 反射调用可变参数方法
+            dataList = (List<?>) method.invoke(dao, new Object[]{jsonObject});
+        } catch (Exception e) {
+            logger.error("数据查询异常: " + e.getMessage(), e);
+            throw new AppException(MsgCodeConstant.ERROR_CODE, "数据查询异常: " + e.getMessage());
+        }
+        return new PageInfo<>(dataList);
     }
 }

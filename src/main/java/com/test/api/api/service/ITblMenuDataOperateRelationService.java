@@ -1,5 +1,7 @@
 package com.test.api.api.service;
 
+import com.test.api.api.bean.TblMenuDataOperateRelation;
+
 /**
  * @projectName api
  * @package com.test.api.api.service
@@ -11,4 +13,16 @@ package com.test.api.api.service;
  * @department 小程序-微信小程序
  */
 public interface ITblMenuDataOperateRelationService {
+
+    int deleteByPrimaryKey(String id);
+
+    int insert(TblMenuDataOperateRelation record);
+
+    int insertSelective(TblMenuDataOperateRelation record);
+
+    TblMenuDataOperateRelation selectByPrimaryKey(String id);
+
+    int updateByPrimaryKeySelective(TblMenuDataOperateRelation record);
+
+    int updateByPrimaryKey(TblMenuDataOperateRelation record);
 }

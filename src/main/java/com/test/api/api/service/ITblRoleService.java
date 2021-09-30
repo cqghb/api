@@ -1,5 +1,9 @@
 package com.test.api.api.service;
 
+import com.test.api.api.bean.TblRole;
+import com.test.api.api.vo.page.PageRequest;
+import com.test.api.api.vo.page.PageResult;
+
 /**
  * @projectName api
  * @package com.test.api.api.service
@@ -11,4 +15,23 @@ package com.test.api.api.service;
  * @department 小程序-微信小程序
  */
 public interface ITblRoleService {
+
+    int deleteByPrimaryKey(String id);
+
+    int insert(TblRole record);
+
+    int insertSelective(TblRole record);
+
+    TblRole selectByPrimaryKey(String id);
+
+    int updateByPrimaryKeySelective(TblRole record);
+
+    int updateByPrimaryKey(TblRole record);
+
+    /**
+     * 分页查询
+     * @param pageRequest 分页参数
+     * @return
+     */
+    PageResult findPage(PageRequest pageRequest);
 }

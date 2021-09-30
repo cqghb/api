@@ -39,4 +39,9 @@ public class CommConstant {
     // 默认密码
     public static final String DEFAULT_PASSS = "666666";
     /** 公共常量 end **/
+
+    /** 通过反射调用方法的方法名统一写到这里 start **/
+    // 列表查询
+    public static final String QUERY_LIST = "queryList";
+    /** 通过反射调用方法的方法名统一写到这里 end **/
 }
