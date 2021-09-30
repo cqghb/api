@@ -30,8 +30,11 @@ public interface ICommonService {
 
     /**
      * 分页查询公共方法
+     * @param dao 持久层bean
+     * @param methodName 方法名称
      * @param pageRequest 查询条件
      * @return
+     * @throws AppException
      */
     PageInfo<?> getPageInfo(Object dao, String methodName, PageRequest pageRequest) throws AppException;
 }
