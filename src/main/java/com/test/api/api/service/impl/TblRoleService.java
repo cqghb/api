@@ -1,10 +1,12 @@
 package com.test.api.api.service.impl;
 
 import com.test.api.api.bean.TblRole;
+import com.test.api.api.bean.TblUser;
 import com.test.api.api.constant.CommConstant;
 import com.test.api.api.dao.TblRoleDao;
 import com.test.api.api.service.ITblRoleService;
 import com.test.api.api.utils.PageUtils;
+import com.test.api.api.utils.StringUtil;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import org.slf4j.Logger;
@@ -42,6 +44,10 @@ public class TblRoleService extends CommonService implements ITblRoleService {
 
     @Override
     public int insertSelective(TblRole record) {
+        TblUser loginUser = getLoginUser();
+        String loginUserId = loginUser.getId();
+        record.setId(StringUtil.uuid());
+        record.setCreateUser(loginUserId);
         return roleDao.insertSelective(record);
     }
 

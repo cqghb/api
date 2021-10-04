@@ -1,13 +1,18 @@
 package com.test.api.api.action;
 
+import com.test.api.api.bean.TblRole;
 import com.test.api.api.config.Result;
+import com.test.api.api.dto.rolemanager.TblRoleDto;
 import com.test.api.api.service.ITblRoleService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +46,16 @@ public class RoleController {
     public Result findPage(@RequestBody PageRequest pageQuery) {
         PageResult pageResult = roleService.findPage(pageQuery);
         return ResultUtil.success(pageResult);
+    }
+
+    @PostMapping(value="/insertRole")
+    @ApiImplicitParam(name = "roleDto", value = "新增角色的参数")
+    @ApiOperation(value = "添加角色", notes = "添加角色")
+    public Result insertRole(@RequestBody @Validated TblRoleDto roleDto) {
+        TblRole role = new TblRole();
+        BeanUtils.copyProperties(roleDto, role);
+        int num = roleService.insertSelective(role);
+        return ResultUtil.success(num);
     }
 
 }
