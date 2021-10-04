@@ -47,7 +47,7 @@ public class MenuAction {
 
     /**
      * 菜单管理页面菜单列表查询
-     *
+     * 如果查查具有子节点的节点请送parentNode=0字段
      * @param pageQuery 查询条件
      * @return
      */
