@@ -8,8 +8,6 @@ import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import org.apache.ibatis.cursor.Cursor;
 
-import java.util.List;
-
 /**
  * @projectName api
  * @package com.test.api.api.service
@@ -21,13 +19,6 @@ import java.util.List;
  * @department demo
  */
 public interface ITblUserService {
-
-    /**
-     * 用户列表查询
-     * @param user
-     * @return
-     */
-    List<TblUser> queryList(TblUser user);
 
     /**
      * 用户登录

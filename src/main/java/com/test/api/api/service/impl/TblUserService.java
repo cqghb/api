@@ -1,9 +1,5 @@
 package com.test.api.api.service.impl;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.test.api.api.bean.TblUser;
 import com.test.api.api.bean.TblUserLikes;
 import com.test.api.api.bo.UserBo;
@@ -12,7 +8,6 @@ import com.test.api.api.constant.CommConstant;
 import com.test.api.api.constant.ErrorMsgConstant;
 import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.dao.TblUserDao;
-import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblUserLikesService;
 import com.test.api.api.service.ITblUserService;
 import com.test.api.api.utils.*;
@@ -47,7 +42,7 @@ import java.util.concurrent.TimeUnit;
  * @department demo
  */
 @Service
-public class TblUserService implements ITblUserService {
+public class TblUserService extends CommonService implements ITblUserService {
 
     protected static Logger logger = LoggerFactory.getLogger(TblUserService.class);
 
@@ -61,15 +56,7 @@ public class TblUserService implements ITblUserService {
     private TblUserDao userDao;
 
     @Autowired
-    private ICommonService commonService;
-
-    @Autowired
     private ITblUserLikesService userLikesService;
-
-    @Override
-    public List<TblUser> queryList(TblUser user) {
-        return userDao.queryList(user);
-    }
 
     @Override
     public TblUser login(String id, String pass) {
@@ -85,14 +72,14 @@ public class TblUserService implements ITblUserService {
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo(pageRequest));
+        return PageUtils.getPageResult(getPageInfo(userDao, CommConstant.QUERY_LIST, pageRequest));
     }
 
     @Override
     @Transactional
     public String insert(UserBo user) {
         // 用户主键
-        String userId = commonService.getUserId();
+        String userId = getUserId();
         user.setId(userId);
         // 保存用户信息
         String oldPath = user.getHeadPortraitUrl();
@@ -103,13 +90,14 @@ public class TblUserService implements ITblUserService {
         }
         // 设置默认密码
         user.setPass(CommConstant.DEFAULT_PASSS);
+        TblUser loginUser = getLoginUser();
+        String loginUserId = loginUser.getId();
+        user.setCreateUser(loginUserId);
         userDao.insert(user);
-
         logger.info("用户数据基础保存完成");
-
         String[] likes = user.getLikes();
         // 循环保存用户喜好
-        this.addUserLikes(likes, userId);
+        this.addUserLikes(likes, userId, loginUserId);
         return userId;
     }
 
@@ -145,7 +133,10 @@ public class TblUserService implements ITblUserService {
         }
         // 添加新的爱好
         String[] likes = user.getLikes();
-        this.addUserLikes(likes, userId);
+        TblUser loginUser = getLoginUser();
+        String loginUserId = loginUser.getId();
+        this.addUserLikes(likes, userId, loginUserId);
+        user.setUpdateUser(loginUserId);
         return userDao.update(user);
     }
 
@@ -168,35 +159,11 @@ public class TblUserService implements ITblUserService {
     }
 
     /**
-     * 调用分页插件完成分页
-     * @param pageRequest
-     * @return
-     */
-    private PageInfo<TblUser> getPageInfo(PageRequest pageRequest) {
-        int currentPage = pageRequest.getCurrentPage();
-        int pageSize = pageRequest.getPageSize();
-        PageHelper.startPage(currentPage, pageSize);
-        JSONObject jsonObject = (JSONObject)JSON.toJSON(pageRequest.getParams());
-        TblUser params = jsonObject.toJavaObject(TblUser.class);
-        List<TblUser> userList = userDao.queryList(params);
-        return new PageInfo<>(userList);
-    }
-
-    /**
      * 循环保存用户爱好
      * @param likes 爱好
      * @param userId 用户编号
      */
-    private void addUserLikes(String[] likes, String userId){
-        HttpSession session = SessionUtils.getHttpSession();
-        String userKey = (String)session.getAttribute(CommConstant.REDIS_USER_KEY);
-        String loginUserId = "";
-        // 兼容没有登录时，用户注册
-        if(userKey != null){
-            String loginUserStr = (String)redisTemplate.opsForValue().get(userKey);
-            TblUser loginUser = JsonUtils.jsonToPojo(loginUserStr, TblUser.class);
-            loginUserId = loginUser.getId();
-        }
+    private void addUserLikes(String[] likes, String userId, String loginUserId){
         // 循环保存用户喜好
         for (String item : likes){
             TblUserLikes userLikes = new TblUserLikes();

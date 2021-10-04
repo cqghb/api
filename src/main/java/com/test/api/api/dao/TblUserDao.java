@@ -1,5 +1,6 @@
 package com.test.api.api.dao;
 
+import com.alibaba.fastjson.JSONObject;
 import com.test.api.api.bean.TblUser;
 import com.test.api.api.bo.UserBo;
 import org.apache.ibatis.annotations.Param;
@@ -12,7 +13,7 @@ import java.util.List;
  * @projectName api
  * @package com.test.api.api.dao
  * @className TblUserDao
- * @description TODO
+ * @description 用户信息持久接口
  * @auther wangsheng
  * @creatTime 2020/11/6 12:32 上午
  * @company demo
@@ -25,7 +26,7 @@ public interface TblUserDao {
      * @param user
      * @return
      */
-    List<TblUser> queryList(TblUser user);
+    List<TblUser> queryList(JSONObject user);
 
     /**
      * 用户登录

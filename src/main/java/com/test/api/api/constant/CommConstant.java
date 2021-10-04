@@ -43,5 +43,6 @@ public class CommConstant {
     /** 通过反射调用方法的方法名统一写到这里 start **/
     // 列表查询
     public static final String QUERY_LIST = "queryList";
+    public static final String QUERY_PAGE_PARENT_MENU = "queryPageParentMenu";
     /** 通过反射调用方法的方法名统一写到这里 end **/
 }

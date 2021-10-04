@@ -1,13 +1,9 @@
 package com.test.api.api.service.impl;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.test.api.api.bean.TblIcon;
 import com.test.api.api.bean.TblUser;
+import com.test.api.api.constant.CommConstant;
 import com.test.api.api.dao.TblIconDao;
-import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblIconService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
@@ -29,13 +25,10 @@ import java.util.List;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblIconService implements ITblIconService {
+public class TblIconService extends CommonService implements ITblIconService {
 
     @Autowired
     private TblIconDao tblIconDao;
-
-    @Autowired
-    private ICommonService commonService;
 
     @Override
     public int deleteByPrimaryKey(String id) {
@@ -49,7 +42,7 @@ public class TblIconService implements ITblIconService {
 
     @Override
     public int insertSelective(TblIcon record) {
-        TblUser loginUser = commonService.getLoginUser();
+        TblUser loginUser = getLoginUser();
         String loginUserId = loginUser.getId();
         record.setId(StringUtil.uuid());
         record.setCreateUser(loginUserId);
@@ -73,26 +66,11 @@ public class TblIconService implements ITblIconService {
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo(pageRequest));
+        return PageUtils.getPageResult(getPageInfo(tblIconDao, CommConstant.QUERY_LIST, pageRequest));
     }
 
     @Override
     public List<TblIcon> queryAll() {
         return tblIconDao.queryList(null);
-    }
-
-    /**
-     * 调用分页插件完成分页
-     * @param pageRequest
-     * @return
-     */
-    private PageInfo<TblIcon> getPageInfo(PageRequest pageRequest) {
-        int currentPage = pageRequest.getCurrentPage();
-        int pageSize = pageRequest.getPageSize();
-        PageHelper.startPage(currentPage, pageSize);
-        JSONObject jsonObject = (JSONObject) JSON.toJSON(pageRequest.getParams());
-        TblIcon params = jsonObject.toJavaObject(TblIcon.class);
-        List<TblIcon> iconList = tblIconDao.queryList(params);
-        return new PageInfo<>(iconList);
     }
 }

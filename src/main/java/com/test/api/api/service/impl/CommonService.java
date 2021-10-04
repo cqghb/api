@@ -89,7 +89,8 @@ public class CommonService implements ICommonService {
         try {
             Class clazz = dao.getClass();
             Method method = clazz.getMethod(methodName, new Class[]{JSONObject.class});
-            method.setAccessible(true);
+//            持久层方法需要反射调用的都是public
+//            method.setAccessible(true);
             // 反射调用可变参数方法
             dataList = (List<?>) method.invoke(dao, new Object[]{jsonObject});
         } catch (Exception e) {

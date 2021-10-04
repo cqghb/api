@@ -1,5 +1,6 @@
 package com.test.api.api.dao;
 
+import com.alibaba.fastjson.JSONObject;
 import com.test.api.api.bean.TblIcon;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -28,5 +29,5 @@ public interface TblIconDao {
      * @param params 查询条件
      * @return
      */
-    List<TblIcon> queryList(TblIcon params);
+    List<TblIcon> queryList(JSONObject params);
 }

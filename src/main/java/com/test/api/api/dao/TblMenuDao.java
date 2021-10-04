@@ -1,5 +1,6 @@
 package com.test.api.api.dao;
 
+import com.alibaba.fastjson.JSONObject;
 import com.test.api.api.bean.TblMenu;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -23,7 +24,7 @@ public interface TblMenuDao {
      * @param params 查询条件
      * @return
      */
-    List<TblMenu> queryList(TblMenu params);
+    List<TblMenu> queryList(JSONObject params);
 
     /**
      * 查询默认选中的菜单
@@ -56,7 +57,7 @@ public interface TblMenuDao {
      * @param params 查询条件
      * @return
      */
-    List<TblMenu> queryPageParentMenu(TblMenu params);
+    List<TblMenu> queryPageParentMenu(JSONObject params);
 
     int updateByPrimaryKeySelective(TblMenu params);
 }
