@@ -1,6 +1,7 @@
 package com.test.api.api.service;
 
 import com.test.api.api.bean.TblRole;
+import com.test.api.api.config.AppException;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 
@@ -24,7 +25,7 @@ public interface ITblRoleService {
 
     TblRole selectByPrimaryKey(String id);
 
-    int updateByPrimaryKeySelective(TblRole record);
+    int updateByPrimaryKeySelective(TblRole record) throws AppException;
 
     int updateByPrimaryKey(TblRole record);
 
@@ -34,4 +35,11 @@ public interface ITblRoleService {
      * @return
      */
     PageResult findPage(PageRequest pageRequest);
+
+    /**
+     * 修改角色删除标志
+     * @param record 角色对象
+     * @return
+     */
+    int updateRoleDelTag(TblRole record);
 }

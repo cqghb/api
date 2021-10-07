@@ -21,14 +21,24 @@ public class TblRole extends BaseBean implements Serializable {
      * 角色名称
      */
     private String name;
+    /**
+     * 删除标志
+     */
+    private String delTag;
+    /**
+     * 备注
+     */
+    private String remark;
 
     public TblRole() {
     }
 
-    public TblRole(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name) {
+    public TblRole(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name, String delTag, String remark) {
         super(createUser, createTime, updateUser, updateTime);
         this.id = id;
         this.name = name;
+        this.delTag = delTag;
+        this.remark = remark;
     }
 
     public String getId() {
@@ -45,6 +55,22 @@ public class TblRole extends BaseBean implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDelTag() {
+        return delTag;
+    }
+
+    public void setDelTag(String delTag) {
+        this.delTag = delTag;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     @Override

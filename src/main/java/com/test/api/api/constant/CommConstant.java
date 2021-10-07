@@ -38,11 +38,20 @@ public class CommConstant {
     public static final String JSESSIONID = "JSESSIONID";
     // 默认密码
     public static final String DEFAULT_PASSS = "666666";
+    // 删除标记
+    public static final String DEL_TAG = "delTag";
+    public static final String UPDATE_USER = "updateUser";
+    public static final String CREATE_USER = "createUser";
     /** 公共常量 end **/
 
     /** 通过反射调用方法的方法名统一写到这里 start **/
     // 列表查询
     public static final String QUERY_LIST = "queryList";
     public static final String QUERY_PAGE_PARENT_MENU = "queryPageParentMenu";
+    public static final String SELECT_BY_PRIMARY_KEY = "selectByPrimaryKey";
     /** 通过反射调用方法的方法名统一写到这里 end **/
+
+    /** 声明角色管理模块常量 start **/
+
+    /** 声明角色管理模块常量 end **/
 }

@@ -2,6 +2,8 @@ package com.test.api.api.action;
 
 import com.test.api.api.bean.TblRole;
 import com.test.api.api.config.Result;
+import com.test.api.api.dto.DeleteDataDto;
+import com.test.api.api.dto.menumanager.QueryMenuParamDto;
 import com.test.api.api.dto.rolemanager.TblRoleDto;
 import com.test.api.api.service.ITblRoleService;
 import com.test.api.api.utils.ResultUtil;
@@ -38,17 +40,24 @@ public class RoleController {
 
     /**
      * 用户列表查询
+     *
      * @param pageQuery
      * @return
      */
     @ApiOperation(value = "角色列表查询", notes = "角色列表查询")
-    @PostMapping(value="/findPage")
+    @PostMapping(value = "/findPage")
     public Result findPage(@RequestBody PageRequest pageQuery) {
         PageResult pageResult = roleService.findPage(pageQuery);
         return ResultUtil.success(pageResult);
     }
 
-    @PostMapping(value="/insertRole")
+    /**
+     * 添加角色
+     *
+     * @param roleDto
+     * @return
+     */
+    @PostMapping(value = "/insertRole")
     @ApiImplicitParam(name = "roleDto", value = "新增角色的参数")
     @ApiOperation(value = "添加角色", notes = "添加角色")
     public Result insertRole(@RequestBody @Validated TblRoleDto roleDto) {
@@ -58,4 +67,43 @@ public class RoleController {
         return ResultUtil.success(num);
     }
 
+    @ApiImplicitParam(name = "id", value = "角色主键")
+    @ApiOperation(value = "通过ID查询角色信息", notes = "通过ID查询角色信息")
+    @PostMapping(value = "/queryById")
+    public Result queryById(@RequestBody @Validated QueryMenuParamDto dto) {
+        TblRole Role = roleService.selectByPrimaryKey(dto.getId());
+        return ResultUtil.success(Role);
+    }
+
+    /**
+     * 修改角色
+     *
+     * @param roleDto
+     * @return
+     */
+    @PostMapping(value = "/updateRole")
+    @ApiImplicitParam(name = "roleDto", value = "修改角色的参数")
+    @ApiOperation(value = "修改角色", notes = "修改角色")
+    public Result updateRole(@RequestBody @Validated TblRoleDto roleDto) {
+        TblRole role = new TblRole();
+        BeanUtils.copyProperties(roleDto, role);
+        int num = roleService.updateByPrimaryKeySelective(role);
+        return ResultUtil.success(num);
+    }
+
+    /**
+     * 逻辑删除角色
+     *
+     * @param roleDto
+     * @return
+     */
+    @PostMapping(value = "/updateRoleDelTag")
+    @ApiImplicitParam(name = "roleDto", value = "逻辑删除角色的参数")
+    @ApiOperation(value = "逻辑删除角色", notes = "逻辑删除角色")
+    public Result updateRoleDelTag(@RequestBody @Validated DeleteDataDto roleDto) {
+        TblRole role = new TblRole();
+        BeanUtils.copyProperties(roleDto, role);
+        int num = roleService.updateRoleDelTag(role);
+        return ResultUtil.success(num);
+    }
 }

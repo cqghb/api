@@ -4,13 +4,15 @@
   <resultMap id="BaseResultMap" type="com.test.api.api.bean.TblRole">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, `name`, create_user, create_time, update_user, update_time
+    id, `name`, del_tag, remark, create_user, create_time, update_user, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -23,8 +25,9 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblRole" useGeneratedKeys="true">
-    insert into tbl_role (`name`, create_user, create_time,)
-    values (#{name,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, sysdate())
+    insert into tbl_role (`name`, del_tag, remark, create_user, create_time,)
+    values (#{name,jdbcType=VARCHAR}, #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+    #{createUser,jdbcType=VARCHAR}, sysdate())
   </insert>
   <insert id="insertSelective" parameterType="com.test.api.api.bean.TblRole">
     insert into tbl_role
@@ -32,10 +35,16 @@
       <if test="id != null and id != ''">
         id,
       </if>
-      <if test="name != null">
+      <if test="name != null and name != ''">
         `name`,
       </if>
-      <if test="createUser != null">
+      <if test="delTag != null and delTag != ''">
+        del_tag,
+      </if>
+      <if test="remark != null and remark != ''">
+        remark,
+      </if>
+      <if test="createUser != null and createUser != ''">
         create_user,
       </if>
         create_time
@@ -44,10 +53,16 @@
       <if test="id != null and id != ''">
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
+      <if test="name != null and name != ''">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="createUser != null">
+      <if test="delTag != null and delTag != ''">
+        #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null and remark != ''">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null and createUser != ''">
         #{createUser,jdbcType=VARCHAR},
       </if>
       sysdate()
@@ -56,10 +71,17 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.test.api.api.bean.TblRole">
     update tbl_role
     <set>
-      <if test="name != null">
+      <if test="name != null and name != ''">
+<!--      <if test="@com.test.api.api.utils.StringUtil.objIsNotEmpty(name)">-->
         `name` = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="updateUser != null">
+      <if test="delTag != null and delTag != ''">
+        del_tag = #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null and remark != ''">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null and updateUser != ''">
         update_user = #{updateUser,jdbcType=VARCHAR},
       </if>
         update_time = sysdate()
@@ -69,6 +91,8 @@
   <update id="updateByPrimaryKey" parameterType="com.test.api.api.bean.TblRole">
     update tbl_role
     set `name` = #{name,jdbcType=VARCHAR},
+      del_tag = #{delTag,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
       update_user = #{updateUser,jdbcType=VARCHAR},
       update_time = sysdate()
     where id = #{id,jdbcType=VARCHAR}
@@ -84,7 +108,26 @@
       <if test="name != null and name != ''">
         and `name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
       </if>
+      <if test="delTag != null and delTag != ''">
+        and del_tag = #{delTag,jdbcType=VARCHAR}
+      </if>
     </where>
 
   </select>
+  <update id="updateRoleDelTag" parameterType="com.test.api.api.bean.TblRole">
+    update tbl_role
+    <set>
+      <if test="delTag != null and delTag != ''">
+        del_tag = #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null and remark != ''">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null  and updateUser != ''">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      update_time = sysdate()
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
 </mapper>

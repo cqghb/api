@@ -19,6 +19,11 @@ import java.io.Serializable;
 public class TblRoleDto implements Serializable {
     private static final long serialVersionUID = -6051306325137183341L;
 
+    // TODO 验证部分后续修改成按操作来验证【使用自定义注解来实现】
+    /**
+     * ID
+     */
+    private String id;
     /**
      * 角色名称
      */
@@ -26,11 +31,26 @@ public class TblRoleDto implements Serializable {
     @NotBlank(message = "角色不能为空")
     private String name;
 
+    /**
+     * 角色备注
+     */
+    private String remark;
+
     public TblRoleDto() {
     }
 
-    public TblRoleDto(@NotNull(message = "角色不能为空") @NotBlank(message = "角色不能为空") String name) {
+    public TblRoleDto(String id, @NotNull(message = "角色不能为空") @NotBlank(message = "角色不能为空") String name, String remark) {
+        this.id = id;
         this.name = name;
+        this.remark = remark;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -41,8 +61,16 @@ public class TblRoleDto implements Serializable {
         this.name = name;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     @Override
     public String toString() {
-        return "TblRoleDto{" + JSONObject.toJSONString(this).toString() + '}';
+        return "TblRoleDto{" + JSONObject.toJSONString(this) + '}';
     }
 }

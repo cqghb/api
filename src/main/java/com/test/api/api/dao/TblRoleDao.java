@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface TblRoleDao {
+
     int deleteByPrimaryKey(@Param("id") String id);
 
     int insert(TblRole record);
@@ -21,5 +22,17 @@ public interface TblRoleDao {
 
     int updateByPrimaryKey(TblRole record);
 
+    /**
+     * 列表查询
+     * @param record 查询条件
+     * @return
+     */
     List<TblRole> queryList(JSONObject record);
+
+    /**
+     * 修改角色删除标志
+     * @param record 角色对象
+     * @return
+     */
+    int updateRoleDelTag(TblRole record);
 }
