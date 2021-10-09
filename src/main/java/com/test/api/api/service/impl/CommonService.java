@@ -159,7 +159,7 @@ public class CommonService implements ICommonService {
                 }
                 if (field.getName().equals(CommConstant.DEL_TAG)) {
                     field.setAccessible(true);
-                    field.set(obj, DelTagEnum.DEL_TAG_1.getCode());
+                    field.set(obj, DelTagEnum.DEL_TAG_2.getCode());
                     continue;
                 }
             }

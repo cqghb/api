@@ -37,43 +37,43 @@
   <insert id="insertSelective" parameterType="com.test.api.api.bean.TblDataOperate">
     insert into tbl_data_operate
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null and id != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
         id,
       </if>
-      <if test="name != null and name != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
         `name`,
       </if>
-      <if test="operateAddr != null and operateAddr != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(operateAddr)">
         operate_addr,
       </if>
-      <if test="delTag != null and delTag != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
         del_tag,
       </if>
-      <if test="remark != null and remark != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
         remark,
       </if>
-      <if test="createUser != null and createUser != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(createUser)">
         create_user,
       </if>
         create_time
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null and id != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="operateAddr != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(operateAddr)">
         #{operateAddr,jdbcType=VARCHAR},
       </if>
-      <if test="delTag != null and delTag != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
         #{delTag,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null and remark != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
         #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="createUser != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(createUser)">
         #{createUser,jdbcType=VARCHAR},
       </if>
       sysdate()
@@ -105,6 +105,8 @@
     update tbl_data_operate
     set `name` = #{name,jdbcType=VARCHAR},
       operate_addr = #{operateAddr,jdbcType=VARCHAR},
+      del_tag = #{delTag,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
       update_user = #{updateUser,jdbcType=VARCHAR},
       update_time = sysdate()
     where id = #{id,jdbcType=VARCHAR}

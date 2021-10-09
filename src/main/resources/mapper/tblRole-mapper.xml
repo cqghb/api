@@ -71,15 +71,13 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.test.api.api.bean.TblRole">
     update tbl_role
     <set>
-      <if test="name != null and name != ''">
-<!--      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">-->
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
         `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="delTag != null and delTag != ''">
         del_tag = #{delTag,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null and remark != ''">
-<!--      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)'">-->
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
       <if test="updateUser != null and updateUser != ''">

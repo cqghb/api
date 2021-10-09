@@ -9,14 +9,14 @@ import java.io.Serializable;
 /**
  * @projectName api
  * @package com.test.api.api.dto.rolemanager
- * @className TblDataOperateDto
+ * @className TblDataOperateUpdateDto
  * @description 数据操作表单对象
  * @auther wangsheng
  * @creatTime 2021/10/9 1:16 上午
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
-public class TblDataOperateDto implements Serializable {
+public class TblDataOperateUpdateDto implements Serializable {
 
     private static final long serialVersionUID = 3343610222187425126L;
 
@@ -44,15 +44,22 @@ public class TblDataOperateDto implements Serializable {
     @NotBlank(message = "操作地址不能为空")
     private String operateAddr;
 
-    public TblDataOperateDto(@NotNull(message = "主键不能为空") @NotBlank(message = "主键不能为空") String id, @NotNull(message =
+    /**
+     * 备注
+     */
+    private String remark;
+
+    public TblDataOperateUpdateDto(@NotNull(message = "主键不能为空") @NotBlank(message = "主键不能为空") String id, @NotNull(message =
             "操作名称不能为空") @NotBlank(message = "操作名称不能为空") String name,
-                             @NotNull(message = "操作地址不能为空") @NotBlank(message = "操作地址不能为空") String operateAddr) {
+                                   @NotNull(message = "操作地址不能为空") @NotBlank(message = "操作地址不能为空") String operateAddr,
+                                   String remark) {
         this.id = id;
         this.name = name;
         this.operateAddr = operateAddr;
+        this.remark = remark;
     }
 
-    public TblDataOperateDto() {
+    public TblDataOperateUpdateDto() {
     }
 
     public String getId() {
@@ -77,6 +84,14 @@ public class TblDataOperateDto implements Serializable {
 
     public void setOperateAddr(String operateAddr) {
         this.operateAddr = operateAddr;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     @Override

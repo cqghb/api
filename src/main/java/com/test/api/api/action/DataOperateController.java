@@ -3,7 +3,8 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblDataOperate;
 import com.test.api.api.config.Result;
 import com.test.api.api.dto.DeleteDataDto;
-import com.test.api.api.dto.rolemanager.TblDataOperateDto;
+import com.test.api.api.dto.rolemanager.TblDataOperateUpdateDto;
+import com.test.api.api.dto.rolemanager.TblDataOperateInsertDto;
 import com.test.api.api.service.ITblDataOperateService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.page.PageRequest;
@@ -57,7 +58,7 @@ public class DataOperateController {
     @PostMapping(value = "/insertDop")
     @ApiImplicitParam(name = "dopDto", value = "新增操作的参数")
     @ApiOperation(value = "添加操作", notes = "添加操作")
-    public Result insertDop(@RequestBody @Validated TblDataOperateDto doDto) {
+    public Result insertDop(@RequestBody @Validated TblDataOperateInsertDto doDto) {
         TblDataOperate dop = new TblDataOperate();
         BeanUtils.copyProperties(doDto, dop);
         int num = dataOperateService.insertSelective(dop);
@@ -85,7 +86,7 @@ public class DataOperateController {
     @PostMapping(value = "/updateDop")
     @ApiImplicitParam(name = "doDto", value = "修改操作的参数")
     @ApiOperation(value = "修改操作", notes = "修改操作")
-    public Result updateDop(@RequestBody @Validated TblDataOperateDto doDto) {
+    public Result updateDop(@RequestBody @Validated TblDataOperateUpdateDto doDto) {
         TblDataOperate dop = new TblDataOperate();
         BeanUtils.copyProperties(doDto, dop);
         int num = dataOperateService.updateByPrimaryKeySelective(dop);
