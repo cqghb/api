@@ -1,6 +1,9 @@
 package com.test.api.api.service;
 
 import com.test.api.api.bean.TblDataOperate;
+import com.test.api.api.config.AppException;
+import com.test.api.api.vo.page.PageRequest;
+import com.test.api.api.vo.page.PageResult;
 
 /**
  * @projectName api
@@ -22,7 +25,21 @@ public interface ITblDataOperateService {
 
     TblDataOperate selectByPrimaryKey(String id);
 
-    int updateByPrimaryKeySelective(TblDataOperate record);
+    int updateByPrimaryKeySelective(TblDataOperate record) throws AppException;
 
     int updateByPrimaryKey(TblDataOperate record);
+
+    /**
+     * 分页查询
+     * @param pageRequest
+     * @return
+     */
+    PageResult findPage(PageRequest pageRequest);
+
+    /**
+     * 修改删除标志
+     * @param record
+     * @return
+     */
+    int updateDelTag(TblDataOperate record) throws AppException;
 }

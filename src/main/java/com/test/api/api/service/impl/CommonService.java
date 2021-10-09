@@ -157,6 +157,11 @@ public class CommonService implements ICommonService {
                     field.set(obj, loginUserId);
                     continue;
                 }
+                if (field.getName().equals(CommConstant.DEL_TAG)) {
+                    field.setAccessible(true);
+                    field.set(obj, DelTagEnum.DEL_TAG_1.getCode());
+                    continue;
+                }
             }
         } catch (IllegalAccessException e) {
             logger.info("没有权限访问对象的 " + CommConstant.CREATE_USER + " 属性");

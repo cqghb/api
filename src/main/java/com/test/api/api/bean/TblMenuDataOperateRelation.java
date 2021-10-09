@@ -30,8 +30,9 @@ public class TblMenuDataOperateRelation extends BaseBean implements Serializable
     public TblMenuDataOperateRelation() {
     }
 
-    public TblMenuDataOperateRelation(String createUser, Date createTime, String updateUser, Date updateTime, String id, String menuId, String dataOperId) {
-        super(createUser, createTime, updateUser, updateTime);
+    public TblMenuDataOperateRelation(String createUser, Date createTime, String updateUser, Date updateTime,
+                                      String id, String menuId, String dataOperId, String remark, String delTag) {
+        super(createUser, createTime, updateUser, updateTime, remark, delTag);
         this.id = id;
         this.menuId = menuId;
         this.dataOperId = dataOperId;

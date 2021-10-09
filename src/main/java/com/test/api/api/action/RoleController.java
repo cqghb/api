@@ -3,7 +3,6 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblRole;
 import com.test.api.api.config.Result;
 import com.test.api.api.dto.DeleteDataDto;
-import com.test.api.api.dto.menumanager.QueryMenuParamDto;
 import com.test.api.api.dto.rolemanager.TblRoleDto;
 import com.test.api.api.service.ITblRoleService;
 import com.test.api.api.utils.ResultUtil;
@@ -67,10 +66,15 @@ public class RoleController {
         return ResultUtil.success(num);
     }
 
+    /**
+     * 通过主键查询角色
+     * @param dto ID
+     * @return
+     */
     @ApiImplicitParam(name = "id", value = "角色主键")
     @ApiOperation(value = "通过ID查询角色信息", notes = "通过ID查询角色信息")
     @PostMapping(value = "/queryById")
-    public Result queryById(@RequestBody @Validated QueryMenuParamDto dto) {
+    public Result queryById(@RequestBody @Validated DeleteDataDto dto) {
         TblRole Role = roleService.selectByPrimaryKey(dto.getId());
         return ResultUtil.success(Role);
     }

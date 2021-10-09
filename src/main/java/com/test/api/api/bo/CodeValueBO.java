@@ -24,8 +24,10 @@ public class CodeValueBO extends TblCodeValue implements Serializable {
     public CodeValueBO() {
     }
 
-    public CodeValueBO(String createUser, Date createTime, String updateUser, Date updateTime, String codeType, String code, String codeName, Integer index, List<String> codeList) {
-        super(createUser, createTime, updateUser, updateTime, codeType, code, codeName, index);
+    public CodeValueBO(String createUser, Date createTime, String updateUser, Date updateTime, String codeType,
+                       String code, String codeName, Integer index, List<String> codeList, String remark,
+                       String delTag) {
+        super(createUser, createTime, updateUser, updateTime, codeType, code, codeName, index, remark, delTag);
         this.codeList = codeList;
     }
 

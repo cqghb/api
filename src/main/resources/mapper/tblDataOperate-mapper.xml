@@ -6,18 +6,23 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="operate_addr" jdbcType="VARCHAR" property="operateAddr" />
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, `name`, operate_addr, create_user, create_time, update_user, update_time
+    id, `name`, operate_addr, create_user, create_time, update_user, update_time, del_tag, remark
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tbl_data_operate
     where id = #{id,jdbcType=VARCHAR}
+    <if test="delTag != null and delTag != ''">
+      and del_tag = #{delTag,jdbcType=VARCHAR}
+    </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tbl_data_operate
@@ -25,9 +30,9 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblDataOperate" useGeneratedKeys="true">
     insert into tbl_data_operate (`name`, operate_addr, create_user, 
-      create_time)
+      create_time, del_tag, remark)
     values (#{name,jdbcType=VARCHAR}, #{operateAddr,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
-      sysdate())
+      sysdate(), #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.test.api.api.bean.TblDataOperate">
     insert into tbl_data_operate
@@ -35,13 +40,19 @@
       <if test="id != null and id != ''">
         id,
       </if>
-      <if test="name != null">
+      <if test="name != null and name != ''">
         `name`,
       </if>
-      <if test="operateAddr != null">
+      <if test="operateAddr != null and operateAddr != ''">
         operate_addr,
       </if>
-      <if test="createUser != null">
+      <if test="delTag != null and delTag != ''">
+        del_tag,
+      </if>
+      <if test="remark != null and remark != ''">
+        remark,
+      </if>
+      <if test="createUser != null and createUser != ''">
         create_user,
       </if>
         create_time
@@ -55,6 +66,12 @@
       </if>
       <if test="operateAddr != null">
         #{operateAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="delTag != null and delTag != ''">
+        #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null and remark != ''">
+        #{remark,jdbcType=VARCHAR},
       </if>
       <if test="createUser != null">
         #{createUser,jdbcType=VARCHAR},
@@ -74,6 +91,12 @@
       <if test="updateUser != null">
         update_user = #{updateUser,jdbcType=VARCHAR},
       </if>
+      <if test="delTag != null and delTag != ''">
+        del_tag = #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null and remark != ''">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
         update_time = sysdate()
     </set>
     where id = #{id,jdbcType=VARCHAR}
@@ -84,6 +107,40 @@
       operate_addr = #{operateAddr,jdbcType=VARCHAR},
       update_user = #{updateUser,jdbcType=VARCHAR},
       update_time = sysdate()
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryList" parameterType="com.test.api.api.bean.TblDataOperate" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_data_operate
+    <where>
+      <if test="id != null and id != ''">
+        and id = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="name != null and name != ''">
+        and `name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="delTag != null and delTag != ''">
+        and del_tag = #{delTag,jdbcType=VARCHAR}
+      </if>
+    </where>
+
+  </select>
+  <update id="updateDelTag" parameterType="com.test.api.api.bean.TblDataOperate">
+    update tbl_data_operate
+    <set>
+      <if test="delTag != null and delTag != ''">
+        del_tag = #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null and remark != ''">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null  and updateUser != ''">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      update_time = sysdate()
+    </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -37,8 +37,9 @@ public class TblCodeValueKey extends BaseBean implements Serializable {
     public TblCodeValueKey() {
     }
 
-    public TblCodeValueKey(String createUser, Date createTime, String updateUser, Date updateTime, String codeType, String code, String codeName) {
-        super(createUser, createTime, updateUser, updateTime);
+    public TblCodeValueKey(String createUser, Date createTime, String updateUser, Date updateTime, String codeType,
+                           String code, String codeName, String remark, String delTag) {
+        super(createUser, createTime, updateUser, updateTime, remark, delTag);
         this.codeType = codeType;
         this.code = code;
         this.codeName = codeName;

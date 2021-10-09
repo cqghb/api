@@ -29,8 +29,9 @@ public class TblUserLikes extends BaseBean implements Serializable {
     public TblUserLikes() {
     }
 
-    public TblUserLikes(String createUser, Date createTime, String updateUser, Date updateTime, String id, String titleCode, String userId) {
-        super(createUser, createTime, updateUser, updateTime);
+    public TblUserLikes(String createUser, Date createTime, String updateUser, Date updateTime, String id,
+                        String titleCode, String userId, String remark, String delTag) {
+        super(createUser, createTime, updateUser, updateTime, remark, delTag);
         this.id = id;
         this.titleCode = titleCode;
         this.userId = userId;

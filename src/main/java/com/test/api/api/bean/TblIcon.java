@@ -30,8 +30,9 @@ public class TblIcon extends BaseBean implements Serializable {
     public TblIcon() {
     }
 
-    public TblIcon(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name, String englishName, int index) {
-        super(createUser, createTime, updateUser, updateTime);
+    public TblIcon(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name,
+                   String englishName, int index, String remark, String delTag) {
+        super(createUser, createTime, updateUser, updateTime, remark, delTag);
         this.id = id;
         this.name = name;
         this.englishName = englishName;

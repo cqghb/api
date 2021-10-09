@@ -21,8 +21,9 @@ public class TblCodeValue extends TblCodeValueKey implements Serializable {
     public TblCodeValue() {
     }
 
-    public TblCodeValue(String createUser, Date createTime, String updateUser, Date updateTime, String codeType, String code, String codeName, Integer index) {
-        super(createUser, createTime, updateUser, updateTime, codeType, code, codeName);
+    public TblCodeValue(String createUser, Date createTime, String updateUser, Date updateTime, String codeType,
+                        String code, String codeName, Integer index, String remark, String delTag) {
+        super(createUser, createTime, updateUser, updateTime, codeType, code, codeName, remark, delTag);
         this.index = index;
     }
 

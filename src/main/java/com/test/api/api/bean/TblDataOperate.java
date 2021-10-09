@@ -30,8 +30,9 @@ public class TblDataOperate extends BaseBean implements Serializable {
     public TblDataOperate() {
     }
 
-    public TblDataOperate(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name, String operateAddr) {
-        super(createUser, createTime, updateUser, updateTime);
+    public TblDataOperate(String createUser, Date createTime, String updateUser, Date updateTime, String id,
+                          String name, String operateAddr, String remark, String delTag) {
+        super(createUser, createTime, updateUser, updateTime, remark, delTag);
         this.id = id;
         this.name = name;
         this.operateAddr = operateAddr;

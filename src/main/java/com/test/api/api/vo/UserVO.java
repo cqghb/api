@@ -27,8 +27,9 @@ public class UserVO extends TblUser implements Serializable {
 
     public UserVO(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name,
                   String pass, Integer age, String sex, Date birthday, String qq, String weChat, String email,
-                  String education, List<String> likes) {
-        super(createUser, createTime, updateUser, updateTime, id, name, pass, age, sex, birthday, qq, weChat, email, education);
+                  String education, List<String> likes, String remark, String delTag) {
+        super(createUser, createTime, updateUser, updateTime, id, name, pass, age, sex, birthday, qq, weChat, email,
+                education, remark, delTag);
         this.likes = likes;
     }
 

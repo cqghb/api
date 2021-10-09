@@ -1,8 +1,16 @@
 package com.test.api.api.service.impl;
 
 import com.test.api.api.bean.TblDataOperate;
+import com.test.api.api.config.AppException;
+import com.test.api.api.constant.CommConstant;
+import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblDataOperateDao;
 import com.test.api.api.service.ITblDataOperateService;
+import com.test.api.api.utils.PageUtils;
+import com.test.api.api.utils.StringUtil;
+import com.test.api.api.vo.page.PageRequest;
+import com.test.api.api.vo.page.PageResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +25,10 @@ import org.springframework.stereotype.Service;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblDataOperateService implements ITblDataOperateService {
+public class TblDataOperateService extends CommonService implements ITblDataOperateService {
 
     @Autowired
     private TblDataOperateDao dataOperateDao;
-
 
     @Override
     public int deleteByPrimaryKey(String id) {
@@ -35,6 +42,8 @@ public class TblDataOperateService implements ITblDataOperateService {
 
     @Override
     public int insertSelective(TblDataOperate record) {
+        record.setId(StringUtil.uuid());
+        setObjectInsertInfo(record, null);
         return dataOperateDao.insertSelective(record);
     }
 
@@ -44,12 +53,28 @@ public class TblDataOperateService implements ITblDataOperateService {
     }
 
     @Override
-    public int updateByPrimaryKeySelective(TblDataOperate record) {
-        return dataOperateDao.updateByPrimaryKeySelective(record);
+    public int updateByPrimaryKeySelective(TblDataOperate record) throws AppException {
+        TblDataOperate dataOperate = getInfo(dataOperateDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        BeanUtils.copyProperties(record, dataOperate);
+        setObjectUpdateInfo(dataOperate, null);
+        return dataOperateDao.updateByPrimaryKeySelective(dataOperate);
     }
 
     @Override
     public int updateByPrimaryKey(TblDataOperate record) {
         return dataOperateDao.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public PageResult findPage(PageRequest pageRequest) {
+        return PageUtils.getPageResult(getPageInfo(dataOperateDao, CommConstant.QUERY_LIST, pageRequest));
+    }
+
+    @Override
+    public int updateDelTag(TblDataOperate record) throws AppException {
+        getInfo(dataOperateDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
+        setObjectUpdateInfo(record, null);
+        return dataOperateDao.updateDelTag(record);
     }
 }

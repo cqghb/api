@@ -29,8 +29,9 @@ public class TblRoleUserRelation extends BaseBean implements Serializable {
     public TblRoleUserRelation() {
     }
 
-    public TblRoleUserRelation(String createUser, Date createTime, String updateUser, Date updateTime, String id, String roleId, String userId) {
-        super(createUser, createTime, updateUser, updateTime);
+    public TblRoleUserRelation(String createUser, Date createTime, String updateUser, Date updateTime, String id,
+                               String roleId, String userId, String remark, String delTag) {
+        super(createUser, createTime, updateUser, updateTime, remark, delTag);
         this.id = id;
         this.roleId = roleId;
         this.userId = userId;

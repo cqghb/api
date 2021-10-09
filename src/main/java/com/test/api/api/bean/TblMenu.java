@@ -37,8 +37,9 @@ public class TblMenu extends BaseBean implements java.io.Serializable {
     public TblMenu() {
     }
 
-    public TblMenu(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name, String icon, String parentNode, String defaultSelect, String uri, List<String> defaultSelectList, List<TblMenu> childrenList) {
-        super(createUser, createTime, updateUser, updateTime);
+    public TblMenu(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name,
+                   String icon, String parentNode, String defaultSelect, String uri, List<String> defaultSelectList, List<TblMenu> childrenList, String remark, String delTag) {
+        super(createUser, createTime, updateUser, updateTime, remark, delTag);
         this.id = id;
         this.name = name;
         this.icon = icon;

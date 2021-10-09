@@ -41,5 +41,5 @@ public interface ITblRoleService {
      * @param record 角色对象
      * @return
      */
-    int updateRoleDelTag(TblRole record);
+    int updateRoleDelTag(TblRole record) throws AppException;
 }

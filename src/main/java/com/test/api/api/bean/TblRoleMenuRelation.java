@@ -30,8 +30,9 @@ public class TblRoleMenuRelation extends BaseBean implements Serializable {
     public TblRoleMenuRelation() {
     }
 
-    public TblRoleMenuRelation(String createUser, Date createTime, String updateUser, Date updateTime, String id, String roleId, String menuId) {
-        super(createUser, createTime, updateUser, updateTime);
+    public TblRoleMenuRelation(String createUser, Date createTime, String updateUser, Date updateTime, String id,
+                               String roleId, String menuId, String remark, String delTag) {
+        super(createUser, createTime, updateUser, updateTime, remark, delTag);
         this.id = id;
         this.roleId = roleId;
         this.menuId = menuId;

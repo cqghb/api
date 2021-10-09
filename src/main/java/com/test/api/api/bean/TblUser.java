@@ -67,8 +67,10 @@ public class TblUser extends BaseBean implements Serializable {
     public TblUser() {
     }
 
-    public TblUser(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name, String pass, Integer age, String sex, Date birthday, String qq, String weChat, String email, String education) {
-        super(createUser, createTime, updateUser, updateTime);
+    public TblUser(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name,
+                   String pass, Integer age, String sex, Date birthday, String qq, String weChat, String email,
+                   String education, String remark, String delTag) {
+        super(createUser, createTime, updateUser, updateTime, remark, delTag);
         this.id = id;
         this.name = name;
         this.pass = pass;

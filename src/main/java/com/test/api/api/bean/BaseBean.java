@@ -1,5 +1,6 @@
 package com.test.api.api.bean;
 
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 
 import java.util.Date;
@@ -15,6 +16,7 @@ import java.util.Date;
  * @department demo
  */
 public class BaseBean implements java.io.Serializable {
+    private static final long serialVersionUID = 9187795641769154646L;
     // 创建人
     private String createUser;
     // 创建时间
@@ -26,14 +28,26 @@ public class BaseBean implements java.io.Serializable {
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
+    /**
+     * 备注
+     */
+    private String remark;
+
+    /**
+     * 删除标志
+     */
+    private String delTag;
+
     public BaseBean() {
     }
 
-    public BaseBean(String createUser, Date createTime, String updateUser, Date updateTime) {
+    public BaseBean(String createUser, Date createTime, String updateUser, Date updateTime, String remark, String delTag) {
         this.createUser = createUser;
         this.createTime = createTime;
         this.updateUser = updateUser;
         this.updateTime = updateTime;
+        this.remark = remark;
+        this.delTag = delTag;
     }
 
     public String getCreateUser() {
@@ -68,13 +82,24 @@ public class BaseBean implements java.io.Serializable {
         this.updateTime = updateTime;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getDelTag() {
+        return delTag;
+    }
+
+    public void setDelTag(String delTag) {
+        this.delTag = delTag;
+    }
+
     @Override
     public String toString() {
-        return "BaseBean{" +
-                "createUser='" + createUser + '\'' +
-                ", createTime=" + createTime +
-                ", updateUser='" + updateUser + '\'' +
-                ", updateTime=" + updateTime +
-                '}';
+        return "BaseBean{" + JSONObject.toJSONString(this) +'}';
     }
 }

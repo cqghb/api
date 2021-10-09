@@ -27,8 +27,11 @@ public class UserBo extends TblUser implements Serializable {
     public UserBo() {
     }
 
-    public UserBo(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name, String pass, Integer age, String sex, Date birthday, String qq, String weChat, String email, String education, String[] likes, String pass2, String verificationCode) {
-        super(createUser, createTime, updateUser, updateTime, id, name, pass, age, sex, birthday, qq, weChat, email, education);
+    public UserBo(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name,
+                  String pass, Integer age, String sex, Date birthday, String qq, String weChat, String email,
+                  String education, String[] likes, String pass2, String verificationCode, String remark, String delTag) {
+        super(createUser, createTime, updateUser, updateTime, id, name, pass, age, sex, birthday, qq, weChat, email,
+                education, remark, delTag);
         this.likes = likes;
         this.pass2 = pass2;
         this.verificationCode = verificationCode;

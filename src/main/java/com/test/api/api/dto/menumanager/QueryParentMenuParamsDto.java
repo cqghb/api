@@ -26,8 +26,11 @@ public class QueryParentMenuParamsDto extends TblMenu implements Serializable {
     public QueryParentMenuParamsDto() {
     }
 
-    public QueryParentMenuParamsDto(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name, String icon, String parentNode, String defaultSelect, String uri, List<String> defaultSelectList, List<TblMenu> childrenList, String theId) {
-        super(createUser, createTime, updateUser, updateTime, id, name, icon, parentNode, defaultSelect, uri, defaultSelectList, childrenList);
+    public QueryParentMenuParamsDto(String createUser, Date createTime, String updateUser, Date updateTime, String id
+            , String name, String icon, String parentNode, String defaultSelect, String uri,
+                                    List<String> defaultSelectList, List<TblMenu> childrenList, String theId, String remark, String delTag) {
+        super(createUser, createTime, updateUser, updateTime, id, name, icon, parentNode, defaultSelect, uri,
+                defaultSelectList, childrenList, remark, delTag);
         this.theId = theId;
     }
 
@@ -41,6 +44,6 @@ public class QueryParentMenuParamsDto extends TblMenu implements Serializable {
 
     @Override
     public String toString() {
-        return "QueryParentMenuParamsDto{"+ JSONObject.toJSONString(this).toString() +"}";
+        return "QueryParentMenuParamsDto{" + JSONObject.toJSONString(this).toString() + "}";
     }
 }

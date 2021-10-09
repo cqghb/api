@@ -1,7 +1,6 @@
 package com.test.api.api.service.impl;
 
 import com.test.api.api.bean.TblRole;
-import com.test.api.api.bean.TblUser;
 import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
@@ -47,10 +46,11 @@ public class TblRoleService extends CommonService implements ITblRoleService {
 
     @Override
     public int insertSelective(TblRole record) {
-        TblUser loginUser = getLoginUser();
-        String loginUserId = loginUser.getId();
+//        TblUser loginUser = getLoginUser();
+//        String loginUserId = loginUser.getId();
+//        record.setCreateUser(loginUserId);
         record.setId(StringUtil.uuid());
-        record.setCreateUser(loginUserId);
+        setObjectInsertInfo(record, null);
         return roleDao.insertSelective(record);
     }
 
@@ -78,22 +78,11 @@ public class TblRoleService extends CommonService implements ITblRoleService {
     }
 
     @Override
-    public int updateRoleDelTag(TblRole record) {
+    public int updateRoleDelTag(TblRole record) throws AppException {
         TblRole tab = getInfo(roleDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
         setObjectUpdateInfo(record, null);
         return roleDao.updateRoleDelTag(record);
     }
 
-//    /**
-//     * 设置对象的修改信息
-//     * @param record
-//     * @return
-//     */
-//    private TblRole setUpdateInfo(TblRole record){
-//        TblUser loginUser = getLoginUser();
-//        String loginUserId = loginUser.getId();
-//        record.setUpdateUser(loginUserId);
-//        return record;
-//    }
 }

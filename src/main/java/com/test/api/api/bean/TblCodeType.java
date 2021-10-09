@@ -22,8 +22,9 @@ public class TblCodeType extends BaseBean implements Serializable {
     public TblCodeType() {
     }
 
-    public TblCodeType(String createUser, Date createTime, String updateUser, Date updateTime, String codeType, String codeTypeName) {
-        super(createUser, createTime, updateUser, updateTime);
+    public TblCodeType(String createUser, Date createTime, String updateUser, Date updateTime, String codeType,
+                       String codeTypeName, String remark, String delTag) {
+        super(createUser, createTime, updateUser, updateTime, remark, delTag);
         this.codeType = codeType;
         this.codeTypeName = codeTypeName;
     }
