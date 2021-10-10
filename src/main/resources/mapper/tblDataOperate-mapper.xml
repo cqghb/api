@@ -20,9 +20,6 @@
     <include refid="Base_Column_List" />
     from tbl_data_operate
     where id = #{id,jdbcType=VARCHAR}
-    <if test="delTag != null and delTag != ''">
-      and del_tag = #{delTag,jdbcType=VARCHAR}
-    </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tbl_data_operate
@@ -82,19 +79,19 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.test.api.api.bean.TblDataOperate">
     update tbl_data_operate
     <set>
-      <if test="name != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
         `name` = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="operateAddr != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(operateAddr)">
         operate_addr = #{operateAddr,jdbcType=VARCHAR},
       </if>
-      <if test="updateUser != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(updateUser)">
         update_user = #{updateUser,jdbcType=VARCHAR},
       </if>
-      <if test="delTag != null and delTag != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
         del_tag = #{delTag,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null and remark != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
         update_time = sysdate()
@@ -132,13 +129,13 @@
   <update id="updateDelTag" parameterType="com.test.api.api.bean.TblDataOperate">
     update tbl_data_operate
     <set>
-      <if test="delTag != null and delTag != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
         del_tag = #{delTag,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null and remark != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="updateUser != null  and updateUser != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(updateUser)">
         update_user = #{updateUser,jdbcType=VARCHAR},
       </if>
       update_time = sysdate()
