@@ -15,7 +15,7 @@ public interface TblDataOperateDao {
 
     int insertSelective(TblDataOperate record);
 
-    TblDataOperate selectByPrimaryKey(@Param("id") String id);
+    TblDataOperate selectByPrimaryKey(@Param("id") String id, @Param("delTag") String delTag);
 
     int updateByPrimaryKeySelective(TblDataOperate record);
 

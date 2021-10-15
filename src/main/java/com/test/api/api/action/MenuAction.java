@@ -3,6 +3,7 @@ package com.test.api.api.action;
 
 import com.test.api.api.bean.TblMenu;
 import com.test.api.api.config.Result;
+import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dto.menumanager.QueryMenuParamDto;
 import com.test.api.api.dto.menumanager.TblMenuDto;
 import com.test.api.api.service.ITblMenuService;
@@ -77,7 +78,7 @@ public class MenuAction {
     @ApiOperation(value = "通过ID查询菜单", notes = "通过ID查询菜单")
     @PostMapping(value="/queryMenuById")
     public Result queryMenuById(@RequestBody @Validated QueryMenuParamDto dto) {
-        TblMenu menu = menuService.queryMenuById(dto.getId());
+        TblMenu menu = menuService.selectByPrimaryKey(dto.getId(), DelTagEnum.DEL_TAG_2.getCode());
         return ResultUtil.success(menu);
     }
 

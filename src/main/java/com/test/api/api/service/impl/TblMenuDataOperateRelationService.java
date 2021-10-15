@@ -1,10 +1,23 @@
 package com.test.api.api.service.impl;
 
+import com.test.api.api.bean.TblDataOperate;
+import com.test.api.api.bean.TblMenu;
 import com.test.api.api.bean.TblMenuDataOperateRelation;
+import com.test.api.api.config.AppException;
+import com.test.api.api.constant.CommConstant;
+import com.test.api.api.constant.ErrorMsgConstant;
+import com.test.api.api.constant.MsgCodeConstant;
+import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblMenuDataOperateRelationDao;
+import com.test.api.api.dto.menudataoperaterelationmanager.MenuDataOperateRelationSettingDto;
+import com.test.api.api.service.ITblDataOperateService;
 import com.test.api.api.service.ITblMenuDataOperateRelationService;
+import com.test.api.api.service.ITblMenuService;
+import com.test.api.api.utils.StringUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @projectName api
@@ -17,10 +30,16 @@ import org.springframework.stereotype.Service;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblMenuDataOperateRelationService implements ITblMenuDataOperateRelationService {
+public class TblMenuDataOperateRelationService extends CommonService implements ITblMenuDataOperateRelationService {
 
     @Autowired
     private TblMenuDataOperateRelationDao menuDataOperateRelationDao;
+
+    @Autowired
+    private ITblDataOperateService dataOperateService;
+
+    @Autowired
+    private ITblMenuService menuService;
 
     @Override
     public int deleteByPrimaryKey(String id) {
@@ -34,21 +53,64 @@ public class TblMenuDataOperateRelationService implements ITblMenuDataOperateRel
 
     @Override
     public int insertSelective(TblMenuDataOperateRelation record) {
+        record.setId(StringUtil.uuid());
+        setObjectInsertInfo(record, null);
         return menuDataOperateRelationDao.insertSelective(record);
     }
 
     @Override
-    public TblMenuDataOperateRelation selectByPrimaryKey(String id) {
-        return menuDataOperateRelationDao.selectByPrimaryKey(id);
+    public TblMenuDataOperateRelation selectByPrimaryKey(String id, String delTag) {
+        return menuDataOperateRelationDao.selectByPrimaryKey(id, delTag);
     }
 
     @Override
     public int updateByPrimaryKeySelective(TblMenuDataOperateRelation record) {
-        return menuDataOperateRelationDao.updateByPrimaryKeySelective(record);
+        TblMenuDataOperateRelation oldMenuDataOperateRelation = getInfo(menuDataOperateRelationDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        BeanUtils.copyProperties(record, oldMenuDataOperateRelation);
+        setObjectUpdateInfo(oldMenuDataOperateRelation, null);
+        return menuDataOperateRelationDao.updateByPrimaryKeySelective(oldMenuDataOperateRelation);
     }
 
     @Override
     public int updateByPrimaryKey(TblMenuDataOperateRelation record) {
         return menuDataOperateRelationDao.updateByPrimaryKey(record);
+    }
+
+    @Override
+    @Transactional
+    public int updateMenuDataOperateRelation(MenuDataOperateRelationSettingDto dto) {
+        String menuId = dto.getMenuId();
+        /**
+         * 1. 检查菜单和数据操作是否都还存在，不存在报错抛出去
+         * 2. 清理掉原来的关系
+         * 3. 设置新的关系
+         */
+        // 1. 检查菜单和数据操作是否都还存在，不存在报错抛出去
+        TblMenu menu = menuService.selectByPrimaryKey(menuId, DelTagEnum.DEL_TAG_2.getCode());
+        if(StringUtil.objIsEmpty(menu)){
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.MENU_DATA_OPERATE_RELATIO_ERROR_1);
+        }
+        for(String item : dto.getDataOperateList()){
+            TblDataOperate dataOperate = dataOperateService.selectByPrimaryKey(item, DelTagEnum.DEL_TAG_2.getCode());
+            if(StringUtil.objIsEmpty(dataOperate)){
+                throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.MENU_DATA_OPERATE_RELATIO_ERROR_2);
+            }
+        }
+        // 2. 清理掉原来的关系
+        TblMenuDataOperateRelation dataOperateRelation = new TblMenuDataOperateRelation();
+        setObjectUpdateInfo(dataOperateRelation, null);
+        dataOperateRelation.setMenuId(menuId);
+        dataOperateRelation.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
+        menuDataOperateRelationDao.deleteByMenuId(dataOperateRelation);
+        // 3. 设置新的关系
+        int updateNum = 0;
+        for(String item : dto.getDataOperateList()){
+            TblMenuDataOperateRelation newMenuDataOperateRelation = new TblMenuDataOperateRelation();
+            newMenuDataOperateRelation.setMenuId(menuId);
+            newMenuDataOperateRelation.setDataOperId(item);
+            this.insertSelective(newMenuDataOperateRelation);
+            updateNum ++;
+        }
+        return updateNum;
     }
 }

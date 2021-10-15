@@ -18,8 +18,8 @@ public class TableColumnEnum {
      * 删除标志枚举
      */
     public enum DelTagEnum {
-        DEL_TAG_1(TableColumnConstant.DEL_TAG_CODE_1, TableColumnConstant.DEL_TAG_DESC_1),
-        DEL_TAG_2(TableColumnConstant.DEL_TAG_CODE_2, TableColumnConstant.DEL_TAG_DESC_2);
+        DEL_TAG_1(TableColumnConstant.DEL_TAG_CODE_1, TableColumnConstant.DEL_TAG_DESC_1),// 删除
+        DEL_TAG_2(TableColumnConstant.DEL_TAG_CODE_2, TableColumnConstant.DEL_TAG_DESC_2);// 保留
 
         // 码
         private String code;

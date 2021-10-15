@@ -5,19 +5,24 @@
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="menu_id" jdbcType="VARCHAR" property="menuId" />
     <result column="data_oper_id" jdbcType="VARCHAR" property="dataOperId" />
+    <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, menu_id, data_oper_id, create_user, create_time, update_user, update_time
+    id, menu_id, data_oper_id, create_user, create_time, update_user, update_time, del_tag, remark
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tbl_menu_data_operate_relation
     where id = #{id,jdbcType=VARCHAR}
+    <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+      and del_tag = #{delTag,jdbcType=VARCHAR}
+    </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tbl_menu_data_operate_relation
@@ -25,38 +30,50 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblMenuDataOperateRelation" useGeneratedKeys="true">
     insert into tbl_menu_data_operate_relation (menu_id, data_oper_id, create_user, 
-      create_time)
+      create_time, del_tag, remark)
     values (#{menuId,jdbcType=VARCHAR}, #{dataOperId,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
-      sysdate())
+      sysdate(), #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.test.api.api.bean.TblMenuDataOperateRelation">
     insert into tbl_menu_data_operate_relation
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null and id != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
         id,
       </if>
-      <if test="menuId != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(menuId)">
         menu_id,
       </if>
-      <if test="dataOperId != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(dataOperId)">
         data_oper_id,
       </if>
-      <if test="createUser != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        del_tag,
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+        remark,
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(createUser)">
         create_user,
       </if>
         create_time
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null and id != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="menuId != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(menuId)">
         #{menuId,jdbcType=VARCHAR},
       </if>
-      <if test="dataOperId != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(dataOperId)">
         #{dataOperId,jdbcType=VARCHAR},
       </if>
-      <if test="createUser != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(createUser)">
         #{createUser,jdbcType=VARCHAR},
       </if>
       sysdate()
@@ -65,13 +82,19 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.test.api.api.bean.TblMenuDataOperateRelation">
     update tbl_menu_data_operate_relation
     <set>
-      <if test="menuId != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(menuId)">
         menu_id = #{menuId,jdbcType=VARCHAR},
       </if>
-      <if test="dataOperId != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(dataOperId)">
         data_oper_id = #{dataOperId,jdbcType=VARCHAR},
       </if>
-      <if test="updateUser != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        del_tag = #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(updateUser)">
         update_user = #{updateUser,jdbcType=VARCHAR},
       </if>
         update_time = sysdate()
@@ -82,8 +105,23 @@
     update tbl_menu_data_operate_relation
     set menu_id = #{menuId,jdbcType=VARCHAR},
       data_oper_id = #{dataOperId,jdbcType=VARCHAR},
+      del_tag = #{delTag,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
       update_user = #{updateUser,jdbcType=VARCHAR},
       update_time = sysdate()
     where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="deleteByMenuId" parameterType="com.test.api.api.bean.TblMenuDataOperateRelation">
+    update tbl_menu_data_operate_relation
+    <set>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        del_tag = #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(updateUser)">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      update_time = sysdate()
+    </set>
+    where menu_id = #{menuId,jdbcType=VARCHAR}
   </update>
 </mapper>

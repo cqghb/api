@@ -12,9 +12,16 @@ public interface TblMenuDataOperateRelationDao {
 
     int insertSelective(TblMenuDataOperateRelation record);
 
-    TblMenuDataOperateRelation selectByPrimaryKey(@Param("id") String id);
+    TblMenuDataOperateRelation selectByPrimaryKey(@Param("id") String id, @Param("delTag") String delTag);
 
     int updateByPrimaryKeySelective(TblMenuDataOperateRelation record);
 
     int updateByPrimaryKey(TblMenuDataOperateRelation record);
+
+    /**
+     * 根据菜单ID删除菜单数据操作权限
+     * @param dataOperateRelation
+     * @return
+     */
+    int deleteByMenuId(TblMenuDataOperateRelation dataOperateRelation);
 }

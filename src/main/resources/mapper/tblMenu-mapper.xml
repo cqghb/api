@@ -98,6 +98,9 @@
         <include refid="baseField"/>
         from tbl_menu t
         where t.id = #{id, jdbcType=VARCHAR}
+        <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+            and del_tag = #{delTag,jdbcType=VARCHAR}
+        </if>
     </select>
 
     <select id="queryPageParentMenu" parameterType="com.test.api.api.dto.menumanager.QueryParentMenuParamsDto" resultMap="BaseResultMap">

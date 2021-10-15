@@ -50,7 +50,7 @@ public interface TblMenuDao {
      * 查询默认选中的菜单
      * @return
      */
-    TblMenu selectByPrimaryKey(@Param("id") String id);
+    TblMenu selectByPrimaryKey(@Param("id") String id, @Param("delTag") String delTag);
 
     /**
      * 查询所有父菜单

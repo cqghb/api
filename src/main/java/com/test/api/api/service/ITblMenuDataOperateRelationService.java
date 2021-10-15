@@ -1,6 +1,7 @@
 package com.test.api.api.service;
 
 import com.test.api.api.bean.TblMenuDataOperateRelation;
+import com.test.api.api.dto.menudataoperaterelationmanager.MenuDataOperateRelationSettingDto;
 
 /**
  * @projectName api
@@ -20,9 +21,16 @@ public interface ITblMenuDataOperateRelationService {
 
     int insertSelective(TblMenuDataOperateRelation record);
 
-    TblMenuDataOperateRelation selectByPrimaryKey(String id);
+    TblMenuDataOperateRelation selectByPrimaryKey(String id, String delTag);
 
     int updateByPrimaryKeySelective(TblMenuDataOperateRelation record);
 
     int updateByPrimaryKey(TblMenuDataOperateRelation record);
+
+    /**
+     * 维护菜单数据操作权限
+     * @param dto
+     * @return
+     */
+    int updateMenuDataOperateRelation(MenuDataOperateRelationSettingDto dto);
 }
