@@ -49,9 +49,12 @@ public class CommConstant {
     public static final String QUERY_LIST = "queryList";
     public static final String QUERY_PAGE_PARENT_MENU = "queryPageParentMenu";
     public static final String SELECT_BY_PRIMARY_KEY = "selectByPrimaryKey";
+    public static final String QUERY_DATA_OPERATE_SUBGROUP = "queryDataOperateSubgroup";
     /** 通过反射调用方法的方法名统一写到这里 end **/
 
     /** 声明角色管理模块常量 start **/
-
+    /** 数据权限操作管理 **/
+    // 操作分组
+    public static final String SUBGROUP = "subgroup";
     /** 声明角色管理模块常量 end **/
 }

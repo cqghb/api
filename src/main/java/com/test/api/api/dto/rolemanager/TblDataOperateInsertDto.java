@@ -47,10 +47,20 @@ public class TblDataOperateInsertDto implements Serializable {
      */
     private String remark;
 
+    /**
+     * 所属分组
+     */
+    @NotNull(message = "所属分组不能为空")
+    @NotBlank(message = "所属分组不能为空")
+    private String subgroup;
+
+
+
     public TblDataOperateInsertDto(String id, @NotNull(message =
             "操作名称不能为空") @NotBlank(message = "操作名称不能为空") String name,
                                    @NotNull(message = "操作地址不能为空") @NotBlank(message = "操作地址不能为空") String operateAddr,
-                                   String remark) {
+                                   String remark, @NotNull(message = "所属分组不能为空")
+                                   @NotBlank(message = "所属分组不能为空") String subgroup) {
         this.id = id;
         this.name = name;
         this.operateAddr = operateAddr;
@@ -90,6 +100,14 @@ public class TblDataOperateInsertDto implements Serializable {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getSubgroup() {
+        return subgroup;
+    }
+
+    public void setSubgroup(String subgroup) {
+        this.subgroup = subgroup;
     }
 
     @Override

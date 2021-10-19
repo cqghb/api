@@ -1,6 +1,8 @@
 package com.test.api.api.service;
 
 import com.test.api.api.bo.CodeValueBO;
+import com.test.api.api.vo.page.PageRequest;
+import com.test.api.api.vo.page.PageResult;
 
 import java.util.List;
 import java.util.Map;
@@ -24,5 +26,10 @@ public interface ITblCodeValueService {
      */
     List<Map<String, String>> searchCodeKeyValue(CodeValueBO codeValueBO);
 
-
+    /**
+     * 数据操作分组数据分页查询
+     * @param pageQuery
+     * @return
+     */
+    PageResult findPageChildren(PageRequest pageQuery);
 }

@@ -1,5 +1,6 @@
 package com.test.api.api.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.test.api.api.bean.TblDataOperate;
 import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
@@ -13,6 +14,8 @@ import com.test.api.api.vo.page.PageResult;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @projectName api
@@ -76,5 +79,10 @@ public class TblDataOperateService extends CommonService implements ITblDataOper
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
         setObjectUpdateInfo(record, null);
         return dataOperateDao.updateDelTag(record);
+    }
+
+    @Override
+    public List<TblDataOperate> queryList(JSONObject record) {
+        return dataOperateDao.queryList(record);
     }
 }

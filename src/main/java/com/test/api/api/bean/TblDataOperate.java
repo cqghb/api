@@ -27,15 +27,21 @@ public class TblDataOperate extends BaseBean implements Serializable {
      */
     private String operateAddr;
 
+    /**
+     * 所属分组
+     */
+    private String subgroup;
+
     public TblDataOperate() {
     }
 
     public TblDataOperate(String createUser, Date createTime, String updateUser, Date updateTime, String id,
-                          String name, String operateAddr, String remark, String delTag) {
+                          String name, String operateAddr, String remark, String delTag, String subgroup) {
         super(createUser, createTime, updateUser, updateTime, remark, delTag);
         this.id = id;
         this.name = name;
         this.operateAddr = operateAddr;
+        this.subgroup = subgroup;
     }
 
     public String getId() {
@@ -60,6 +66,14 @@ public class TblDataOperate extends BaseBean implements Serializable {
 
     public void setOperateAddr(String operateAddr) {
         this.operateAddr = operateAddr;
+    }
+
+    public String getSubgroup() {
+        return subgroup;
+    }
+
+    public void setSubgroup(String subgroup) {
+        this.subgroup = subgroup;
     }
 
     @Override

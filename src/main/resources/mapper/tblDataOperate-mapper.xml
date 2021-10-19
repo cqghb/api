@@ -8,12 +8,13 @@
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="subgroup" jdbcType="VARCHAR" property="subgroup" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, `name`, operate_addr, create_user, create_time, update_user, update_time, del_tag, remark
+    id, `name`, operate_addr, create_user, create_time, update_user, update_time, del_tag, remark, subgroup
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -30,9 +31,9 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblDataOperate" useGeneratedKeys="true">
     insert into tbl_data_operate (`name`, operate_addr, create_user, 
-      create_time, del_tag, remark)
+      create_time, del_tag, remark, subgroup)
     values (#{name,jdbcType=VARCHAR}, #{operateAddr,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
-      sysdate(), #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+      sysdate(), #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{subgroup,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.test.api.api.bean.TblDataOperate">
     insert into tbl_data_operate
@@ -51,6 +52,9 @@
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
         remark,
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(subgroup)">
+        subgroup,
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(createUser)">
         create_user,
@@ -72,6 +76,9 @@
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
         #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(subgroup)">
+        #{subgroup,jdbcType=VARCHAR},
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(createUser)">
         #{createUser,jdbcType=VARCHAR},
@@ -97,6 +104,9 @@
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(subgroup)">
+        subgroup = #{subgroup,jdbcType=VARCHAR},
+      </if>
         update_time = sysdate()
     </set>
     where id = #{id,jdbcType=VARCHAR}
@@ -107,6 +117,7 @@
       operate_addr = #{operateAddr,jdbcType=VARCHAR},
       del_tag = #{delTag,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
+      subgroup = #{subgroup,jdbcType=VARCHAR},
       update_user = #{updateUser,jdbcType=VARCHAR},
       update_time = sysdate()
     where id = #{id,jdbcType=VARCHAR}
@@ -117,14 +128,17 @@
     <include refid="Base_Column_List" />
     from tbl_data_operate
     <where>
-      <if test="id != null and id != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
         and id = #{id,jdbcType=VARCHAR}
       </if>
-      <if test="name != null and name != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
         and `name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
       </if>
-      <if test="delTag != null and delTag != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
         and del_tag = #{delTag,jdbcType=VARCHAR}
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(subgroup)">
+        and subgroup = #{subgroup,jdbcType=VARCHAR}
       </if>
     </where>
 

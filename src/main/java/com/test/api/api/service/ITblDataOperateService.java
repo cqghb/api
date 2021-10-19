@@ -1,9 +1,12 @@
 package com.test.api.api.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.test.api.api.bean.TblDataOperate;
 import com.test.api.api.config.AppException;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
+
+import java.util.List;
 
 /**
  * @projectName api
@@ -42,4 +45,11 @@ public interface ITblDataOperateService {
      * @return
      */
     int updateDelTag(TblDataOperate record) throws AppException;
+
+    /**
+     * 列表查询
+     * @param record
+     * @return
+     */
+    List<TblDataOperate> queryList(JSONObject record);
 }
