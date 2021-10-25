@@ -61,9 +61,7 @@ public class TblCodeValueService extends CommonService implements ITblCodeValueS
         PageInfo<CodeValueVO> codeValuePageInfoList = (PageInfo<CodeValueVO>) getPageInfo(tblCodeValueDao, CommConstant.QUERY_DATA_OPERATE_SUBGROUP,
                 pageQuery);
         List<CodeValueVO> dataOperateGroup = codeValuePageInfoList.getList();
-//        List<CodeValueVO> aa = this.getDataOperateList(dataOperateGroup, pageQuery);
         this.getDataOperateList(dataOperateGroup, pageQuery);
-//        codeValuePageInfoList.setList(aa);
         codeValuePageInfoList.setList(dataOperateGroup);
         return PageUtils.getPageResult(codeValuePageInfoList);
     }

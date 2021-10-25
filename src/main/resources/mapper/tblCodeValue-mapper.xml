@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.test.api.api.dao.TblCodeValueDao">
-  <resultMap id="BaseResultMap" type="com.test.api.api.vo.CodeValueVO">
+  <resultMap id="BaseResultMap" type="com.test.api.api.bean.TblCodeValue">
     <id column="code_type" jdbcType="VARCHAR" property="codeType" />
     <id column="code" jdbcType="VARCHAR" property="code" />
     <id column="code_name" jdbcType="VARCHAR" property="codeName" />

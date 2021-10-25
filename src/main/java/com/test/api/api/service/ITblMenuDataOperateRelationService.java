@@ -2,6 +2,9 @@ package com.test.api.api.service;
 
 import com.test.api.api.bean.TblMenuDataOperateRelation;
 import com.test.api.api.dto.menudataoperaterelationmanager.MenuDataOperateRelationSettingDto;
+import com.test.api.api.vo.CodeValueVO;
+
+import java.util.List;
 
 /**
  * @projectName api
@@ -33,4 +36,11 @@ public interface ITblMenuDataOperateRelationService {
      * @return
      */
     int updateMenuDataOperateRelation(MenuDataOperateRelationSettingDto dto);
+
+    /**
+     * 根据菜单ID查询出所有数据操作权限
+     * @param menuId 菜单ID
+     * @return
+     */
+    List<CodeValueVO> queryMenuDataOperation(String menuId);
 }

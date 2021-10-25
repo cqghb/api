@@ -124,4 +124,17 @@
     </set>
     where menu_id = #{menuId,jdbcType=VARCHAR}
   </update>
+
+  <select id="queryMenuDataOperationGroup" parameterType="string"
+          resultMap="com.test.api.api.dao.TblCodeValueDao.BaseResultMap2">
+    select
+        t2.id, t2.`name`, t2.operate_addr, t2.remark
+    from tbl_code_value t1
+    LEFT JOIN tbl_data_operate t2 on t1.`code` = t2.subgroup
+    LEFT JOIN tbl_menu_data_operate_relation t3 on t2.id=t3.data_oper_id
+    where t1.code_type='dataOperateSubgroup'
+    and t3.menu_id = #{menuId,jdbcType=VARCHAR}
+    and t1.del_tag = '2'
+
+  </select>
 </mapper>

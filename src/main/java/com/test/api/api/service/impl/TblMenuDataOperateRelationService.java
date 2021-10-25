@@ -14,10 +14,13 @@ import com.test.api.api.service.ITblDataOperateService;
 import com.test.api.api.service.ITblMenuDataOperateRelationService;
 import com.test.api.api.service.ITblMenuService;
 import com.test.api.api.utils.StringUtil;
+import com.test.api.api.vo.CodeValueVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @projectName api
@@ -112,5 +115,11 @@ public class TblMenuDataOperateRelationService extends CommonService implements 
             updateNum ++;
         }
         return updateNum;
+    }
+
+    @Override
+    public List<CodeValueVO> queryMenuDataOperation(String menuId) {
+        List<CodeValueVO> dataOperateGroupList = menuDataOperateRelationDao.queryMenuDataOperationGroup(menuId);
+        return dataOperateGroupList;
     }
 }
