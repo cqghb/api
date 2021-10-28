@@ -1,6 +1,7 @@
 package com.test.api.api.service;
 
 import com.test.api.api.bo.CodeValueBO;
+import com.test.api.api.vo.CodeValueVO;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 
@@ -32,4 +33,6 @@ public interface ITblCodeValueService {
      * @return
      */
     PageResult findPageChildren(PageRequest pageQuery);
+
+    List<CodeValueVO> findPageChildren();
 }

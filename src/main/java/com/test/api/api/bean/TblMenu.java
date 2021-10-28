@@ -1,5 +1,7 @@
 package com.test.api.api.bean;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +17,7 @@ import java.util.List;
  */
 public class TblMenu extends BaseBean implements java.io.Serializable {
 
+    private static final long serialVersionUID = 4559101099074179257L;
     // 主键
     private String id;
     // 菜单名称
@@ -27,6 +30,8 @@ public class TblMenu extends BaseBean implements java.io.Serializable {
     private String defaultSelect;
     // 请求地址
     private String uri;
+    // 是否是子菜单[1:是; 2:否;]
+    private String childrenFlag;
 
     /** 以下是视图内容相关字段 **/
     // 默认选中的菜单
@@ -38,7 +43,8 @@ public class TblMenu extends BaseBean implements java.io.Serializable {
     }
 
     public TblMenu(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name,
-                   String icon, String parentNode, String defaultSelect, String uri, List<String> defaultSelectList, List<TblMenu> childrenList, String remark, String delTag) {
+                   String icon, String parentNode, String defaultSelect, String uri, List<String> defaultSelectList,
+                   List<TblMenu> childrenList, String remark, String delTag, String childrenFlag) {
         super(createUser, createTime, updateUser, updateTime, remark, delTag);
         this.id = id;
         this.name = name;
@@ -46,6 +52,7 @@ public class TblMenu extends BaseBean implements java.io.Serializable {
         this.parentNode = parentNode;
         this.defaultSelect = defaultSelect;
         this.uri = uri;
+        this.childrenFlag = childrenFlag;
         this.defaultSelectList = defaultSelectList;
         this.childrenList = childrenList;
     }
@@ -114,15 +121,16 @@ public class TblMenu extends BaseBean implements java.io.Serializable {
         this.childrenList = childrenList;
     }
 
+    public String getChildrenFlag() {
+        return childrenFlag;
+    }
+
+    public void setChildrenFlag(String childrenFlag) {
+        this.childrenFlag = childrenFlag;
+    }
+
     @Override
     public String toString() {
-        return "TblMenu{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", icon='" + icon + '\'' +
-                ", parentNode='" + parentNode + '\'' +
-                ", defaultSelect='" + defaultSelect + '\'' +
-                ", uri='" + uri + '\'' +
-                '}';
+        return "TblMenu{" + JSONObject.toJSONString(this) + "}";
     }
 }

@@ -66,6 +66,16 @@ public class TblCodeValueService extends CommonService implements ITblCodeValueS
         return PageUtils.getPageResult(codeValuePageInfoList);
     }
 
+    @Override
+    public List<CodeValueVO> findPageChildren() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put(CommConstant.DEL_TAG, DelTagEnum.DEL_TAG_2.getCode());
+        jsonObject.put("codeType", "dataOperateSubgroup");
+        List<CodeValueVO> list = tblCodeValueDao.queryDataOperateSubgroup(jsonObject);
+        getDataOperateList2(list);
+        return list;
+    }
+
     /**
      * 根据分组查询操作权限
      *
@@ -75,6 +85,21 @@ public class TblCodeValueService extends CommonService implements ITblCodeValueS
         for (CodeValueVO item : dataOperateGroup) {
             String subgroup = item.getId();
             JSONObject jsonObject = (JSONObject) JSON.toJSON(pageQuery.getParams());
+            jsonObject.put(CommConstant.SUBGROUP, subgroup);
+            jsonObject.put(CommConstant.DEL_TAG, DelTagEnum.DEL_TAG_2.getCode());
+            List<TblDataOperate> list = dataOperateService.queryList(jsonObject);
+            item.setChildrenList(list);
+        }
+    }
+    /**
+     * 根据分组查询操作权限
+     *
+     * @param dataOperateGroup
+     */
+    private void getDataOperateList2(List<CodeValueVO> dataOperateGroup) {
+        for (CodeValueVO item : dataOperateGroup) {
+            String subgroup = item.getId();
+            JSONObject jsonObject = new JSONObject();
             jsonObject.put(CommConstant.SUBGROUP, subgroup);
             jsonObject.put(CommConstant.DEL_TAG, DelTagEnum.DEL_TAG_2.getCode());
             List<TblDataOperate> list = dataOperateService.queryList(jsonObject);

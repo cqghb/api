@@ -28,9 +28,10 @@ public class QueryParentMenuParamsDto extends TblMenu implements Serializable {
 
     public QueryParentMenuParamsDto(String createUser, Date createTime, String updateUser, Date updateTime, String id
             , String name, String icon, String parentNode, String defaultSelect, String uri,
-                                    List<String> defaultSelectList, List<TblMenu> childrenList, String theId, String remark, String delTag) {
+                                    List<String> defaultSelectList, List<TblMenu> childrenList, String remark,
+                                    String delTag, String childrenFlag, String theId) {
         super(createUser, createTime, updateUser, updateTime, id, name, icon, parentNode, defaultSelect, uri,
-                defaultSelectList, childrenList, remark, delTag);
+                defaultSelectList, childrenList, remark, delTag, childrenFlag);
         this.theId = theId;
     }
 

@@ -4,6 +4,7 @@ import com.test.api.api.bo.CodeValueBO;
 import com.test.api.api.config.Result;
 import com.test.api.api.service.ITblCodeValueService;
 import com.test.api.api.utils.ResultUtil;
+import com.test.api.api.vo.CodeValueVO;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import io.swagger.annotations.ApiOperation;
@@ -60,6 +61,16 @@ public class CodeValueAction {
     @PostMapping(value = "/findPageChildren")
     public Result findPageChildren(@RequestBody PageRequest pageQuery) {
         PageResult pageResult = iTblCodeValueService.findPageChildren(pageQuery);
+        return ResultUtil.success(pageResult);
+    }
+    /**
+     * 数据操作分组
+     * @return
+     */
+    @ApiOperation(value = "数据操作", notes = "数据操作")
+    @PostMapping(value = "/findPageChildren2")
+    public Result findPageChildren2() {
+        List<CodeValueVO> pageResult = iTblCodeValueService.findPageChildren();
         return ResultUtil.success(pageResult);
     }
 }

@@ -7,13 +7,15 @@
         <result column="parent_node" property="parentNode" jdbcType="VARCHAR"/>
         <result column="default_select" property="defaultSelect" jdbcType="VARCHAR"/>
         <result column="uri" property="uri" jdbcType="VARCHAR"/>
+        <result column="children_flag" property="childrenFlag" jdbcType="VARCHAR"/>
         <result column="create_user" property="createUser" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="baseField">
-        id, name, icon, parent_node, default_select, uri, create_user, create_time, update_user, update_time
+        id, name, icon, parent_node, default_select, uri, create_user, create_time, update_user, update_time,
+        children_flag
     </sql>
     <select id="queryList" parameterType="com.test.api.api.bean.TblMenu" resultMap="BaseResultMap">
         select
@@ -60,6 +62,9 @@
             <if test="createUser != null and createUser != ''">
                 create_user,
             </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(childrenFlag)">
+                children_flag,
+            </if>
             create_time
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -83,6 +88,9 @@
             </if>
             <if test="createUser != null and createUser != ''">
                 #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(childrenFlag)">
+                #{childrenFlag,jdbcType=VARCHAR},
             </if>
             sysdate()
 
@@ -143,6 +151,9 @@
             </if>
             <if test="updateUser != null">
                 update_user = #{updateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(childrenFlag)">
+                children_flag = #{childrenFlag,jdbcType=VARCHAR},
             </if>
             update_time = sysdate()
         </set>
