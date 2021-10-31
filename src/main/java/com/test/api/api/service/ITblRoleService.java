@@ -5,6 +5,8 @@ import com.test.api.api.config.AppException;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 
+import java.util.List;
+
 /**
  * @projectName api
  * @package com.test.api.api.service
@@ -42,4 +44,10 @@ public interface ITblRoleService {
      * @return
      */
     int updateRoleDelTag(TblRole record) throws AppException;
+
+    /**
+     * 查询所有角色
+     * @return
+     */
+    List<TblRole> queryAllRole();
 }

@@ -1,5 +1,6 @@
 package com.test.api.api.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.test.api.api.bean.TblRole;
 import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
@@ -15,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @projectName api
@@ -83,6 +86,14 @@ public class TblRoleService extends CommonService implements ITblRoleService {
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
         setObjectUpdateInfo(record, null);
         return roleDao.updateRoleDelTag(record);
+    }
+
+    @Override
+    public List<TblRole> queryAllRole() {
+        JSONObject param = new JSONObject();
+        param.put(CommConstant.DEL_TAG, DelTagEnum.DEL_TAG_2.getCode());
+        List<TblRole> roleList = roleDao.queryList(param);
+        return roleList;
     }
 
 }

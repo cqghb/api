@@ -14,10 +14,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @projectName api
@@ -109,5 +108,17 @@ public class RoleController {
         BeanUtils.copyProperties(roleDto, role);
         int num = roleService.updateRoleDelTag(role);
         return ResultUtil.success(num);
+    }
+
+    /**
+     * 查询所有角色
+     *
+     * @return
+     */
+    @GetMapping(value = "/queryAllRole")
+    @ApiOperation(value = "查询所有角色", notes = "查询所有角色")
+    public Result queryAllRole() {
+        List<TblRole> roleList = roleService.queryAllRole();
+        return ResultUtil.success(roleList);
     }
 }
