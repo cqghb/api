@@ -2,6 +2,7 @@ package com.test.api.api.action;
 
 import com.test.api.api.bean.TblRole;
 import com.test.api.api.config.Result;
+import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dto.DeleteDataDto;
 import com.test.api.api.dto.rolemanager.TblRoleDto;
 import com.test.api.api.service.ITblRoleService;
@@ -74,7 +75,7 @@ public class RoleController {
     @ApiOperation(value = "通过ID查询角色信息", notes = "通过ID查询角色信息")
     @PostMapping(value = "/queryById")
     public Result queryById(@RequestBody @Validated DeleteDataDto dto) {
-        TblRole Role = roleService.selectByPrimaryKey(dto.getId());
+        TblRole Role = roleService.selectByPrimaryKey(dto.getId(), DelTagEnum.DEL_TAG_2.getCode());
         return ResultUtil.success(Role);
     }
 

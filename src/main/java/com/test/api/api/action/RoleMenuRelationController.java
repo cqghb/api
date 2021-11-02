@@ -1,8 +1,16 @@
 package com.test.api.api.action;
 
+import com.test.api.api.config.Result;
+import com.test.api.api.dto.rolemenurelation.RoleMenuRelationSettingDto;
 import com.test.api.api.service.ITblRoleMenuRelationService;
+import com.test.api.api.utils.ResultUtil;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,4 +31,17 @@ public class RoleMenuRelationController {
 
     @Autowired
     protected ITblRoleMenuRelationService roleMenuRelationService;
+
+    /**
+     * 维护角色菜单权限
+     * @param dto
+     * @return
+     */
+    @PostMapping(value = "/updateRoleMenuRelation")
+    @ApiImplicitParam(name = "dto", value = "修改操作的参数")
+    @ApiOperation(value = "修改操作", notes = "修改操作")
+    public Result updateRoleMenuRelation(@RequestBody @Validated RoleMenuRelationSettingDto dto) {
+        int num = roleMenuRelationService.updateRoleMenuRelation(dto);
+        return ResultUtil.success(num);
+    }
 }

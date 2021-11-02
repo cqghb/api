@@ -58,8 +58,8 @@ public class TblRoleService extends CommonService implements ITblRoleService {
     }
 
     @Override
-    public TblRole selectByPrimaryKey(String id) {
-        return roleDao.selectByPrimaryKey(id);
+    public TblRole selectByPrimaryKey(String id, String delTag) {
+        return roleDao.selectByPrimaryKey(id, delTag);
     }
 
     @Override

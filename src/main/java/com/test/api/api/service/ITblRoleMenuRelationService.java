@@ -1,6 +1,7 @@
 package com.test.api.api.service;
 
 import com.test.api.api.bean.TblRoleMenuRelation;
+import com.test.api.api.dto.rolemenurelation.RoleMenuRelationSettingDto;
 
 /**
  * @projectName api
@@ -20,9 +21,16 @@ public interface ITblRoleMenuRelationService {
 
     int insertSelective(TblRoleMenuRelation record);
 
-    TblRoleMenuRelation selectByPrimaryKey(String id);
+    TblRoleMenuRelation selectByPrimaryKey(String id, String delTag);
 
     int updateByPrimaryKeySelective(TblRoleMenuRelation record);
 
     int updateByPrimaryKey(TblRoleMenuRelation record);
+
+    /**
+     * 维护角色菜单权限
+     * @param dto
+     * @return
+     */
+    int updateRoleMenuRelation(RoleMenuRelationSettingDto dto);
 }
