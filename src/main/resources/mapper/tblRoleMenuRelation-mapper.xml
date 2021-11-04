@@ -121,4 +121,13 @@
       update_time = sysdate()
     where role_id = #{roleId,jdbcType=VARCHAR}
   </update>
+
+  <select id="queryRoleMenu" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_role_menu_relation
+    where role_id = #{roleId,jdbcType=VARCHAR}
+      and del_tag = '2'
+  </select>
+
 </mapper>

@@ -4,15 +4,15 @@ import com.test.api.api.config.Result;
 import com.test.api.api.dto.rolemenurelation.RoleMenuRelationSettingDto;
 import com.test.api.api.service.ITblRoleMenuRelationService;
 import com.test.api.api.utils.ResultUtil;
+import com.test.api.api.vo.rolemenurelation.RoleMenuRelationVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @projectName api
@@ -43,5 +43,13 @@ public class RoleMenuRelationController {
     public Result updateRoleMenuRelation(@RequestBody @Validated RoleMenuRelationSettingDto dto) {
         int num = roleMenuRelationService.updateRoleMenuRelation(dto);
         return ResultUtil.success(num);
+    }
+
+    @GetMapping(value="/queryRoleMenu")
+    @ApiImplicitParam(name = "roleId", value = "角色主键")
+    @ApiOperation(value = "根据角色主键查询所有角色菜单", notes = "根据角色主键查询所有角色菜单")
+    public Result queryRoleMenu(@RequestParam("roleId") String roleId) {
+        List<RoleMenuRelationVO> verCode = roleMenuRelationService.queryRoleMenu(roleId);
+        return ResultUtil.success(verCode);
     }
 }

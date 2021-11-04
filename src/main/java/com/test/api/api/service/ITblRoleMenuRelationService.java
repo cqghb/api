@@ -2,6 +2,9 @@ package com.test.api.api.service;
 
 import com.test.api.api.bean.TblRoleMenuRelation;
 import com.test.api.api.dto.rolemenurelation.RoleMenuRelationSettingDto;
+import com.test.api.api.vo.rolemenurelation.RoleMenuRelationVO;
+
+import java.util.List;
 
 /**
  * @projectName api
@@ -33,4 +36,11 @@ public interface ITblRoleMenuRelationService {
      * @return
      */
     int updateRoleMenuRelation(RoleMenuRelationSettingDto dto);
+
+    /**
+     * 根据角色主键查询所有角色菜单
+     * @param roleId 角色主键
+     * @return
+     */
+    List<RoleMenuRelationVO> queryRoleMenu(String roleId);
 }

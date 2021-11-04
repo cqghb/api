@@ -1,8 +1,11 @@
 package com.test.api.api.dao;
 
 import com.test.api.api.bean.TblRoleMenuRelation;
+import com.test.api.api.vo.rolemenurelation.RoleMenuRelationVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface TblRoleMenuRelationDao {
@@ -24,4 +27,11 @@ public interface TblRoleMenuRelationDao {
      * @return
      */
     int deleteByRoleId(TblRoleMenuRelation roleMenuRelation);
+
+    /**
+     * 根据角色主键查询所有角色菜单
+     * @param roleId 角色主键
+     * @return
+     */
+    List<RoleMenuRelationVO> queryRoleMenu(@Param("roleId") String roleId);
 }

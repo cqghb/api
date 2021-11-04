@@ -13,8 +13,11 @@ import com.test.api.api.service.ITblMenuService;
 import com.test.api.api.service.ITblRoleMenuRelationService;
 import com.test.api.api.service.ITblRoleService;
 import com.test.api.api.utils.StringUtil;
+import com.test.api.api.vo.rolemenurelation.RoleMenuRelationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @projectName api
@@ -107,5 +110,10 @@ public class TblRoleMenuRelationService extends CommonService implements ITblRol
             updateNum++;
         }
         return updateNum;
+    }
+
+    @Override
+    public List<RoleMenuRelationVO> queryRoleMenu(String roleId) {
+        return roleMenuRelationDao.queryRoleMenu(roleId);
     }
 }
