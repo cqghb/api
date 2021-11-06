@@ -1,6 +1,9 @@
 package com.test.api.api.service;
 
+import com.test.api.api.bean.TblRole;
 import com.test.api.api.bean.TblRoleUserRelation;
+
+import java.util.List;
 
 /**
  * @projectName api
@@ -20,9 +23,18 @@ public interface ITblRoleUserRelationService {
 
     int insertSelective(TblRoleUserRelation record);
 
-    TblRoleUserRelation selectByPrimaryKey(String id);
+    TblRoleUserRelation selectByPrimaryKey(String id, String delTag);
 
     int updateByPrimaryKeySelective(TblRoleUserRelation record);
 
     int updateByPrimaryKey(TblRoleUserRelation record);
+
+    /**
+     * 查询用户角色列表
+     *
+     * @param userId 用户主键
+     * @param delTag 删除标记
+     * @return
+     */
+    List<TblRole> queryUserRoleByUserId(String userId, String delTag);
 }

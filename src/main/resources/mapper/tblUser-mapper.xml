@@ -17,24 +17,32 @@
         <result column="email" jdbcType="VARCHAR" property="email" />
         <result column="education" jdbcType="VARCHAR" property="education" />
         <result column="head_portrait_url" jdbcType="VARCHAR" property="headPortraitUrl" />
+        <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
     </resultMap>
     <sql id="Base_Column_List">
     id, `name`, pass, create_user, create_time, update_user, update_time, age, sex, birthday,
-    qq, we_chat, email, education, head_portrait_url
+    qq, we_chat, email, education, head_portrait_url, del_tag, remark
   </sql>
     <select id="queryUserById" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select * from tbl_user where id = #{id, jdbcType=VARCHAR}
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_user
+        where id = #{id, jdbcType=VARCHAR}
     </select>
     <select id="queryList" parameterType="com.test.api.api.bean.TblUser" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from tbl_user
         <where>
-            <if test="id!=null and id!=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
                 and id = #{id,jdbcType=VARCHAR}
             </if>
-            <if test="name!=null and name!=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
                 and name like concat('%', #{name,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+                and del_tag = #{delTag,jdbcType=VARCHAR}
             </if>
         </where>
     </select>
@@ -50,80 +58,92 @@
     <insert id="insert" parameterType="com.test.api.api.bean.TblUser">
         insert into tbl_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id !=null and id !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
                 id,
             </if>
-            <if test="name !=null and name !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
                 name,
             </if>
-            <if test="pass !=null and pass !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(pass)">
                 pass,
             </if>
-            <if test="createUser !=null and createUser !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(createUser)">
                 create_user,
             </if>
-            <if test="age !=null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(age)">
                 age,
             </if>
-            <if test="sex !=null and sex !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(sex)">
                 sex,
             </if>
-            <if test="birthday !=null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(birthday)">
                 birthday,
             </if>
-            <if test="qq !=null and qq !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(qq)">
                 qq,
             </if>
-            <if test="weChat !=null and weChat !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(weChat)">
                 we_chat,
             </if>
-            <if test="email !=null and email !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(email)">
                 email,
             </if>
-            <if test="education !=null and education !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(education)">
                 education,
             </if>
-            <if test="headPortraitUrl !=null and headPortraitUrl !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(headPortraitUrl)">
                 head_portrait_url,
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+                del_tag,
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+                remark,
             </if>
             create_time
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id !=null and id !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
                 #{id, jdbcType=VARCHAR},
             </if>
-            <if test="name !=null and name !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
                 #{name, jdbcType=VARCHAR},
             </if>
-            <if test="pass !=null and pass !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(pass)">
                 #{pass, jdbcType=VARCHAR},
             </if>
-            <if test="createUser !=null and createUser !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(createUser)">
                 #{createUser, jdbcType=VARCHAR},
             </if>
-            <if test="age !=null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(age)">
                 #{age, jdbcType=INTEGER},
             </if>
-            <if test="sex !=null and sex !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(sex)">
                 #{sex, jdbcType=VARCHAR},
             </if>
-            <if test="birthday !=null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(birthday)">
                 #{birthday, jdbcType=DATE},
             </if>
-            <if test="qq !=null and qq !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(qq)">
                 #{qq, jdbcType=VARCHAR},
             </if>
-            <if test="weChat !=null and weChat !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(weChat)">
                 #{weChat, jdbcType=VARCHAR},
             </if>
-            <if test="email !=null and email !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(email)">
                 #{email, jdbcType=VARCHAR},
             </if>
-            <if test="education !=null and education !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(education)">
                 #{education, jdbcType=VARCHAR},
             </if>
-            <if test="headPortraitUrl !=null and headPortraitUrl !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(headPortraitUrl)">
                 #{headPortraitUrl, jdbcType=VARCHAR},
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+                #{delTag,jdbcType=VARCHAR},
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+                #{remark,jdbcType=VARCHAR},
             </if>
             sysdate()
         </trim>
@@ -134,32 +154,38 @@
     <update id="update" parameterType="com.test.api.api.bean.TblUser">
         update tbl_user t
         <trim prefix="set" suffixOverrides=",">
-            <if test="name!=null and name !=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
                 t.name = #{name, jdbcType=VARCHAR},
             </if>
-            <if test="updateUser!=null and updateUser!=''">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(updateUser)">
                 t.update_user = #{updateUser, jdbcType=VARCHAR},
             </if>
-            <if test="age != null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(age)">
                 age = #{age,jdbcType=INTEGER},
             </if>
-            <if test="sex != null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(sex)">
                 sex = #{sex,jdbcType=VARCHAR},
             </if>
-            <if test="birthday != null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(birthday)">
                 birthday = #{birthday,jdbcType=DATE},
             </if>
-            <if test="qq != null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(qq)">
                 qq = #{qq,jdbcType=VARCHAR},
             </if>
-            <if test="weChat != null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(weChat)">
                 we_chat = #{weChat,jdbcType=VARCHAR},
             </if>
-            <if test="email != null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(email)">
                 email = #{email,jdbcType=VARCHAR},
             </if>
-            <if test="education != null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(education)">
                 education = #{education,jdbcType=VARCHAR},
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+                del_tag = #{delTag,jdbcType=VARCHAR},
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+                remark = #{remark,jdbcType=VARCHAR},
             </if>
             t.update_time = sysdate()
         </trim>
@@ -182,36 +208,40 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.test.api.api.bean.TblUser">
         update tbl_user
         <set>
-            <if test="name != null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
                 `name` = #{name,jdbcType=VARCHAR},
             </if>
-            <if test="updateUser != null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(updateUser)">
                 update_user = #{updateUser,jdbcType=VARCHAR},
             </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="age != null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(age)">
                 age = #{age,jdbcType=INTEGER},
             </if>
-            <if test="sex != null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(sex)">
                 sex = #{sex,jdbcType=VARCHAR},
             </if>
-            <if test="birthday != null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(birthday)">
                 birthday = #{birthday,jdbcType=DATE},
             </if>
-            <if test="qq != null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(qq)">
                 qq = #{qq,jdbcType=VARCHAR},
             </if>
-            <if test="weChat != null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(weChat)">
                 we_chat = #{weChat,jdbcType=VARCHAR},
             </if>
-            <if test="email != null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(email)">
                 email = #{email,jdbcType=VARCHAR},
             </if>
-            <if test="education != null">
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(education)">
                 education = #{education,jdbcType=VARCHAR},
             </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+                del_tag = #{delTag,jdbcType=VARCHAR},
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            t.update_time = sysdate()
         </set>
         where id = #{id,jdbcType=VARCHAR}
     </update>

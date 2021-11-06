@@ -14,6 +14,10 @@
   <sql id="Base_Column_List">
     id, `name`, del_tag, remark, create_user, create_time, update_user, update_time
   </sql>
+  <sql id="Base_Column_List2">
+    ${alias}.id, ${alias}.`name`, ${alias}.del_tag, ${alias}.remark, ${alias}.create_user, ${alias}.create_time,
+    ${alias}.update_user, ${alias}.update_time
+  </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

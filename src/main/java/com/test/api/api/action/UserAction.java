@@ -21,10 +21,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,9 +42,6 @@ import java.util.List;
 public class UserAction {
 
     protected static final Logger logger = LoggerFactory.getLogger(UserAction.class);
-
-//    @Autowired
-//    private HttpSession session;
 
     @Autowired
     private ITblUserService userService;
@@ -228,5 +222,17 @@ public class UserAction {
     public Result testException() {
         int a = 1/0;
         return ResultUtil.success();
+    }
+
+    /**
+     * 查询所有角色
+     *
+     * @return
+     */
+    @GetMapping(value = "/queryAllUser")
+    @ApiOperation(value = "查询所有用户", notes = "查询所有用户")
+    public Result queryAllRole() {
+        List<TblUser> userList = userService.queryAllUser();
+        return ResultUtil.success(userList);
     }
 }

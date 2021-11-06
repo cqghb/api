@@ -5,19 +5,24 @@
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="role_id" jdbcType="VARCHAR" property="roleId" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, role_id, user_id, create_user, create_time, update_user, update_time
+    id, role_id, user_id, create_user, create_time, update_user, update_time, del_tag, remark
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tbl_role_user_relation
     where id = #{id,jdbcType=VARCHAR}
+    <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+      and del_tag = #{delTag,jdbcType=VARCHAR}
+    </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tbl_role_user_relation
@@ -25,39 +30,51 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblRoleUserRelation" useGeneratedKeys="true">
     insert into tbl_role_user_relation (role_id, user_id, create_user, 
-      create_time)
+      create_time, del_tag, remark)
     values (#{roleId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
-      sysdate())
+      sysdate(), #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.test.api.api.bean.TblRoleUserRelation">
     insert into tbl_role_user_relation
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null and id != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
         id,
       </if>
-      <if test="roleId != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(roleId)">
         role_id,
       </if>
-      <if test="userId != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(userId)">
         user_id,
       </if>
-      <if test="createUser != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(createUser)">
         create_user,
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        del_tag,
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+        remark,
       </if>
         create_time
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null and id != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="roleId != null">
+      <if test="roleId)">
         #{roleId,jdbcType=VARCHAR},
       </if>
-      <if test="userId != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(userId)">
         #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="createUser != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(createUser)">
         #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+        #{remark,jdbcType=VARCHAR},
       </if>
         sysdate()
     </trim>
@@ -65,14 +82,20 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.test.api.api.bean.TblRoleUserRelation">
     update tbl_role_user_relation
     <set>
-      <if test="roleId != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(roleId)">
         role_id = #{roleId,jdbcType=VARCHAR},
       </if>
-      <if test="userId != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(userId)">
         user_id = #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="updateUser != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(updateUser)">
         update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        del_tag = #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
         update_time = sysdate()
     </set>
@@ -83,7 +106,23 @@
     set role_id = #{roleId,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=VARCHAR},
       update_user = #{updateUser,jdbcType=VARCHAR},
+      del_tag = #{delTag,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
       update_time = sysdate()
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="queryUserRoleByUserId" parameterType="java.lang.String"
+          resultMap="com.test.api.api.dao.TblRoleDao.BaseResultMap">
+    select
+    <include refid="com.test.api.api.dao.TblRoleDao.Base_Column_List2">
+      <property name="alias" value="t1"/>
+    </include>
+    FROM tbl_role t1
+    LEFT JOIN tbl_role_user_relation t2
+    ON t1.id = t2.role_id AND t1.del_tag = #{delTag,jdbcType=VARCHAR} and t2.del_tag = #{delTag,jdbcType=VARCHAR}
+    LEFT JOIN tbl_user t3
+    ON t2.user_id = t3.id AND t3.del_tag = #{delTag,jdbcType=VARCHAR}
+    WHERE t3.id = #{userId,jdbcType=VARCHAR}
+  </select>
 </mapper>

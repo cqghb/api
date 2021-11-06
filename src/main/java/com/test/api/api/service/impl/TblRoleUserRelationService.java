@@ -1,10 +1,13 @@
 package com.test.api.api.service.impl;
 
+import com.test.api.api.bean.TblRole;
 import com.test.api.api.bean.TblRoleUserRelation;
 import com.test.api.api.dao.TblRoleUserRelationDao;
 import com.test.api.api.service.ITblRoleUserRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @projectName api
@@ -38,8 +41,8 @@ public class TblRoleUserRelationService implements ITblRoleUserRelationService {
     }
 
     @Override
-    public TblRoleUserRelation selectByPrimaryKey(String id) {
-        return roleUserRelationDao.selectByPrimaryKey(id);
+    public TblRoleUserRelation selectByPrimaryKey(String id, String delTag) {
+        return roleUserRelationDao.selectByPrimaryKey(id, delTag);
     }
 
     @Override
@@ -50,5 +53,10 @@ public class TblRoleUserRelationService implements ITblRoleUserRelationService {
     @Override
     public int updateByPrimaryKey(TblRoleUserRelation record) {
         return roleUserRelationDao.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<TblRole> queryUserRoleByUserId(String userId, String delTag) {
+        return roleUserRelationDao.queryUserRoleByUserId(userId, delTag);
     }
 }

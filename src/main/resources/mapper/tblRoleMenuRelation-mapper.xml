@@ -32,7 +32,7 @@
     insert into tbl_role_menu_relation (role_id, menu_id, create_user, 
       create_time, del_tag, remark)
     values (#{roleId,jdbcType=VARCHAR}, #{menuId,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
-      sysdate(), #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR)
+      sysdate(), #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.test.api.api.bean.TblRoleMenuRelation">
     insert into tbl_role_menu_relation

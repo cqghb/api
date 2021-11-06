@@ -1,5 +1,6 @@
 package com.test.api.api.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.test.api.api.bean.TblUser;
 import com.test.api.api.bean.TblUserLikes;
 import com.test.api.api.bo.UserBo;
@@ -7,6 +8,7 @@ import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
 import com.test.api.api.constant.ErrorMsgConstant;
 import com.test.api.api.constant.MsgCodeConstant;
+import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblUserDao;
 import com.test.api.api.service.ITblUserLikesService;
 import com.test.api.api.service.ITblUserService;
@@ -156,6 +158,14 @@ public class TblUserService extends CommonService implements ITblUserService {
         String userKey = (String)session.getAttribute(CommConstant.REDIS_USER_KEY);
         boolean b = redisTemplate.delete(userKey);
         logger.info("[退出登录] Redis 删除用户登录新消息删除结果: " + b);
+    }
+
+    @Override
+    public List<TblUser> queryAllUser() {
+        JSONObject param = new JSONObject();
+        param.put(CommConstant.DEL_TAG, DelTagEnum.DEL_TAG_2.getCode());
+        List<TblUser> userList = userDao.queryList(param);
+        return userList;
     }
 
     /**
