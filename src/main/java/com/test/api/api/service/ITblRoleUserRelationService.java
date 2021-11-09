@@ -2,6 +2,8 @@ package com.test.api.api.service;
 
 import com.test.api.api.bean.TblRole;
 import com.test.api.api.bean.TblRoleUserRelation;
+import com.test.api.api.config.AppException;
+import com.test.api.api.dto.roleuserrelation.UserRoleRelationSettingDto;
 
 import java.util.List;
 
@@ -37,4 +39,11 @@ public interface ITblRoleUserRelationService {
      * @return
      */
     List<TblRole> queryUserRoleByUserId(String userId, String delTag);
+
+    /**
+     * 维护用户角色关系
+     * @param dto
+     * @return
+     */
+    int updateUserRoleRelation(UserRoleRelationSettingDto dto) throws AppException;
 }

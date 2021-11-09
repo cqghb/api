@@ -30,4 +30,9 @@ public interface TblRoleUserRelationDao {
      */
     List<TblRole> queryUserRoleByUserId(@Param("userId") String userId, @Param("delTag") String delTag);
 
+    /**
+     * 根据用户主键逻辑逻辑删除用户角色关系
+     * @param userRoleRelation
+     */
+    void deleteByUserId(TblRoleUserRelation userRoleRelation);
 }

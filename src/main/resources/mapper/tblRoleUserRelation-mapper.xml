@@ -61,7 +61,7 @@
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="roleId)">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(roleId)">
         #{roleId,jdbcType=VARCHAR},
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(userId)">
@@ -125,4 +125,13 @@
     ON t2.user_id = t3.id AND t3.del_tag = #{delTag,jdbcType=VARCHAR}
     WHERE t3.id = #{userId,jdbcType=VARCHAR}
   </select>
+
+  <update id="deleteByUserId" parameterType="com.test.api.api.bean.TblRoleUserRelation">
+    update tbl_role_user_relation
+    set
+      update_user = #{updateUser, jdbcType=VARCHAR},
+      del_tag = #{delTag, jdbcType=VARCHAR},
+      update_time = sysdate()
+    where user_id = #{userId, jdbcType=VARCHAR}
+  </update>
 </mapper>

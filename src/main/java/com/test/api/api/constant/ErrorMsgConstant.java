@@ -20,4 +20,5 @@ public class ErrorMsgConstant {
     public static final String MENU_DATA_OPERATE_RELATIO_ERROR_1 = "数据操作权限不存在，请刷新页面重新设置";
     public static final String MENU_DATA_OPERATE_RELATIO_ERROR_2 = "菜单不存在，请刷新菜单列表重新选择菜单设置权限";
     public static final String ROLEID_ERROR_2 = "角色不存在，请刷新页面重新设置";
+    public static final String USERID_ROLEID_RELATION_ERROR_1 = "用户不存在，请刷新页面重新设置";
 }

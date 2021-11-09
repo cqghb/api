@@ -110,7 +110,7 @@ public class TblUserService extends CommonService implements ITblUserService {
 
     @Override
     public UserVO queryUserById(String id) {
-        TblUser user = userDao.queryUserById(id);
+        TblUser user = userDao.selectByPrimaryKey(id, DelTagEnum.DEL_TAG_2.getCode());
         UserVO vo = new UserVO();
         BeanUtils.copyProperties(user, vo);
         List<String> likes = userLikesService.queryUserLikeIds(id);
@@ -166,6 +166,11 @@ public class TblUserService extends CommonService implements ITblUserService {
         param.put(CommConstant.DEL_TAG, DelTagEnum.DEL_TAG_2.getCode());
         List<TblUser> userList = userDao.queryList(param);
         return userList;
+    }
+
+    @Override
+    public TblUser selectByPrimaryKey(String id, String delTag) {
+        return userDao.selectByPrimaryKey(id, delTag);
     }
 
     /**

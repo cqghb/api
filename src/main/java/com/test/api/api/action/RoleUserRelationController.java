@@ -3,12 +3,15 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblRole;
 import com.test.api.api.config.Result;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
+import com.test.api.api.dto.roleuserrelation.UserRoleRelationSettingDto;
 import com.test.api.api.dto.usermanager.UserIdDto;
 import com.test.api.api.service.ITblRoleUserRelationService;
 import com.test.api.api.utils.ResultUtil;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,5 +48,18 @@ public class RoleUserRelationController {
     public Result queryUserRoleByUserId(@RequestBody UserIdDto dto) {
         List<TblRole> roleList = roleUserRelationService.queryUserRoleByUserId(dto.getId(), DelTagEnum.DEL_TAG_2.getCode());
         return ResultUtil.success(roleList);
+    }
+
+    /**
+     * 维护用户角色关系
+     * @param dto
+     * @return
+     */
+    @PostMapping(value = "/updateUserRoleRelation")
+    @ApiImplicitParam(name = "dto", value = "维护用户角色关系")
+    @ApiOperation(value = "维护用户角色关系", notes = "维护用户角色关系")
+    public Result updateUserRoleRelation(@RequestBody @Validated UserRoleRelationSettingDto dto) {
+        int num = roleUserRelationService.updateUserRoleRelation(dto);
+        return ResultUtil.success(num);
     }
 }

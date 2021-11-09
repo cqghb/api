@@ -84,4 +84,12 @@ public interface ITblUserService {
      * @return
      */
     List<TblUser> queryAllUser();
+
+    /**
+     * 根据用户ID查询用户信息
+     * @param id 用户主键
+     * @param delTag 删除状态
+     * @return
+     */
+    TblUser selectByPrimaryKey(String id, String delTag);
 }

@@ -21,15 +21,9 @@
         <result column="remark" jdbcType="VARCHAR" property="remark" />
     </resultMap>
     <sql id="Base_Column_List">
-    id, `name`, pass, create_user, create_time, update_user, update_time, age, sex, birthday,
-    qq, we_chat, email, education, head_portrait_url, del_tag, remark
-  </sql>
-    <select id="queryUserById" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from tbl_user
-        where id = #{id, jdbcType=VARCHAR}
-    </select>
+        id, `name`, pass, create_user, create_time, update_user, update_time, age, sex, birthday,
+        qq, we_chat, email, education, head_portrait_url, del_tag, remark
+    </sql>
     <select id="queryList" parameterType="com.test.api.api.bean.TblUser" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -200,6 +194,9 @@
         <include refid="Base_Column_List" />
         from tbl_user
         where id = #{id,jdbcType=VARCHAR}
+        <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+            and del_tag = #{delTag,jdbcType=VARCHAR}
+        </if>
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from tbl_user
