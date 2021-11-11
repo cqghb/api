@@ -75,7 +75,7 @@ public class RoleController {
     @ApiOperation(value = "通过ID查询角色信息", notes = "通过ID查询角色信息")
     @PostMapping(value = "/queryById")
     public Result queryById(@RequestBody @Validated DeleteDataDto dto) {
-        TblRole Role = roleService.selectByPrimaryKey(dto.getId(), DelTagEnum.DEL_TAG_2.getCode());
+        TblRole Role = roleService.selectByPKDelTag(dto.getId(), DelTagEnum.DEL_TAG_2.getCode());
         return ResultUtil.success(Role);
     }
 

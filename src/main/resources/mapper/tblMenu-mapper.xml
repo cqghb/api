@@ -101,7 +101,7 @@
         delete from tbl_menu t where t.id = #{id,jdbcType=VARCHAR}
     </delete>
 
-    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <select id="selectByPKDelTag" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="baseField"/>
         from tbl_menu t
@@ -109,6 +109,12 @@
         <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
             and del_tag = #{delTag,jdbcType=VARCHAR}
         </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="baseField"/>
+        from tbl_menu t
+        where t.id = #{id, jdbcType=VARCHAR}
     </select>
 
     <select id="queryPageParentMenu" parameterType="com.test.api.api.dto.menumanager.QueryParentMenuParamsDto" resultMap="BaseResultMap">

@@ -46,11 +46,10 @@ public interface TblMenuDao {
      */
     int deleteById(@Param("id") String id);
 
-    /**
-     * 查询默认选中的菜单
-     * @return
-     */
-    TblMenu selectByPrimaryKey(@Param("id") String id, @Param("delTag") String delTag);
+
+    TblMenu selectByPKDelTag(@Param("id") String id, @Param("delTag") String delTag);
+
+    TblMenu selectByPrimaryKey(@Param("id") String id);
 
     /**
      * 查询所有父菜单

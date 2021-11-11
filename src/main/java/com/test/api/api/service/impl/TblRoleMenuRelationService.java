@@ -82,12 +82,12 @@ public class TblRoleMenuRelationService extends CommonService implements ITblRol
          */
         String roleId = dto.getRoleId();
         // 1. 检查角色和菜单是否都还存在，不存在报错抛出去
-        TblRole role = roleService.selectByPrimaryKey(roleId, DelTagEnum.DEL_TAG_2.getCode());
+        TblRole role = roleService.selectByPKDelTag(roleId, DelTagEnum.DEL_TAG_2.getCode());
         if(StringUtil.objIsEmpty(role)){
             throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.ROLEID_ERROR_2);
         }
         for(String item : dto.getMenuIdList()){
-            TblMenu menu = menuService.selectByPrimaryKey(item, DelTagEnum.DEL_TAG_2.getCode());
+            TblMenu menu = menuService.selectByPKDelTag(item, DelTagEnum.DEL_TAG_2.getCode());
             if(StringUtil.objIsEmpty(menu)){
                 throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.MENU_DATA_OPERATE_RELATIO_ERROR_2);
             }

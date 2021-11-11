@@ -12,8 +12,17 @@
   <sql id="Base_Column_List">
     code_type, code_type_name, create_user, create_time, update_user, update_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPKDelTag" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
+    <include refid="Base_Column_List" />
+    from tbl_code_type
+    where code_type = #{codeType,jdbcType=VARCHAR}
+    <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+      and del_tag = #{delTag,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
     from tbl_code_type
     where code_type = #{codeType,jdbcType=VARCHAR}

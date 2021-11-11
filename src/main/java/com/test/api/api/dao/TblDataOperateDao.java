@@ -15,7 +15,20 @@ public interface TblDataOperateDao {
 
     int insertSelective(TblDataOperate record);
 
-    TblDataOperate selectByPrimaryKey(@Param("id") String id, @Param("delTag") String delTag);
+    /**
+     * 通过主键和删除标记查询
+     * @param id 主键
+     * @param delTag 删除标记
+     * @return
+     */
+    TblDataOperate selectByPKDelTag(@Param("id") String id, @Param("delTag") String delTag);
+
+    /**
+     * 通过主键查询
+     * @param id 主键
+     * @return
+     */
+    TblDataOperate selectByPrimaryKey(@Param("id") String id);
 
     int updateByPrimaryKeySelective(TblDataOperate record);
 

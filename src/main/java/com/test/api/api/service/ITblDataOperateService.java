@@ -26,7 +26,7 @@ public interface ITblDataOperateService {
 
     int insertSelective(TblDataOperate record);
 
-    TblDataOperate selectByPrimaryKey(String id, String delTag);
+    TblDataOperate selectByPKDelTag(String id, String delTag);
 
     int updateByPrimaryKeySelective(TblDataOperate record) throws AppException;
 

@@ -75,7 +75,7 @@ public class TblMenuService extends CommonService implements ITblMenuService {
     @Override
     public int deleteById(String id) throws AppException {
         // 检查原数据是否还存在
-        TblMenu menu = menuDao.selectByPrimaryKey(id, DelTagEnum.DEL_TAG_2.getCode());
+        TblMenu menu = menuDao.selectByPKDelTag(id, DelTagEnum.DEL_TAG_2.getCode());
         if(StringUtil.objIsEmpty(menu)){
             throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.MENU_INFO_IS_NULL);
         }
@@ -91,8 +91,8 @@ public class TblMenuService extends CommonService implements ITblMenuService {
     }
 
     @Override
-    public TblMenu selectByPrimaryKey(String id, String delTag) throws AppException {
-        TblMenu menu = menuDao.selectByPrimaryKey(id, delTag);
+    public TblMenu selectByPKDelTag(String id, String delTag) throws AppException {
+        TblMenu menu = menuDao.selectByPKDelTag(id, delTag);
         if(StringUtil.objIsEmpty(menu)){
             throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.MENU_INFO_IS_NULL);
         }
@@ -108,7 +108,7 @@ public class TblMenuService extends CommonService implements ITblMenuService {
     @Override
     public int updateByPrimaryKeySelective(TblMenuDto record) throws AppException {
         String id = record.getId();
-        TblMenu menu = menuDao.selectByPrimaryKey(id, DelTagEnum.DEL_TAG_2.getCode());
+        TblMenu menu = menuDao.selectByPKDelTag(id, DelTagEnum.DEL_TAG_2.getCode());
         if(StringUtil.objIsEmpty(menu)){
             throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.MENU_INFO_IS_NULL);
         }

@@ -18,6 +18,8 @@ public interface TblIconDao {
 
     int insertSelective(TblIcon record);
 
+    TblIcon selectByPKDelTag(@Param("id") String id, @Param("delTag") String delTag);
+
     TblIcon selectByPrimaryKey(@Param("id") String id);
 
     int updateByPrimaryKeySelective(TblIcon record);

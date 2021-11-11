@@ -25,7 +25,7 @@ public interface ITblRoleService {
 
     int insertSelective(TblRole record);
 
-    TblRole selectByPrimaryKey(String id, String delTag);
+    TblRole selectByPKDelTag(String id, String delTag);
 
     int updateByPrimaryKeySelective(TblRole record) throws AppException;
 

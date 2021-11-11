@@ -51,7 +51,7 @@ public interface ITblMenuService {
      * @return
      * @throws AppException
      */
-    TblMenu selectByPrimaryKey(String id, String delTag) throws AppException;
+    TblMenu selectByPKDelTag(String id, String delTag) throws AppException;
 
     /**
      * 分页查询所有父目录

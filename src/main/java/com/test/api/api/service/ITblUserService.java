@@ -91,5 +91,5 @@ public interface ITblUserService {
      * @param delTag 删除状态
      * @return
      */
-    TblUser selectByPrimaryKey(String id, String delTag);
+    TblUser selectByPKDelTag(String id, String delTag);
 }

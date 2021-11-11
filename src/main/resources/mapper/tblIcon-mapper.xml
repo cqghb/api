@@ -14,8 +14,17 @@
   <sql id="Base_Column_List">
     id, `name`, english_name, `index`, create_user, create_time, update_user, update_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPKDelTag" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
+    <include refid="Base_Column_List" />
+    from tbl_icon
+    where id = #{id,jdbcType=VARCHAR}
+    <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+      and del_tag = #{delTag,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
     from tbl_icon
     where id = #{id,jdbcType=VARCHAR}

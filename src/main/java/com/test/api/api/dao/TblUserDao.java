@@ -50,12 +50,12 @@ public interface TblUserDao {
      */
     int deleteUser(@Param("id") String id);
 
-    /**
-     * 根据主键查询用户信息
-     * @param id 用户主键
-     * @return
-     */
-    TblUser queryUserById(@Param("id") String id, @Param("delTag") String delTag);
+//    /**
+//     * 根据主键查询用户信息
+//     * @param id 用户主键
+//     * @return
+//     */
+//    TblUser queryUserById(@Param("id") String id, @Param("delTag") String delTag);
 
     /**
      * 新增用户
@@ -70,7 +70,8 @@ public interface TblUserDao {
 
 //    int insert(TblUser record);
 
-    TblUser selectByPrimaryKey(@Param("id") String id, @Param("delTag") String delTag);
+    TblUser selectByPKDelTag(@Param("id") String id, @Param("delTag") String delTag);
+    TblUser selectByPrimaryKey(@Param("id") String id);
 
     int updateByPrimaryKeySelective(TblUser record);
 

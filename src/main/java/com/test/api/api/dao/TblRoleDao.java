@@ -16,7 +16,8 @@ public interface TblRoleDao {
 
     int insertSelective(TblRole record);
 
-    TblRole selectByPrimaryKey(@Param("id") String id, @Param("delTag") String delTag);
+    TblRole selectByPKDelTag(@Param("id") String id, @Param("delTag") String delTag);
+    TblRole selectByPrimaryKey(@Param("id") String id);
 
     int updateByPrimaryKeySelective(TblRole record);
 

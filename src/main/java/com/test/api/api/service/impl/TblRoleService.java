@@ -49,17 +49,14 @@ public class TblRoleService extends CommonService implements ITblRoleService {
 
     @Override
     public int insertSelective(TblRole record) {
-//        TblUser loginUser = getLoginUser();
-//        String loginUserId = loginUser.getId();
-//        record.setCreateUser(loginUserId);
         record.setId(StringUtil.uuid());
         setObjectInsertInfo(record, null);
         return roleDao.insertSelective(record);
     }
 
     @Override
-    public TblRole selectByPrimaryKey(String id, String delTag) {
-        return roleDao.selectByPrimaryKey(id, delTag);
+    public TblRole selectByPKDelTag(String id, String delTag) {
+        return roleDao.selectByPKDelTag(id, delTag);
     }
 
     @Override

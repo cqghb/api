@@ -51,8 +51,8 @@ public class TblDataOperateService extends CommonService implements ITblDataOper
     }
 
     @Override
-    public TblDataOperate selectByPrimaryKey(String id, String delTag) {
-        return dataOperateDao.selectByPrimaryKey(id, delTag);
+    public TblDataOperate selectByPKDelTag(String id, String delTag) {
+        return dataOperateDao.selectByPKDelTag(id, delTag);
     }
 
     @Override

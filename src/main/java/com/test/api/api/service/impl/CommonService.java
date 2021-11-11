@@ -60,7 +60,7 @@ public class CommonService implements ICommonService {
         // 直到生成一个没有被使用的userNo就不再循环,
         // TODO 当字符用完之后将陷入死循环
         while (r) {
-            TblUser user = userDao.selectByPrimaryKey(userId, DelTagEnum.DEL_TAG_2.getCode());
+            TblUser user = userDao.selectByPKDelTag(userId, DelTagEnum.DEL_TAG_2.getCode());
             if (StringUtils.isEmpty(user)) {
                 r = false;
             } else {

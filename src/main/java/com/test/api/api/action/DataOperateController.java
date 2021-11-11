@@ -75,7 +75,7 @@ public class DataOperateController {
     @ApiOperation(value = "通过ID查询数据操作信息", notes = "通过ID查询数据操作信息")
     @PostMapping(value = "/queryById")
     public Result queryById(@RequestBody @Validated DeleteDataDto ddDto) {
-        TblDataOperate dataOperate = dataOperateService.selectByPrimaryKey(ddDto.getId(), DelTagEnum.DEL_TAG_2.getCode());
+        TblDataOperate dataOperate = dataOperateService.selectByPKDelTag(ddDto.getId(), DelTagEnum.DEL_TAG_2.getCode());
         return ResultUtil.success(dataOperate);
     }
 

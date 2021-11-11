@@ -41,6 +41,7 @@ public interface TblUserLikesDao {
      * @param id 主键
      * @return
      */
+//    TblUserLikes selectByPKDelTag(@Param("id") String id, @Param("delTag") String delTag);
     TblUserLikes selectByPrimaryKey(@Param("id") String id);
 
     /**

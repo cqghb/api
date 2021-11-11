@@ -78,7 +78,7 @@ public class MenuAction {
     @ApiOperation(value = "通过ID查询菜单", notes = "通过ID查询菜单")
     @PostMapping(value="/queryMenuById")
     public Result queryMenuById(@RequestBody @Validated QueryMenuParamDto dto) {
-        TblMenu menu = menuService.selectByPrimaryKey(dto.getId(), DelTagEnum.DEL_TAG_2.getCode());
+        TblMenu menu = menuService.selectByPKDelTag(dto.getId(), DelTagEnum.DEL_TAG_2.getCode());
         return ResultUtil.success(menu);
     }
 

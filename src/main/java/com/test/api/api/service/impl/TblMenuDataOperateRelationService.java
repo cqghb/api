@@ -89,12 +89,12 @@ public class TblMenuDataOperateRelationService extends CommonService implements 
          * 3. 设置新的关系
          */
         // 1. 检查菜单和数据操作是否都还存在，不存在报错抛出去
-        TblMenu menu = menuService.selectByPrimaryKey(menuId, DelTagEnum.DEL_TAG_2.getCode());
+        TblMenu menu = menuService.selectByPKDelTag(menuId, DelTagEnum.DEL_TAG_2.getCode());
         if(StringUtil.objIsEmpty(menu)){
             throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.MENU_DATA_OPERATE_RELATIO_ERROR_1);
         }
         for(String item : dto.getDataOperateList()){
-            TblDataOperate dataOperate = dataOperateService.selectByPrimaryKey(item, DelTagEnum.DEL_TAG_2.getCode());
+            TblDataOperate dataOperate = dataOperateService.selectByPKDelTag(item, DelTagEnum.DEL_TAG_2.getCode());
             if(StringUtil.objIsEmpty(dataOperate)){
                 throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.MENU_DATA_OPERATE_RELATIO_ERROR_2);
             }

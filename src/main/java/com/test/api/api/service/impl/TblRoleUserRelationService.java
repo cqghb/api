@@ -86,12 +86,12 @@ public class TblRoleUserRelationService extends CommonService implements ITblRol
          */
         // 1. 检查用户和角色是否都还存在，不存在报错抛出去
         String userId = dto.getUserId();
-        TblUser user = userService.selectByPrimaryKey(userId, DelTagEnum.DEL_TAG_2.getCode());
+        TblUser user = userService.selectByPKDelTag(userId, DelTagEnum.DEL_TAG_2.getCode());
         if(StringUtil.objIsEmpty(user)){
             throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.USERID_ROLEID_RELATION_ERROR_1);
         }
         for(String roleId : dto.getRoleIdList()){
-            TblRole role = roleService.selectByPrimaryKey(roleId, DelTagEnum.DEL_TAG_2.getCode());
+            TblRole role = roleService.selectByPKDelTag(roleId, DelTagEnum.DEL_TAG_2.getCode());
             if(StringUtil.objIsEmpty(role)){
                 throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.ROLEID_ERROR_2);
             }
