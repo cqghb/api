@@ -62,6 +62,54 @@ public class TableColumnEnum {
             this.desc = desc;
         }
     }
+    /**
+     * 是否枚举
+     */
+    public enum YesNoEnum {
+        DEL_TAG_1(TableColumnConstant.CODE_YES_1, TableColumnConstant.DESC_YES_1),// 是
+        DEL_TAG_2(TableColumnConstant.CODE_NO_2, TableColumnConstant.DESC_NO_2);// 否
+
+        // 码
+        private String code;
+        // 说明
+        private String desc;
+
+        YesNoEnum() {
+        }
+
+        YesNoEnum(String code, String desc) {
+            this.code = code;
+            this.desc = desc;
+        }
+
+        public static YesNoEnum getEnum(String code) {
+            if (StringUtil.objIsEmpty(code)) {
+                return null;
+            }
+            for (YesNoEnum item : YesNoEnum.values()) {
+                if (item.getCode().equals(code)) {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        public String getCode() {
+            return code;
+        }
+
+        public void setCode(String code) {
+            this.code = code;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
+    }
     /** 公共字段枚举 start **/
 
 }

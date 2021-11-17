@@ -81,4 +81,12 @@ public interface TblUserDao {
      * @return
      */
     int resetPass(UserBo user);
+
+    /**
+     * 根据用户编号查询用户数据操作权限
+     * @param id 用户编号
+     * @param delTag 删除标记
+     * @return
+     */
+    List<String> queryUserOperData(@Param("id") String id, @Param("delTag") String delTag);
 }

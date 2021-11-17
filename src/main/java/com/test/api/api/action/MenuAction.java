@@ -42,7 +42,7 @@ public class MenuAction {
     @ApiOperation(value = "后台管理主页面菜单树查询", notes = "主页面左侧菜单")
     @RequestMapping(value = "/queryMenu")
     public Result queryMenu(){
-        MenuTree menuTree = menuService.queryMenu();
+        MenuTree menuTree = menuService.queryUserMenuTree(null);
         return ResultUtil.success(menuTree);
     }
 

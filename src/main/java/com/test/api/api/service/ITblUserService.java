@@ -92,4 +92,10 @@ public interface ITblUserService {
      * @return
      */
     TblUser selectByPKDelTag(String id, String delTag);
+
+    /**
+     * 更新用户数据操作权限信息
+     * @param userNo 用户滨蒿
+     */
+    void updateUserDataOper(String userNo);
 }

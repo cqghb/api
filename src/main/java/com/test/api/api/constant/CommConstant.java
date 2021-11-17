@@ -34,6 +34,8 @@ public class CommConstant {
     /** 公共常量 start **/
     // 用户信息存入Redis中的key
     public static final String REDIS_USER_KEY = "redisUserKey";
+    // 用户数据操作权限存入Redis中的key
+    public static final String REDIS_USER_DATA_OPER_KEY = "redisUserDataOperKey";
     // session ID
     public static final String JSESSIONID = "JSESSIONID";
     // 默认密码

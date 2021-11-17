@@ -17,6 +17,12 @@
         id, name, icon, parent_node, default_select, uri, create_user, create_time, update_user, update_time,
         children_flag
     </sql>
+    <!--  暂时不用  -->
+    <sql id="baseField2">
+        ${alias}.id, ${alias}.name, ${alias}.icon, ${alias}.parent_node, ${alias}.default_select, ${alias}.uri,
+        ${alias}.create_user, ${alias}.create_time, ${alias}.update_user, ${alias}.update_time,
+        ${alias}.children_flag
+    </sql>
     <select id="queryList" parameterType="com.test.api.api.bean.TblMenu" resultMap="BaseResultMap">
         select
         <include refid="baseField"/>
@@ -165,4 +171,16 @@
         </set>
         where id = #{id,jdbcType=VARCHAR}
     </update>
+
+    <select id="queryUserMenu" parameterType="string" resultMap="BaseResultMap">
+        SELECT DISTINCT t4.* FROM tbl_user t1
+        LEFT JOIN tbl_role_user_relation t2 ON t1.id = t2.user_id
+        LEFT JOIN tbl_role_menu_relation t3 ON t2.role_id = t3.role_id
+        LEFT JOIN tbl_menu t4 ON t3.menu_id = t4.id
+        WHERE t1.id = #{userNo,jdbcType=VARCHAR}
+        AND t1.del_tag = '2'
+        AND t2.del_tag = '2'
+        AND t3.del_tag = '2'
+        AND t4.del_tag = '2'
+    </select>
 </mapper>

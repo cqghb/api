@@ -64,11 +64,15 @@ public class TblUserService extends CommonService implements ITblUserService {
     public TblUser login(String id, String pass) {
         TblUser userInfo = userDao.login(id, pass);
         String userKey = id + StringUtil.uuid();
+        String redisUserDataOperKey = id + StringUtil.uuid();
         HttpSession session = SessionUtils.getHttpSession();
         logger.info("[登录] sessionID= " + session.getId());
         session.setAttribute(CommConstant.REDIS_USER_KEY, userKey);
-
+        session.setAttribute(CommConstant.REDIS_USER_DATA_OPER_KEY, redisUserDataOperKey);
+        // 保存用户登录信息
         redisTemplate.opsForValue().set(userKey, JsonUtils.objectToJson(userInfo), Long.valueOf(time), TimeUnit.SECONDS);
+        // 更新用户数据操作权限
+        this.updateUserDataOper(id);
         return userInfo;
     }
 
@@ -156,8 +160,12 @@ public class TblUserService extends CommonService implements ITblUserService {
     public void signOut() {
         HttpSession session = SessionUtils.getHttpSession();
         String userKey = (String)session.getAttribute(CommConstant.REDIS_USER_KEY);
+        String redisUserDataOperKey = (String)session.getAttribute(CommConstant.REDIS_USER_DATA_OPER_KEY);
         boolean b = redisTemplate.delete(userKey);
         logger.info("[退出登录] Redis 删除用户登录新消息删除结果: " + b);
+        // 清除保存的用户数据操作权限
+        boolean b2 = redisTemplate.delete(redisUserDataOperKey);
+        logger.info("[退出登录] Redis 删除保存的用户数据操作权限结果: " + b2);
     }
 
     @Override
@@ -171,6 +179,17 @@ public class TblUserService extends CommonService implements ITblUserService {
     @Override
     public TblUser selectByPKDelTag(String id, String delTag) {
         return userDao.selectByPKDelTag(id, delTag);
+    }
+
+    @Override
+    public void updateUserDataOper(String userNo) {
+        String redisUserDataOperKey = userNo + StringUtil.uuid();
+        HttpSession session = SessionUtils.getHttpSession();
+        session.setAttribute(CommConstant.REDIS_USER_DATA_OPER_KEY, redisUserDataOperKey);
+        // 查询用户数据操作权限数据
+        List<String> dataOperList = userDao.queryUserOperData(userNo, DelTagEnum.DEL_TAG_2.getCode());
+        // 保存用户数据操作权限，退出登录时清除
+        redisTemplate.opsForValue().set(redisUserDataOperKey, JsonUtils.objectToJson(dataOperList));
     }
 
     /**

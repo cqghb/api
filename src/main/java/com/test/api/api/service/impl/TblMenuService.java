@@ -8,6 +8,7 @@ import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
 import com.test.api.api.constant.ErrorMsgConstant;
 import com.test.api.api.constant.MsgCodeConstant;
+import com.test.api.api.constant.TableColumnConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblMenuDao;
 import com.test.api.api.dto.menumanager.TblMenuDto;
@@ -48,6 +49,23 @@ public class TblMenuService extends CommonService implements ITblMenuService {
         menuTree.setRootTree(rootTree);
         // 查询默认选中的菜单
         List<String> defaultSelect = menuDao.queryDefaultSelect();
+        menuTree.setDefaultSelectList(defaultSelect);
+        return menuTree;
+    }
+
+    @Override
+    public MenuTree queryUserMenuTree(String userNo) {
+        if(StringUtil.objIsEmpty(userNo)){
+            TblUser loginUser = getLoginUser();
+            String loginUserId = loginUser.getId();
+            userNo = loginUserId;
+        }
+        MenuTree menuTree = new MenuTree();
+        List<TblMenu> allMenuList = menuDao.queryUserMenu(userNo);
+        List<TblMenu> rootTree = this.menuFormatTree(allMenuList);
+        menuTree.setRootTree(rootTree);
+        // 查询默认选中的菜单
+        List<String> defaultSelect = this.getDefaultSelectMenu(allMenuList);
         menuTree.setDefaultSelectList(defaultSelect);
         return menuTree;
     }
@@ -145,10 +163,13 @@ public class TblMenuService extends CommonService implements ITblMenuService {
      * @return
      */
     private List<TblMenu> treeMenu(TblMenu params) {
-        List<TblMenu> rootTree = new ArrayList<>();
         JSONObject j = (JSONObject)JSONObject.toJSON(params);
         List<TblMenu> allMenuList = menuDao.queryList(j);
-        // 获取根菜单
+        return this.menuFormatTree(allMenuList);
+    }
+
+    private List<TblMenu> menuFormatTree(List<TblMenu> allMenuList){
+        List<TblMenu> rootTree = new ArrayList<>();
         for (TblMenu item : allMenuList) {
             String parentNode = item.getParentNode();
             if (CommConstant.MENU_PRENT_NODE.equals(parentNode)) {
@@ -164,7 +185,6 @@ public class TblMenuService extends CommonService implements ITblMenuService {
         }
         return rootTree;
     }
-
     /**
      * 根据父节点查出子节点
      *
@@ -184,5 +204,21 @@ public class TblMenuService extends CommonService implements ITblMenuService {
             item.setChildrenList(childrenTree);
         }
         return parentTree;
+    }
+
+    /**
+     * 获取默认选中的菜单ID
+     * @param allMenu 所有菜单
+     * @return
+     */
+    private List<String> getDefaultSelectMenu(List<TblMenu> allMenu){
+        List<String> defaultSelectMenu = new ArrayList<String>();
+        for (TblMenu item : allMenu){
+            String defaultSelect = item.getDefaultSelect();
+            if(TableColumnConstant.CODE_YES_1.equals(defaultSelect)){
+                defaultSelectMenu.add(item.getId());
+            }
+        }
+        return defaultSelectMenu;
     }
 }

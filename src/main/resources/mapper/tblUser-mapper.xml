@@ -254,4 +254,18 @@
         update tbl_user t set t.pass = #{pass,jdbcType=VARCHAR},t.update_time = sysdate()
         where t.id = #{id,jdbcType=VARCHAR}
     </update>
+
+    <select id="queryUserOperData" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT DISTINCT t5.operate_addr FROM tbl_user t1
+        LEFT JOIN tbl_role_user_relation t2 ON t1.id = t2.user_id
+        LEFT JOIN tbl_role_menu_relation t3 ON t2.role_id = t3.role_id
+        LEFT JOIN tbl_menu_data_operate_relation t4 ON t3.menu_id = t4.menu_id
+        LEFT JOIN tbl_data_operate t5 ON t4.data_oper_id = t5.id
+        WHERE t1.id = #{id,jdbcType=VARCHAR}
+        AND t1.del_tag = #{delTag,jdbcType=VARCHAR}
+        AND t2.del_tag = #{delTag,jdbcType=VARCHAR}
+        AND t3.del_tag = #{delTag,jdbcType=VARCHAR}
+        AND t4.del_tag = #{delTag,jdbcType=VARCHAR}
+        AND t5.del_tag = #{delTag,jdbcType=VARCHAR}
+    </select>
 </mapper>

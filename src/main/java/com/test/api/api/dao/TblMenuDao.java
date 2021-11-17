@@ -59,4 +59,11 @@ public interface TblMenuDao {
     List<TblMenu> queryPageParentMenu(JSONObject params);
 
     int updateByPrimaryKeySelective(TblMenu params);
+
+    /**
+     * 根据用户编号查询用户菜单
+     * @param userNo 用户编号
+     * @return
+     */
+    List<TblMenu> queryUserMenu(@Param("userNo") String userNo);
 }

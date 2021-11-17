@@ -25,6 +25,13 @@ public interface ITblMenuService {
     MenuTree queryMenu();
 
     /**
+     * 查询用户菜单
+     * @param userNo 用户编号
+     * @return
+     */
+    MenuTree queryUserMenuTree(String userNo);
+
+    /**
      * 菜单管理列表查询
      * @param pageQuery 查询条件
      * @return

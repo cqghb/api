@@ -21,5 +21,15 @@ public class TableColumnConstant {
     public static final String DEL_TAG_CODE_2 = "2";
     // 删除标志 保留
     public static final String DEL_TAG_DESC_2 = "保留";
+
+    // 是
+    public static final String CODE_YES_1 = "1";
+    // 是
+    public static final String DESC_YES_1 = "删除";
+    // 否
+    public static final String CODE_NO_2 = "2";
+    // 否
+    public static final String DESC_NO_2 = "保留";
+
     /** 声明公共字段的常量 end **/
 }
