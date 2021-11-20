@@ -28,7 +28,8 @@ public class MsgCodeConstant {
      */
     public static final String ERROR_MSG = "系统异常";
 
-    public static final String[] LOING_INFO_INVALID = new String[]{"000001","登录失效"};
-    public static final String[] USER_NOT_REGISTER = new String[]{"000002","用户未注册"};
+    public static final String[] LOING_INFO_INVALID = new String[]{"000001", "登录失效"};
+    public static final String[] USER_NOT_REGISTER = new String[]{"000002", "用户未注册"};
+    public static final String[] USER_NOT_PERMISSION = new String[]{"000003", "用户没有权限"};
 
 }

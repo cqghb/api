@@ -1,5 +1,8 @@
 package com.test.api.api.constant;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @projectName api
  * @package com.test.api.api.constant
@@ -20,6 +23,13 @@ public class CommConstant {
     public static final String UNDERLINE = "_";
     // 点号
     public static final String DOT = ".";
+    // utf8编码
+    public static final String ENCODED_UTF8 = "UTF-8";
+    // 内容类型
+    public static final String CONTENT_TYPE_JSON = "application/json; charset=utf-8";
+    // 请求白名单
+    public static final List<String> WHITE_LIST = Arrays.asList(new String[]{"/login", "/file/uploadFile",
+            "/codeValue/searchCodeKeyValue", "/mail/sendVerificationCode", "/resetPass", "/insertUser", "/menu/queryMenu"});
 
     /** 文件类型常量 start **/
     // 头像文件

@@ -34,7 +34,7 @@ public class RedisSessionInterceptor implements HandlerInterceptor {
     protected static final Logger logger = LoggerFactory.getLogger(RedisSessionInterceptor.class);
 
     @Autowired
-    RedisTemplate<String, Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
@@ -65,8 +65,8 @@ public class RedisSessionInterceptor implements HandlerInterceptor {
     }
 
     private void response(HttpServletResponse response){
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json; charset=utf-8");
+        response.setCharacterEncoding(CommConstant.ENCODED_UTF8);
+        response.setContentType(CommConstant.CONTENT_TYPE_JSON);
         try {
             response.getWriter().print(JSON.toJSONString(new ResultUtil().error(MsgCodeConstant.LOING_INFO_INVALID[0],
                     MsgCodeConstant.LOING_INFO_INVALID[1])));

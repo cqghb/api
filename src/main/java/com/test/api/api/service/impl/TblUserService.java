@@ -189,7 +189,7 @@ public class TblUserService extends CommonService implements ITblUserService {
         // 查询用户数据操作权限数据
         List<String> dataOperList = userDao.queryUserOperData(userNo, DelTagEnum.DEL_TAG_2.getCode());
         // 保存用户数据操作权限，退出登录时清除
-        redisTemplate.opsForValue().set(redisUserDataOperKey, JsonUtils.objectToJson(dataOperList));
+        redisTemplate.opsForList().rightPushAll(redisUserDataOperKey, dataOperList);
     }
 
     /**

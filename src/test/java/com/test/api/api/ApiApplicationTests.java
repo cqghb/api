@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
@@ -184,12 +181,14 @@ class ApiApplicationTests {
     // 将list右推入列表
     @Test
     public void test515() {
-        ArrayList<Object> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
+        List<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
         String key = "number";
         redisTemplate.opsForList().rightPushAll(key, list);
+        List<Object> aa = redisTemplate.opsForList().range(key,0,-1);
+        System.out.println(aa);
     }
     // 修改列表指定索引的值
     @Test

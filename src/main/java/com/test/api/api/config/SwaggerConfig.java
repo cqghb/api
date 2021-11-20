@@ -2,6 +2,7 @@ package com.test.api.api.config;
 
 import com.test.api.api.config.properties.SwaggerProperties;
 import com.test.api.api.myinterceptor.CommonInterceptor;
+import com.test.api.api.myinterceptor.PermissionVerificationInterceptor;
 import com.test.api.api.myinterceptor.RedisSessionInterceptor;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,9 @@ public class SwaggerConfig implements WebMvcConfigurer {
 
     @Autowired
     private CommonInterceptor commonInterceptor;
+
+    @Autowired
+    private PermissionVerificationInterceptor permissionVerificationInterceptor;
 
     public SwaggerConfig(SwaggerProperties swaggerProperties) {
         this.swaggerProperties = swaggerProperties;
@@ -104,11 +108,12 @@ public class SwaggerConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry){
         /**
          * 所有已api开头的访问都要进入RedisSessionInterceptor拦截器进行登录验证，并排除login接口(全路径)。
-         * 必须写成链式，分别设置的话会创建多个拦截器。
+         * 必须写成链式，分别设置的话会创建多个拦截器。拦截顺序不要修改
          * 必须写成getSessionInterceptor()，否则SessionInterceptor中的@Autowired会无效
          * http://127.0.0.1:8081/server/login
          * **/
         registry.addInterceptor(commonInterceptor).addPathPatterns("/**");// 这个拦截器拦截所有请求
+        registry.addInterceptor(permissionVerificationInterceptor).addPathPatterns("/**");// 这个拦截器拦截所有请求
         registry.addInterceptor(redisSessionInterceptor).addPathPatterns("/**")
                 .excludePathPatterns("/login")// 路径从controller开始，不要加/server
                 .excludePathPatterns("/file/uploadFile")// TODO 上传图片暂时不要拦截了,注册的时候可能会上传图片

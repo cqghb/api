@@ -1,9 +1,6 @@
 package com.test.api.api.myinterceptor;
 
-import com.alibaba.fastjson.JSON;
 import com.test.api.api.constant.CommConstant;
-import com.test.api.api.constant.MsgCodeConstant;
-import com.test.api.api.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.lang.Nullable;
@@ -15,7 +12,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 
 /**
  * @projectName api
@@ -43,16 +39,16 @@ public class CommonInterceptor implements HandlerInterceptor {
         return true;
     }
 
-    private void response(HttpServletResponse response){
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json; charset=utf-8");
-        try {
-            response.getWriter().print(JSON.toJSONString(new ResultUtil().error(MsgCodeConstant.LOING_INFO_INVALID[0],
-                    MsgCodeConstant.LOING_INFO_INVALID[1])));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void response(HttpServletResponse response){
+//        response.setCharacterEncoding("UTF-8");
+//        response.setContentType("application/json; charset=utf-8");
+//        try {
+//            response.getWriter().print(JSON.toJSONString(new ResultUtil().error(MsgCodeConstant.LOING_INFO_INVALID[0],
+//                    MsgCodeConstant.LOING_INFO_INVALID[1])));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) throws Exception {
