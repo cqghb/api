@@ -39,10 +39,25 @@ public class MenuAction {
     @Autowired
     private ITblMenuService menuService;
 
+    /**
+     * 查询指定用户的菜单，不指定就查当前登录的
+     * @return
+     */
     @ApiOperation(value = "后台管理主页面菜单树查询", notes = "主页面左侧菜单")
     @RequestMapping(value = "/queryMenu")
     public Result queryMenu(){
         MenuTree menuTree = menuService.queryUserMenuTree(null);
+        return ResultUtil.success(menuTree);
+    }
+
+    /**
+     * 查询所有菜单，结果是树结构
+     * @return
+     */
+    @ApiOperation(value = "查询所有菜单，结果是树结构", notes = "用户菜单配置右侧树")
+    @RequestMapping(value = "/queryMenuAll")
+    public Result queryMenuAll(){
+        MenuTree menuTree = menuService.queryMenuAll();
         return ResultUtil.success(menuTree);
     }
 

@@ -32,6 +32,12 @@ public interface ITblMenuService {
     MenuTree queryUserMenuTree(String userNo);
 
     /**
+     * 查询所有菜单，结果是树结构
+     * @return
+     */
+    MenuTree queryMenuAll();
+
+    /**
      * 菜单管理列表查询
      * @param pageQuery 查询条件
      * @return

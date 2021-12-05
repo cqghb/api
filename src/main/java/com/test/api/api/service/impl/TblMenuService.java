@@ -71,6 +71,20 @@ public class TblMenuService extends CommonService implements ITblMenuService {
     }
 
     @Override
+    public MenuTree queryMenuAll() {
+        MenuTree menuTree = new MenuTree();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put(CommConstant.DEL_TAG, DelTagEnum.DEL_TAG_2.getCode());
+        List<TblMenu> allMenuList = menuDao.queryList(jsonObject);
+        List<TblMenu> rootTree = this.menuFormatTree(allMenuList);
+        menuTree.setRootTree(rootTree);
+        // 查询默认选中的菜单
+        List<String> defaultSelect = this.getDefaultSelectMenu(allMenuList);
+        menuTree.setDefaultSelectList(defaultSelect);
+        return menuTree;
+    }
+
+    @Override
     public PageResult queryMenuList(PageRequest pageQuery) {
         // parentList 只有根节点数据
         PageInfo<TblMenu> pageInfo = (PageInfo<TblMenu>) getPageInfo(menuDao, CommConstant.QUERY_LIST, pageQuery);
