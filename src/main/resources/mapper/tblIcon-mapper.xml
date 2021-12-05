@@ -10,9 +10,11 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, `name`, english_name, `index`, create_user, create_time, update_user, update_time
+    id, `name`, english_name, `index`, create_user, create_time, update_user, update_time, del_tag, remark
   </sql>
   <select id="selectByPKDelTag" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -35,44 +37,56 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblIcon" useGeneratedKeys="true">
     insert into tbl_icon (`name`, english_name, `index`, 
-      create_user, create_time)
+      create_user, create_time, del_tag, remark)
     values (#{name,jdbcType=VARCHAR}, #{englishName,jdbcType=VARCHAR}, #{index,jdbcType=INTEGER}, 
-      #{createUser,jdbcType=VARCHAR}, sysdate())
+      #{createUser,jdbcType=VARCHAR}, sysdate(), #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.test.api.api.bean.TblIcon">
     insert into tbl_icon
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null and id !=''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
         id,
       </if>
-      <if test="name != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
         `name`,
       </if>
-      <if test="englishName != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(englishName)">
         english_name,
       </if>
-      <if test="index != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(index)">
         `index`,
       </if>
-      <if test="createUser != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        del_tag,
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+        remark,
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(createUser)">
         create_user,
       </if>
         create_time
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null and id != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="englishName != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(englishName)">
         #{englishName,jdbcType=VARCHAR},
       </if>
-      <if test="index != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(index)">
         #{index,jdbcType=INTEGER},
       </if>
-      <if test="createUser != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(createUser)">
         #{createUser,jdbcType=VARCHAR},
       </if>
       sysdate()
@@ -82,17 +96,23 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.test.api.api.bean.TblIcon">
     update tbl_icon
     <set>
-      <if test="name != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
         `name` = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="englishName != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(englishName)">
         english_name = #{englishName,jdbcType=VARCHAR},
       </if>
-      <if test="index != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(index)">
         `index` = #{index,jdbcType=INTEGER},
       </if>
-      <if test="updateUser != null">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(updateUser)">
         update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        del_tag = #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
         update_time = sysdate()
     </set>
@@ -104,6 +124,8 @@
       english_name = #{englishName,jdbcType=VARCHAR},
       `index` = #{index,jdbcType=INTEGER},
       update_user = #{updateUser,jdbcType=VARCHAR},
+      del_tag = #{delTag,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
       update_time = sysdate()
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -113,13 +135,13 @@
     <include refid="Base_Column_List" />
     from tbl_icon
     <where>
-      <if test="id != null and id != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
         and id = #{id,jdbcType=VARCHAR}
       </if>
-      <if test="name != null and name != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
         and `name` = #{name,jdbcType=VARCHAR}
       </if>
-      <if test="englishName != null and englishName != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(englishName)">
         and english_name = #{englishName,jdbcType=VARCHAR}
       </if>
     </where>
