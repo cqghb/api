@@ -1,14 +1,16 @@
 package com.test.api.api.service.impl;
 
 import com.test.api.api.bean.TblIcon;
-import com.test.api.api.bean.TblUser;
 import com.test.api.api.constant.CommConstant;
 import com.test.api.api.dao.TblIconDao;
+import com.test.api.api.dto.iconmanager.TblIconAddDto;
+import com.test.api.api.dto.iconmanager.TblIconUpdateDto;
 import com.test.api.api.service.ITblIconService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,12 +43,12 @@ public class TblIconService extends CommonService implements ITblIconService {
     }
 
     @Override
-    public int insertSelective(TblIcon record) {
-        TblUser loginUser = getLoginUser();
-        String loginUserId = loginUser.getId();
-        record.setId(StringUtil.uuid());
-        record.setCreateUser(loginUserId);
-        return tblIconDao.insertSelective(record);
+    public int insertSelective(TblIconAddDto record) {
+        TblIcon tblIcon = new TblIcon();
+        BeanUtils.copyProperties(record, tblIcon);
+        tblIcon.setId(StringUtil.uuid());
+        setObjectInsertInfo(tblIcon, null);
+        return tblIconDao.insertSelective(tblIcon);
     }
 
     @Override
@@ -55,8 +57,11 @@ public class TblIconService extends CommonService implements ITblIconService {
     }
 
     @Override
-    public int updateByPrimaryKeySelective(TblIcon record) {
-        return tblIconDao.updateByPrimaryKeySelective(record);
+    public int updateByPrimaryKeySelective(TblIconUpdateDto record) {
+        TblIcon icon = getInfo(tblIconDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        BeanUtils.copyProperties(record, icon);
+        setObjectUpdateInfo(icon, null);
+        return tblIconDao.updateByPrimaryKeySelective(icon);
     }
 
     @Override

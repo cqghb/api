@@ -139,7 +139,7 @@
         and id = #{id,jdbcType=VARCHAR}
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
-        and `name` = #{name,jdbcType=VARCHAR}
+        and `name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(englishName)">
         and english_name = #{englishName,jdbcType=VARCHAR}

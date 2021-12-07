@@ -1,6 +1,8 @@
 package com.test.api.api.service;
 
 import com.test.api.api.bean.TblIcon;
+import com.test.api.api.dto.iconmanager.TblIconAddDto;
+import com.test.api.api.dto.iconmanager.TblIconUpdateDto;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 
@@ -22,11 +24,11 @@ public interface ITblIconService {
 
     int insert(TblIcon record);
 
-    int insertSelective(TblIcon record);
+    int insertSelective(TblIconAddDto record);
 
     TblIcon selectByPrimaryKey(String id);
 
-    int updateByPrimaryKeySelective(TblIcon record);
+    int updateByPrimaryKeySelective(TblIconUpdateDto record);
 
     int updateByPrimaryKey(TblIcon record);
 

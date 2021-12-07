@@ -2,6 +2,8 @@ package com.test.api.api.action;
 
 import com.test.api.api.bean.TblIcon;
 import com.test.api.api.config.Result;
+import com.test.api.api.dto.iconmanager.TblIconAddDto;
+import com.test.api.api.dto.iconmanager.TblIconUpdateDto;
 import com.test.api.api.service.ITblIconService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.page.PageRequest;
@@ -57,8 +59,16 @@ public class IconController {
     @PostMapping(value="/insertIcon")
     @ApiImplicitParam(name = "icon", value = "新增的图标参数")
     @ApiOperation(value = "添加图标", notes = "添加图标")
-    public Result insertUser(@RequestBody @Validated TblIcon icon) {
+    public Result insertIcon(@RequestBody @Validated TblIconAddDto icon) {
         int num = iconService.insertSelective(icon);
+        return ResultUtil.success(num);
+    }
+
+    @PostMapping(value="/updateIcon")
+    @ApiImplicitParam(name = "icon", value = "维护的图标参数")
+    @ApiOperation(value = "修改图标", notes = "修改图标")
+    public Result updateIcon(@RequestBody @Validated TblIconUpdateDto icon) {
+        int num = iconService.updateByPrimaryKeySelective(icon);
         return ResultUtil.success(num);
     }
 }
