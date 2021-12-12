@@ -170,6 +170,9 @@
             <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(childrenFlag)">
                 children_flag = #{childrenFlag,jdbcType=VARCHAR},
             </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(uri)">
+                uri = #{uri,jdbcType=VARCHAR},
+            </if>
             update_time = sysdate()
         </set>
         where id = #{id,jdbcType=VARCHAR}

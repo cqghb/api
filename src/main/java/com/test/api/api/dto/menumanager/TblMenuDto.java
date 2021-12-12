@@ -1,5 +1,7 @@
 package com.test.api.api.dto.menumanager;
 
+import com.alibaba.fastjson.JSONObject;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -32,15 +34,25 @@ public class TblMenuDto implements java.io.Serializable {
     // 是否默认选中
     private String defaultSelect;
 
+    // 请求地址
+    private String uri;
+    // 是否是子菜单[1:是; 2:否;]
+    private String childrenFlag;
+
     public TblMenuDto() {
     }
 
-    public TblMenuDto(@NotNull(message = "ID不能为空") @NotBlank(message = "ID姓名不能为空") String id, @NotNull(message = "菜单名称不能为空") @NotBlank(message = "菜单名称不能为空") String name, String icon, @NotNull(message = "父节点ID不能为空") @NotBlank(message = "父节点ID不能为空") String parentNode, String defaultSelect) {
+    public TblMenuDto(@NotNull(message = "ID不能为空") @NotBlank(message = "ID姓名不能为空") String id, @NotNull(message =
+            "菜单名称不能为空") @NotBlank(message = "菜单名称不能为空") String name, String icon,
+                      @NotNull(message = "父节点ID不能为空") @NotBlank(message = "父节点ID不能为空") String parentNode,
+                      String defaultSelect, String uri, String childrenFlag) {
         this.id = id;
         this.name = name;
         this.icon = icon;
         this.parentNode = parentNode;
         this.defaultSelect = defaultSelect;
+        this.uri = uri;
+        this.childrenFlag = childrenFlag;
     }
 
     public String getId() {
@@ -83,14 +95,24 @@ public class TblMenuDto implements java.io.Serializable {
         this.defaultSelect = defaultSelect;
     }
 
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public String getChildrenFlag() {
+        return childrenFlag;
+    }
+
+    public void setChildrenFlag(String childrenFlag) {
+        this.childrenFlag = childrenFlag;
+    }
+
     @Override
     public String toString() {
-        return "TblMenu{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", icon='" + icon + '\'' +
-                ", parentNode='" + parentNode + '\'' +
-                ", defaultSelect='" + defaultSelect + '\'' +
-                '}';
+        return "TblMenu{" + JSONObject.toJSONString(this) +"}";
     }
 }
