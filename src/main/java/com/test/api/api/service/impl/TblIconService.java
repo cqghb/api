@@ -2,6 +2,7 @@ package com.test.api.api.service.impl;
 
 import com.test.api.api.bean.TblIcon;
 import com.test.api.api.constant.CommConstant;
+import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblIconDao;
 import com.test.api.api.dto.iconmanager.TblIconAddDto;
 import com.test.api.api.dto.iconmanager.TblIconUpdateDto;
@@ -77,5 +78,13 @@ public class TblIconService extends CommonService implements ITblIconService {
     @Override
     public List<TblIcon> queryAll() {
         return tblIconDao.queryList(null);
+    }
+
+    @Override
+    public int updateDelTag(String id) {
+        TblIcon icon = this.selectByPrimaryKey(id);
+        icon.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
+        setObjectUpdateInfo(icon, null);
+        return tblIconDao.updateDelTag(icon);
     }
 }

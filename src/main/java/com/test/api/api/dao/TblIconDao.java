@@ -32,4 +32,11 @@ public interface TblIconDao {
      * @return
      */
     List<TblIcon> queryList(JSONObject params);
+
+    /**
+     * 修改图报表删除标志
+     * @param record 图标对象
+     * @return
+     */
+    int updateDelTag(TblIcon record);
 }

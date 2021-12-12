@@ -1,7 +1,7 @@
 package com.test.api.api.action;
 
 import com.test.api.api.config.Result;
-import com.test.api.api.dto.DeleteDataDto;
+import com.test.api.api.dto.CommonIdDto;
 import com.test.api.api.dto.menudataoperaterelationmanager.MenuDataOperateRelationSettingDto;
 import com.test.api.api.service.ITblMenuDataOperateRelationService;
 import com.test.api.api.utils.ResultUtil;
@@ -56,7 +56,7 @@ public class MenuDataOperateRelationController {
      */
     @ApiOperation(value = "根据菜单ID查询出所有数据操作权限", notes = "根据菜单ID查询出所有数据操作权限")
     @PostMapping(value = "/queryMenuDataOperation")
-    public Result queryMenuDataOperation(@RequestBody DeleteDataDto dto) {
+    public Result queryMenuDataOperation(@RequestBody CommonIdDto dto) {
         List<CodeValueVO> dataOperationList = menuDataOperateRelationService.queryMenuDataOperation(dto.getId());
         return ResultUtil.success(dataOperationList);
     }

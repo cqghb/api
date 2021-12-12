@@ -146,4 +146,22 @@
       </if>
     </where>
   </select>
+
+  <update id="updateDelTag" parameterType="com.test.api.api.bean.TblIcon">
+    update tbl_icon
+    <set>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        del_tag = #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(updateUser)">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      update_time = sysdate()
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
 </mapper>

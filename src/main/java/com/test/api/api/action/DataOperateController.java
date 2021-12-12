@@ -3,7 +3,7 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblDataOperate;
 import com.test.api.api.config.Result;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
-import com.test.api.api.dto.DeleteDataDto;
+import com.test.api.api.dto.CommonIdDto;
 import com.test.api.api.dto.rolemanager.TblDataOperateInsertDto;
 import com.test.api.api.dto.rolemanager.TblDataOperateUpdateDto;
 import com.test.api.api.service.ITblDataOperateService;
@@ -74,7 +74,7 @@ public class DataOperateController {
     @ApiImplicitParam(name = "id", value = "角色主键")
     @ApiOperation(value = "通过ID查询数据操作信息", notes = "通过ID查询数据操作信息")
     @PostMapping(value = "/queryById")
-    public Result queryById(@RequestBody @Validated DeleteDataDto ddDto) {
+    public Result queryById(@RequestBody @Validated CommonIdDto ddDto) {
         TblDataOperate dataOperate = dataOperateService.selectByPKDelTag(ddDto.getId(), DelTagEnum.DEL_TAG_2.getCode());
         return ResultUtil.success(dataOperate);
     }
@@ -102,7 +102,7 @@ public class DataOperateController {
     @PostMapping(value = "/updateDelTag")
     @ApiImplicitParam(name = "ddDto", value = "逻辑删除的数据操参数")
     @ApiOperation(value = "逻辑删除数据操", notes = "逻辑删除数据操")
-    public Result updateDelTag(@RequestBody @Validated DeleteDataDto ddDto) {
+    public Result updateDelTag(@RequestBody @Validated CommonIdDto ddDto) {
         TblDataOperate dop = new TblDataOperate();
         BeanUtils.copyProperties(ddDto, dop);
         int num = dataOperateService.updateDelTag(dop);

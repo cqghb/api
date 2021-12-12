@@ -2,6 +2,7 @@ package com.test.api.api.action;
 
 import com.test.api.api.bean.TblIcon;
 import com.test.api.api.config.Result;
+import com.test.api.api.dto.CommonIdDto;
 import com.test.api.api.dto.iconmanager.TblIconAddDto;
 import com.test.api.api.dto.iconmanager.TblIconUpdateDto;
 import com.test.api.api.service.ITblIconService;
@@ -69,6 +70,22 @@ public class IconController {
     @ApiOperation(value = "修改图标", notes = "修改图标")
     public Result updateIcon(@RequestBody @Validated TblIconUpdateDto icon) {
         int num = iconService.updateByPrimaryKeySelective(icon);
+        return ResultUtil.success(num);
+    }
+
+    @PostMapping(value="/queryIconById")
+    @ApiImplicitParam(name = "icon", value = "图标ID")
+    @ApiOperation(value = "根据ID查询图标详情", notes = "根据ID查询图标详情")
+    public Result queryIconById(@RequestBody @Validated CommonIdDto icon) {
+        TblIcon tblIcon = iconService.selectByPrimaryKey(icon.getId());
+        return ResultUtil.success(tblIcon);
+    }
+
+    @PostMapping(value="/updateDelTag")
+    @ApiImplicitParam(name = "icon", value = "图标ID")
+    @ApiOperation(value = "根据ID查询图标详情", notes = "根据ID查询图标详情")
+    public Result updateDelTag(@RequestBody @Validated CommonIdDto icon) {
+        int num = iconService.updateDelTag(icon.getId());
         return ResultUtil.success(num);
     }
 }

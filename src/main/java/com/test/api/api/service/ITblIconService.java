@@ -44,4 +44,11 @@ public interface ITblIconService {
      * @return
      */
     List<TblIcon> queryAll();
+
+    /**
+     * 修改图报表删除标志
+     * @param id 图标ID
+     * @return
+     */
+    int updateDelTag(String id);
 }

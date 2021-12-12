@@ -3,7 +3,7 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblRole;
 import com.test.api.api.config.Result;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
-import com.test.api.api.dto.DeleteDataDto;
+import com.test.api.api.dto.CommonIdDto;
 import com.test.api.api.dto.rolemanager.TblRoleDto;
 import com.test.api.api.service.ITblRoleService;
 import com.test.api.api.utils.ResultUtil;
@@ -74,7 +74,7 @@ public class RoleController {
     @ApiImplicitParam(name = "id", value = "角色主键")
     @ApiOperation(value = "通过ID查询角色信息", notes = "通过ID查询角色信息")
     @PostMapping(value = "/queryById")
-    public Result queryById(@RequestBody @Validated DeleteDataDto dto) {
+    public Result queryById(@RequestBody @Validated CommonIdDto dto) {
         TblRole Role = roleService.selectByPKDelTag(dto.getId(), DelTagEnum.DEL_TAG_2.getCode());
         return ResultUtil.success(Role);
     }
@@ -104,7 +104,7 @@ public class RoleController {
     @PostMapping(value = "/updateRoleDelTag")
     @ApiImplicitParam(name = "roleDto", value = "逻辑删除角色的参数")
     @ApiOperation(value = "逻辑删除角色", notes = "逻辑删除角色")
-    public Result updateRoleDelTag(@RequestBody @Validated DeleteDataDto roleDto) {
+    public Result updateRoleDelTag(@RequestBody @Validated CommonIdDto roleDto) {
         TblRole role = new TblRole();
         BeanUtils.copyProperties(roleDto, role);
         int num = roleService.updateRoleDelTag(role);
