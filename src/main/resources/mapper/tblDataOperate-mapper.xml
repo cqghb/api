@@ -146,6 +146,9 @@
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(subgroup)">
         and subgroup = #{subgroup,jdbcType=VARCHAR}
       </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(operateAddr)">
+        and operate_addr like concat('%', #{operateAddr,jdbcType=VARCHAR}, '%')
+      </if>
     </where>
 
   </select>
