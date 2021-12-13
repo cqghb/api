@@ -32,7 +32,7 @@
                 and t.id = #{id, jdbcType=VARCHAR}
             </if>
             <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
-                and t.name = concat('%', #{name,jdbcType=VARCHAR}, '%')
+                and t.name like concat('%', #{name,jdbcType=VARCHAR}, '%')
             </if>
             <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(parentNode)">
                 and t.parent_node = #{parentNode, jdbcType=VARCHAR}
