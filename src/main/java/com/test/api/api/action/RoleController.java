@@ -38,7 +38,7 @@ public class RoleController {
     private ITblRoleService roleService;
 
     /**
-     * 用户列表查询
+     * 角色列表查询
      *
      * @param pageQuery
      * @return
