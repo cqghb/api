@@ -1,15 +1,17 @@
 package com.test.api.api.action;
 
-import com.test.api.api.bean.TblSpuBrand;
+import com.test.api.api.bean.TblSpu;
 import com.test.api.api.config.Result;
 import com.test.api.api.dto.CommonIdDto;
-import com.test.api.api.service.ITblSpuBrandService;
+import com.test.api.api.service.ITblSpuService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,31 +22,34 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @projectName api
  * @package com.test.api.api.action
- * @className SpuBrandController
- * @description 商品品牌控制器
+ * @className SpuController
+ * @description 货品控制器
  * @auther wangsheng
- * @creatTime 2021/12/14 上午12:58
+ * @creatTime 2021/12/15 下午11:38
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
 @RestController
-@Api(value = "商品品牌控制器")
-@RequestMapping("/spuBrand")
-public class SpuBrandController {
+@RequestMapping("/spu")
+@Api(value = "货品控制器")
+public class SpuController {
+
+    protected static final Logger logger = LoggerFactory.getLogger(SpuController.class);
 
     @Autowired
-    private ITblSpuBrandService spuBrandService;
+    private ITblSpuService spuService;
+
 
     /**
-     * 商品品牌列表查询
+     * 货品列表查询
      *
      * @param pageQuery
      * @return
      */
-    @ApiOperation(value = "商品品牌列表查询", notes = "商品品牌列表查询")
+    @ApiOperation(value = "货品列表查询", notes = "货品列表查询")
     @PostMapping(value = "/findPage")
     public Result findPage(@RequestBody PageRequest pageQuery) {
-        PageResult pageResult = spuBrandService.findPage(pageQuery);
+        PageResult pageResult = spuService.findPage(pageQuery);
         return ResultUtil.success(pageResult);
     }
 
@@ -57,8 +62,8 @@ public class SpuBrandController {
     @ApiOperation(value = "通过ID查询数据操作信息", notes = "通过ID查询数据操作信息")
     @PostMapping(value = "/queryById")
     public Result queryById(@RequestBody @Validated CommonIdDto ddDto) {
-        TblSpuBrand spuBrand = spuBrandService.selectByPrimaryKey(ddDto.getId());
-        return ResultUtil.success(spuBrand);
+        TblSpu spuType = spuService.selectByPrimaryKey(ddDto.getId());
+        return ResultUtil.success(spuType);
     }
 
     /**
@@ -70,9 +75,10 @@ public class SpuBrandController {
     @ApiImplicitParam(name = "ddDto", value = "逻辑删除的数据操参数")
     @ApiOperation(value = "逻辑删除数据操", notes = "逻辑删除数据操")
     public Result updateDelTag(@RequestBody @Validated CommonIdDto ddDto) {
-        TblSpuBrand spuBrand = new TblSpuBrand();
-        spuBrand.setId(ddDto.getId());
-        int num = spuBrandService.updateDelTag(spuBrand);
+        TblSpu spu = new TblSpu();
+        spu.setId(ddDto.getId());
+        int num = spuService.updateDelTag(spu);
         return ResultUtil.success(num);
     }
+
 }

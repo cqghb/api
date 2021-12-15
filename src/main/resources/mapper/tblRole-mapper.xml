@@ -114,13 +114,13 @@
     <include refid="Base_Column_List" />
     from tbl_role
     <where>
-      <if test="id != null and id != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
         and id = #{id,jdbcType=VARCHAR}
       </if>
-      <if test="name != null and name != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
         and `name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
       </if>
-      <if test="delTag != null and delTag != ''">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
         and del_tag = #{delTag,jdbcType=VARCHAR}
       </if>
     </where>

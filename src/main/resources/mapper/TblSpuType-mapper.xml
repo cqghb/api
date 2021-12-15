@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.api.api.dao.TblSpuTypeDao">
+  <resultMap id="BaseResultMap" type="com.test.api.api.bean.TblSpuType">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, code, create_user, create_time, update_user, update_time, del_tag, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_spu_type
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tbl_spu_type
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblSpuType" useGeneratedKeys="true">
+    insert into tbl_spu_type (`name`, code, create_user, 
+      create_time, del_tag, remark)
+    values (#{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
+      sysdate(), #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.api.api.bean.TblSpuType">
+    insert into tbl_spu_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
+        id,
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
+        `name`,
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(code)">
+        code,
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(createUser)">
+        create_user,
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        del_tag,
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+        remark,
+      </if>
+      create_time,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(code)">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(createUser)">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      sysdate()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.api.api.bean.TblSpuType">
+    update tbl_spu_type
+    <set>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(code)">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(updateUser)">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        del_tag = #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      update_time = sysdate()
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.api.api.bean.TblSpuType">
+    update tbl_spu_type
+    set `name` = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = sysdate(),
+      del_tag = #{delTag,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryList" parameterType="com.test.api.api.bean.TblSpuType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_spu_type
+    <where>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
+        and id = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(code)">
+        and code = #{code,jdbcType=VARCHAR}
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
+        and `name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        and del_tag = #{delTag,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
+  <update id="updateDelTag" parameterType="com.test.api.api.bean.TblSpuType">
+    update tbl_spu_type
+    <set>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        del_tag = #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(updateUser)">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      update_time = sysdate()
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+</mapper>
