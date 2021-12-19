@@ -35,7 +35,7 @@ public class TblSpuService extends CommonService implements ITblSpuService {
 
     @Override
     public int deleteByPrimaryKey(String id) {
-        return 0;
+        return spuDao.deleteByPrimaryKey(id);
     }
 
     @Override

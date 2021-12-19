@@ -15,9 +15,9 @@
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, `name`, group_id, type_id, addr, create_user, create_time, update_user, update_time, 
-    del_tag, remark
-  </sql>
+        id, `name`, group_id, type_id, addr, create_user, create_time, update_user, update_time,
+        del_tag, remark
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -25,17 +25,17 @@
         where id = #{id,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from tbl_specification
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
+        delete from tbl_specification
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblSpecification"
             useGeneratedKeys="true">
-    insert into tbl_specification (`name`, group_id, type_id, 
-      addr, create_user, create_time, del_tag, remark)
-    values (#{name,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, #{typeId,jdbcType=VARCHAR}, 
-      #{addr,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, sysdate(),
-      #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
-  </insert>
+        insert into tbl_specification (`name`, group_id, type_id,
+          addr, create_user, create_time, del_tag, remark)
+        values (#{name,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, #{typeId,jdbcType=VARCHAR},
+          #{addr,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, sysdate(),
+          #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+    </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblSpecification"
             useGeneratedKeys="true">
         insert into tbl_specification
@@ -117,17 +117,17 @@
         where id = #{id,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.test.api.api.bean.TblSpecification">
-    update tbl_specification
-    set `name` = #{name,jdbcType=VARCHAR},
-      group_id = #{groupId,jdbcType=VARCHAR},
-      type_id = #{typeId,jdbcType=VARCHAR},
-      addr = #{addr,jdbcType=VARCHAR},
-      update_user = #{updateUser,jdbcType=VARCHAR},
-      update_time = sysdate(),
-      del_tag = #{delTag,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
+        update tbl_specification
+        set `name` = #{name,jdbcType=VARCHAR},
+          group_id = #{groupId,jdbcType=VARCHAR},
+          type_id = #{typeId,jdbcType=VARCHAR},
+          addr = #{addr,jdbcType=VARCHAR},
+          update_user = #{updateUser,jdbcType=VARCHAR},
+          update_time = sysdate(),
+          del_tag = #{delTag,jdbcType=VARCHAR},
+          remark = #{remark,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
 
     <select id="queryList" parameterType="com.test.api.api.bean.TblSpecification" resultMap="BaseResultMap">
         select

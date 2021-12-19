@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.api.api.dao.TblSkuSpecificationOptionDao">
+  <resultMap id="BaseResultMap" type="com.test.api.api.bean.TblSkuSpecificationOption">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="sku_id" jdbcType="VARCHAR" property="skuId" />
+    <result column="spec_opti_id" jdbcType="VARCHAR" property="specOptiId" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sku_id, spec_opti_id, create_user, create_time, update_user, update_time, del_tag, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_sku_specification_option
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tbl_sku_specification_option
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblSkuSpecificationOption" useGeneratedKeys="true">
+    insert into tbl_sku_specification_option (sku_id, spec_opti_id, create_user, 
+      create_time, del_tag, remark)
+    values (#{skuId,jdbcType=VARCHAR}, #{specOptiId,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
+      sysdata(), #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblSkuSpecificationOption" useGeneratedKeys="true">
+    insert into tbl_sku_specification_option
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="skuId != null">
+        sku_id,
+      </if>
+      <if test="specOptiId != null">
+        spec_opti_id,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="delTag != null">
+        del_tag,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      create_time
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="skuId != null">
+        #{skuId,jdbcType=VARCHAR},
+      </if>
+      <if test="specOptiId != null">
+        #{specOptiId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="delTag != null">
+        #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+       sysdate()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.api.api.bean.TblSkuSpecificationOption">
+    update tbl_sku_specification_option
+    <set>
+      <if test="skuId != null">
+        sku_id = #{skuId,jdbcType=VARCHAR},
+      </if>
+      <if test="specOptiId != null">
+        spec_opti_id = #{specOptiId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="delTag != null">
+        del_tag = #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      update_time = sysdate()
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.api.api.bean.TblSkuSpecificationOption">
+    update tbl_sku_specification_option
+    set sku_id = #{skuId,jdbcType=VARCHAR},
+      spec_opti_id = #{specOptiId,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = sysdate(),
+      del_tag = #{delTag,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryList" parameterType="com.test.api.api.bean.TblSkuSpecificationOption" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from tbl_sku_specification_option
+    <where>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
+        and id = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
+        and `name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        and del_tag = #{delTag,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
+  <update id="updateDelTag" parameterType="com.test.api.api.bean.TblSkuSpecificationOption">
+    update tbl_sku_specification_option
+    <set>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        del_tag = #{delTag,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(updateUser)">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      update_time = sysdate()
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
