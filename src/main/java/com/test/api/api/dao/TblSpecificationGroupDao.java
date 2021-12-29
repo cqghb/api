@@ -2,6 +2,7 @@ package com.test.api.api.dao;
 
 import com.alibaba.fastjson.JSONObject;
 import com.test.api.api.bean.TblSpecificationGroup;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,13 +13,13 @@ import java.util.List;
 @Repository
 public interface TblSpecificationGroupDao {
 
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(@Param("id") String id);
 
     int insert(TblSpecificationGroup record);
 
     int insertSelective(TblSpecificationGroup record);
 
-    TblSpecificationGroup selectByPrimaryKey(String id);
+    TblSpecificationGroup selectByPrimaryKey(@Param("id") String id);
 
     int updateByPrimaryKeySelective(TblSpecificationGroup record);
 
