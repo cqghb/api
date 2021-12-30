@@ -3,6 +3,8 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblSpecificationGroup;
 import com.test.api.api.config.Result;
 import com.test.api.api.dto.CommonIdDto;
+import com.test.api.api.dto.commodity.specificationgroup.TblSpecificationGroupAddDto;
+import com.test.api.api.dto.commodity.specificationgroup.TblSpecificationGroupUpdateDto;
 import com.test.api.api.service.ITblSpecificationGroupService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.page.PageRequest;
@@ -10,6 +12,7 @@ import com.test.api.api.vo.page.PageResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,6 +52,22 @@ public class SpecificationGroupController {
     }
 
     /**
+     * 添加产品规格分组
+     *
+     * @param specificationGroupAddDto
+     * @return
+     */
+    @PostMapping(value = "/insertSpecificationGroup")
+    @ApiImplicitParam(name = "specificationGroupAddDto", value = "产品规格分组")
+    @ApiOperation(value = "添加产品规格分组", notes = "添加产品规格分组")
+    public Result insertSpecificationGroup(@RequestBody @Validated TblSpecificationGroupAddDto specificationGroupAddDto) {
+        TblSpecificationGroup specificationGroup = new TblSpecificationGroup();
+        BeanUtils.copyProperties(specificationGroupAddDto, specificationGroup);
+        int num = specificationGroupService.insertSelective(specificationGroup);
+        return ResultUtil.success(num);
+    }
+
+    /**
      * 通过主键查询
      * @param ddDto
      * @return
@@ -59,6 +78,22 @@ public class SpecificationGroupController {
     public Result queryById(@RequestBody @Validated CommonIdDto ddDto) {
         TblSpecificationGroup spuBrand = specificationGroupService.selectByPrimaryKey(ddDto.getId());
         return ResultUtil.success(spuBrand);
+    }
+
+    /**
+     * 修改
+     *
+     * @param specificationGroupUpdateDto
+     * @return
+     */
+    @PostMapping(value = "/updateSpecificationGroup")
+    @ApiImplicitParam(name = "specificationGroupUpdateDto", value = "产品规格分组")
+    @ApiOperation(value = "修改", notes = "修改")
+    public Result updateSpecificationGroup(@RequestBody @Validated TblSpecificationGroupUpdateDto specificationGroupUpdateDto) {
+        TblSpecificationGroup specificationGroup = new TblSpecificationGroup();
+        BeanUtils.copyProperties(specificationGroupUpdateDto, specificationGroup);
+        int num = specificationGroupService.updateByPrimaryKeySelective(specificationGroup);
+        return ResultUtil.success(num);
     }
 
     /**
