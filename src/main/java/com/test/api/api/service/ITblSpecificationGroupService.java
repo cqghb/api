@@ -42,4 +42,10 @@ public interface ITblSpecificationGroupService {
      * @return
      */
     int updateDelTag(TblSpecificationGroup record);
+
+    /**
+     * 检查产品规格分支是否重名
+     * @param name 产品规格分支名称
+     */
+    void checkSGName(String name);
 }

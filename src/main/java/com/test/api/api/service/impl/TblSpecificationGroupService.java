@@ -50,10 +50,7 @@ public class TblSpecificationGroupService extends CommonService implements ITblS
     @Override
     public int insertSelective(TblSpecificationGroup record) {
         /* 分组名称不能重复 */
-        List<TblSpecificationGroup> list = specificationGroupDao.queryByName(record.getName(), DelTagEnum.DEL_TAG_2.getCode());
-        if(!StringUtil.objIsEmpty(list)){
-            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPECIFICATION_GROUP_NAME_ERROR);
-        }
+        this.checkSGName(record.getName());
         record.setId(StringUtil.uuid());
         setObjectInsertInfo(record, null);
         return specificationGroupDao.insertSelective(record);
@@ -66,6 +63,7 @@ public class TblSpecificationGroupService extends CommonService implements ITblS
 
     @Override
     public int updateByPrimaryKeySelective(TblSpecificationGroup record) {
+        this.checkSGName(record.getName());
         TblSpecificationGroup specificationGroup = getInfo(specificationGroupDao, CommConstant.SELECT_BY_PRIMARY_KEY,
                 record.getId());
         BeanUtils.copyProperties(record, specificationGroup);
@@ -94,4 +92,14 @@ public class TblSpecificationGroupService extends CommonService implements ITblS
         setObjectUpdateInfo(record, null);
         return specificationGroupDao.updateDelTag(record);
     }
+
+    @Override
+    public void checkSGName(String name) {
+        List<TblSpecificationGroup> list = specificationGroupDao.queryByName(name, DelTagEnum.DEL_TAG_2.getCode());
+        if(!StringUtil.objIsEmpty(list)){
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPECIFICATION_GROUP_NAME_ERROR);
+        }
+    }
+
+
 }
