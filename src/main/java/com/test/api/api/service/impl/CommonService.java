@@ -88,7 +88,10 @@ public class CommonService implements ICommonService {
         int pageSize = pageRequest.getPageSize();
         PageHelper.startPage(currentPage, pageSize);
         JSONObject jsonObject = (JSONObject) JSON.toJSON(pageRequest.getParams());
-        jsonObject.put(CommConstant.DEL_TAG, DelTagEnum.DEL_TAG_2.getCode());
+        String delTag = jsonObject.getString(CommConstant.DEL_TAG);
+        if(StringUtil.objIsEmpty(delTag)){
+            jsonObject.put(CommConstant.DEL_TAG, DelTagEnum.DEL_TAG_2.getCode());
+        }
         List<?> dataList = new ArrayList<>();
         try {
             Class clazz = dao.getClass();

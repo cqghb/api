@@ -40,4 +40,12 @@ public interface TblSpecificationGroupDao {
      * @return
      */
     int updateDelTag(TblSpecificationGroup record);
+
+    /**
+     * 通过分组名称查询
+     * @param name 分组名称
+     * @param delTag 删除标记
+     * @return
+     */
+    List<TblSpecificationGroup> queryByName(@Param("name") String name, @Param("delTag") String delTag);
 }

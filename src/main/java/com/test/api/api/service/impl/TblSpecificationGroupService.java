@@ -1,7 +1,10 @@
 package com.test.api.api.service.impl;
 
 import com.test.api.api.bean.TblSpecificationGroup;
+import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
+import com.test.api.api.constant.ErrorMsgConstant;
+import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblSpecificationGroupDao;
 import com.test.api.api.service.ITblSpecificationGroupService;
@@ -12,6 +15,8 @@ import com.test.api.api.vo.page.PageResult;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @projectName api
@@ -44,6 +49,11 @@ public class TblSpecificationGroupService extends CommonService implements ITblS
 
     @Override
     public int insertSelective(TblSpecificationGroup record) {
+        /* 分组名称不能重复 */
+        List<TblSpecificationGroup> list = specificationGroupDao.queryByName(record.getName(), DelTagEnum.DEL_TAG_2.getCode());
+        if(!StringUtil.objIsEmpty(list)){
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPECIFICATION_GROUP_NAME_ERROR);
+        }
         record.setId(StringUtil.uuid());
         setObjectInsertInfo(record, null);
         return specificationGroupDao.insertSelective(record);

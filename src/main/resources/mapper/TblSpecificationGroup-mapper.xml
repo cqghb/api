@@ -127,4 +127,18 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="queryByName" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_specification_group
+    <where>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
+        and `name` = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        and del_tag = #{delTag,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
 </mapper>
