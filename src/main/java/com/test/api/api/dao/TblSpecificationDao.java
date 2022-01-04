@@ -2,6 +2,7 @@ package com.test.api.api.dao;
 
 import com.alibaba.fastjson.JSONObject;
 import com.test.api.api.bean.TblSpecification;
+import com.test.api.api.vo.commodity.specification.SpecificationVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -40,4 +41,11 @@ public interface TblSpecificationDao {
      * @return
      */
     int updateDelTag(TblSpecification record);
+
+    /**
+     * 查询产品规格详情
+     * @param id 产品规格主键
+     * @return
+     */
+    SpecificationVO queryDetail(@Param("id") String id);
 }

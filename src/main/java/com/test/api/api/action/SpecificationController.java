@@ -6,6 +6,7 @@ import com.test.api.api.dto.CommonIdDto;
 import com.test.api.api.dto.commodity.specification.TblSpecificationAddDto;
 import com.test.api.api.service.ITblSpecificationService;
 import com.test.api.api.utils.ResultUtil;
+import com.test.api.api.vo.commodity.specification.SpecificationVO;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import io.swagger.annotations.Api;
@@ -75,12 +76,25 @@ public class SpecificationController {
      * @param ddDto
      * @return
      */
-    @ApiImplicitParam(name = "id", value = "角色主键")
+    @ApiImplicitParam(name = "id", value = "主键")
     @ApiOperation(value = "通过ID查询数据操作信息", notes = "通过ID查询数据操作信息")
     @PostMapping(value = "/queryById")
     public Result queryById(@RequestBody @Validated CommonIdDto ddDto) {
-        TblSpecification spuBrand = specificationService.selectByPrimaryKey(ddDto.getId());
-        return ResultUtil.success(spuBrand);
+        TblSpecification specification = specificationService.selectByPrimaryKey(ddDto.getId());
+        return ResultUtil.success(specification);
+    }
+
+    /**
+     * 通过主键查询
+     * @param ddDto
+     * @return
+     */
+    @ApiImplicitParam(name = "id", value = "主键")
+    @ApiOperation(value = "通过ID查询数据操作信息", notes = "通过ID查询数据操作信息")
+    @PostMapping(value = "/queryDetail")
+    public Result queryDetail(@RequestBody @Validated CommonIdDto ddDto) {
+        SpecificationVO specification = specificationService.queryDetail(ddDto.getId());
+        return ResultUtil.success(specification);
     }
 
     /**

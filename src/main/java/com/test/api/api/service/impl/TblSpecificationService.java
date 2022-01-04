@@ -1,7 +1,10 @@
 package com.test.api.api.service.impl;
 
 import com.test.api.api.bean.TblSpecification;
+import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
+import com.test.api.api.constant.ErrorMsgConstant;
+import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblSpecificationDao;
 import com.test.api.api.service.ITblSpecificationGroupService;
@@ -9,6 +12,7 @@ import com.test.api.api.service.ITblSpecificationService;
 import com.test.api.api.service.ITblSpuTypeService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
+import com.test.api.api.vo.commodity.specification.SpecificationVO;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import org.slf4j.Logger;
@@ -93,5 +97,13 @@ public class TblSpecificationService extends CommonService implements ITblSpecif
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
         setObjectUpdateInfo(record, null);
         return specificationDao.updateDelTag(record);
+    }
+
+    @Override
+    public SpecificationVO queryDetail(String id) {
+        if(StringUtil.objIsEmpty(id)){
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.ID_IS_NOT_NULL);
+        }
+        return specificationDao.queryDetail(id);
     }
 }

@@ -26,4 +26,5 @@ public class ErrorMsgConstant {
     public static final String SPECIFICATION_GROUP_INVALID = "货品规格分组已失效";
     public static final String SPU_TYPE_NOT_FIND = "货品类型不存在";
     public static final String SPU_TYPE_INVALID = "货品类型已失效";
+    public static final String ID_IS_NOT_NULL = "主键不能为空";
 }

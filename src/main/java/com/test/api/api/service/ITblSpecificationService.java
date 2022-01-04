@@ -1,6 +1,7 @@
 package com.test.api.api.service;
 
 import com.test.api.api.bean.TblSpecification;
+import com.test.api.api.vo.commodity.specification.SpecificationVO;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 
@@ -42,4 +43,11 @@ public interface ITblSpecificationService {
      * @return
      */
     int updateDelTag(TblSpecification record);
+
+    /**
+     * 查询产品规格详情
+     * @param id 产品规格主键
+     * @return
+     */
+    SpecificationVO queryDetail(String id);
 }
