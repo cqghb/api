@@ -36,10 +36,10 @@
           #{addr,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, sysdate(),
           #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblSpecification"
-            useGeneratedKeys="true">
+    <insert id="insertSelective" parameterType="com.test.api.api.bean.TblSpecification">
         insert into tbl_specification
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
             <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
                 `name`,
             </if>
@@ -64,6 +64,7 @@
             create_time
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{id,jdbcType=VARCHAR},
             <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
                 #{name,jdbcType=VARCHAR},
             </if>

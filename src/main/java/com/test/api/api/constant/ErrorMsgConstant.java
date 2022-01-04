@@ -21,5 +21,9 @@ public class ErrorMsgConstant {
     public static final String MENU_DATA_OPERATE_RELATIO_ERROR_2 = "菜单不存在，请刷新菜单列表重新选择菜单设置权限";
     public static final String ROLEID_ERROR_2 = "角色不存在，请刷新页面重新设置";
     public static final String USERID_ROLEID_RELATION_ERROR_1 = "用户不存在，请刷新页面重新设置";
-    public static final String SPECIFICATION_GROUP_NAME_ERROR = "产品规格分组名称不能重复";
+    public static final String SPECIFICATION_GROUP_NAME_ERROR = "商品规格分组名称不能重复";
+    public static final String SPECIFICATION_GROUP_NOT_FIND = "货品规格分组不存在";
+    public static final String SPECIFICATION_GROUP_INVALID = "货品规格分组已失效";
+    public static final String SPU_TYPE_NOT_FIND = "货品类型不存在";
+    public static final String SPU_TYPE_INVALID = "货品类型已失效";
 }

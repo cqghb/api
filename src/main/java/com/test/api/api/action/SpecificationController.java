@@ -3,6 +3,7 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblSpecification;
 import com.test.api.api.config.Result;
 import com.test.api.api.dto.CommonIdDto;
+import com.test.api.api.dto.commodity.specification.TblSpecificationAddDto;
 import com.test.api.api.service.ITblSpecificationService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.page.PageRequest;
@@ -12,6 +13,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,6 +52,22 @@ public class SpecificationController {
     public Result findPage(@RequestBody PageRequest pageQuery) {
         PageResult pageResult = specificationService.findPage(pageQuery);
         return ResultUtil.success(pageResult);
+    }
+
+    /**
+     * 添加产品规格
+     *
+     * @param specificationAddDto
+     * @return
+     */
+    @PostMapping(value = "/insertSpecification")
+    @ApiImplicitParam(name = "specificationGroupDto", value = "产品规格")
+    @ApiOperation(value = "添加产品规格", notes = "添加产品规格")
+    public Result insertSpecificationGroup(@RequestBody @Validated TblSpecificationAddDto specificationAddDto) {
+        TblSpecification specification = new TblSpecification();
+        BeanUtils.copyProperties(specificationAddDto, specification);
+        int num = specificationService.insertSelective(specification);
+        return ResultUtil.success(num);
     }
 
     /**

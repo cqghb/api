@@ -101,5 +101,22 @@ public class TblSpecificationGroupService extends CommonService implements ITblS
         }
     }
 
+    @Override
+    public TblSpecificationGroup checkSpecificationGroup(String id) {
+        TblSpecificationGroup specificationGroup = this.selectByPrimaryKey(id);
+        if (StringUtil.objIsEmpty(specificationGroup)) {
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPECIFICATION_GROUP_NOT_FIND);
+        }
+        return specificationGroup;
+    }
+
+    @Override
+    public void checkDelTag(String id) {
+        TblSpecificationGroup specificationGroup = this.checkSpecificationGroup(id);
+        if (!DelTagEnum.DEL_TAG_2.getCode().equals(specificationGroup.getDelTag())) {
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPECIFICATION_GROUP_INVALID);
+        }
+    }
+
 
 }

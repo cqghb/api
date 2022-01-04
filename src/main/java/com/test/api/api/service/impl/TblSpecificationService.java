@@ -4,7 +4,9 @@ import com.test.api.api.bean.TblSpecification;
 import com.test.api.api.constant.CommConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblSpecificationDao;
+import com.test.api.api.service.ITblSpecificationGroupService;
 import com.test.api.api.service.ITblSpecificationService;
+import com.test.api.api.service.ITblSpuTypeService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
 import com.test.api.api.vo.page.PageRequest;
@@ -33,6 +35,12 @@ public class TblSpecificationService extends CommonService implements ITblSpecif
     @Autowired
     private TblSpecificationDao specificationDao;
 
+    @Autowired
+    private ITblSpecificationGroupService specificationGroupService;
+
+    @Autowired
+    private ITblSpuTypeService spuTypeService;
+
 
     @Override
     public int deleteByPrimaryKey(String id) {
@@ -46,6 +54,11 @@ public class TblSpecificationService extends CommonService implements ITblSpecif
 
     @Override
     public int insertSelective(TblSpecification record) {
+        /* 检查货品规格分组是否失效 */
+        specificationGroupService.checkDelTag(record.getGroupId());
+        /* 检查货品规格类型是否失效 */
+        spuTypeService.checkDelTag(record.getTypeId());
+
         record.setId(StringUtil.uuid());
         setObjectInsertInfo(record, null);
         return specificationDao.insertSelective(record);

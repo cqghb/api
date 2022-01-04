@@ -1,7 +1,10 @@
 package com.test.api.api.service.impl;
 
 import com.test.api.api.bean.TblSpuType;
+import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
+import com.test.api.api.constant.ErrorMsgConstant;
+import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblSpuTypeDao;
 import com.test.api.api.service.ITblSpuTypeService;
@@ -85,5 +88,22 @@ public class TblSpuTypeService extends CommonService implements ITblSpuTypeServi
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
         setObjectUpdateInfo(record, null);
         return spuTypeDao.updateDelTag(record);
+    }
+
+    @Override
+    public TblSpuType checkSpuType(String id) {
+        TblSpuType spuType = this.selectByPrimaryKey(id);
+        if(StringUtil.objIsEmpty(spuType)){
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPU_TYPE_NOT_FIND);
+        }
+        return spuType;
+    }
+
+    @Override
+    public void checkDelTag(String id) {
+        TblSpuType spuType = this.checkSpuType(id);
+        if (!DelTagEnum.DEL_TAG_2.getCode().equals(spuType.getDelTag())) {
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPU_TYPE_INVALID);
+        }
     }
 }

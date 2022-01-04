@@ -44,8 +44,22 @@ public interface ITblSpecificationGroupService {
     int updateDelTag(TblSpecificationGroup record);
 
     /**
-     * 检查产品规格分支是否重名
-     * @param name 产品规格分支名称
+     * 检查商品规格分支是否重名
+     * @param name 商品规格分支名称
      */
     void checkSGName(String name);
+
+    /**
+     * 检查商品规格分组是否存在，如不存在则抛出异常
+     *
+     * @param id 商品规格分组主键
+     */
+    TblSpecificationGroup checkSpecificationGroup(String id);
+
+    /**
+     * 检查商品规格分组是否已经失效，如已经失效则抛出异常
+     *
+     * @param id 商品规格分组主键
+     */
+    void checkDelTag(String id);
 }

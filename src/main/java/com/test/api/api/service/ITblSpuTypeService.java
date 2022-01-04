@@ -42,4 +42,18 @@ public interface ITblSpuTypeService {
      * @return
      */
     int updateDelTag(TblSpuType record);
+
+    /**
+     * 检查货品类型是否存在，如不存在则抛出异常
+     *
+     * @param id 货品类型主键
+     */
+    TblSpuType checkSpuType(String id);
+
+    /**
+     * 检查货品类型是否已经失效，如已经失效则抛出异常
+     *
+     * @param id 货品类型主键
+     */
+    void checkDelTag(String id);
 }
