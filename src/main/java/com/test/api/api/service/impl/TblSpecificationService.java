@@ -75,6 +75,11 @@ public class TblSpecificationService extends CommonService implements ITblSpecif
 
     @Override
     public int updateByPrimaryKeySelective(TblSpecification record) {
+        /* 检查货品规格分组是否失效 */
+        specificationGroupService.checkDelTag(record.getGroupId());
+        /* 检查货品规格类型是否失效 */
+        spuTypeService.checkDelTag(record.getTypeId());
+
         TblSpecification specification = getInfo(specificationDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, specification);
         setObjectUpdateInfo(specification, null);

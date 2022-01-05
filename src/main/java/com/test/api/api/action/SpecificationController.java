@@ -4,6 +4,7 @@ import com.test.api.api.bean.TblSpecification;
 import com.test.api.api.config.Result;
 import com.test.api.api.dto.CommonIdDto;
 import com.test.api.api.dto.commodity.specification.TblSpecificationAddDto;
+import com.test.api.api.dto.commodity.specification.TblSpecificationUpdateDto;
 import com.test.api.api.service.ITblSpecificationService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.commodity.specification.SpecificationVO;
@@ -62,12 +63,28 @@ public class SpecificationController {
      * @return
      */
     @PostMapping(value = "/insertSpecification")
-    @ApiImplicitParam(name = "specificationGroupDto", value = "产品规格")
+    @ApiImplicitParam(name = "specificationAddDto", value = "产品规格")
     @ApiOperation(value = "添加产品规格", notes = "添加产品规格")
     public Result insertSpecificationGroup(@RequestBody @Validated TblSpecificationAddDto specificationAddDto) {
         TblSpecification specification = new TblSpecification();
         BeanUtils.copyProperties(specificationAddDto, specification);
         int num = specificationService.insertSelective(specification);
+        return ResultUtil.success(num);
+    }
+
+    /**
+     * 维护产品规格
+     *
+     * @param specificationUpdateDto
+     * @return
+     */
+    @PostMapping(value = "/updateSpecification")
+    @ApiImplicitParam(name = "specificationUpdateDto", value = "产品规格")
+    @ApiOperation(value = "添加产品规格", notes = "添加产品规格")
+    public Result updateSpecification(@RequestBody @Validated TblSpecificationUpdateDto specificationUpdateDto) {
+        TblSpecification specification = new TblSpecification();
+        BeanUtils.copyProperties(specificationUpdateDto, specification);
+        int num = specificationService.updateByPrimaryKeySelective(specification);
         return ResultUtil.success(num);
     }
 

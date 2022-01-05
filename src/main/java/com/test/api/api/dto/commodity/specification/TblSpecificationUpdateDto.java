@@ -10,19 +10,20 @@ import java.io.Serializable;
 /**
  * @projectName api
  * @package com.test.api.api.dto.commodity.specification
- * @className TblSpecificationAddDto
- * @description 添加货品规格表单对象
+ * @className TblSpecificationUpdateDto
+ * @description 维护货品规格表单对象
  * @auther wangsheng
- * @creatTime 2022/1/4 下午1:07
+ * @creatTime 2022/1/6 上午12:44
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
-public class TblSpecificationAddDto extends BaseDto implements Serializable {
-    private static final long serialVersionUID = -4940024653454849778L;
-
+public class TblSpecificationUpdateDto extends BaseDto implements Serializable {
+    private static final long serialVersionUID = -304786487763213440L;
     /**
      * 规格ID
      */
+    @NotNull(message = "产品规格ID不能为空")
+    @NotBlank(message = "产品规格ID不能为空")
     private String id;
 
     /**
@@ -45,18 +46,18 @@ public class TblSpecificationAddDto extends BaseDto implements Serializable {
     @NotNull(message = "产品规格分类ID不能为空")
     @NotBlank(message = "产品规格分类ID不能为空")
     private String typeId;
-
     /**
      * 显示位置
      */
     private String addr;
 
-    public TblSpecificationAddDto() {
+    public TblSpecificationUpdateDto() {
     }
 
-    public TblSpecificationAddDto(String remark, String delTag, String id,
-                                  @NotNull(message = "产品规格名称不能为空") @NotBlank(message = "产品规格名称不能为空") String name,
-                                  @NotNull(message = "产品规格规格组ID不能为空") @NotBlank(message = "产品规格规格组ID不能为空") String groupId, @NotNull(message = "产品规格分类ID不能为空") @NotBlank(message = "产品规格分类ID不能为空") String typeId, String addr) {
+    public TblSpecificationUpdateDto(String remark, String delTag,
+                                     @NotNull(message = "产品规格ID不能为空") @NotBlank(message = "产品规格ID不能为空") String id,
+                                     @NotNull(message = "产品规格名称不能为空") @NotBlank(message = "产品规格名称不能为空") String name,
+                                     @NotNull(message = "产品规格规格组ID不能为空") @NotBlank(message = "产品规格规格组ID不能为空") String groupId, @NotNull(message = "产品规格分类ID不能为空") @NotBlank(message = "产品规格分类ID不能为空") String typeId, String addr) {
         super(remark, delTag);
         this.id = id;
         this.name = name;
@@ -107,6 +108,6 @@ public class TblSpecificationAddDto extends BaseDto implements Serializable {
 
     @Override
     public String toString() {
-        return "TblSpecificationAddDto{" + JSONObject.toJSONString(this) + "}";
+        return "TblSpecificationUpdateDto{" + JSONObject.toJSONString(this) + "}";
     }
 }
