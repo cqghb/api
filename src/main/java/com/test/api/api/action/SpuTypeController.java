@@ -3,6 +3,7 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblSpuType;
 import com.test.api.api.config.Result;
 import com.test.api.api.dto.CommonIdDto;
+import com.test.api.api.dto.commodity.sputype.AddTblSpuTypeDto;
 import com.test.api.api.service.ITblSpuTypeService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.page.PageRequest;
@@ -12,6 +13,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,6 +51,21 @@ public class SpuTypeController {
     public Result findPage(@RequestBody PageRequest pageQuery) {
         PageResult pageResult = spuTypeService.findPage(pageQuery);
         return ResultUtil.success(pageResult);
+    }
+    /**
+     * 添加货品类型
+     *
+     * @param add
+     * @return
+     */
+    @PostMapping(value = "/insertSpuType")
+    @ApiImplicitParam(name = "add", value = "添加货品类型的参数")
+    @ApiOperation(value = "添加货品类型", notes = "添加货品类型")
+    public Result insertSpuType(@RequestBody @Validated AddTblSpuTypeDto add) {
+        TblSpuType spuType = new TblSpuType();
+        BeanUtils.copyProperties(add, spuType);
+        int num = spuTypeService.insertSelective(spuType);
+        return ResultUtil.success(num);
     }
 
     /**

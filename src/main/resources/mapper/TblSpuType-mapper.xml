@@ -146,4 +146,22 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
 
+  <select id="query" parameterType="com.test.api.api.bean.TblSpuType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_spu_type
+    <where>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
+        or id = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(code)">
+        or code = #{code,jdbcType=VARCHAR}
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
+        or `name` = #{name,jdbcType=VARCHAR}
+      </if>
+    </where>
+
+  </select>
+
 </mapper>

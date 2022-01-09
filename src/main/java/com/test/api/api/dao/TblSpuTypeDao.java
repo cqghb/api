@@ -25,7 +25,7 @@ public interface TblSpuTypeDao {
     int updateByPrimaryKey(TblSpuType record);
 
     /**
-     * 列表查询
+     * 分页查询
      *
      * @param record 查询条件
      * @return
@@ -39,4 +39,12 @@ public interface TblSpuTypeDao {
      * @return
      */
     int updateDelTag(TblSpuType record);
+
+    /**
+     * 列表查询
+     *
+     * @param record 查询条件
+     * @return
+     */
+    List<TblSpuType> query(TblSpuType record);
 }

@@ -4,6 +4,8 @@ import com.test.api.api.bean.TblSpuType;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 
+import java.util.List;
+
 /**
  * @projectName api
  * @package com.test.api.api.service
@@ -56,4 +58,24 @@ public interface ITblSpuTypeService {
      * @param id 货品类型主键
      */
     void checkDelTag(String id);
+
+    /**
+     * 检查货品类型，数据存在就报错
+     * @param record 检查条件
+     */
+    void checkSpuType(TblSpuType record);
+//    /**
+//     * 检查货品类型，数据不存在就报错
+//     * @param record 检查条件
+//     * @param msg 错误消息
+//     */
+//    void checkSpuType2(TblSpuType record, String msg);
+
+    /**
+     * 列表查询
+     *
+     * @param record 查询条件
+     * @return
+     */
+    List<TblSpuType> query(TblSpuType record);
 }

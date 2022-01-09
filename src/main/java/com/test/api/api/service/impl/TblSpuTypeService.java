@@ -18,6 +18,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @projectName api
  * @package com.test.api.api.service.impl
@@ -51,6 +53,7 @@ public class TblSpuTypeService extends CommonService implements ITblSpuTypeServi
 
     @Override
     public int insertSelective(TblSpuType record) {
+        this.checkSpuType(record);
         record.setId(StringUtil.uuid());
         setObjectInsertInfo(record, null);
         return spuTypeDao.insertSelective(record);
@@ -105,5 +108,32 @@ public class TblSpuTypeService extends CommonService implements ITblSpuTypeServi
         if (!DelTagEnum.DEL_TAG_2.getCode().equals(spuType.getDelTag())) {
             throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPU_TYPE_INVALID);
         }
+    }
+
+    @Override
+    public void checkSpuType(TblSpuType record) {
+        List<TblSpuType> list = this.query(record);
+        if(!StringUtil.objIsEmpty(list)){
+            String errorMsg = "";
+            String name = record.getName();
+            String code = record.getCode();
+            /* 虽然是循环，单正常情况下只有一条数据 */
+            for(TblSpuType item : list){
+                String oldName = item.getName();
+                String oldCode = item.getCode();
+                if(oldName.equals(name)){
+                    errorMsg += "货品类型名称: '"+name+ "' 重复;\n";
+                }
+                if(oldCode.equals(code)){
+                    errorMsg += "货品类型代码: '"+code+ "' 重复;\n";
+                }
+            }
+            throw new AppException(MsgCodeConstant.ERROR_CODE, errorMsg);
+        }
+    }
+
+    @Override
+    public List<TblSpuType> query(TblSpuType record) {
+        return spuTypeDao.query(record);
     }
 }
