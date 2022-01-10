@@ -4,6 +4,7 @@ import com.test.api.api.bean.TblSpuType;
 import com.test.api.api.config.Result;
 import com.test.api.api.dto.CommonIdDto;
 import com.test.api.api.dto.commodity.sputype.AddTblSpuTypeDto;
+import com.test.api.api.dto.commodity.sputype.UpdateTblSpuTypeDto;
 import com.test.api.api.service.ITblSpuTypeService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.page.PageRequest;
@@ -79,6 +80,22 @@ public class SpuTypeController {
     public Result queryById(@RequestBody @Validated CommonIdDto ddDto) {
         TblSpuType spuType = spuTypeService.selectByPrimaryKey(ddDto.getId());
         return ResultUtil.success(spuType);
+    }
+
+    /**
+     * 修改
+     *
+     * @param update
+     * @return
+     */
+    @PostMapping(value = "/updateSpuType")
+    @ApiImplicitParam(name = "update", value = "维护货品类型的参数")
+    @ApiOperation(value = "修改货品类型", notes = "修改货品类型")
+    public Result updateSpuType(@RequestBody @Validated UpdateTblSpuTypeDto update) {
+        TblSpuType spuType = new TblSpuType();
+        BeanUtils.copyProperties(update, spuType);
+        int num = spuTypeService.updateByPrimaryKeySelective(spuType);
+        return ResultUtil.success(num);
     }
 
     /**

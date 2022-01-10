@@ -67,6 +67,7 @@ public class TblSpuTypeService extends CommonService implements ITblSpuTypeServi
     @Override
     public int updateByPrimaryKeySelective(TblSpuType record) {
         TblSpuType spuType = getInfo(spuTypeDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        this.checkSpuType(record);
         BeanUtils.copyProperties(record, spuType);
         setObjectUpdateInfo(spuType, null);
         return spuTypeDao.updateByPrimaryKeySelective(spuType);
@@ -115,20 +116,27 @@ public class TblSpuTypeService extends CommonService implements ITblSpuTypeServi
         List<TblSpuType> list = this.query(record);
         if(!StringUtil.objIsEmpty(list)){
             String errorMsg = "";
+            String id = record.getId();
             String name = record.getName();
             String code = record.getCode();
             /* 虽然是循环，单正常情况下只有一条数据 */
             for(TblSpuType item : list){
+                String oldId = item.getId();
                 String oldName = item.getName();
                 String oldCode = item.getCode();
-                if(oldName.equals(name)){
-                    errorMsg += "货品类型名称: '"+name+ "' 重复;\n";
+                if(!id.equals(oldId)){/* 兼容维护的时候验证 */
+                    if(oldName.equals(name)){
+                        errorMsg += "货品类型名称: '"+name+ "' 重复;\n";
+                    }
+                    if(oldCode.equals(code)){
+                        errorMsg += "货品类型代码: '"+code+ "' 重复;\n";
+                    }
                 }
-                if(oldCode.equals(code)){
-                    errorMsg += "货品类型代码: '"+code+ "' 重复;\n";
-                }
+
             }
-            throw new AppException(MsgCodeConstant.ERROR_CODE, errorMsg);
+            if(!StringUtil.objIsEmpty(errorMsg)){
+                throw new AppException(MsgCodeConstant.ERROR_CODE, errorMsg);
+            }
         }
     }
 
