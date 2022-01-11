@@ -107,7 +107,7 @@
   <select id="queryList" parameterType="com.test.api.api.bean.TblProperty" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
-    from tbl_sku
+    from tbl_property
     <where>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
         and id = #{id,jdbcType=VARCHAR}
@@ -122,7 +122,7 @@
   </select>
 
   <update id="updateDelTag" parameterType="com.test.api.api.bean.TblProperty">
-    update tbl_sku
+    update tbl_property
     <set>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
         del_tag = #{delTag,jdbcType=VARCHAR},
