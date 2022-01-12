@@ -3,8 +3,11 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblProperty;
 import com.test.api.api.config.Result;
 import com.test.api.api.dto.CommonIdDto;
+import com.test.api.api.dto.commodity.property.AddTblPropertyDto;
+import com.test.api.api.dto.commodity.property.UpdateTblPropertyDto;
 import com.test.api.api.service.ITblPropertyService;
 import com.test.api.api.utils.ResultUtil;
+import com.test.api.api.vo.commodity.property.PropertyVo;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import io.swagger.annotations.Api;
@@ -12,6 +15,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,6 +57,22 @@ public class PropertyController {
     }
 
     /**
+     * 添加产品属性
+     *
+     * @param add
+     * @return
+     */
+    @PostMapping(value = "/insertProperty")
+    @ApiImplicitParam(name = "add", value = "添加货品类型的参数")
+    @ApiOperation(value = "添加货品类型", notes = "添加货品类型")
+    public Result insertProperty(@RequestBody @Validated AddTblPropertyDto add) {
+        TblProperty property = new TblProperty();
+        BeanUtils.copyProperties(add, property);
+        int num = propertyService.insertSelective(property);
+        return ResultUtil.success(num);
+    }
+
+    /**
      * 通过主键查询
      * @param ddDto
      * @return
@@ -63,6 +83,36 @@ public class PropertyController {
     public Result queryById(@RequestBody @Validated CommonIdDto ddDto) {
         TblProperty property = propertyService.selectByPrimaryKey(ddDto.getId());
         return ResultUtil.success(property);
+    }
+
+    /**
+     * 通过产品属性主键ID查询详细信息
+     * @param ddDto
+     * @return
+     */
+    @ApiImplicitParam(name = "id", value = "产品属性主键")
+    @ApiOperation(value = "通过产品属性主键ID查询详细信息", notes = "通过产品属性主键ID查询详细信息")
+    @PostMapping(value = "/queryDetail")
+    public Result queryDetail(@RequestBody @Validated CommonIdDto ddDto) {
+        PropertyVo property = propertyService.queryDetail(ddDto.getId());
+        return ResultUtil.success(property);
+    }
+
+
+    /**
+     * 修改产品属性
+     *
+     * @param update
+     * @return
+     */
+    @PostMapping(value = "/updateProperty")
+    @ApiImplicitParam(name = "update", value = "维护货品类型的参数")
+    @ApiOperation(value = "修改货品类型", notes = "修改货品类型")
+    public Result updateProperty(@RequestBody @Validated UpdateTblPropertyDto update) {
+        TblProperty property = new TblProperty();
+        BeanUtils.copyProperties(update, property);
+        int num = propertyService.updateByPrimaryKeySelective(property);
+        return ResultUtil.success(num);
     }
 
     /**

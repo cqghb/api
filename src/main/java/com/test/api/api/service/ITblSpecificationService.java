@@ -4,6 +4,7 @@ import com.test.api.api.bean.TblSpecification;
 import com.test.api.api.vo.commodity.specification.SpecificationVO;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @projectName api
@@ -49,5 +50,5 @@ public interface ITblSpecificationService {
      * @param id 产品规格主键
      * @return
      */
-    SpecificationVO queryDetail(String id);
+    SpecificationVO queryDetail(@Param("id") String id);
 }

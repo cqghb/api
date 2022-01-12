@@ -2,6 +2,7 @@ package com.test.api.api.dao;
 
 import com.alibaba.fastjson.JSONObject;
 import com.test.api.api.bean.TblProperty;
+import com.test.api.api.vo.commodity.property.PropertyVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -40,4 +41,11 @@ public interface TblPropertyDao {
      * @return
      */
     int updateDelTag(TblProperty record);
+
+    /**
+     * 通过产品属性ID查询属性详细信息
+     * @param id 产品属性ID
+     * @return
+     */
+    PropertyVo queryDetail(@Param("id") String id);
 }

@@ -1,6 +1,7 @@
 package com.test.api.api.service;
 
 import com.test.api.api.bean.TblProperty;
+import com.test.api.api.vo.commodity.property.PropertyVo;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 
@@ -43,4 +44,10 @@ public interface ITblPropertyService {
      */
     int updateDelTag(TblProperty record);
 
+    /**
+     * 通过产品属性ID查询属性详细信息
+     * @param id 产品属性ID
+     * @return
+     */
+    PropertyVo queryDetail(String id);
 }

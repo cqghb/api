@@ -12,6 +12,19 @@
     <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
+  <resultMap id="resultDetailMap" type="com.test.api.api.vo.commodity.property.PropertyVo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type_id" jdbcType="VARCHAR" property="typeId" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="type_id_name" jdbcType="VARCHAR" property="typeIdName" />
+  </resultMap>
+
   <sql id="Base_Column_List">
     id, `name`, type_id, create_user, create_time, update_user, update_time, del_tag, 
     remark
@@ -32,9 +45,10 @@
     values (#{name,jdbcType=VARCHAR}, #{typeId,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
       sysdate(), #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblProperty" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.test.api.api.bean.TblProperty">
     insert into tbl_property
     <trim prefix="(" suffix=")" suffixOverrides=",">
+        id,
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
         `name`,
       </if>
@@ -53,6 +67,7 @@
       create_time
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=VARCHAR},
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
         #{name,jdbcType=VARCHAR},
       </if>
@@ -137,4 +152,15 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="queryDetail" parameterType="java.lang.String" resultMap="resultDetailMap">
+    SELECT
+    t1.id, t1.`name`, t1.type_id, t1.create_user, t1.create_time, t1.update_user, t1.update_time, t1.del_tag,
+    t1.remark, concat_ws('-',t1.type_id,t2.`name`) as type_id_name
+    FROM tbl_property t1
+    LEFT JOIN tbl_spu_type t2
+    ON t1.type_id=t2.id
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
 </mapper>

@@ -1,12 +1,17 @@
 package com.test.api.api.service.impl;
 
 import com.test.api.api.bean.TblProperty;
+import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
+import com.test.api.api.constant.ErrorMsgConstant;
+import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblPropertyDao;
 import com.test.api.api.service.ITblPropertyService;
+import com.test.api.api.service.ITblSpuTypeService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
+import com.test.api.api.vo.commodity.property.PropertyVo;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import org.slf4j.Logger;
@@ -32,6 +37,8 @@ public class TblPropertyService extends CommonService implements ITblPropertySer
 
     @Autowired
     private TblPropertyDao propertyDao;
+    @Autowired
+    private ITblSpuTypeService spuTypeService;
 
 
     @Override
@@ -48,6 +55,8 @@ public class TblPropertyService extends CommonService implements ITblPropertySer
 
     @Override
     public int insertSelective(TblProperty record) {
+        /* 检查货品类型是否有效 */
+        spuTypeService.checkDelTag(record.getTypeId());
         record.setId(StringUtil.uuid());
         setObjectInsertInfo(record, null);
         return propertyDao.insertSelective(record);
@@ -60,6 +69,8 @@ public class TblPropertyService extends CommonService implements ITblPropertySer
 
     @Override
     public int updateByPrimaryKeySelective(TblProperty record) {
+        /* 检查货品类型是否有效 */
+        spuTypeService.checkDelTag(record.getTypeId());
         TblProperty property = getInfo(propertyDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, property);
         setObjectUpdateInfo(property, null);
@@ -85,5 +96,13 @@ public class TblPropertyService extends CommonService implements ITblPropertySer
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
         setObjectUpdateInfo(record, null);
         return propertyDao.updateDelTag(record);
+    }
+
+    @Override
+    public PropertyVo queryDetail(String id) {
+        if(StringUtil.objIsEmpty(id)){
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.ID_IS_NOT_NULL);
+        }
+        return propertyDao.queryDetail(id);
     }
 }
