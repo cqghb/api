@@ -32,6 +32,13 @@ public class AddTblPropertyDto extends BaseDto implements Serializable {
     private String name;
 
     /**
+     * 产品属性值
+     */
+    @NotNull(message = "产品属性值不能为空")
+    @NotBlank(message = "产品属性值不能为空")
+    private String value;
+
+    /**
      * 分类ID
      */
     @NotNull(message = "分类ID不能为空")
@@ -43,10 +50,12 @@ public class AddTblPropertyDto extends BaseDto implements Serializable {
 
     public AddTblPropertyDto(String remark, String delTag, String id,
                              @NotNull(message = "产品属性名称不能为空") @NotBlank(message = "产品属性名称不能为空") String name,
+                             @NotNull(message = "产品属性值不能为空") @NotBlank(message = "产品属性值不能为空") String value,
                              @NotNull(message = "分类ID不能为空") @NotBlank(message = "分类ID不能为空") String typeId) {
         super(remark, delTag);
         this.id = id;
         this.name = name;
+        this.value = value;
         this.typeId = typeId;
     }
 
@@ -72,6 +81,14 @@ public class AddTblPropertyDto extends BaseDto implements Serializable {
 
     public void setTypeId(String typeId) {
         this.typeId = typeId;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     @Override

@@ -27,15 +27,21 @@ public class TblProperty extends BaseBean implements Serializable {
      */
     private String typeId;
 
+    /**
+     * 属性值
+     */
+    private String value;
+
     public TblProperty() {
     }
 
     public TblProperty(String createUser, Date createTime, String updateUser, Date updateTime, String remark,
-                       String delTag, String id, String name, String typeId) {
+                       String delTag, String id, String name, String typeId, String value) {
         super(createUser, createTime, updateUser, updateTime, remark, delTag);
         this.id = id;
         this.name = name;
         this.typeId = typeId;
+        this.value = value;
     }
 
     public String getId() {
@@ -60,6 +66,14 @@ public class TblProperty extends BaseBean implements Serializable {
 
     public void setTypeId(String typeId) {
         this.typeId = typeId;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     @Override

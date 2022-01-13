@@ -11,6 +11,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
   </resultMap>
   <resultMap id="resultDetailMap" type="com.test.api.api.vo.commodity.property.PropertyVo">
     <id column="id" jdbcType="VARCHAR" property="id" />
@@ -22,12 +23,13 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
     <result column="type_id_name" jdbcType="VARCHAR" property="typeIdName" />
   </resultMap>
 
   <sql id="Base_Column_List">
     id, `name`, type_id, create_user, create_time, update_user, update_time, del_tag, 
-    remark
+    remark,`value`
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -41,9 +43,9 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblProperty" useGeneratedKeys="true">
     insert into tbl_property (`name`, type_id, create_user, 
-      create_time, del_tag, remark)
+      create_time, del_tag, remark,`value`)
     values (#{name,jdbcType=VARCHAR}, #{typeId,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
-      sysdate(), #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+      sysdate(), #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.test.api.api.bean.TblProperty">
     insert into tbl_property
@@ -64,6 +66,9 @@
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
         remark,
       </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(value)">
+        `value`,
+      </if>
       create_time
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -82,6 +87,9 @@
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
         #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(value)">
+        #{value,jdbcType=VARCHAR},
       </if>
        sysdate()
     </trim>
@@ -104,6 +112,9 @@
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(value)">
+        `value` = #{value,jdbcType=VARCHAR},
+      </if>
       update_time = sysdate()
     </set>
     where id = #{id,jdbcType=VARCHAR}
@@ -115,6 +126,7 @@
       update_user = #{updateUser,jdbcType=VARCHAR},
       update_time = sysdate(),
       del_tag = #{delTag,jdbcType=VARCHAR},
+      `value` = #{value,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -156,11 +168,11 @@
   <select id="queryDetail" parameterType="java.lang.String" resultMap="resultDetailMap">
     SELECT
     t1.id, t1.`name`, t1.type_id, t1.create_user, t1.create_time, t1.update_user, t1.update_time, t1.del_tag,
-    t1.remark, concat_ws('-',t1.type_id,t2.`name`) as type_id_name
+    t1.remark, concat_ws('-',t1.type_id,t2.`name`) as type_id_name,t1.value
     FROM tbl_property t1
     LEFT JOIN tbl_spu_type t2
     ON t1.type_id=t2.id
-    where id = #{id,jdbcType=VARCHAR}
+    where t1.id = #{id,jdbcType=VARCHAR}
   </select>
 
 </mapper>

@@ -25,8 +25,8 @@ public class PropertyVo extends TblProperty implements Serializable {
     }
 
     public PropertyVo(String createUser, Date createTime, String updateUser, Date updateTime, String remark,
-                      String delTag, String id, String name, String typeId, String typeIdName) {
-        super(createUser, createTime, updateUser, updateTime, remark, delTag, id, name, typeId);
+                      String delTag, String id, String name, String typeId, String typeIdName, String value) {
+        super(createUser, createTime, updateUser, updateTime, remark, delTag, id, name, typeId, value);
         this.typeIdName = typeIdName;
     }
 
