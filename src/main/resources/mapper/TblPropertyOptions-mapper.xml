@@ -12,10 +12,29 @@
     <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
+  <resultMap id="PageResultMap" type="com.test.api.api.vo.commodity.property_option.PropertyOptionVo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="attr_id" jdbcType="VARCHAR" property="attrId" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="property_name" jdbcType="VARCHAR" property="propertyName" />
+  </resultMap>
   <sql id="Base_Column_List">
     id, `value`, attr_id, create_user, create_time, update_user, update_time, del_tag, 
     remark
   </sql>
+  <sql id="Page_Column">
+    ${table1}.id, ${table1}.`value`, concat_ws('-', ${table1}.attr_id, ${table2}.name) as property_name,
+    ${table1}.create_user, ${table1}.create_time, ${table1}.update_user, ${table1}.update_time, ${table1}.del_tag,
+    ${table1}.remark
+  </sql>
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -104,25 +123,30 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
 
-  <select id="queryList" parameterType="com.test.api.api.bean.TblSku" resultMap="BaseResultMap">
+  <select id="queryList" parameterType="com.test.api.api.bean.TblSku" resultMap="PageResultMap">
     select
-    <include refid="Base_Column_List"/>
-    from tbl_sku
+    <include refid="Page_Column">
+      <property name="table1" value="t1"/>
+      <property name="table2" value="t2"/>
+    </include>
+    from tbl_property_options t1
+    left join tbl_property t2 on t1.attr_id=t2.id
     <where>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
-        and id = #{id,jdbcType=VARCHAR}
+        and t1.id = #{id,jdbcType=VARCHAR}
       </if>
-      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
-        and `name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(value)">
+        and t1.`value` like concat('%', #{value,jdbcType=VARCHAR}, '%')
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
-        and del_tag = #{delTag,jdbcType=VARCHAR}
+        and t1.del_tag = #{delTag,jdbcType=VARCHAR}
+        and t2.del_tag = #{delTag,jdbcType=VARCHAR}
       </if>
     </where>
   </select>
 
   <update id="updateDelTag" parameterType="com.test.api.api.bean.TblSku">
-    update tbl_sku
+    update tbl_property_options
     <set>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
         del_tag = #{delTag,jdbcType=VARCHAR},
