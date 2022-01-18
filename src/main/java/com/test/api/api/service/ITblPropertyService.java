@@ -50,4 +50,16 @@ public interface ITblPropertyService {
      * @return
      */
     PropertyVo queryDetail(String id);
+
+    /**
+     * 检查产品属性是否存在
+     * @param id 产品属性ID
+     * @return
+     */
+    TblProperty checkProperty(String id);
+    /**
+     * 检查产品属性是否已经失效
+     * @param id 产品属性ID
+     */
+    void checkDelTag(String id);
 }

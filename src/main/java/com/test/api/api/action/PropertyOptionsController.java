@@ -3,8 +3,11 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblPropertyOptions;
 import com.test.api.api.config.Result;
 import com.test.api.api.dto.CommonIdDto;
+import com.test.api.api.dto.commodity.propertyoption.AddTblPropertyOptionsDto;
+import com.test.api.api.dto.commodity.propertyoption.UpdateTblPropertyOptionsDto;
 import com.test.api.api.service.ITblPropertyOptionsService;
 import com.test.api.api.utils.ResultUtil;
+import com.test.api.api.vo.commodity.property_option.PropertyOptionVo;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import io.swagger.annotations.Api;
@@ -12,6 +15,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,6 +57,38 @@ public class PropertyOptionsController {
     }
 
     /**
+     * 设置产品属性值
+     *
+     * @param add
+     * @return
+     */
+    @PostMapping(value = "/insertPropertyValue")
+    @ApiImplicitParam(name = "add", value = "设置产品属性值的参数")
+    @ApiOperation(value = "设置产品属性值", notes = "设置产品属性值")
+    public Result insertPropertyValue(@RequestBody @Validated AddTblPropertyOptionsDto add) {
+        TblPropertyOptions propertyOptions = new TblPropertyOptions();
+        BeanUtils.copyProperties(add, propertyOptions);
+        int num = propertyOptionsService.insertSelective(propertyOptions);
+        return ResultUtil.success(num);
+    }
+
+    /**
+     * 修改产品属性值[直接改值，还可以通过重新给产品属性配置值]
+     *
+     * @param update
+     * @return
+     */
+    @PostMapping(value = "/updatePropertyValue")
+    @ApiImplicitParam(name = "update", value = "修改产品属性值的参数")
+    @ApiOperation(value = "修改产品属性值", notes = "修改产品属性值")
+    public Result updatePropertyValue(@RequestBody @Validated UpdateTblPropertyOptionsDto update) {
+        TblPropertyOptions propertyOptions = new TblPropertyOptions();
+        BeanUtils.copyProperties(update, propertyOptions);
+        int num = propertyOptionsService.updateByPrimaryKeySelective(propertyOptions);
+        return ResultUtil.success(num);
+    }
+
+    /**
      * 通过主键查询
      * @param ddDto
      * @return
@@ -62,6 +98,19 @@ public class PropertyOptionsController {
     @PostMapping(value = "/queryById")
     public Result queryById(@RequestBody @Validated CommonIdDto ddDto) {
         TblPropertyOptions propertyOptions = propertyOptionsService.selectByPrimaryKey(ddDto.getId());
+        return ResultUtil.success(propertyOptions);
+    }
+
+    /**
+     * 通过主键查询
+     * @param ddDto
+     * @return
+     */
+    @ApiImplicitParam(name = "id", value = "角色主键")
+    @ApiOperation(value = "通过ID查询数据操作信息", notes = "通过ID查询数据操作信息")
+    @PostMapping(value = "/queryDetail")
+    public Result queryDetail(@RequestBody @Validated CommonIdDto ddDto) {
+        PropertyOptionVo propertyOptions = propertyOptionsService.queryDetail(ddDto.getId());
         return ResultUtil.success(propertyOptions);
     }
 

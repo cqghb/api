@@ -105,4 +105,26 @@ public class TblPropertyService extends CommonService implements ITblPropertySer
         }
         return propertyDao.queryDetail(id);
     }
+
+    @Override
+    public TblProperty checkProperty(String id) {
+        if (!StringUtil.objIsEmpty(id)) {
+            TblProperty property = this.selectByPrimaryKey(id);
+            if (StringUtil.objIsEmpty(property)) {
+                throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPU_PROPERTY_NOT_FIND);
+            }
+            return property;
+        }
+        return null;
+    }
+
+    @Override
+    public void checkDelTag(String id) {
+        if (!StringUtil.objIsEmpty(id)) {
+            TblProperty property = this.checkProperty(id);
+            if (!DelTagEnum.DEL_TAG_2.getCode().equals(property.getDelTag())) {
+                throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPU_PROPERTY_INVALID);
+            }
+        }
+    }
 }

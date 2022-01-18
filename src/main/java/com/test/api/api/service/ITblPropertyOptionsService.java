@@ -1,6 +1,7 @@
 package com.test.api.api.service;
 
 import com.test.api.api.bean.TblPropertyOptions;
+import com.test.api.api.vo.commodity.property_option.PropertyOptionVo;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 
@@ -43,4 +44,21 @@ public interface ITblPropertyOptionsService {
      */
     int updateDelTag(TblPropertyOptions record);
 
+    /**
+     * 查询产品属性值详情
+     * @param id 产品属性值ID
+     * @return
+     */
+    PropertyOptionVo queryDetail(String id);
+    /**
+     * 检查产品属性值是否存在
+     * @param id 产品属性值ID
+     * @return
+     */
+    TblPropertyOptions checkPropertyOption(String id);
+    /**
+     * 检查产品属性值是否已经失效
+     * @param id 产品属性值ID
+     */
+    void checkDelTag(String id);
 }

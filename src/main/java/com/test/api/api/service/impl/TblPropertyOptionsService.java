@@ -1,12 +1,17 @@
 package com.test.api.api.service.impl;
 
 import com.test.api.api.bean.TblPropertyOptions;
+import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
+import com.test.api.api.constant.ErrorMsgConstant;
+import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblPropertyOptionsDao;
 import com.test.api.api.service.ITblPropertyOptionsService;
+import com.test.api.api.service.ITblPropertyService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
+import com.test.api.api.vo.commodity.property_option.PropertyOptionVo;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import org.slf4j.Logger;
@@ -33,6 +38,8 @@ public class TblPropertyOptionsService extends CommonService implements ITblProp
     @Autowired
     private TblPropertyOptionsDao propertyOptionsDao;
 
+    @Autowired
+    private ITblPropertyService propertyService;
 
     @Override
     public int deleteByPrimaryKey(String id) {
@@ -48,6 +55,8 @@ public class TblPropertyOptionsService extends CommonService implements ITblProp
 
     @Override
     public int insertSelective(TblPropertyOptions record) {
+        /* 检查产品属性是否正常 */
+        propertyService.checkDelTag(record.getAttrId());
         record.setId(StringUtil.uuid());
         setObjectInsertInfo(record, null);
         return propertyOptionsDao.insertSelective(record);
@@ -60,6 +69,8 @@ public class TblPropertyOptionsService extends CommonService implements ITblProp
 
     @Override
     public int updateByPrimaryKeySelective(TblPropertyOptions record) {
+        /* 检查产品属性是否正常 */
+        propertyService.checkDelTag(record.getAttrId());
         TblPropertyOptions propertyOptions = getInfo(propertyOptionsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, propertyOptions);
         setObjectUpdateInfo(propertyOptions, null);
@@ -85,5 +96,32 @@ public class TblPropertyOptionsService extends CommonService implements ITblProp
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
         setObjectUpdateInfo(record, null);
         return propertyOptionsDao.updateDelTag(record);
+    }
+
+    @Override
+    public PropertyOptionVo queryDetail(String id) {
+        return propertyOptionsDao.queryDetail(id);
+    }
+
+    @Override
+    public TblPropertyOptions checkPropertyOption(String id) {
+        if (!StringUtil.objIsEmpty(id)) {
+            TblPropertyOptions propertyOptions = this.selectByPrimaryKey(id);
+            if (StringUtil.objIsEmpty(propertyOptions)) {
+                throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPU_PROPERTY_OPTION_NOT_FIND);
+            }
+            return propertyOptions;
+        }
+        return null;
+    }
+
+    @Override
+    public void checkDelTag(String id) {
+        if (!StringUtil.objIsEmpty(id)) {
+            TblPropertyOptions propertyOptions = this.checkPropertyOption(id);
+            if (!DelTagEnum.DEL_TAG_2.getCode().equals(propertyOptions.getDelTag())) {
+                throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPU_PROPERTY_OPTION_INVALID);
+            }
+        }
     }
 }

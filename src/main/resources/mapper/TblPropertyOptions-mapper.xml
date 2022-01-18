@@ -51,9 +51,12 @@
     values (#{value,jdbcType=VARCHAR}, #{attrId,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
       sysdate(), #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblPropertyOptions" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.test.api.api.bean.TblPropertyOptions">
     insert into tbl_property_options
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(value)">
+        id,
+      </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(value)">
         `value`,
       </if>
@@ -72,6 +75,9 @@
       create_time
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(value)">
+        #{id,jdbcType=VARCHAR},
+      </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(value)">
         #{value,jdbcType=VARCHAR},
       </if>
@@ -162,4 +168,14 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
 
+  <select id="queryDetail" parameterType="string" resultMap="PageResultMap">
+    select
+    <include refid="Page_Column">
+      <property name="table1" value="t1"/>
+      <property name="table2" value="t2"/>
+    </include>
+    from tbl_property_options t1
+    left join tbl_property t2 on t1.attr_id=t2.id
+    where t1.id = #{id,jdbcType=VARCHAR}
+  </select>
 </mapper>

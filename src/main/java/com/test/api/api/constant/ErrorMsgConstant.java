@@ -27,4 +27,8 @@ public class ErrorMsgConstant {
     public static final String SPU_TYPE_NOT_FIND = "货品类型不存在";
     public static final String SPU_TYPE_INVALID = "货品类型已失效";
     public static final String ID_IS_NOT_NULL = "主键不能为空";
+    public static final String SPU_PROPERTY_NOT_FIND = "产品属性不存在";
+    public static final String SPU_PROPERTY_INVALID = "产品属性已失效";
+    public static final String SPU_PROPERTY_OPTION_NOT_FIND = "产品属性值不存在";
+    public static final String SPU_PROPERTY_OPTION_INVALID = "产品属性值已失效";
 }
