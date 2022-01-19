@@ -24,6 +24,8 @@ public class BaseDto implements Serializable {
     /**
      * 删除标志
      */
+//    @NotNull(message = "删除标志不能为空")
+//    @NotBlank(message = "删除标志不能为空")
     private String delTag;
 
     public BaseDto() {
