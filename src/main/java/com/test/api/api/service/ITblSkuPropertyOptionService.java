@@ -1,6 +1,7 @@
 package com.test.api.api.service;
 
 import com.test.api.api.bean.TblSkuPropertyOption;
+import com.test.api.api.vo.commodity.skupropertyoption.SkuPropertyOptionVO;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 
@@ -42,4 +43,11 @@ public interface ITblSkuPropertyOptionService {
      * @return
      */
     int updateDelTag(TblSkuPropertyOption record);
+
+    /**
+     * 通过主键查询产品属性信息
+     * @param id 产品属性值关系主键
+     * @return
+     */
+    SkuPropertyOptionVO queryDetail(String id);
 }

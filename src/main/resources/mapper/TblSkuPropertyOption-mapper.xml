@@ -12,9 +12,30 @@
     <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
+  <resultMap id="SKU_Property_Detail_Map" type="com.test.api.api.vo.commodity.skupropertyoption.SkuPropertyOptionVO">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="sku_id" jdbcType="VARCHAR" property="skuId" />
+    <result column="pro_opt_id" jdbcType="VARCHAR" property="proOptId" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sku_id_name" jdbcType="VARCHAR" property="skuIdName" />
+    <collection property="listProperty" ofType="com.test.api.api.vo.commodity.property_option.PropertyOptionVo">
+      <id column="value_id" property="id"/>
+      <result column="property_name" property="propertyName"/>
+    </collection>
+  </resultMap>
   <sql id="Base_Column_List">
     id, sku_id, pro_opt_id, create_user, create_time, update_user, update_time, del_tag, 
     remark
+  </sql>
+  <sql id="Detail_Column">
+    ${t0}.id,concat_ws('-', ${t0}.id, ${t0}.`name`) as sku_id_name, ${t0}.create_user, ${t0}.create_time,
+    ${t0}.update_user, ${t0}.update_time, ${t0}.del_tag, ${t0}.remark, ${t1}.id as value_id, concat_ws('-',
+    ${t1}.`value`, ${t2}.`name`) as property_name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -138,4 +159,18 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
 
+  <select id="queryDetail" parameterType="string" resultMap="SKU_Property_Detail_Map">
+    SELECT
+    <include refid="Detail_Column">
+      <property name="t0" value="t0"/>
+      <property name="t1" value="t1"/>
+      <property name="t2" value="t2"/>
+    </include>
+    from tbl_sku t0
+    left join tbl_sku_property_option t3 on t0.id=t3.sku_id
+    LEFT JOIN tbl_property_options t1 on t3.pro_opt_id = t1.id
+    left join tbl_property t2 on t1.attr_id=t2.id
+    where t0.id = #{id,jdbcType=VARCHAR}
+
+  </select>
 </mapper>

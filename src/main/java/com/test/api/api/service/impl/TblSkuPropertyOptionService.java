@@ -7,6 +7,7 @@ import com.test.api.api.dao.TblSkuPropertyOptionDao;
 import com.test.api.api.service.ITblSkuPropertyOptionService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
+import com.test.api.api.vo.commodity.skupropertyoption.SkuPropertyOptionVO;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import org.slf4j.Logger;
@@ -83,5 +84,10 @@ public class TblSkuPropertyOptionService extends CommonService implements ITblSk
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
         setObjectUpdateInfo(record, null);
         return skuPropertyOptionDao.updateDelTag(record);
+    }
+
+    @Override
+    public SkuPropertyOptionVO queryDetail(String id) {
+        return skuPropertyOptionDao.queryDetail(id);
     }
 }

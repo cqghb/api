@@ -32,6 +32,8 @@ spring:
         max-idle: 10 # 连接池中最小空闲连接
         max-wait: 100000 # 连接池最大阻塞等待时间(使用负值表示没有限制)
 mybatis:
+  configuration:
+    map-underscore-to-camel-case: true # 开启驼峰命名匹配映射
   mapper-locations: classpath:mapper/*.xml # xml映射文件位置
   type-aliases-package: com.test.api.api.bean # 对应实体类的路径
 logging:

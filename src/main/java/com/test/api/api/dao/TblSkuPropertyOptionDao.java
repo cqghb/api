@@ -2,6 +2,7 @@ package com.test.api.api.dao;
 
 import com.alibaba.fastjson.JSONObject;
 import com.test.api.api.bean.TblSkuPropertyOption;
+import com.test.api.api.vo.commodity.skupropertyoption.SkuPropertyOptionVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -40,4 +41,11 @@ public interface TblSkuPropertyOptionDao {
      * @return
      */
     int updateDelTag(TblSkuPropertyOption record);
+
+    /**
+     * 通过主键查询产品属性信息
+     * @param id 产品属性值关系主键
+     * @return
+     */
+    SkuPropertyOptionVO queryDetail(String id);
 }

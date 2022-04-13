@@ -2,6 +2,7 @@ package com.test.api.api.dao;
 
 import com.alibaba.fastjson.JSONObject;
 import com.test.api.api.bean.TblSpecification;
+import com.test.api.api.vo.commodity.specification.SpecificationListVO;
 import com.test.api.api.vo.commodity.specification.SpecificationVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -32,7 +33,7 @@ public interface TblSpecificationDao {
      * @param record 查询条件
      * @return
      */
-    List<TblSpecification> queryList(JSONObject record);
+    List<SpecificationListVO> queryList(JSONObject record);
 
     /**
      * 修改删除标志

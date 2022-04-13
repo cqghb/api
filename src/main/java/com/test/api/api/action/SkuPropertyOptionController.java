@@ -5,6 +5,7 @@ import com.test.api.api.config.Result;
 import com.test.api.api.dto.CommonIdDto;
 import com.test.api.api.service.ITblSkuPropertyOptionService;
 import com.test.api.api.utils.ResultUtil;
+import com.test.api.api.vo.commodity.skupropertyoption.SkuPropertyOptionVO;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import io.swagger.annotations.Api;
@@ -63,6 +64,19 @@ public class SkuPropertyOptionController {
     public Result queryById(@RequestBody @Validated CommonIdDto ddDto) {
         TblSkuPropertyOption sku = skuPropertyOptionService.selectByPrimaryKey(ddDto.getId());
         return ResultUtil.success(sku);
+    }
+
+    /**
+     * 通过主键查询
+     * @param ddDto
+     * @return
+     */
+    @ApiImplicitParam(name = "id", value = "角色主键")
+    @ApiOperation(value = "通过ID查询数据操作信息", notes = "通过ID查询数据操作信息")
+    @PostMapping(value = "/queryDetail")
+    public Result queryDetail(@RequestBody @Validated CommonIdDto ddDto) {
+        SkuPropertyOptionVO skuPropertyOptions = skuPropertyOptionService.queryDetail(ddDto.getId());
+        return ResultUtil.success(skuPropertyOptions);
     }
 
     /**
