@@ -32,7 +32,7 @@ public interface TblPropertyDao {
      * @param record 查询条件
      * @return
      */
-    List<TblProperty> queryList(JSONObject record);
+    List<PropertyVo> queryList(JSONObject record);
 
     /**
      * 修改删除标志
