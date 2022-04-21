@@ -12,6 +12,15 @@
     <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
+  <resultMap id="ListResultMap" type="com.test.api.api.vo.commodity.property_option.ListPropertyOptionVo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="attr_name" jdbcType="VARCHAR" property="attrName" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
   <resultMap id="SKU_Property_Detail_Map" type="com.test.api.api.vo.commodity.skupropertyoption.SkuPropertyOptionVO">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="sku_id" jdbcType="VARCHAR" property="skuId" />
@@ -125,19 +134,22 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
 
-  <select id="queryList" parameterType="com.test.api.api.bean.TblSkuPropertyOption" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from tbl_sku_property_option
+  <select id="queryList" parameterType="com.test.api.api.bean.TblSkuPropertyOption" resultMap="ListResultMap">
+    SELECT concat_ws( '-', t3.id, t1.id) AS id,t1.id sku_id,t1.`code`,t1.`name`,
+    t4.`name` attr_name,t3.`value`,t2.remark,t2.del_tag
+    FROM tbl_spu t1
+    LEFT JOIN tbl_sku_property_option t2 ON t1.id=t2.sku_id
+    LEFT JOIN tbl_property_options t3 ON t2.pro_opt_id=t3.id
+    LEFT JOIN tbl_property t4 ON t3.attr_id=t4.id
     <where>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
-        and id = #{id,jdbcType=VARCHAR}
+        and t1.id = #{id,jdbcType=VARCHAR}
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
-        and `name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
+        and t1.`name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
-        and del_tag = #{delTag,jdbcType=VARCHAR}
+        and t1.del_tag = #{delTag,jdbcType=VARCHAR}
       </if>
     </where>
   </select>
