@@ -3,6 +3,8 @@ package com.test.api.api.service.impl;
 import com.test.api.api.bean.TblSpuBrand;
 import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
+import com.test.api.api.constant.ErrorMsgConstant;
+import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblSpuBrandDao;
 import com.test.api.api.service.ITblSpuBrandService;
@@ -41,7 +43,13 @@ public class TblSpuBrandService extends CommonService implements ITblSpuBrandSer
     }
 
     @Override
-    public int insertSelective(TblSpuBrand record) {
+    public int insertSelective(TblSpuBrand record) throws AppException {
+        /**
+         * 添加校验
+         * 品牌编码和品牌名称不能重复
+         */
+        TblSpuBrand oldSpuBrand = spuBrandDao.queryOne(record);
+        checkCodeName(oldSpuBrand, record);
         record.setId(StringUtil.uuid());
         setObjectInsertInfo(record, null);
         return spuBrandDao.insertSelective(record);
@@ -55,6 +63,8 @@ public class TblSpuBrandService extends CommonService implements ITblSpuBrandSer
     @Override
     public int updateByPrimaryKeySelective(TblSpuBrand record) {
         TblSpuBrand oldSpuBrand = getInfo(spuBrandDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblSpuBrand oldSpuBrand2 = spuBrandDao.queryOne(record);
+        checkCodeName(oldSpuBrand2, record);
         BeanUtils.copyProperties(record, oldSpuBrand);
         setObjectUpdateInfo(oldSpuBrand, null);
         return spuBrandDao.updateByPrimaryKeySelective(oldSpuBrand);
@@ -76,5 +86,27 @@ public class TblSpuBrandService extends CommonService implements ITblSpuBrandSer
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
         setObjectUpdateInfo(record, null);
         return spuBrandDao.updateDelTag(record);
+    }
+
+    /**
+     * 检查SPU品牌编码、品牌名称是否重复
+     * @param oldSpuBrand 存量
+     * @param record 当前
+     * @throws AppException
+     */
+    private void checkCodeName(TblSpuBrand oldSpuBrand, TblSpuBrand record) throws AppException {
+        /**
+         * 添加校验
+         * 品牌编码和品牌名称不能重复
+         */
+        if(StringUtil.objIsEmpty(oldSpuBrand)){
+            return ;
+        }
+        if(record.getCode().equals(oldSpuBrand.getCode())){
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPU_BRAND_CODE_REPEAT);
+        }
+        if(record.getName().equals(oldSpuBrand.getName())){
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPU_BRAND_NAME_REPEAT);
+        }
     }
 }

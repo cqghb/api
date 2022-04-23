@@ -37,4 +37,11 @@ public interface TblSpuBrandDao {
      * @return
      */
     int updateDelTag(TblSpuBrand record);
+
+    /**
+     * 查询一条[主键ID、品牌名称、品牌编码均只能查出一条数据]
+     * @param record
+     * @return
+     */
+    TblSpuBrand queryOne(TblSpuBrand record);
 }

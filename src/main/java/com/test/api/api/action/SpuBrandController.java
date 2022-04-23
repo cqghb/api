@@ -3,6 +3,8 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblSpuBrand;
 import com.test.api.api.config.Result;
 import com.test.api.api.dto.CommonIdDto;
+import com.test.api.api.dto.commodity.spubrand.AddSpuBrandDto;
+import com.test.api.api.dto.commodity.spubrand.UpdateSpuBrandDto;
 import com.test.api.api.service.ITblSpuBrandService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.page.PageRequest;
@@ -10,6 +12,7 @@ import com.test.api.api.vo.page.PageResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -73,6 +76,38 @@ public class SpuBrandController {
         TblSpuBrand spuBrand = new TblSpuBrand();
         spuBrand.setId(ddDto.getId());
         int num = spuBrandService.updateDelTag(spuBrand);
+        return ResultUtil.success(num);
+    }
+
+    /**
+     * 修改
+     *
+     * @param update
+     * @return
+     */
+    @PostMapping(value = "/updateSpuBrand")
+    @ApiImplicitParam(name = "updateSpuBrand", value = "修改SPU产品品牌信息的参数")
+    @ApiOperation(value = "修改SPU产品品牌信息", notes = "修改SPU产品品牌信息")
+    public Result updateSpuBrand(@RequestBody @Validated UpdateSpuBrandDto update) {
+        TblSpuBrand spuBrand = new TblSpuBrand();
+        BeanUtils.copyProperties(update, spuBrand);
+        int num = spuBrandService.updateByPrimaryKeySelective(spuBrand);
+        return ResultUtil.success(num);
+    }
+
+    /**
+     * 修改ØØ
+     *
+     * @param update
+     * @return
+     */
+    @PostMapping(value = "/addSpuBrand")
+    @ApiImplicitParam(name = "addSpuBrand", value = "新增SPU产品品牌信息的参数")
+    @ApiOperation(value = "新增SPU产品品牌信息", notes = "新增SPU牌信息")
+    public Result addSpuBrand(@RequestBody @Validated AddSpuBrandDto update) {
+        TblSpuBrand spuBrand = new TblSpuBrand();
+        BeanUtils.copyProperties(update, spuBrand);
+        int num = spuBrandService.insertSelective(spuBrand);
         return ResultUtil.success(num);
     }
 }

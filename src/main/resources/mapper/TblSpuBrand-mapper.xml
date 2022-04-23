@@ -122,7 +122,7 @@
         and del_tag = #{delTag,jdbcType=VARCHAR}
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(code)">
-        and code = #{code,jdbcType=VARCHAR}
+        and code like concat('%', #{code,jdbcType=VARCHAR}, '%')
       </if>
     </where>
 
@@ -143,4 +143,29 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="queryOne" parameterType="com.test.api.api.bean.TblSpuBrand" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_spu_brand
+    <where>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
+        and id = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
+        and `name` = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+        and del_tag = #{delTag,jdbcType=VARCHAR}
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(code)">
+        and code = #{code,jdbcType=VARCHAR}
+      </if>
+      /** 不查自己 **/
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
+        and id != #{code,jdbcType=VARCHAR}
+      </if>
+    </where>
+
+  </select>
 </mapper>

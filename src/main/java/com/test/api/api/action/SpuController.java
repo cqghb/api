@@ -81,4 +81,20 @@ public class SpuController {
         return ResultUtil.success(num);
     }
 
+    /**
+     * 修改
+     *
+     * @param update
+     * @return
+     *//*
+    @PostMapping(value = "/updateSpuType")
+    @ApiImplicitParam(name = "update", value = "维护货品类型的参数")
+    @ApiOperation(value = "修改货品类型", notes = "修改货品类型")
+    public Result updateSpuType(@RequestBody @Validated UpdateTblSpuTypeDto update) {
+        TblSpuType spuType = new TblSpuType();
+        BeanUtils.copyProperties(update, spuType);
+        int num = spuTypeService.updateByPrimaryKeySelective(spuType);
+        return ResultUtil.success(num);
+    }*/
+
 }

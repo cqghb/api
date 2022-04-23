@@ -21,7 +21,7 @@ public interface ITblSpuBrandService {
 
     int insert(TblSpuBrand record);
 
-    int insertSelective(TblSpuBrand record);
+    int insertSelective(TblSpuBrand record) throws AppException;
 
     TblSpuBrand selectByPrimaryKey(String id);
 
