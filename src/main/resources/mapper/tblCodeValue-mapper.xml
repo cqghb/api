@@ -143,6 +143,9 @@
         #{item, jdbcType=VARCHAR}
       </foreach>
     </if>
+    <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+      and t.del_tag = #{delTag,jdbcType=VARCHAR}
+    </if>
     ORDER BY t.`index` ASC
   </select>
 

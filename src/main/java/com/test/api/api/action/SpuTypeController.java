@@ -22,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @projectName api
  * @package com.test.api.api.action
@@ -111,5 +114,16 @@ public class SpuTypeController {
         spuType.setId(ddDto.getId());
         int num = spuTypeService.updateDelTag(spuType);
         return ResultUtil.success(num);
+    }
+
+    /**
+     * 查询货品类型 id 、 name
+     * @param spuType 查询条件
+     * @return
+     */
+    @PostMapping(value="/searchSPUTypeCode")
+    public Result searchSPUTypeCode(@RequestBody TblSpuType spuType) {
+        List<Map<String, String>> codeKeyValueList = spuTypeService.searchSPUTypeCode(spuType);
+        return ResultUtil.success(codeKeyValueList);
     }
 }

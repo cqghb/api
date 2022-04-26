@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 货品类型持久层接口
@@ -47,4 +48,11 @@ public interface TblSpuTypeDao {
      * @return
      */
     List<TblSpuType> query(TblSpuType record);
+
+    /**
+     * 查询货品类型 id 、 name
+     * @param record 查询条件
+     * @return
+     */
+    List<Map<String, String>> searchSPUTypeCode(TblSpuType record);
 }

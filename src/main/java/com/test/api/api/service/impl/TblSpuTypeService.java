@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @projectName api
@@ -143,5 +144,10 @@ public class TblSpuTypeService extends CommonService implements ITblSpuTypeServi
     @Override
     public List<TblSpuType> query(TblSpuType record) {
         return spuTypeDao.query(record);
+    }
+
+    @Override
+    public List<Map<String, String>> searchSPUTypeCode(TblSpuType record) {
+        return spuTypeDao.searchSPUTypeCode(record);
     }
 }

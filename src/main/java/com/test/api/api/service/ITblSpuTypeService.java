@@ -5,6 +5,7 @@ import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @projectName api
@@ -78,4 +79,11 @@ public interface ITblSpuTypeService {
      * @return
      */
     List<TblSpuType> query(TblSpuType record);
+
+    /**
+     * 查询货品类型 id 、 name
+     * @param record 查询条件
+     * @return
+     */
+    List<Map<String, String>> searchSPUTypeCode(TblSpuType record);
 }

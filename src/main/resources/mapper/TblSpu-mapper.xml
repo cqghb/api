@@ -17,9 +17,24 @@
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, `name`, code, brief_introduction, detail, type_id, brand_id, create_user, create_time, 
-    update_user, update_time, del_tag, remark
-  </sql>
+        id, `name`, code, brief_introduction, detail, type_id, brand_id, create_user, create_time,
+        update_user, update_time, del_tag, remark
+    </sql>
+    <resultMap id="ListResultMap" type="com.test.api.api.vo.commodity.spu.ListSpuVO">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="brief_introduction" jdbcType="VARCHAR" property="briefIntroduction"/>
+        <result column="detail" jdbcType="VARCHAR" property="detail"/>
+        <result column="type_name" jdbcType="VARCHAR" property="typeName"/>
+        <result column="brand_name" jdbcType="VARCHAR" property="brandName"/>
+        <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="del_tag" jdbcType="VARCHAR" property="delTag"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+    </resultMap>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -154,20 +169,43 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
 
-  <select id="queryList" parameterType="com.test.api.api.bean.TblSpu" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from tbl_spu
+  <select id="queryList" parameterType="com.test.api.api.bean.TblSpu" resultMap="ListResultMap">
+      SELECT
+      t1.id,
+      t1.`name`,
+      t1.`code`,
+      t1.detail,
+      concat_ws( '-', t3.id, t3.`name` ) AS type_name,
+      concat_ws( '-', t2.id, t2.`name` ) AS brand_name,
+      t1.create_time,
+      t1.create_user,
+      t1.update_time,
+      t1.update_user,
+      t1.remark,
+      t1.del_tag
+      FROM
+      tbl_spu t1
+      LEFT JOIN tbl_spu_brand t2 ON t1.brand_id = t2.id
+      LEFT JOIN tbl_spu_type t3 ON t1.type_id = t3.id
     <where>
-      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
-        and id = #{id,jdbcType=VARCHAR}
-      </if>
-      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
-        and `name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
-      </if>
-      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
-        and del_tag = #{delTag,jdbcType=VARCHAR}
-      </if>
+        <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
+            and t1.id = #{id,jdbcType=VARCHAR}
+        </if>
+        <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(code)">
+            and t1.code = #{code,jdbcType=VARCHAR}
+        </if>
+        <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
+            and t1.`name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+            and t1.del_tag = #{delTag,jdbcType=VARCHAR}
+        </if>
+        <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(brandId)">
+            and t2.id = #{brandId,jdbcType=VARCHAR}
+        </if>
+        <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(typeId)">
+            and t3.id = #{typeId,jdbcType=VARCHAR}
+        </if>
     </where>
   </select>
 

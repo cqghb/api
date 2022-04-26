@@ -9,11 +9,13 @@ import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
 import com.test.api.api.constant.ErrorMsgConstant;
 import com.test.api.api.constant.MsgCodeConstant;
+import com.test.api.api.constant.TableColumnConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblCodeValueDao;
 import com.test.api.api.service.ITblCodeValueService;
 import com.test.api.api.service.ITblDataOperateService;
 import com.test.api.api.utils.PageUtils;
+import com.test.api.api.utils.StringUtil;
 import com.test.api.api.vo.CodeValueVO;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
@@ -52,6 +54,11 @@ public class TblCodeValueService extends CommonService implements ITblCodeValueS
         if(StringUtils.isEmpty(codeValueBO.getCodeType())){
             logger.error(ErrorMsgConstant.CODE_TYPE_NOT_NULL);
             throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.CODE_TYPE_NOT_NULL);
+        }
+        String delTag = codeValueBO.getDelTag();
+        /* 页面传就用页面的，页面不穿默认查没有被删除的 */
+        if(StringUtil.objIsEmpty(delTag)){
+            codeValueBO.setDelTag(TableColumnConstant.DEL_TAG_CODE_2);
         }
         return tblCodeValueDao.searchCodeKeyValue(codeValueBO);
     }
