@@ -2,9 +2,13 @@ package com.test.api.api.action;
 
 import com.test.api.api.bean.TblSpu;
 import com.test.api.api.config.Result;
+import com.test.api.api.dto.CommonCodeDto;
 import com.test.api.api.dto.CommonIdDto;
+import com.test.api.api.dto.commodity.spu.AddSpuDto;
+import com.test.api.api.dto.commodity.spu.UpdateSpuDto;
 import com.test.api.api.service.ITblSpuService;
 import com.test.api.api.utils.ResultUtil;
+import com.test.api.api.vo.commodity.spu.ListSpuVO;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 import io.swagger.annotations.Api;
@@ -12,6 +16,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,11 +63,24 @@ public class SpuController {
      * @param ddDto
      * @return
      */
-    @ApiImplicitParam(name = "id", value = "角色主键")
+    @ApiImplicitParam(name = "id", value = "货品主键")
     @ApiOperation(value = "通过ID查询数据操作信息", notes = "通过ID查询数据操作信息")
     @PostMapping(value = "/queryById")
     public Result queryById(@RequestBody @Validated CommonIdDto ddDto) {
-        TblSpu spuType = spuService.selectByPrimaryKey(ddDto.getId());
+        ListSpuVO spuType = spuService.selectDetail(ddDto.getId());
+        return ResultUtil.success(spuType);
+    }
+
+    /**
+     * 通过编码查询
+     * @param codeDto 货品编码
+     * @return
+     */
+    @ApiImplicitParam(name = "codeDto", value = "货品编码")
+    @ApiOperation(value = "通过ID查询数据操作信息", notes = "通过ID查询数据操作信息")
+    @PostMapping(value = "/queryByCode")
+    public Result queryByCode(@RequestBody @Validated CommonCodeDto codeDto) {
+        TblSpu spuType = spuService.queryByCode(codeDto.getCode());
         return ResultUtil.success(spuType);
     }
 
@@ -84,17 +102,33 @@ public class SpuController {
     /**
      * 修改
      *
+     * @param addSpu 货品信息
+     * @return
+     */
+    @PostMapping(value = "/addSpu")
+    @ApiImplicitParam(name = "addSpu", value = "添加货品的参数")
+    @ApiOperation(value = "添加货品类型", notes = "添加货品类型")
+    public Result addSpu(@RequestBody @Validated AddSpuDto addSpu) {
+        TblSpu spu = new TblSpu();
+        BeanUtils.copyProperties(addSpu, spu);
+        int num = spuService.insertSelective(spu);
+        return ResultUtil.success(num);
+    }
+
+    /**
+     * 修改
+     *
      * @param update
      * @return
-     *//*
-    @PostMapping(value = "/updateSpuType")
-    @ApiImplicitParam(name = "update", value = "维护货品类型的参数")
-    @ApiOperation(value = "修改货品类型", notes = "修改货品类型")
-    public Result updateSpuType(@RequestBody @Validated UpdateTblSpuTypeDto update) {
-        TblSpuType spuType = new TblSpuType();
-        BeanUtils.copyProperties(update, spuType);
-        int num = spuTypeService.updateByPrimaryKeySelective(spuType);
+     */
+    @PostMapping(value = "/updateSpu")
+    @ApiImplicitParam(name = "update", value = "维护货品的参数")
+    @ApiOperation(value = "修改货品信息", notes = "修改货品信息")
+    public Result updateSpu(@RequestBody @Validated UpdateSpuDto update) {
+        TblSpu spu = new TblSpu();
+        BeanUtils.copyProperties(update, spu);
+        int num = spuService.updateByPrimaryKeySelective(spu);
         return ResultUtil.success(num);
-    }*/
+    }
 
 }

@@ -43,4 +43,18 @@ public interface ITblSpuBrandService {
      */
     int updateDelTag(TblSpuBrand record) throws AppException;
 
+    /**
+     * 检查货品品牌是否存在，如不存在则抛出异常
+     *
+     * @param id 货品品牌主键
+     */
+    TblSpuBrand checkSpuBrand(String id);
+
+    /**
+     * 检查货品品牌是否已经失效，如已经失效则抛出异常
+     *
+     * @param id 货品品牌主键
+     */
+    void checkSpuBrandDelTag(String id);
+
 }

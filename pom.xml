@@ -121,12 +121,6 @@
 <!--            <version>1.18.11.97</version>-->
 <!--        </dependency>-->
         <!-- 日志框架 -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.24</version>
-            <scope>provided</scope>
-        </dependency>
 
     </dependencies>
 

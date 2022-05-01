@@ -2,6 +2,7 @@ package com.test.api.api.dao;
 
 import com.alibaba.fastjson.JSONObject;
 import com.test.api.api.bean.TblSpu;
+import com.test.api.api.vo.commodity.spu.ListSpuVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +22,13 @@ public interface TblSpuDao {
 
     TblSpu selectByPrimaryKey(@Param("id") String id);
 
+    /**
+     * 根据货品编码查询货品信息
+     * @param code 货品编码
+     * @return
+     */
+    TblSpu queryByCode(@Param("code") String code);
+
     int updateByPrimaryKeySelective(TblSpu record);
 
     int updateByPrimaryKey(TblSpu record);
@@ -31,7 +39,7 @@ public interface TblSpuDao {
      * @param record 查询条件
      * @return
      */
-    List<TblSpu> queryList(JSONObject record);
+    List<ListSpuVO> queryList(JSONObject record);
 
     /**
      * 修改删除标志
@@ -40,4 +48,19 @@ public interface TblSpuDao {
      * @return
      */
     int updateDelTag(TblSpu record);
+
+    /**
+     * 查询货品详细信息
+     *
+     * @param id 货品主键
+     * @return
+     */
+    ListSpuVO selectDetail(@Param("id") String id);
+
+    /**
+     * 货品列表查询
+     * @param record 查询条件
+     * @return
+     */
+    List<TblSpu> searchList(TblSpu record);
 }

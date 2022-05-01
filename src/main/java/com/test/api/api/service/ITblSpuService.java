@@ -1,6 +1,8 @@
 package com.test.api.api.service;
 
 import com.test.api.api.bean.TblSpu;
+import com.test.api.api.config.AppException;
+import com.test.api.api.vo.commodity.spu.ListSpuVO;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 
@@ -19,7 +21,11 @@ public interface ITblSpuService {
     int deleteByPrimaryKey(String id);
 
     int insert(TblSpu record);
-
+    /**
+     * 添加货品信息
+     * @param record 货品信息
+     * @return
+     */
     int insertSelective(TblSpu record);
 
     TblSpu selectByPrimaryKey(String id);
@@ -42,4 +48,28 @@ public interface ITblSpuService {
      * @return
      */
     int updateDelTag(TblSpu record);
+
+    /**
+     * 查询货品详细信息
+     *
+     * @param id 货品主键
+     * @return
+     */
+    ListSpuVO selectDetail(String id);
+
+    /**
+     * 货品编码不能重复
+     * @param code 货品编码
+     * @throws AppException
+     */
+    void spuCodeRepeat(String code) throws AppException;
+
+    /**
+     * 根据货品编码查询货品信息
+     *
+     * @param code 货品编码
+     * @return
+     */
+    TblSpu queryByCode(String code);
+
 }

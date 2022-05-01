@@ -88,6 +88,23 @@ public class TblSpuBrandService extends CommonService implements ITblSpuBrandSer
         return spuBrandDao.updateDelTag(record);
     }
 
+    @Override
+    public TblSpuBrand checkSpuBrand(String id) {
+        TblSpuBrand spuBrand = this.selectByPrimaryKey(id);
+        if(StringUtil.objIsEmpty(spuBrand)){
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPU_BRAND_NOT_FIND);
+        }
+        return spuBrand;
+    }
+
+    @Override
+    public void checkSpuBrandDelTag(String id) {
+        TblSpuBrand spuType = this.checkSpuBrand(id);
+        if (!DelTagEnum.DEL_TAG_2.getCode().equals(spuType.getDelTag())) {
+            throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPU_BRAND_INVALID);
+        }
+    }
+
     /**
      * 检查SPU品牌编码、品牌名称是否重复
      * @param oldSpuBrand 存量
