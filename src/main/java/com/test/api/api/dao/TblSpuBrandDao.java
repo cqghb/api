@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 商品品牌持久层接口
@@ -44,4 +45,11 @@ public interface TblSpuBrandDao {
      * @return
      */
     TblSpuBrand queryOne(TblSpuBrand record);
+
+    /**
+     * 查询货品品牌
+     * @param spuBrand 查询你条件
+     * @return
+     */
+    List<Map<String, String>> searchSpuBrand(TblSpuBrand spuBrand);
 }

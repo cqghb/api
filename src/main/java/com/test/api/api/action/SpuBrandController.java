@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @projectName api
  * @package com.test.api.api.action
@@ -109,5 +112,16 @@ public class SpuBrandController {
         BeanUtils.copyProperties(update, spuBrand);
         int num = spuBrandService.insertSelective(spuBrand);
         return ResultUtil.success(num);
+    }
+
+    /**
+     * 查询货品品牌 id 、 name
+     * @param spuBrand 查询条件
+     * @return
+     */
+    @PostMapping(value="/searchSpuBrand")
+    public Result searchSpuBrand(@RequestBody TblSpuBrand spuBrand) {
+        List<Map<String, String>> codeKeyValueList = spuBrandService.searchSpuBrand(spuBrand);
+        return ResultUtil.success(codeKeyValueList);
     }
 }

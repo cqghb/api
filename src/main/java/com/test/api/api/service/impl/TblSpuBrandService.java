@@ -16,6 +16,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @projectName api
  * @package com.test.api.api.service.impl
@@ -103,6 +106,11 @@ public class TblSpuBrandService extends CommonService implements ITblSpuBrandSer
         if (!DelTagEnum.DEL_TAG_2.getCode().equals(spuType.getDelTag())) {
             throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPU_BRAND_INVALID);
         }
+    }
+
+    @Override
+    public List<Map<String, String>> searchSpuBrand(TblSpuBrand spuBrand) {
+        return spuBrandDao.searchSpuBrand(spuBrand);
     }
 
     /**

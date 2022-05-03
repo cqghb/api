@@ -5,6 +5,9 @@ import com.test.api.api.config.AppException;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @projectName api
  * @package com.test.api.api.service
@@ -57,4 +60,10 @@ public interface ITblSpuBrandService {
      */
     void checkSpuBrandDelTag(String id);
 
+    /**
+     * 查询货品品牌
+     * @param spuBrand 查询条件
+     * @return
+     */
+    List<Map<String, String>> searchSpuBrand(TblSpuBrand spuBrand);
 }
