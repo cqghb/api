@@ -66,4 +66,10 @@ public interface TblMenuDao {
      * @return
      */
     List<TblMenu> queryUserMenu(@Param("userNo") String userNo);
+    /**
+     * 修改菜单删除标志
+     * @param params 菜单对象
+     * @return
+     */
+    int updateMenuDelTag(TblMenu params);
 }

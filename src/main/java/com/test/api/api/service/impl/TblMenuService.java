@@ -90,7 +90,7 @@ public class TblMenuService extends CommonService implements ITblMenuService {
         PageInfo<TblMenu> pageInfo = (PageInfo<TblMenu>) getPageInfo(menuDao, CommConstant.QUERY_LIST, pageQuery);
         List<TblMenu> parentList = pageInfo.getList();
         // 查根菜单的子菜单
-        List<TblMenu> treeList = this.getChildren(parentList);
+        List<TblMenu> treeList = this.getChildren(parentList,pageQuery);
         pageInfo.setList(treeList);
         return PageUtils.getPageResult(pageInfo);
     }
@@ -114,12 +114,16 @@ public class TblMenuService extends CommonService implements ITblMenuService {
         // 检查是否有子节点
         TblMenu queryParam = new TblMenu();
         queryParam.setParentNode(id);
+        queryParam.setDelTag(DelTagEnum.DEL_TAG_2.getCode());
         JSONObject j = (JSONObject)JSONObject.toJSON(queryParam);
         List<TblMenu> childrenList = menuDao.queryList(j);
         if(StringUtil.objIsNotEmpty(childrenList)){
             throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.MENU_CHILDREN_IS_NOT_NULL);
         }
-        return menuDao.deleteById(id);
+        TblMenu params = new TblMenu();
+        params.setId(id);
+        params.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
+        return menuDao.updateMenuDelTag(params);
     }
 
     @Override
@@ -203,17 +207,21 @@ public class TblMenuService extends CommonService implements ITblMenuService {
      * 根据父节点查出子节点
      *
      * @param parentTree 父节点
+     * @param pageQuery 查询条件
      * @return
      */
-    private List<TblMenu> getChildren(List<TblMenu> parentTree) {
+    private List<TblMenu> getChildren(List<TblMenu> parentTree, PageRequest pageQuery) {
+        JSONObject paramJsons = (JSONObject)JSONObject.toJSON(pageQuery.getParams());
+        String delTag = paramJsons.getString(CommConstant.DEL_TAG);
         for (TblMenu item : parentTree) {
             String id = item.getId();
             TblMenu params = new TblMenu();
             params.setParentNode(id);
+            params.setDelTag(delTag);
             JSONObject j = (JSONObject)JSONObject.toJSON(params);
             List<TblMenu> childrenTree = menuDao.queryList(j);
             if (childrenTree != null) {
-                this.getChildren(childrenTree);
+                this.getChildren(childrenTree, pageQuery);
             }
             item.setChildrenList(childrenTree);
         }

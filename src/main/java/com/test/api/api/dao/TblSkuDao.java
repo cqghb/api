@@ -2,6 +2,7 @@ package com.test.api.api.dao;
 
 import com.alibaba.fastjson.JSONObject;
 import com.test.api.api.bean.TblSku;
+import com.test.api.api.vo.commodity.sku.SkuMainVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -31,7 +32,7 @@ public interface TblSkuDao {
      * @param record 查询条件
      * @return
      */
-    List<TblSku> queryList(JSONObject record);
+    List<SkuMainVo> queryList(JSONObject record);
 
     /**
      * 修改删除标志

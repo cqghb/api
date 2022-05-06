@@ -18,6 +18,34 @@
     id, `name`, code, price, spu_id, create_user, create_time, update_user, update_time, 
     del_tag, remark
   </sql>
+  <resultMap id="MainResultMap" type="com.test.api.api.vo.commodity.sku.SkuMainVo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sku_code_name" jdbcType="VARCHAR" property="skuCodeName" />
+    <result column="spu_id" jdbcType="VARCHAR" property="spuId" />
+    <result column="spu_code" jdbcType="VARCHAR" property="spuCode" />
+    <result column="spu_name" jdbcType="VARCHAR" property="spuName" />
+    <result column="spu_code_name" jdbcType="VARCHAR" property="spuCodeName" />
+    <result column="brand_id" jdbcType="VARCHAR" property="brandId" />
+    <result column="brand_code" jdbcType="VARCHAR" property="brandCode" />
+    <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+    <result column="brand_code_name" jdbcType="VARCHAR" property="brandCodeName" />
+    <result column="spu_type_id" jdbcType="VARCHAR" property="spuTypeId" />
+    <result column="spu_type_code" jdbcType="VARCHAR" property="spuTypeCode" />
+    <result column="spu_type_name" jdbcType="VARCHAR" property="spuTypeName" />
+    <result column="spu_type_code_name" jdbcType="VARCHAR" property="spuTypeCodeName" />
+    <result column="spe_id" jdbcType="VARCHAR" property="speId" />
+    <result column="spe_name" jdbcType="VARCHAR" property="speName" />
+    <result column="spe_id_name" jdbcType="VARCHAR" property="speIdName" />
+  </resultMap>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -127,19 +155,50 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
 
-  <select id="queryList" parameterType="com.test.api.api.bean.TblSku" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from tbl_sku
+  <select id="queryList" parameterType="com.test.api.api.bean.TblSku" resultMap="MainResultMap">
+    SELECT t1.id,/** 产品ID **/
+    t1.`code`,/** 产品代码 **/
+    t1.`name`,/** 产品名称 **/
+    concat_ws( '-', t1.`code`, t1.`name` ) AS sku_code_name,
+    t1.price,/** 产品价格 **/
+    t1.create_user,/** 产品创建人 **/
+    t1.create_time,/** 产品创建时间 **/
+    t1.update_user,/** 产品修改人 **/
+    t1.update_time,/** 产品修改时间 **/
+    t1.del_tag,/** 产品删除标记 **/
+    t1.remark, /** 产品备注 **/
+    t2.id spu_id,/** 货品ID **/
+    t2.`code` spu_code,/** 货品编码 **/
+    t2.`name` spu_name,/** 货品名称 **/
+    concat_ws( '-', t2.`code`, t2.`name` ) AS spu_code_name,
+    t3.id brand_id,/** 品牌ID **/
+    t3.`code` brand_code,/** 品牌编码 **/
+    t3.`name` brand_name,/** 品牌名称 **/
+    concat_ws( '-', t3.`code`, t3.`name` ) AS brand_code_name,
+    t4.id spu_type_id,/** 货品类型ID **/
+    t4.`code` spu_type_code,/** 货品类型编码 **/
+    t4.`name` spu_type_name,/** 货品类型名称 **/
+    concat_ws( '-', t4.`code`, t4.`name` ) AS spu_type_code_name,
+    t7.id spe_id,/** 产品规格ID **/
+    t7.`name` spe_name, /** 产品规格名称 **/
+    concat_ws( '-', t7.id, t7.`name` ) AS spe_id_name
+    FROM
+    tbl_sku t1 /** 产品表 **/
+    LEFT JOIN tbl_spu t2 ON t2.id=t1.spu_id /** 货品表 **/
+    LEFT JOIN tbl_spu_brand t3 ON t3.id=t2.brand_id /** 品牌表 **/
+    LEFT JOIN tbl_spu_type t4 ON t2.id=t4.id /** 货品类型表 **/
+    LEFT JOIN tbl_sku_specification_option t5 ON t1.id=t5.sku_id /** 产品规格选项表 **/
+    LEFT JOIN tbl_specification_option t6 ON t5.spec_opti_id=t6.id /** 规格选项表 **/
+    LEFT JOIN tbl_specification t7 ON t6.spec_id=t7.id /** 规格表 **/
     <where>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
-        and id = #{id,jdbcType=VARCHAR}
+        and t1.id = #{id,jdbcType=VARCHAR}
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
-        and `name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
+        and t1.`name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
-        and del_tag = #{delTag,jdbcType=VARCHAR}
+        and t1.del_tag = #{delTag,jdbcType=VARCHAR}
       </if>
     </where>
   </select>

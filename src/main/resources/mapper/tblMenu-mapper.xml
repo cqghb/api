@@ -194,4 +194,21 @@
         </where>
 
     </select>
+
+    <update id="updateMenuDelTag" parameterType="com.test.api.api.bean.TblMenu">
+        update tbl_menu
+        <set>
+            <if test="delTag != null and delTag != ''">
+                del_tag = #{delTag,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUser != null  and updateUser != ''">
+                update_user = #{updateUser,jdbcType=VARCHAR},
+            </if>
+            update_time = sysdate()
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
 </mapper>
