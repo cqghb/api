@@ -3,6 +3,7 @@ package com.test.api.api.action;
 import com.test.api.api.bean.TblSku;
 import com.test.api.api.config.Result;
 import com.test.api.api.dto.CommonIdDto;
+import com.test.api.api.dto.commodity.sku.AddSkuDto;
 import com.test.api.api.service.ITblSkuService;
 import com.test.api.api.utils.ResultUtil;
 import com.test.api.api.vo.page.PageRequest;
@@ -77,6 +78,19 @@ public class SkuController {
         TblSku sku = new TblSku();
         sku.setId(ddDto.getId());
         int num = skuService.updateDelTag(sku);
+        return ResultUtil.success(num);
+    }
+
+    /**
+     * 添加产品
+     * @param addSkuDto
+     * @return
+     */
+    @PostMapping(value = "/addSku")
+    @ApiImplicitParam(name = "addSkuDto", value = "逻辑删除的数据操参数")
+    @ApiOperation(value = "添加产品", notes = "添加产品")
+    public Result addSku(@RequestBody @Validated AddSkuDto addSkuDto) {
+        int num = skuService.insertSelective(addSkuDto);
         return ResultUtil.success(num);
     }
 

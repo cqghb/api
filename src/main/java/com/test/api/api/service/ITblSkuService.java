@@ -1,6 +1,7 @@
 package com.test.api.api.service;
 
 import com.test.api.api.bean.TblSku;
+import com.test.api.api.dto.commodity.sku.AddSkuDto;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
 
@@ -20,7 +21,7 @@ public interface ITblSkuService {
 
     int insert(TblSku record);
 
-    int insertSelective(TblSku record);
+    int insertSelective(AddSkuDto addSkuDto);
 
     TblSku selectByPrimaryKey(String id);
 

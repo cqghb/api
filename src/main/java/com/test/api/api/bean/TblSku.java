@@ -34,6 +34,11 @@ public class TblSku extends BaseBean implements Serializable {
     private BigDecimal price;
 
     /**
+     * 产品数量
+     */
+    private int skuNumber;
+
+    /**
      * SPU货品ID
      */
     private String spuId;
@@ -42,12 +47,13 @@ public class TblSku extends BaseBean implements Serializable {
     }
 
     public TblSku(String createUser, Date createTime, String updateUser, Date updateTime, String remark,
-                  String delTag, String id, String name, String code, BigDecimal price, String spuId) {
+                  String delTag, String id, String name, String code, BigDecimal price, int skuNumber, String spuId) {
         super(createUser, createTime, updateUser, updateTime, remark, delTag);
         this.id = id;
         this.name = name;
         this.code = code;
         this.price = price;
+        this.skuNumber = skuNumber;
         this.spuId = spuId;
     }
 
@@ -81,6 +87,14 @@ public class TblSku extends BaseBean implements Serializable {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public int getSkuNumber() {
+        return skuNumber;
+    }
+
+    public void setSkuNumber(int skuNumber) {
+        this.skuNumber = skuNumber;
     }
 
     public String getSpuId() {

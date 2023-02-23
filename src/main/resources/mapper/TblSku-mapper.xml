@@ -6,6 +6,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="sku_number" jdbcType="INTEGER" property="skuNumber" />
     <result column="spu_id" jdbcType="VARCHAR" property="spuId" />
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -15,7 +16,7 @@
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, `name`, code, price, spu_id, create_user, create_time, update_user, update_time, 
+    id, `name`, code, price, sku_number, spu_id, create_user, create_time, update_user, update_time,
     del_tag, remark
   </sql>
   <resultMap id="MainResultMap" type="com.test.api.api.vo.commodity.sku.SkuMainVo">
@@ -23,6 +24,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="sku_number" jdbcType="INTEGER" property="skuNumber" />
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
@@ -57,15 +59,18 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblSku" useGeneratedKeys="true">
-    insert into tbl_sku (`name`, code, price, 
+    insert into tbl_sku (`name`, code, price, sku_number,
       spu_id, create_user, create_time, del_tag, remark)
-    values (#{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
-      #{spuId,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, sysdate(), #{delTag,jdbcType=VARCHAR},
-      #{remark,jdbcType=VARCHAR})
+    values (#{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL},
+      #{skuNumber,jdbcType=DECIMAL}, #{spuId,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, sysdate(),
+      #{delTag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblSku" useGeneratedKeys="true">
     insert into tbl_sku
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
+        id,
+      </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
         `name`,
       </if>
@@ -74,6 +79,9 @@
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(price)">
         price,
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(skuNumber)">
+        sku_number,
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(spuId)">
         spu_id,
@@ -90,6 +98,9 @@
       create_time
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
+        #{id,jdbcType=VARCHAR},
+      </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
         #{name,jdbcType=VARCHAR},
       </if>
@@ -98,6 +109,9 @@
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(price)">
         #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(skuNumber)">
+        #{skuNumber,jdbcType=INTEGER},
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(spuId)">
         #{spuId,jdbcType=VARCHAR},
@@ -126,6 +140,9 @@
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(price)">
         price = #{price,jdbcType=DECIMAL},
       </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(skuNumber)">
+        sku_number = #{skuNumber,jdbcType=INTEGER},
+      </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(spuId)">
         spu_id = #{spuId,jdbcType=VARCHAR},
       </if>
@@ -147,6 +164,7 @@
     set `name` = #{name,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
+      sku_number = #{skuNumber,jdbcType=INTEGER},
       spu_id = #{spuId,jdbcType=VARCHAR},
       update_user = #{updateUser,jdbcType=VARCHAR},
       update_time = sysdate(),
@@ -161,6 +179,7 @@
     t1.`name`,/** 产品名称 **/
     concat_ws( '-', t1.`code`, t1.`name` ) AS sku_code_name,
     t1.price,/** 产品价格 **/
+    t1.sku_number,/** 产品数量 **/
     t1.create_user,/** 产品创建人 **/
     t1.create_time,/** 产品创建时间 **/
     t1.update_user,/** 产品修改人 **/
@@ -178,27 +197,36 @@
     t4.id spu_type_id,/** 货品类型ID **/
     t4.`code` spu_type_code,/** 货品类型编码 **/
     t4.`name` spu_type_name,/** 货品类型名称 **/
-    concat_ws( '-', t4.`code`, t4.`name` ) AS spu_type_code_name,
-    t7.id spe_id,/** 产品规格ID **/
-    t7.`name` spe_name, /** 产品规格名称 **/
-    concat_ws( '-', t7.id, t7.`name` ) AS spe_id_name
+    concat_ws( '-', t4.`code`, t4.`name` ) AS spu_type_code_name
+    -- t7.id spe_id,/** 产品规格ID **/
+    -- t7.`name` spe_name, /** 产品规格名称 **/
+    -- concat_ws( '-', t7.id, t7.`name` ) AS spe_id_name
     FROM
     tbl_sku t1 /** 产品表 **/
     LEFT JOIN tbl_spu t2 ON t2.id=t1.spu_id /** 货品表 **/
     LEFT JOIN tbl_spu_brand t3 ON t3.id=t2.brand_id /** 品牌表 **/
     LEFT JOIN tbl_spu_type t4 ON t2.id=t4.id /** 货品类型表 **/
-    LEFT JOIN tbl_sku_specification_option t5 ON t1.id=t5.sku_id /** 产品规格选项表 **/
-    LEFT JOIN tbl_specification_option t6 ON t5.spec_opti_id=t6.id /** 规格选项表 **/
-    LEFT JOIN tbl_specification t7 ON t6.spec_id=t7.id /** 规格表 **/
+    -- LEFT JOIN tbl_sku_specification_option t5 ON t1.id=t5.sku_id /** 产品规格选项表 **/
+    -- LEFT JOIN tbl_specification_option t6 ON t5.spec_opti_id=t6.id /** 规格选项表 **/
+    -- LEFT JOIN tbl_specification t7 ON t6.spec_id=t7.id /** 规格表 **/
     <where>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
         and t1.id = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(code)">
+        and t1.code = #{code,jdbcType=VARCHAR}
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
         and t1.`name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
       </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
         and t1.del_tag = #{delTag,jdbcType=VARCHAR}
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(brandId)">
+        and t3.id = #{brandId,jdbcType=VARCHAR}
+      </if>
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(typeId)">
+        and t4.id = #{typeId,jdbcType=VARCHAR}
       </if>
     </where>
   </select>

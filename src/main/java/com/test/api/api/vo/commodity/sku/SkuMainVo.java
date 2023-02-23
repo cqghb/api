@@ -85,11 +85,11 @@ public class SkuMainVo extends TblSku implements Serializable {
     }
 
     public SkuMainVo(String createUser, Date createTime, String updateUser, Date updateTime, String remark,
-                     String delTag, String id, String name, String code, BigDecimal price, String spuId,
+                     String delTag, String id, String name, String code, BigDecimal price, int skuNumber,String spuId,
                      String skuCodeName, String spuCode, String spuName, String spuCodeName, String brandId,
                      String brandCode, String brandName, String brandCodeName, String spuTypeId, String spuTypeCode,
                      String spuTypeName, String spuTypeCodeName, String speId, String speName, String speIdName) {
-        super(createUser, createTime, updateUser, updateTime, remark, delTag, id, name, code, price, spuId);
+        super(createUser, createTime, updateUser, updateTime, remark, delTag, id, name, code, price, skuNumber, spuId);
         this.skuCodeName = skuCodeName;
         this.spuCode = spuCode;
         this.spuName = spuName;

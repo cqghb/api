@@ -29,7 +29,8 @@ public class CommConstant {
     public static final String CONTENT_TYPE_JSON = "application/json; charset=utf-8";
     // 请求白名单
     public static final List<String> WHITE_LIST = Arrays.asList(new String[]{"/login", "/file/uploadFile",
-            "/codeValue/searchCodeKeyValue", "/mail/sendVerificationCode", "/resetPass", "/insertUser", "/menu/queryMenu"});
+            "/codeValue/searchCodeKeyValue", "/mail/sendVerificationCode", "/resetPass", "/insertUser", "/menu" +
+            "/queryMenu"});
 
     /** 文件类型常量 start **/
     // 头像文件

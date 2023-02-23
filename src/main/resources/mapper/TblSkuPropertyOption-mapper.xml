@@ -65,6 +65,9 @@
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.test.api.api.bean.TblSkuPropertyOption" useGeneratedKeys="true">
     insert into tbl_sku_property_option
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
+        id,
+      </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(skuId)">
         sku_id,
       </if>
@@ -83,6 +86,9 @@
       create_time
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
+        #{id,jdbcType=VARCHAR},
+      </if>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(skuId)">
         #{skuId,jdbcType=VARCHAR},
       </if>
