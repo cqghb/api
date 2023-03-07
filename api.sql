@@ -11,7 +11,7 @@
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 14/01/2022 01:07:25
+ Date: 08/03/2023 00:59:43
 */
 
 SET NAMES utf8mb4;
@@ -77,16 +77,18 @@ INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '12', '角色用户�
 INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '13', '用户爱好管理组', 13, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
 INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '14', '产品规格分组管理组', 14, '666666', '2021-12-30 01:05:13', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '15', 'SKU商品规格管理', 15, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
-INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '16', 'SKU货品类型管理', 16, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
+INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '16', 'SPU货品类型管理', 16, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
 INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '17', '属性管理', 17, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
 INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '18', '属性选项管理', 18, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
-INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '19', 'SKU产品属性选项关联管理', 19, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
+INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '19', 'SKU产品属性选项关联管理这个暂时不用', 19, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
 INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '2', '码值类型管理组', 2, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:46', '2', NULL);
 INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '20', 'SKU产品管理', 20, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
 INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '21', '规格选项管理', 21, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
 INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '22', 'SKU产品规格选项关联管理', 22, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
 INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '23', 'SPU货品管理', 23, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
 INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '24', 'SPU货品品牌管理', 24, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
+INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '25', 'SKU产品属性配置管理', 25, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
+INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '26', 'SPU货品信息管理', 26, '666666', '2022-04-25 00:49:57', '666666', '2022-04-25 00:50:05', '1', NULL);
 INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '3', '码值管理组', 3, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
 INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '4', '数据操作权限管理组', 4, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
 INSERT INTO `tbl_code_value` VALUES ('dataOperateSubgroup', '5', '文件上传下载管理组', 5, '666666', '2021-10-16 18:50:26', '666666', '2021-10-16 18:51:38', '2', NULL);
@@ -138,13 +140,17 @@ CREATE TABLE `tbl_data_operate` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `tbl_data_operate` VALUES ('00CC1DF3CBCB4E27BADC5F1432692DF8', '产品规格分组列表-查询产品规格分组', '/specificationGroup/queryById', '666666', '2021-12-31 00:55:35', '666666', '2022-01-01 23:54:25', '查询产品规格分组', '2', '14');
+INSERT INTO `tbl_data_operate` VALUES ('0BBEEDE0187C47C99D9649D99D96F4C7', 'SKU产品属性配置管理-通过主键查询详情', '/skuPropertyOption/queryDetail', '666666', '2022-01-26 00:42:12', NULL, NULL, '通过主键查询详情', '2', '25');
+INSERT INTO `tbl_data_operate` VALUES ('0BD753C2E6564B379CE908A390AC013C', 'SPU产品品牌管理-查询货品品牌', '/spuBrand/searchSpuBrand', '666666', '2022-05-03 10:51:27', NULL, NULL, '作为下拉框数据源', '2', '24');
 INSERT INTO `tbl_data_operate` VALUES ('0EDD3B07131F4182A7C166DED4F3E1A8', '退出登录', '/signOut', '666666', '2021-10-20 01:00:31', NULL, NULL, '用户管理-退出登录', '2', '1');
+INSERT INTO `tbl_data_operate` VALUES ('1083995D1828425399E659C3375B95DE', 'SPU货品管理-逻辑删除', '/spu/updateDelTag', '666666', '2022-04-26 00:42:51', NULL, NULL, '逻辑删除', '2', '23');
 INSERT INTO `tbl_data_operate` VALUES ('1182B53FD2A6461C81FB9FB579FF2D01', '角色管理-逻辑删除角色', '/role/updateRoleDelTag', '666666', '2021-11-22 00:36:30', NULL, NULL, '角色删除', '2', '9');
 INSERT INTO `tbl_data_operate` VALUES ('135608F3B2914EC8820CA543940ACB36', 'SPU货品类型管理-逻辑删除操作', '/spuType/updateDelTag', '666666', '2022-01-03 17:14:49', NULL, NULL, '逻辑删除操作', '2', '16');
 INSERT INTO `tbl_data_operate` VALUES ('17B500D657294B0F83843C116371C7C3', '查询所有菜单，结果是树结构', '/menu/queryMenuAll', '666666', '2021-12-03 02:20:27', '666666', '2021-12-03 02:29:35', '查询所有菜单，结果是树结构', '2', '11');
 INSERT INTO `tbl_data_operate` VALUES ('194E6BECB9104D7AB50BE9F407FE5C84', 'SKU商品规格列表-逻辑删除操作', '/specification/updateDelTag', '666666', '2022-01-01 23:07:03', NULL, NULL, '逻辑删除操作', '2', '15');
 INSERT INTO `tbl_data_operate` VALUES ('19FEABB23BE74452B074932139B33AC8', '用户角色关系管理-左侧用户树查询', '/queryAllUser', '666666', '2021-11-22 00:28:25', '666666', '2021-11-22 00:30:30', '查询所有有效用户', '2', '12');
 INSERT INTO `tbl_data_operate` VALUES ('1EE7F79AACC44895AA49A4E8ABC7C63E', '添加用户', '/insertUser', '666666', '2021-10-20 00:55:40', NULL, NULL, '用户管理-添加用户', '2', '1');
+INSERT INTO `tbl_data_operate` VALUES ('24C55843CA454ADC9F09CE8D88662392', '产品属性值关联-设置产品属性值', '/propertyOptions/insertPropertyValue', '666666', '2022-01-19 00:59:42', NULL, NULL, '设置产品属性值', '2', '18');
 INSERT INTO `tbl_data_operate` VALUES ('24D14FD01D584AF2A4804197B46C5F16', '角色菜单关系列表-右侧菜单树查询', '/menu/queryMenu', '666666', '2021-11-22 00:14:47', NULL, NULL, NULL, '2', '11');
 INSERT INTO `tbl_data_operate` VALUES ('24F587D5D49549119E1C21C6AF0F1208', '数据操作修改', '/dataOperate/updateDop', '666666', '2021-10-16 21:37:49', NULL, NULL, '数据操作权限-修改操作', '2', '4');
 INSERT INTO `tbl_data_operate` VALUES ('2621B6E105924EC79ADCCE7990C3B38D', '菜单与数据操作关系配置-左侧菜单树查询', '/menu/queryMenu', '666666', '2021-11-22 00:21:39', NULL, NULL, '后管左侧菜单树', '2', '8');
@@ -152,20 +158,30 @@ INSERT INTO `tbl_data_operate` VALUES ('29DAC7A48BC941F0BD36DA71EF185892', '属�
 INSERT INTO `tbl_data_operate` VALUES ('2B028C0AD50B4484893F35E0CBD77E44', '重置密码', '/resetPass', '666666', '2021-10-20 00:59:17', NULL, NULL, '用户管理-重置密码【没有登录时使用】', '2', '1');
 INSERT INTO `tbl_data_operate` VALUES ('3504712A66B14BA5B725EBBF6CFC93E9', 'SPU货品类型管理-添加', '/spuType/insertSpuType', '666666', '2022-01-03 17:16:45', NULL, NULL, '添加', '2', '16');
 INSERT INTO `tbl_data_operate` VALUES ('38DEA333011D48A287CF950C96052B21', '新增图标', '/icon/insertIcon', '666666', '2021-12-08 01:45:22', NULL, NULL, NULL, '2', '6');
+INSERT INTO `tbl_data_operate` VALUES ('3EAF8F8391E942D7BAEAA5A3F02DC18C', '产品管理-逻辑删除操作', '/sku/updateDelTag', '666666', '2022-05-03 22:19:58', NULL, NULL, '逻辑删除操作', '2', '20');
 INSERT INTO `tbl_data_operate` VALUES ('3F96044756684544B46CA8CDFFF5B9B0', '菜单与数据操作关系配置-通过菜单ID查询查询菜单原来的操作关系', '/menuDataOperateRelation/queryMenuDataOperation', '666666', '2021-11-22 00:24:53', NULL, NULL, '通过菜单ID查询查询菜单原来的操作关系', '2', '8');
+INSERT INTO `tbl_data_operate` VALUES ('419C2AB96B7C4E64B2077CD07E2765E9', '产品管理-SKU产品规格选项管理', '/skuSpecificationOption/findPage', '666666', '2022-04-18 00:49:42', NULL, NULL, 'SKU产品规格选项列表查询', '2', '22');
+INSERT INTO `tbl_data_operate` VALUES ('44833693059D439B8A03E82199D546AA', 'SKU产品属性配置管理-添加', '/skuPropertyOption/insertSkuPropertyOption', '666666', '2022-01-21 00:54:10', NULL, NULL, '添加， 这个接口目前不用', '2', '25');
 INSERT INTO `tbl_data_operate` VALUES ('4762EC926DA540009E3A580AB468840F', '属性管理-逻辑删除操作', '/property/updateDelTag', '666666', '2022-01-12 01:25:02', NULL, NULL, '逻辑删除操作', '2', '17');
+INSERT INTO `tbl_data_operate` VALUES ('4CF4F86F1FD540DAABA8A5158B4568A2', 'SPU产品品牌管理-SPU产品品牌列表查询', '/spuBrand/findPage', '666666', '2022-04-22 00:30:45', NULL, NULL, 'SPU产品品牌列表查询', '2', '24');
+INSERT INTO `tbl_data_operate` VALUES ('52789F6A3BBA44D9854F40580898F08D', '产品管理-产品列表查询', '/sku/findPage', '666666', '2022-05-03 22:19:09', NULL, NULL, '产品列表查询', '2', '20');
+INSERT INTO `tbl_data_operate` VALUES ('53F50670FE7140DFBCB52D8B28D4E241', 'SKU产品属性配置管理-逻辑删除操作', '/skuPropertyOption/updateDelTag', '666666', '2022-01-21 00:53:27', NULL, NULL, '逻辑删除操作', '2', '25');
 INSERT INTO `tbl_data_operate` VALUES ('56FCF927B08E4290B5802FD7147154D9', 'SKU商品规格列表-根据ID查询产品规格详细信息', '/specification/queryDetail', '666666', '2022-01-05 02:00:43', NULL, NULL, '根据ID查询产品规格详细信息，返回了码值对应的中文。', '2', '15');
 INSERT INTO `tbl_data_operate` VALUES ('5800365147F34CD9A447DEF4C7F8C1E3', 'SKU商品规格列表-维护产品规格', '/specification/updateSpecification', '666666', '2022-01-01 23:07:41', NULL, NULL, '维护产品规格', '2', '15');
+INSERT INTO `tbl_data_operate` VALUES ('58D7500FB2494AFEB19BF5BED9E63E61', '产品属性值关联-查询详情', '/propertyOptions/queryDetail', '666666', '2022-01-19 01:01:23', NULL, NULL, '可查出属性名称', '2', '18');
 INSERT INTO `tbl_data_operate` VALUES ('59FED7AC3A1C4EEB8C6F2F32E032DC13', '产品规格分组列表-添加产品规格分组', '/specificationGroup/insertSpecificationGroup', '666666', '2021-12-31 00:15:27', NULL, NULL, '添加产品规格分组', '2', '14');
 INSERT INTO `tbl_data_operate` VALUES ('60C03D0A123C4E23B78A815F154DD924', '菜单管理-菜单列表查询', '/menu/queryMenuList', '666666', '2021-11-21 01:36:24', NULL, NULL, NULL, '2', '10');
 INSERT INTO `tbl_data_operate` VALUES ('61272929AB4D44B493C530C230A70336', '用户角色关系管理-更新用户角色关系', '/roleUserRelation/updateUserRoleRelation', '666666', '2021-11-22 00:33:07', NULL, NULL, '修改用户角色关系', '2', '12');
 INSERT INTO `tbl_data_operate` VALUES ('62EF34AF479946119FFB4F40CA5339DC', '数据操作权限控制器-分页查询', '/dataOperate/findPage', '666666', '2021-10-09 13:25:43', '666666', '2021-10-11 01:46:14', 'sv34', '2', '4');
+INSERT INTO `tbl_data_operate` VALUES ('63F332287D35493BBCE66DC1B7F82DC7', 'SPU货品管理-根据ID查询', '/spu/queryById', '666666', '2022-04-26 00:37:51', NULL, NULL, '根据ID查询', '2', '23');
 INSERT INTO `tbl_data_operate` VALUES ('6570E12DFA9043F0B25DF30068A86362', '产品规格分组列表-产品规格分组列表查询', '/specificationGroup/findPage', '666666', '2021-12-30 01:01:21', '666666', '2021-12-30 01:05:37', NULL, '2', '14');
 INSERT INTO `tbl_data_operate` VALUES ('6EA30662BC3C499BA88ADF38F515BDF8', 'SKU商品规格列表-分页查询产品规格', '/specification/findPage', '666666', '2022-01-01 22:57:34', '666666', '2022-01-01 23:03:52', '分页查询产品规格', '2', '15');
+INSERT INTO `tbl_data_operate` VALUES ('6F405734AE88414C86530FD1B0FF7766', '产品管理-通过主键查', '/sku/queryById', '666666', '2022-05-03 22:19:31', NULL, NULL, '通过主键查', '2', '20');
 INSERT INTO `tbl_data_operate` VALUES ('70ED61CFE6F64B57A4C793D1B3F11C61', '更新用户信息', '/updateUser', '666666', '2021-10-20 00:58:07', NULL, NULL, '用户管理-更新用户信息', '2', '1');
 INSERT INTO `tbl_data_operate` VALUES ('75A53EA470804769AB6E255300CD3216', 'SKU商品规格列表-根据ID查询产品规格', '/specification/queryById', '666666', '2022-01-01 23:06:29', NULL, NULL, '根据ID查询产品规格', '2', '15');
 INSERT INTO `tbl_data_operate` VALUES ('77C5E3FCBC4247B0BD798163EF9CEE0F', 'SPU货品类型管理-分页查询货品类型', '/spuType/findPage', '666666', '2022-01-03 17:10:59', '666666', '2022-01-03 17:13:07', '分页查询货品类型', '2', '16');
 INSERT INTO `tbl_data_operate` VALUES ('7911E9E92C4C4AFBACF7BA5D29DD9F28', '属性管理-通过主键查询', '/property/queryById', '666666', '2022-01-12 01:24:36', NULL, NULL, '通过主键查询', '2', '17');
+INSERT INTO `tbl_data_operate` VALUES ('7B70ED408616440EA58C96C87D265B5E', 'SPU产品品牌管理-通过主键查询', '/spuBrand/queryById', '666666', '2022-04-22 00:31:10', NULL, NULL, '通过主键查询', '2', '24');
 INSERT INTO `tbl_data_operate` VALUES ('7BB207E65DBB491D9883A052C6D95FE8', '菜单管理-根据ID查询菜单', '/menu/queryMenuById', '666666', '2021-11-21 01:39:36', NULL, NULL, NULL, '2', '10');
 INSERT INTO `tbl_data_operate` VALUES ('7C8B6C6EA72249718435020255728186', '菜单与数据操作关系配置-右侧数据操作树查询', '/codeValue/findPageChildren2', '666666', '2021-11-22 00:22:53', NULL, NULL, '数据操作', '2', '8');
 INSERT INTO `tbl_data_operate` VALUES ('85F019D8CF134E5584C1BF9AC775E7CF', '添加角色', '/role/insertRole', '666666', '2021-10-15 01:50:23', '666666', '2021-11-22 00:44:05', '角色管理模块中的新增角色', '1', '9');
@@ -187,27 +203,44 @@ INSERT INTO `tbl_data_operate` VALUES ('A2A3360CF45649869D5A7492BB982710', '菜�
 INSERT INTO `tbl_data_operate` VALUES ('A54B9351440147A4A78ADCD75076103B', '测试流式查询', '/test', '666666', '2021-10-20 00:58:38', NULL, NULL, '用户管理-流式查询测试', '2', '1');
 INSERT INTO `tbl_data_operate` VALUES ('AB48464587544EBF8DE4282811F7A496', '角色菜单关系列表-角色树查询', '/role/queryAllRole', '666666', '2021-11-22 00:13:33', NULL, NULL, NULL, '2', '11');
 INSERT INTO `tbl_data_operate` VALUES ('AD0BDD7782C848F29930D1D105C258C0', '属性管理-通过产品属性主键ID查询详细信息', '/property/queryDetail', '666666', '2022-01-13 01:59:05', NULL, NULL, '通过产品属性主键ID查询详细信息', '2', '17');
+INSERT INTO `tbl_data_operate` VALUES ('AED0EFE93AB3401788B398B26CE82B33', 'SKU产品属性配置管理-通过主键查询', '/skuPropertyOption/queryById', '666666', '2022-01-21 00:53:05', NULL, NULL, '通过主键查询', '2', '25');
 INSERT INTO `tbl_data_operate` VALUES ('B1673EE1651547749B2FA7AFFE312179', '重置密码', '/resetPass2', '666666', '2021-10-20 00:59:59', NULL, NULL, '用户管理-重置密码【登录之后重置密码时使用】', '2', '1');
 INSERT INTO `tbl_data_operate` VALUES ('B34A68CD039E47A7AA1B1781038776A4', '用户角色关系管理-右侧角色树查询', '/role/queryAllRole', '666666', '2021-11-22 00:31:24', NULL, NULL, '查询所有角色', '2', '12');
+INSERT INTO `tbl_data_operate` VALUES ('B3A463C9907244CD9394175B7D1B3A7A', '产品管理-产品维护', '/sku/updateSku', '666666', '2022-05-03 22:21:12', NULL, NULL, '产品维护', '2', '20');
+INSERT INTO `tbl_data_operate` VALUES ('B71C7AE0E1974BA795939665C381AC30', 'SPU产品品牌管理-SPU产品品牌添加', '/spuBrand/addSpuBrand', '666666', '2022-04-22 00:32:23', '666666', '2022-04-23 18:31:31', 'SPU产品品牌添加', '2', '24');
 INSERT INTO `tbl_data_operate` VALUES ('B949B972B1F547C494F0C4EBC16FA8F6', '数据操作权限控制器-添加操作', '/dataOperate/insertDop', '666666', '2021-10-10 01:31:14', NULL, NULL, 'erer 谷歌', '2', '4');
+INSERT INTO `tbl_data_operate` VALUES ('BBE592EFB1984A3F9F903140AB65467F', 'SKU产品属性配置管理-产品属性配置', '/skuPropertyOption/updateSkuPropertyOption', '666666', '2022-01-21 00:54:38', NULL, NULL, '产品属性配置', '2', '25');
 INSERT INTO `tbl_data_operate` VALUES ('BBE6FE2D6DF64A70BB5EA3C8AE89AB61', '用户列表分页查询', '/findPage', '666666', '2021-10-20 00:55:06', NULL, NULL, '用户管理-用户列表查询', '2', '1');
 INSERT INTO `tbl_data_operate` VALUES ('C11B9AFBD8EC420CA8603AEFE5EF1B81', '菜单管理-删除菜单', '/menu/deleteMenu', '666666', '2021-11-21 01:41:45', NULL, NULL, NULL, '2', '10');
 INSERT INTO `tbl_data_operate` VALUES ('C13C5735F99C4688955F051AA5782923', '角色管理-通过ID查询角色信息', '/role/queryById', '666666', '2021-11-22 00:38:28', NULL, NULL, '通过ID查询角色信息', '2', '9');
 INSERT INTO `tbl_data_operate` VALUES ('C19180114F564B2F8DC29118777A083C', '后台管理主页面菜单树查询', '/menu/queryMenu', '666666', '2021-11-21 01:13:10', '666666', '2021-11-21 01:17:26', NULL, '1', '10');
+INSERT INTO `tbl_data_operate` VALUES ('C26F026723794C6CB98505775F9D12BD', 'SPU货品管理-列表查询', '/spu/findPage', '666666', '2022-04-25 00:52:32', NULL, NULL, '列表查询', '2', '23');
 INSERT INTO `tbl_data_operate` VALUES ('C39EA5BD5E2E4E0E9EA33776949843B2', '数据操作修改逻辑删除数据操', '/dataOperate/updateDelTag', '666666', '2021-12-11 09:16:50', NULL, NULL, '数据操作权限-逻辑删除', '2', '4');
+INSERT INTO `tbl_data_operate` VALUES ('C5A9E0A7CB1D45738956AF67241EFF28', '产品属性值关联-产品属性值列表查询', '/propertyOptions/findPage', '666666', '2022-01-18 00:03:28', NULL, NULL, '产品属性值列表查询', '2', '18');
 INSERT INTO `tbl_data_operate` VALUES ('C692687667A248B9851BC26E37678571', '角色管理-更新角色', '/role/updateRole', '666666', '2021-11-22 00:38:59', NULL, NULL, '更新角色', '2', '9');
 INSERT INTO `tbl_data_operate` VALUES ('C7D36B458CA74C7686C37378041E7086', '数据操作权限控制器-通过ID查询数据操作信息', '/dataOperate/queryById', '666666', '2021-10-10 01:31:48', '666666', '2021-10-11 01:58:22', 'dd三顿饭 谷歌', '2', '4');
+INSERT INTO `tbl_data_operate` VALUES ('C9AEC48FF2A141248322080A82B52757', '产品管理-添加产品', '/sku/addSku', '666666', '2022-05-03 22:20:22', NULL, NULL, '添加产品', '2', '20');
+INSERT INTO `tbl_data_operate` VALUES ('CA41EF44737C4374B40478DE2A59DF95', '产品属性值关联-修改产品属性值', '/propertyOptions/updatePropertyValue', '666666', '2022-01-19 01:00:13', NULL, NULL, '修改产品属性值[直接改值，还可以通过重新给产品属性配置值]', '2', '18');
+INSERT INTO `tbl_data_operate` VALUES ('CB88BDC9F02E43309BF8C389DEE8ECCB', 'SPU货品类型管理-查询货品类型 id 、 name', '/spuType/searchSPUTypeCode', '666666', '2022-04-27 01:22:17', NULL, NULL, '查询货品类型 id 、 name', '2', '16');
 INSERT INTO `tbl_data_operate` VALUES ('E1311C59CD2D4200BFBF466A4C98C026', '根据用户编号查询用户信息', '/queryUserById', '666666', '2021-10-20 00:57:35', '666666', '2021-11-12 00:57:42', '用户管理-根据用户编号查询用户信息', '2', '1');
+INSERT INTO `tbl_data_operate` VALUES ('E20780E78111426C8FA70739C80CD24C', 'SKU产品属性配置管理-产品与属性配置分页查询', '/skuPropertyOption/findPage', '666666', '2022-01-21 00:52:41', NULL, NULL, '产品与属性配置分页查询', '2', '25');
+INSERT INTO `tbl_data_operate` VALUES ('E4654AE3EDF64BC883FAE8AB39C4B733', '产品属性值关联-通过主键查询', '/propertyOptions/queryById', '666666', '2022-01-19 00:58:41', NULL, NULL, '通过主键查询', '2', '18');
 INSERT INTO `tbl_data_operate` VALUES ('E7E0A31630414C0FA45DF54B0CF4A2CA', '属性管理-添加', '/property/insertProperty', '666666', '2022-01-12 01:25:54', NULL, NULL, '添加', '2', '17');
 INSERT INTO `tbl_data_operate` VALUES ('E90A1387823C462DAAA6C970C37C85B1', '产品规格分组列表-维护产品规格分组', '/specificationGroup/updateSpecificationGroup', '666666', '2021-12-31 00:54:56', NULL, NULL, NULL, '2', '14');
 INSERT INTO `tbl_data_operate` VALUES ('EA8F22D4F11F4A7B875E17601EF30962', '角色菜单关系列表-通过角色ID查询角色所有菜单', '/roleMenuRelation/queryRoleMenu', '666666', '2021-11-22 00:16:26', NULL, NULL, '通过角色ID查询角色所有菜单', '2', '11');
+INSERT INTO `tbl_data_operate` VALUES ('EAC4BF59CD3F418FBE38D8B24BB3B9E5', 'SPU货品管理-根据货品编码查询货品信息', '/spu/queryByCode', '666666', '2022-05-02 00:43:00', NULL, NULL, '根据货品编码查询货品信息，查出来只有一条。', '2', '23');
+INSERT INTO `tbl_data_operate` VALUES ('EE79CB6C42A944C9AAC94EA2C3B7F15F', 'SPU产品品牌管理-维护操作', '/spuBrand/updateSpuBrand', '666666', '2022-04-22 00:33:15', '666666', '2022-04-23 18:31:47', '维护操作', '2', '24');
+INSERT INTO `tbl_data_operate` VALUES ('F0EEE7322F9B4041B97EA54CA6325214', '产品属性值关联-逻辑删除操作', '/propertyOptions/updateDelTag', '666666', '2022-01-19 00:59:10', NULL, NULL, '逻辑删除操作', '2', '18');
+INSERT INTO `tbl_data_operate` VALUES ('F262F1A7FCA14D228514A76C54341291', 'SPU货品管理-维护货品信息', '/spu/updateSpu', '666666', '2022-04-26 00:43:40', NULL, NULL, '维护货品信息', '2', '23');
 INSERT INTO `tbl_data_operate` VALUES ('F4095DFAEDE24F79A5F8A1E9430ABC8A', '额外', '发v', '666666', '2021-10-11 02:00:25', '666666', '2021-10-11 02:02:06', '反反复复', '1', '');
 INSERT INTO `tbl_data_operate` VALUES ('F5E61B3A66CA4EF6A544FF6452C485A3', 'SPU货品类型管理-维护', '/spuType/updateSpuType', '666666', '2022-01-03 17:17:14', NULL, NULL, '维护', '2', '16');
 INSERT INTO `tbl_data_operate` VALUES ('F67FEFAA064C4E49B80C3BC794A1FC8C', '图标库列表查询', '/icon/findPage', '666666', '2021-12-03 01:55:41', NULL, NULL, NULL, '2', '6');
 INSERT INTO `tbl_data_operate` VALUES ('F6CFBE4E09BE45DC8D424239194FE821', 'SPU货品类型管理-根据主键查询详情', '/spuType/queryById', '666666', '2022-01-03 17:14:00', NULL, NULL, '根据主键查询详情', '2', '16');
 INSERT INTO `tbl_data_operate` VALUES ('F7E2FEFC650D4FC3BE1CE67ED96A6DAB', '图标详情查询', '/icon/queryIconById', '666666', '2021-12-11 09:07:40', NULL, NULL, NULL, '2', '6');
+INSERT INTO `tbl_data_operate` VALUES ('F826855ECCE64089B7C01DE164DD22D0', 'SPU货品管理-添加', '/spu/addSpu', '666666', '2022-04-26 00:43:13', NULL, NULL, '添加货品信息', '2', '23');
 INSERT INTO `tbl_data_operate` VALUES ('F83BACD610E646AA9A90DB4A75D6B044', '角色管理-分页查询', '/role/findPage', '666666', '2021-11-22 00:35:06', NULL, NULL, NULL, '2', '9');
 INSERT INTO `tbl_data_operate` VALUES ('F8D6AAEF49134E8CA3E81B9AAAC839D3', '通过ID查询角色信息', '/role/queryById', '666666', '2021-10-15 01:51:05', '666666', '2021-11-22 00:44:14', '角色控制器-通过ID查询角色信息', '1', '9');
+INSERT INTO `tbl_data_operate` VALUES ('FA49286A36BE4B0DBD8C9B4FCEEC505B', 'SPU产品品牌管理-逻辑删除操作', '/spuBrand/updateDelTag', '666666', '2022-04-22 00:31:43', NULL, NULL, '逻辑删除操作', '2', '24');
 INSERT INTO `tbl_data_operate` VALUES ('FF041F75060A48F79D11B2CBD9F53CE9', '逻辑删除图标', '/icon/updateDelTag', '666666', '2021-12-12 22:17:16', NULL, NULL, NULL, '2', '6');
 COMMIT;
 
@@ -269,38 +302,39 @@ CREATE TABLE `tbl_menu` (
 BEGIN;
 INSERT INTO `tbl_menu` VALUES ('02B6B5C3A1B445979922C9D53DE0927D', '系统资源库', 'el-icon-edit', '0', '2', '/sysIconLib', '666666', '2021-12-03 02:02:09', NULL, NULL, '2', NULL, '2');
 INSERT INTO `tbl_menu` VALUES ('1', '用户管理', 'el-icon-edit', '0', '1', '/a', '666666', '2020-11-07 09:02:18', '666666', '2021-09-28 00:51:46', '2', NULL, '2');
-INSERT INTO `tbl_menu` VALUES ('1AEC2B1F18824D06A14CEF072538545A', 'SKU商品规格管理', 'el-icon-share', 'DA84C47521184288892D7A01AA06E40E', '2', '/listSpecification', '666666', '2021-12-13 23:49:10', NULL, NULL, '2', NULL, '1');
+INSERT INTO `tbl_menu` VALUES ('1AEC2B1F18824D06A14CEF072538545A', 'SKU产品规格管理', 'el-icon-share', 'DA84C47521184288892D7A01AA06E40E', '2', '/listSpecification', '666666', '2021-12-13 23:49:10', NULL, NULL, '2', NULL, '1');
 INSERT INTO `tbl_menu` VALUES ('2', '菜单管理', 'el-icon-message', '0', '1', '/b', '666666', '2020-11-07 09:03:25', NULL, NULL, '2', NULL, '2');
-INSERT INTO `tbl_menu` VALUES ('28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '菜单与数据操作关系配置', 'el-icon-edit', '640EF8CAA138431D842DDDD12C692B7A', NULL, '/menuDataOperateShipList', '666666', '2021-10-11 13:23:27', NULL, NULL, '2', NULL, '1');
+INSERT INTO `tbl_menu` VALUES ('28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '菜单与数据操作关系配置', 'el-icon-edit', '640EF8CAA138431D842DDDD12C692B7A', NULL, '/menuDataOperateShipList', '666666', '2021-10-11 13:23:27', NULL, '2022-05-07 00:37:40', '1', NULL, '1');
 INSERT INTO `tbl_menu` VALUES ('29A93A61ADF8428A9DABACDA7F7FC7E0', '数据操作列表查询', 'el-icon-edit', '640EF8CAA138431D842DDDD12C692B7A', NULL, '/menuAuthList', '666666', '2021-09-28 00:48:45', '666666', '2021-09-28 01:32:47', '2', NULL, '1');
 INSERT INTO `tbl_menu` VALUES ('2A64BCD8F08B45A9A3BF144006780F08', '用户角色列表查询', 'el-icon-delete', '640EF8CAA138431D842DDDD12C692B7A', NULL, '/userRoleList', '666666', '2021-09-26 01:09:57', NULL, NULL, '2', NULL, '1');
 INSERT INTO `tbl_menu` VALUES ('2A8B9D6453874843A20F425304891A81', '系统图标管理', 'el-icon-edit', '02B6B5C3A1B445979922C9D53DE0927D', '2', NULL, '666666', '2021-12-06 00:39:54', NULL, NULL, '2', NULL, '2');
 INSERT INTO `tbl_menu` VALUES ('3', 'API接口管理', 'el-icon-setting', '0', '2', '/c', '666666', '2020-11-07 09:04:49', NULL, NULL, '2', NULL, '2');
-INSERT INTO `tbl_menu` VALUES ('329BDCBD5AD74CA99A2722968AA5BFDA', '菜单与数据操作关系配置2', 'el-icon-edit', '640EF8CAA138431D842DDDD12C692B7A', NULL, '/menuDataOperateShipSetting2', '666666', '2021-10-27 01:27:33', NULL, NULL, '2', NULL, '1');
+INSERT INTO `tbl_menu` VALUES ('329BDCBD5AD74CA99A2722968AA5BFDA', '菜单与数据操作关系配置', 'el-icon-edit', '640EF8CAA138431D842DDDD12C692B7A', NULL, '/menuDataOperateShipSetting2', '666666', '2021-10-27 01:27:33', '666666', '2022-05-07 00:38:11', '2', NULL, '1');
 INSERT INTO `tbl_menu` VALUES ('4', '用户列表查询', 'el-icon-share', '1', '2', '/userList', '666666', '2020-11-07 09:05:33', '666666', '2021-09-28 00:52:07', '2', NULL, '1');
-INSERT INTO `tbl_menu` VALUES ('4A862D6004A949E5B72064E60E0F1820', 'SUP商品信息管理', 'el-icon-share', 'DA84C47521184288892D7A01AA06E40E', '2', '/test', '666666', '2021-12-13 00:13:10', '666666', '2021-12-13 00:26:56', '2', NULL, '1');
+INSERT INTO `tbl_menu` VALUES ('4A862D6004A949E5B72064E60E0F1820', 'SPU货品信息管理', 'el-icon-share', 'DA84C47521184288892D7A01AA06E40E', '2', '/listSpu', '666666', '2021-12-13 00:13:10', '666666', '2021-12-13 00:26:56', '2', NULL, '1');
 INSERT INTO `tbl_menu` VALUES ('5', '菜单列表查询', 'el-icon-delete', '2', '2', '/menuList', '666666', '2020-11-07 09:06:13', '666666', '2021-09-28 00:49:15', '2', NULL, '1');
-INSERT INTO `tbl_menu` VALUES ('5D5FECCBEB8F498C808ECF36709B767D', 'SKU商品规格选项管理', 'el-icon-delete', 'DA84C47521184288892D7A01AA06E40E', '2', '/test', '666666', '2021-12-13 23:50:28', NULL, NULL, '2', NULL, '1');
-INSERT INTO `tbl_menu` VALUES ('6', '二级菜单', 'el-icon-setting', '1', NULL, '/w', '666666', '2020-11-10 00:38:11', NULL, NULL, '2', NULL, '2');
+INSERT INTO `tbl_menu` VALUES ('5D5FECCBEB8F498C808ECF36709B767D', 'SKU产品规格选项管理', 'el-icon-delete', 'DA84C47521184288892D7A01AA06E40E', '2', '/listSkuSpecificationOption', '666666', '2021-12-13 23:50:28', NULL, NULL, '2', NULL, '1');
+INSERT INTO `tbl_menu` VALUES ('6', '二级菜单', 'el-icon-setting', '1', NULL, '/w', '666666', '2020-11-10 00:38:11', NULL, '2022-05-07 00:36:29', '1', NULL, '2');
 INSERT INTO `tbl_menu` VALUES ('640EF8CAA138431D842DDDD12C692B7A', '权限管理', 'el-icon-edit', '0', '2', NULL, '666666', '2021-09-26 00:53:49', NULL, NULL, '2', NULL, '2');
-INSERT INTO `tbl_menu` VALUES ('8', '三级菜单-1', 'el-icon-setting', '6', NULL, NULL, '666666', '2020-11-10 01:23:23', NULL, NULL, '2', NULL, '2');
-INSERT INTO `tbl_menu` VALUES ('8075707DC0E74E3C81DFC7DB2EF9347A', 'rtt', 'el-icon-delete', '9', NULL, '45', '666666', '2021-09-18 00:49:56', NULL, NULL, '2', NULL, '1');
+INSERT INTO `tbl_menu` VALUES ('8', '三级菜单-1', 'el-icon-setting', '6', NULL, NULL, '666666', '2020-11-10 01:23:23', NULL, '2022-05-07 00:36:25', '1', NULL, '2');
+INSERT INTO `tbl_menu` VALUES ('8075707DC0E74E3C81DFC7DB2EF9347A', 'rtt', 'el-icon-delete', '9', NULL, '45', '666666', '2021-09-18 00:49:56', NULL, '2022-05-07 00:23:03', '1', NULL, '1');
 INSERT INTO `tbl_menu` VALUES ('84AEFBAD231E414FBF689F4BCF2064F7', '图标查询', 'el-icon-share', '2A8B9D6453874843A20F425304891A81', '2', '/iconList', '666666', '2021-12-06 00:41:04', NULL, NULL, '2', NULL, '1');
-INSERT INTO `tbl_menu` VALUES ('9', '4-1', 'el-icon-edit', '8', NULL, '/y', '666666', '2020-11-10 01:23:19', '666666', '2021-09-28 00:37:00', '2', NULL, '2');
+INSERT INTO `tbl_menu` VALUES ('9', '4-1', 'el-icon-edit', '8', NULL, '/y', '666666', '2020-11-10 01:23:19', '666666', '2022-05-07 00:36:20', '1', NULL, '2');
 INSERT INTO `tbl_menu` VALUES ('999ECF06188E4418B19BFA562EAF864D', '属性管理', 'el-icon-setting', 'DA84C47521184288892D7A01AA06E40E', '2', '/listProperty', '666666', '2021-12-13 23:54:11', NULL, NULL, '2', NULL, '1');
 INSERT INTO `tbl_menu` VALUES ('AB363B00FFE746B7A274F34E52E6F1D4', 'SKU规格组管理', 'el-icon-edit', 'DA84C47521184288892D7A01AA06E40E', '2', '/specificationGroupList', '666666', '2021-12-13 23:38:52', NULL, NULL, '2', NULL, '1');
-INSERT INTO `tbl_menu` VALUES ('B0167A92314A4356AD6FB543F44B854A', 'SKU商品库存量规格组管理', 'el-icon-share', 'DA84C47521184288892D7A01AA06E40E', '2', '/test', '666666', '2021-12-13 00:38:50', NULL, NULL, '2', NULL, '1');
-INSERT INTO `tbl_menu` VALUES ('B22E24BCB117465094F27193F2C070BF', 'hahah', 'el-icon-edit', '0', '2', NULL, '666666', '2021-10-05 01:34:20', '666666', '2021-12-03 02:00:47', '2', NULL, '2');
+INSERT INTO `tbl_menu` VALUES ('B0167A92314A4356AD6FB543F44B854A', 'SKU产品库存量规格组管理', 'el-icon-share', 'DA84C47521184288892D7A01AA06E40E', '2', '/test', '666666', '2021-12-13 00:38:50', '666666', '2022-01-21 00:46:58', '2', NULL, '1');
+INSERT INTO `tbl_menu` VALUES ('B22E24BCB117465094F27193F2C070BF', 'hahah', 'el-icon-edit', '0', '2', NULL, '666666', '2021-10-05 01:34:20', '666666', '2022-05-07 00:36:58', '1', NULL, '2');
 INSERT INTO `tbl_menu` VALUES ('C19CD584F56847C1A5E2035CCF8580EF', 'SPU货品类型管理', 'el-icon-share', 'DA84C47521184288892D7A01AA06E40E', '2', '/listSpuType', '666666', '2021-12-13 00:29:42', '666666', '2022-01-03 17:19:00', '2', NULL, '1');
 INSERT INTO `tbl_menu` VALUES ('C4FF51003E584E0F91391AC2AFE0FC9D', '角色菜单列表查询', 'el-icon-share', '640EF8CAA138431D842DDDD12C692B7A', NULL, '/roleMenuList', '666666', '2021-09-28 00:43:01', '666666', '2021-09-28 00:46:55', '2', NULL, '1');
-INSERT INTO `tbl_menu` VALUES ('C59E2150467C464D8974154D2B3FDDB1', 'haha', 'el-icon-edit', '1', NULL, '/aaa', '666666', '2021-10-29 01:27:46', NULL, NULL, '2', NULL, '1');
+INSERT INTO `tbl_menu` VALUES ('C59E2150467C464D8974154D2B3FDDB1', 'haha', 'el-icon-edit', '1', NULL, '/aaa', '666666', '2021-10-29 01:27:46', NULL, '2022-05-07 00:22:37', '1', NULL, '1');
 INSERT INTO `tbl_menu` VALUES ('C9F42A39651E48F0887EEE7E8B784BBC', '角色列表查询', 'el-icon-edit', '640EF8CAA138431D842DDDD12C692B7A', NULL, '/roleList', '666666', '2021-09-26 00:58:58', NULL, NULL, '2', NULL, '1');
-INSERT INTO `tbl_menu` VALUES ('DA84C47521184288892D7A01AA06E40E', '商品管理', 'el-icon-edit', '0', '2', NULL, '666666', '2021-12-13 00:04:39', NULL, NULL, '2', NULL, '2');
-INSERT INTO `tbl_menu` VALUES ('DAE20372C7B34E619B4278E05AD6A251', '测试', 'el-icon-share', '0', NULL, NULL, '666666', '2021-09-30 21:52:27', NULL, NULL, '2', NULL, '2');
-INSERT INTO `tbl_menu` VALUES ('E96F2EFEAEB04339BB4B685F02E25061', 'SKU商品属性选项管理', 'el-icon-delete', 'DA84C47521184288892D7A01AA06E40E', '2', '/test', '666666', '2021-12-13 23:52:12', NULL, NULL, '2', NULL, '1');
-INSERT INTO `tbl_menu` VALUES ('EE71C54493334D3D86702AB33D616213', 'SKU商品库存量管理', 'el-icon-share', 'DA84C47521184288892D7A01AA06E40E', '2', '/test', '666666', '2021-12-13 00:15:56', NULL, NULL, '2', NULL, '1');
-INSERT INTO `tbl_menu` VALUES ('F5E119665CA04DF1811684D4F52CE04F', 'SPU商品品牌表', 'el-icon-edit', 'DA84C47521184288892D7A01AA06E40E', '2', '/test', '666666', '2021-12-13 00:30:51', NULL, NULL, '2', NULL, '1');
-INSERT INTO `tbl_menu` VALUES ('F9F2BF01330A435BA0D75907CBD69A18', 'dfrvf', 'el-icon-edit', 'DAE20372C7B34E619B4278E05AD6A251', NULL, '/sd', '666666', '2021-10-05 01:34:41', NULL, NULL, '2', NULL, '1');
+INSERT INTO `tbl_menu` VALUES ('DA84C47521184288892D7A01AA06E40E', '产品管理', 'el-icon-edit', '0', '2', NULL, '666666', '2021-12-13 00:04:39', '666666', '2022-01-21 00:50:46', '2', NULL, '2');
+INSERT INTO `tbl_menu` VALUES ('DAE20372C7B34E619B4278E05AD6A251', '测试', 'el-icon-share', '0', NULL, NULL, '666666', '2021-09-30 21:52:27', NULL, '2022-05-07 00:37:11', '1', NULL, '2');
+INSERT INTO `tbl_menu` VALUES ('E96F2EFEAEB04339BB4B685F02E25061', '产品属性值管理', 'el-icon-delete', 'DA84C47521184288892D7A01AA06E40E', '2', '/listPropertyOption', '666666', '2021-12-13 23:52:12', NULL, NULL, '2', NULL, '1');
+INSERT INTO `tbl_menu` VALUES ('EBCEED401239413FBA461C0F978549B7', 'SKU产品属性配置管理', 'el-icon-setting', 'DA84C47521184288892D7A01AA06E40E', '2', '/listSkuPropertyOption', '666666', '2022-01-21 00:46:26', NULL, NULL, '2', NULL, '1');
+INSERT INTO `tbl_menu` VALUES ('EE71C54493334D3D86702AB33D616213', 'SKU产品库存量管理', 'el-icon-share', 'DA84C47521184288892D7A01AA06E40E', '2', '/listSku', '666666', '2021-12-13 00:15:56', NULL, NULL, '2', NULL, '1');
+INSERT INTO `tbl_menu` VALUES ('F5E119665CA04DF1811684D4F52CE04F', 'SPU产品品牌表', 'el-icon-edit', 'DA84C47521184288892D7A01AA06E40E', '2', '/listSpuBrand', '666666', '2021-12-13 00:30:51', NULL, NULL, '2', NULL, '1');
+INSERT INTO `tbl_menu` VALUES ('F9F2BF01330A435BA0D75907CBD69A18', 'dfrvf', 'el-icon-edit', 'DAE20372C7B34E619B4278E05AD6A251', NULL, '/sd', '666666', '2021-10-05 01:34:41', NULL, '2022-05-07 00:37:08', '1', NULL, '1');
 COMMIT;
 
 -- ----------------------------
@@ -332,13 +366,21 @@ INSERT INTO `tbl_menu_data_operate_relation` VALUES ('010B5E69F0E44EF6BB32B3D2F0
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('026FF545A9E642A5AF7825183560DB78', '329BDCBD5AD74CA99A2722968AA5BFDA', '7C8B6C6EA72249718435020255728186', '666666', '2021-12-03 02:20:44', '666666', '2021-12-03 02:28:51', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('0396FE4609C3414DAE8FB2512AFC628E', '4', 'E1311C59CD2D4200BFBF466A4C98C026', '666666', '2021-10-29 19:49:11', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('03C41124EBDC4FF28012511A00F0753A', '4', '0EDD3B07131F4182A7C166DED4F3E1A8', '666666', '2021-10-29 02:03:00', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('0434653539354C5BBD189E7B5EDC5498', '4A862D6004A949E5B72064E60E0F1820', 'F826855ECCE64089B7C01DE164DD22D0', '666666', '2022-05-02 00:43:26', '666666', '2022-05-03 10:52:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('0585DAB516244A7EB7A303D45E2BDA1F', 'EBCEED401239413FBA461C0F978549B7', 'AED0EFE93AB3401788B398B26CE82B33', '666666', '2022-01-26 00:43:35', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('059AF655D82E4DB3B060EAA6E11E4312', '4', 'B1673EE1651547749B2FA7AFFE312179', '666666', '2021-10-29 02:03:07', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('0846F3C9CC8346E68DAC20EC68472AEF', '5', '60C03D0A123C4E23B78A815F154DD924', '666666', '2021-12-03 02:01:29', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('085909C8B0544DABA77240DD8249D906', '1AEC2B1F18824D06A14CEF072538545A', '92A7DD61DC9C4414A8098ACFF322DEAA', '666666', '2022-01-01 23:11:38', '666666', '2022-01-05 02:01:10', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('097B52B89BFD4978B2E379C67797318F', 'EBCEED401239413FBA461C0F978549B7', '44833693059D439B8A03E82199D546AA', '666666', '2022-01-21 00:56:02', '666666', '2022-01-26 00:43:35', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('0A81E0FC19774BFBB80CCB1F95A5C21A', '329BDCBD5AD74CA99A2722968AA5BFDA', '7C8B6C6EA72249718435020255728186', '666666', '2021-12-03 02:28:51', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('0A8F1E83D8F748148E35B630AA0F2B77', '4', 'E1311C59CD2D4200BFBF466A4C98C026', '666666', '2021-10-29 02:03:07', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('0C9BCA553FEA4BB2B28A1A407C204B71', '4A862D6004A949E5B72064E60E0F1820', 'F262F1A7FCA14D228514A76C54341291', '666666', '2022-05-03 10:52:36', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('0C9E9E607AFC4BAC8191CBE9594B2249', 'EBCEED401239413FBA461C0F978549B7', '53F50670FE7140DFBCB52D8B28D4E241', '666666', '2022-01-26 00:43:35', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('0CD13E02FAFC47048ECB671DBAFA349C', '4', '8E8BDEA34FA04B71AAF6B677BF0E42D6', '666666', '2021-10-31 15:35:58', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('0E6B6E71A6A746E6848D8352FA60FAA8', '4A862D6004A949E5B72064E60E0F1820', 'C26F026723794C6CB98505775F9D12BD', '666666', '2022-04-26 01:52:59', '666666', '2022-05-03 10:52:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('0E804E08932346F3B3E94685D7011534', 'EE71C54493334D3D86702AB33D616213', 'B3A463C9907244CD9394175B7D1B3A7A', '666666', '2022-05-03 22:22:15', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('12618775075F4A82A700D4246A8707E6', '4', '872C3E391E094B53A5326CC8AE7CB3A7', '666666', '2021-10-29 19:49:11', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('1502186A13C143B2A61722AADF13FFD9', '4A862D6004A949E5B72064E60E0F1820', 'F826855ECCE64089B7C01DE164DD22D0', '666666', '2022-04-26 01:52:59', '666666', '2022-05-03 10:52:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('153C7FCDA996464EB3E81BDDBF21384D', 'C4FF51003E584E0F91391AC2AFE0FC9D', '24D14FD01D584AF2A4804197B46C5F16', '666666', '2021-11-22 00:39:59', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('1597936569EE415D822F2044A7E138D4', '999ECF06188E4418B19BFA562EAF864D', '8DB4B7272A8249E1868C2D0BA67C9BD4', '666666', '2022-01-12 01:26:45', '666666', '2022-01-13 01:59:20', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('15A9AEA77CE74852A04CFF98D7A234EA', '4', '70ED61CFE6F64B57A4C793D1B3F11C61', '666666', '2021-10-20 01:05:33', '666666', '2021-11-21 01:38:36', '1', NULL);
@@ -351,19 +393,27 @@ INSERT INTO `tbl_menu_data_operate_relation` VALUES ('1957AA13A51643D29738104EA2
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('197B58BC60954E62B8FD38320A438916', '4', '872C3E391E094B53A5326CC8AE7CB3A7', '666666', '2021-11-21 01:38:36', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('1AE3C63480E040B6938A1C0F910FE8B8', '4', '70ED61CFE6F64B57A4C793D1B3F11C61', '666666', '2021-10-29 19:49:11', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('1C341C002E064ACE999F376BEB32B414', '999ECF06188E4418B19BFA562EAF864D', '4762EC926DA540009E3A580AB468840F', '666666', '2022-01-12 01:26:45', '666666', '2022-01-13 01:59:20', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('1C6AEB1E6B054FC79AB668A3CF4696A1', 'E96F2EFEAEB04339BB4B685F02E25061', '58D7500FB2494AFEB19BF5BED9E63E61', '666666', '2022-01-19 01:02:15', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('1CDE4AEA0BDF4B6182003A13CFC362C2', 'EBCEED401239413FBA461C0F978549B7', '44833693059D439B8A03E82199D546AA', '666666', '2022-01-26 00:43:35', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('1DEFF867D93649E280FE5A80FE598C9A', '329BDCBD5AD74CA99A2722968AA5BFDA', '2621B6E105924EC79ADCCE7990C3B38D', '666666', '2021-12-03 02:20:44', '666666', '2021-12-03 02:28:51', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('1E2AD8F585D14046A9F28D9FC854C1E5', '84AEFBAD231E414FBF689F4BCF2064F7', '38DEA333011D48A287CF950C96052B21', '666666', '2021-12-08 01:46:16', '666666', '2021-12-12 22:17:30', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('1E65F2D0AE7F461CB95EED10DA2D8866', '4', 'BBE6FE2D6DF64A70BB5EA3C8AE89AB61', '666666', '2021-10-31 15:35:58', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('1EF5E927268E4063A54F4BBED6EDD330', 'F5E119665CA04DF1811684D4F52CE04F', 'EE79CB6C42A944C9AAC94EA2C3B7F15F', '666666', '2022-04-22 00:33:52', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('1FFCDEA99BE44F57A541CD862A285B5B', '329BDCBD5AD74CA99A2722968AA5BFDA', '17B500D657294B0F83843C116371C7C3', '666666', '2021-12-03 02:28:51', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('23A0480E47EC4200ABB074994C2BA18A', '4', '0EDD3B07131F4182A7C166DED4F3E1A8', '666666', '2021-10-31 14:28:22', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('2527AA7CC31D43A488DAD57F1CF6F2EC', '5D5FECCBEB8F498C808ECF36709B767D', '419C2AB96B7C4E64B2077CD07E2765E9', '666666', '2022-04-18 00:52:45', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('271F14CE373B460BA8591D4E9208EA1F', 'EBCEED401239413FBA461C0F978549B7', 'BBE592EFB1984A3F9F903140AB65467F', '666666', '2022-01-21 00:56:02', '666666', '2022-01-26 00:43:35', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('279EC943CECA4D67A71671292A4E9F7B', '4', 'B1673EE1651547749B2FA7AFFE312179', '666666', '2021-10-29 02:03:00', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('283275DA5DA04942927856296918E371', '4', '24F587D5D49549119E1C21C6AF0F1208', '666666', '2021-10-29 02:03:00', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('2D28958221C441A4815D7D4ADE123004', '4A862D6004A949E5B72064E60E0F1820', 'F262F1A7FCA14D228514A76C54341291', '666666', '2022-04-26 01:52:59', '666666', '2022-05-03 10:52:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('2D8B887594E0462DAD97AB2755EF3420', '4', 'BBE6FE2D6DF64A70BB5EA3C8AE89AB61', '666666', '2021-10-20 01:01:05', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('30F22DD8FAEF44E48D12F66075EAC87A', '4', '1EE7F79AACC44895AA49A4E8ABC7C63E', '666666', '2021-11-21 01:38:36', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('321E51FFE8C9414AB438ABE4A1EB29D9', 'E96F2EFEAEB04339BB4B685F02E25061', 'CA41EF44737C4374B40478DE2A59DF95', '666666', '2022-01-19 01:01:55', '666666', '2022-01-19 01:02:15', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('34AF65593EA045AF9BAE2BD95262535C', '329BDCBD5AD74CA99A2722968AA5BFDA', '991139F0B9364367A4E5A88FD841B23B', '666666', '2021-12-03 02:28:51', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('35539DC43F0246F3A222EDCC31C17FEF', '4', 'BBE6FE2D6DF64A70BB5EA3C8AE89AB61', '666666', '2021-10-29 02:03:07', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('3563412B545F40F9BC696D4A3C069878', '329BDCBD5AD74CA99A2722968AA5BFDA', '991139F0B9364367A4E5A88FD841B23B', '666666', '2021-12-03 02:20:44', '666666', '2021-12-03 02:28:51', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('35AE03767E874045B24EA235A0CEDFA5', '4', '1EE7F79AACC44895AA49A4E8ABC7C63E', '666666', '2021-10-20 01:05:33', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('371B8AC17E4F4233B1F85A41B1DEE44E', 'E96F2EFEAEB04339BB4B685F02E25061', 'F0EEE7322F9B4041B97EA54CA6325214', '666666', '2022-01-19 01:01:55', '666666', '2022-01-19 01:02:15', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('37AFC4FF96A4412B99DC879814C8ECE2', '5', '7BB207E65DBB491D9883A052C6D95FE8', '666666', '2021-11-21 01:43:07', '666666', '2021-12-03 02:01:29', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('37EF996DEA1748FF81C311E8EE6E79E8', '84AEFBAD231E414FBF689F4BCF2064F7', 'F67FEFAA064C4E49B80C3BC794A1FC8C', '666666', '2021-12-11 09:07:53', '666666', '2021-12-12 22:17:30', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('382DF540BE224AD28551C29297D9A640', '999ECF06188E4418B19BFA562EAF864D', 'AD0BDD7782C848F29930D1D105C258C0', '666666', '2022-01-13 01:59:20', NULL, NULL, '2', NULL);
@@ -381,17 +431,23 @@ INSERT INTO `tbl_menu_data_operate_relation` VALUES ('45DA2CDA8A594B65B05F4C81F0
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('4636AD3B043348CE8F74DDC9C3E5BBBB', '4', '0EDD3B07131F4182A7C166DED4F3E1A8', '666666', '2021-10-29 02:02:50', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('46424C5C27494BF3B6EADB4D836D1676', '29A93A61ADF8428A9DABACDA7F7FC7E0', 'C7D36B458CA74C7686C37378041E7086', '666666', '2021-11-21 01:37:59', '666666', '2021-12-11 09:17:20', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('48B220446A164DFEB89EF725CAF45B58', '5', '90CA7D56AB3A492EAA0D0A3198180813', '666666', '2021-12-03 01:56:15', '666666', '2021-12-03 02:01:29', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('48DAE6E7A1154E1FBF63054FDB2BB873', 'EE71C54493334D3D86702AB33D616213', '6F405734AE88414C86530FD1B0FF7766', '666666', '2022-05-03 22:22:15', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('4A4B82A6730846E1B3408A6C12793005', '5', 'C11B9AFBD8EC420CA8603AEFE5EF1B81', '666666', '2021-12-03 01:56:15', '666666', '2021-12-03 02:01:29', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('4C38D12D3D3C4BEAAD282D05B6738D16', '999ECF06188E4418B19BFA562EAF864D', '29DAC7A48BC941F0BD36DA71EF185892', '666666', '2022-01-13 01:59:20', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('4D3ACD1710834F0BA80D5005340D3D76', '4', '9399C627612A4E059680BCEB2CFEC7F6', '666666', '2021-10-20 01:05:33', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('4DD37B46AB854F0F819F4D707E801205', '4A862D6004A949E5B72064E60E0F1820', '1083995D1828425399E659C3375B95DE', '666666', '2022-05-02 00:43:26', '666666', '2022-05-03 10:52:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('4ECE72209E6E41B3883CA14906D76795', '329BDCBD5AD74CA99A2722968AA5BFDA', '3F96044756684544B46CA8CDFFF5B9B0', '666666', '2021-12-03 02:20:44', '666666', '2021-12-03 02:28:51', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('4F5A2561B30F42BDBBBCCF20B04DF2A7', '5', 'C11B9AFBD8EC420CA8603AEFE5EF1B81', '666666', '2021-12-03 02:01:29', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('4FBB6269837A4929BBB99403236EB6B6', 'EBCEED401239413FBA461C0F978549B7', '53F50670FE7140DFBCB52D8B28D4E241', '666666', '2022-01-21 00:56:02', '666666', '2022-01-26 00:43:35', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('4FEFAD084D8D4BB184997BFC2B2EC22A', '1AEC2B1F18824D06A14CEF072538545A', 'E90A1387823C462DAAA6C970C37C85B1', '666666', '2022-01-01 01:04:52', '666666', '2022-01-05 02:01:10', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('50FAD36C2D5E46728CDFDE514268333C', 'E96F2EFEAEB04339BB4B685F02E25061', 'E4654AE3EDF64BC883FAE8AB39C4B733', '666666', '2022-01-19 01:02:15', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('516E9703DA494DADB1F3130977BE6E39', '4', 'B1673EE1651547749B2FA7AFFE312179', '666666', '2021-10-29 19:49:11', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('5209414409584FA29D02888274C08148', 'F5E119665CA04DF1811684D4F52CE04F', '7B70ED408616440EA58C96C87D265B5E', '666666', '2022-04-22 00:33:52', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('5220010E46B149CFA44B40B233B96A77', '329BDCBD5AD74CA99A2722968AA5BFDA', '62EF34AF479946119FFB4F40CA5339DC', '666666', '2021-10-29 02:03:43', '666666', '2021-12-03 02:28:51', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('52DDFA42C2D643359B3BA853D84D33DB', '5', '90CA7D56AB3A492EAA0D0A3198180813', '666666', '2021-12-03 02:01:29', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('53118E74DA0540A29C16F5EE4878607B', 'AB363B00FFE746B7A274F34E52E6F1D4', 'E90A1387823C462DAAA6C970C37C85B1', '666666', '2022-01-01 23:11:08', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('53EEE7D6E4B64E26AC5144E7279DADF9', 'C9F42A39651E48F0887EEE7E8B784BBC', '1182B53FD2A6461C81FB9FB579FF2D01', '666666', '2021-11-22 00:42:34', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('54003E5227AE484CA0898DBABDDB0BF6', 'E96F2EFEAEB04339BB4B685F02E25061', 'C5A9E0A7CB1D45738956AF67241EFF28', '666666', '2022-01-19 01:02:15', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('546C8B8BB468415985A39A4B4E1B97F7', '4', 'B1673EE1651547749B2FA7AFFE312179', '666666', '2021-11-21 01:38:36', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('553BCFE59B924E92AD755E26694D4B55', '4', '0EDD3B07131F4182A7C166DED4F3E1A8', '666666', '2021-10-31 14:27:53', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('55F50CD37AB0493CBCE5906D6CDFAE0D', '29A93A61ADF8428A9DABACDA7F7FC7E0', 'C7D36B458CA74C7686C37378041E7086', '666666', '2021-12-11 09:17:20', NULL, NULL, '2', NULL);
@@ -399,12 +455,16 @@ INSERT INTO `tbl_menu_data_operate_relation` VALUES ('563501416FB34EBE94B72885E9
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('5739FC1B4C0244F9BF7524C966529911', '29A93A61ADF8428A9DABACDA7F7FC7E0', '62EF34AF479946119FFB4F40CA5339DC', '666666', '2021-12-11 09:17:12', '666666', '2021-12-11 09:17:20', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('5860BFA00F774C99ADECD9A3ED0F9532', 'C9F42A39651E48F0887EEE7E8B784BBC', 'F8D6AAEF49134E8CA3E81B9AAAC839D3', '666666', '2021-10-15 02:21:51', '666666', '2021-11-22 00:42:34', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('59A11186B63E4444B518BDA8C4A660D5', '4', 'E1311C59CD2D4200BFBF466A4C98C026', '666666', '2021-10-31 14:27:53', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('5A528243DDEA496E9464DA3FB379A904', '4A862D6004A949E5B72064E60E0F1820', 'C26F026723794C6CB98505775F9D12BD', '666666', '2022-05-03 10:52:36', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('5BC97771CED24A1FA4B4DF3A01563F26', '4', '8E8BDEA34FA04B71AAF6B677BF0E42D6', '666666', '2021-10-29 02:03:07', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('5C539826907E49118FD4625B4E19925C', '2A64BCD8F08B45A9A3BF144006780F08', '9B08369A0D1F4BF2BFF327C26F3CC5B2', '666666', '2021-11-22 00:41:06', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('5D1D2E8C387D47AD8ECEB5AB3FD428C1', 'AB363B00FFE746B7A274F34E52E6F1D4', '9BF6D660B9914E33AEA0019C0543DCEC', '666666', '2022-01-01 23:11:08', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('5ED80A68FB344CE786E6E0F63B2656E2', '4', '9399C627612A4E059680BCEB2CFEC7F6', '666666', '2021-10-31 14:28:22', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('5F748CC6214C4F8A92D2B70D2C55D281', 'F5E119665CA04DF1811684D4F52CE04F', '4CF4F86F1FD540DAABA8A5158B4568A2', '666666', '2022-04-22 00:33:52', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('5FE2768701E14DA190874BF6FF1421C1', '4A862D6004A949E5B72064E60E0F1820', '1083995D1828425399E659C3375B95DE', '666666', '2022-05-03 10:52:36', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('6003A418448441689AF6C103B2360902', '329BDCBD5AD74CA99A2722968AA5BFDA', 'B949B972B1F547C494F0C4EBC16FA8F6', '666666', '2021-10-29 02:03:43', '666666', '2021-12-03 02:28:51', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('63E8EF0DF5CF43FF8D9A0750998FB00A', '999ECF06188E4418B19BFA562EAF864D', 'E7E0A31630414C0FA45DF54B0CF4A2CA', '666666', '2022-01-12 01:26:45', '666666', '2022-01-13 01:59:20', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('6477CDA6C3DC410F808A930A87AE86AD', '4A862D6004A949E5B72064E60E0F1820', 'F826855ECCE64089B7C01DE164DD22D0', '666666', '2022-04-27 01:24:06', '666666', '2022-05-03 10:52:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('65046A39E1D749E79673FC5D58AC1EF5', '4', '70ED61CFE6F64B57A4C793D1B3F11C61', '666666', '2021-10-31 14:28:22', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('650BA2879D17421BBB41FDFEF1166D78', '5', '90CA7D56AB3A492EAA0D0A3198180813', '666666', '2021-11-21 01:43:07', '666666', '2021-12-03 02:01:29', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('654B2DA8621D4090A1ECE20903E5950A', '4', '872C3E391E094B53A5326CC8AE7CB3A7', '666666', '2021-10-29 02:03:07', '666666', '2021-11-21 01:38:36', '1', NULL);
@@ -412,33 +472,44 @@ INSERT INTO `tbl_menu_data_operate_relation` VALUES ('65524DEC78A243B2B6A4DC017B
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('656F93029EBD4C00BBA42D1B5836650B', 'AB363B00FFE746B7A274F34E52E6F1D4', '6570E12DFA9043F0B25DF30068A86362', '666666', '2022-01-01 23:11:08', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('657DD5DA8C1B4449A4D6491A6B80C365', '329BDCBD5AD74CA99A2722968AA5BFDA', '17B500D657294B0F83843C116371C7C3', '666666', '2021-12-03 02:21:46', '666666', '2021-12-03 02:28:51', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('65C2000D986F47D69D57F941F2975ABC', '1AEC2B1F18824D06A14CEF072538545A', '59FED7AC3A1C4EEB8C6F2F32E032DC13', '666666', '2021-12-31 00:15:50', '666666', '2022-01-05 02:01:10', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('66BCD9F067E345BE9AE46CB6E4819D28', '4A862D6004A949E5B72064E60E0F1820', '1083995D1828425399E659C3375B95DE', '666666', '2022-04-27 01:24:06', '666666', '2022-05-03 10:52:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('67369644B9A54D51BA74B7C5E614F90B', '4', '9399C627612A4E059680BCEB2CFEC7F6', '666666', '2021-10-29 02:02:50', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('67B56562FD9E4993A4694C1FF942689D', '1AEC2B1F18824D06A14CEF072538545A', '75A53EA470804769AB6E255300CD3216', '666666', '2022-01-01 23:11:38', '666666', '2022-01-05 02:01:10', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('680357528BE54A3CAAF60F4CA89F2016', '1AEC2B1F18824D06A14CEF072538545A', '6570E12DFA9043F0B25DF30068A86362', '666666', '2022-01-01 01:04:52', '666666', '2022-01-05 02:01:10', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('6C7BDDFC4B5F4548A8AAFC1A0D45CADC', '84AEFBAD231E414FBF689F4BCF2064F7', '95A26D67373F4781A40281F79F39C6DE', '666666', '2021-12-12 22:17:30', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('6E35CC7ED6EB485EA2BF9E79A4849B9E', '1AEC2B1F18824D06A14CEF072538545A', '6EA30662BC3C499BA88ADF38F515BDF8', '666666', '2022-01-01 23:11:38', '666666', '2022-01-05 02:01:10', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('6EA9666B498B4824B330F5B8D0181B11', 'EE71C54493334D3D86702AB33D616213', 'C9AEC48FF2A141248322080A82B52757', '666666', '2022-05-03 22:22:15', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('6EDB7CB7DAAE438892349E633BBD87A0', '4', '0EDD3B07131F4182A7C166DED4F3E1A8', '666666', '2021-10-29 19:49:11', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('6EE6A08BADD64EFCBB84DC73C91F5099', '4', '8E8BDEA34FA04B71AAF6B677BF0E42D6', '666666', '2021-10-31 14:27:53', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('6F3CDF8671054DF1BE52A2E4FFA0BAA7', '4', 'A54B9351440147A4A78ADCD75076103B', '666666', '2021-10-31 14:27:53', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('6F7F312BE2C34E9995218544A8F158F9', '1AEC2B1F18824D06A14CEF072538545A', '6EA30662BC3C499BA88ADF38F515BDF8', '666666', '2022-01-05 02:01:10', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('7095AF5EC2CA4609911C21DBD8D3F267', '4', 'A54B9351440147A4A78ADCD75076103B', '666666', '2021-11-21 01:38:36', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('7103D6D072E9423486F5A77128A6B0AD', '4A862D6004A949E5B72064E60E0F1820', 'C26F026723794C6CB98505775F9D12BD', '666666', '2022-05-02 00:43:26', '666666', '2022-05-03 10:52:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('71784522F9CA48FD9A3C7F900F03189A', '4', 'A54B9351440147A4A78ADCD75076103B', '666666', '2021-10-29 02:03:00', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('71D2C6DC2CCC4D2B827A668F43CDB24D', '4', '9399C627612A4E059680BCEB2CFEC7F6', '666666', '2021-11-21 01:38:36', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('720C64B5839E4E1E82FBE28B4021DED3', '5', '60C03D0A123C4E23B78A815F154DD924', '666666', '2021-11-21 01:43:07', '666666', '2021-12-03 02:01:29', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('73022C755B08404B98A0A5450FFC3784', '1AEC2B1F18824D06A14CEF072538545A', '194E6BECB9104D7AB50BE9F407FE5C84', '666666', '2022-01-01 23:11:38', '666666', '2022-01-05 02:01:10', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('7507772109C048C591E754FEBE1F12C9', '4', 'B1673EE1651547749B2FA7AFFE312179', '666666', '2021-10-31 14:28:22', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('757B42BBFA9B4D6A959AEB21B49998DB', '4', '24F587D5D49549119E1C21C6AF0F1208', '666666', '2021-10-29 19:49:11', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('7791D08426A643B4AFF642AB069E4FB6', '4A862D6004A949E5B72064E60E0F1820', 'F826855ECCE64089B7C01DE164DD22D0', '666666', '2022-05-03 10:52:36', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('77C29C4F1D1740B3A1C8269C72465336', '999ECF06188E4418B19BFA562EAF864D', '7911E9E92C4C4AFBACF7BA5D29DD9F28', '666666', '2022-01-12 01:26:45', '666666', '2022-01-13 01:59:20', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('79DCD5CB09D140C5962D5CCE48869E0F', 'F5E119665CA04DF1811684D4F52CE04F', 'FA49286A36BE4B0DBD8C9B4FCEEC505B', '666666', '2022-04-22 00:33:52', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('79DD3612FE99461C8CC7E91C8F383532', '4', '1EE7F79AACC44895AA49A4E8ABC7C63E', '666666', '2021-10-31 15:35:58', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('79FBEDB9686444DEA51282CAB5801D97', '999ECF06188E4418B19BFA562EAF864D', '8DB4B7272A8249E1868C2D0BA67C9BD4', '666666', '2022-01-13 01:59:20', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('7A3BE390062D4AF7BB4DC896A03D7B24', 'EBCEED401239413FBA461C0F978549B7', 'AED0EFE93AB3401788B398B26CE82B33', '666666', '2022-01-21 00:56:02', '666666', '2022-01-26 00:43:35', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('7A465CEEAD8E437CBD55B4B88B132B74', '2A64BCD8F08B45A9A3BF144006780F08', '61272929AB4D44B493C530C230A70336', '666666', '2021-11-22 00:41:06', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('7A6D6F706AED4B569B4952EF21A53F90', '1AEC2B1F18824D06A14CEF072538545A', '59FED7AC3A1C4EEB8C6F2F32E032DC13', '666666', '2021-12-31 00:55:53', '666666', '2022-01-05 02:01:10', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('7B4B460094684553BFA6EA9412589F59', '84AEFBAD231E414FBF689F4BCF2064F7', 'F67FEFAA064C4E49B80C3BC794A1FC8C', '666666', '2021-12-06 00:49:54', '666666', '2021-12-12 22:17:30', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('7C741AF68E094450B7ACF2D068526B72', '5', '60C03D0A123C4E23B78A815F154DD924', '666666', '2021-12-03 01:56:15', '666666', '2021-12-03 02:01:29', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('7EC15FC71D0148A5BBC63775533EBE6E', '1AEC2B1F18824D06A14CEF072538545A', '194E6BECB9104D7AB50BE9F407FE5C84', '666666', '2022-01-05 02:01:10', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('7F61043FAF924E2384A9CF5417EAA639', 'E96F2EFEAEB04339BB4B685F02E25061', '24C55843CA454ADC9F09CE8D88662392', '666666', '2022-01-19 01:02:15', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('805B39F0948140C18AF0D9D47BF44BDA', '4', '2B028C0AD50B4484893F35E0CBD77E44', '666666', '2021-11-21 01:38:36', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('8062CD953737446E81DCFB276846C612', '4A862D6004A949E5B72064E60E0F1820', 'CB88BDC9F02E43309BF8C389DEE8ECCB', '666666', '2022-05-02 00:43:26', '666666', '2022-05-03 10:52:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('80C7318BCB534936B8E0414895A207F9', 'E96F2EFEAEB04339BB4B685F02E25061', 'F0EEE7322F9B4041B97EA54CA6325214', '666666', '2022-01-19 01:02:15', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('851D0ADFEEAB48768D4E574E4F27818D', '999ECF06188E4418B19BFA562EAF864D', '7911E9E92C4C4AFBACF7BA5D29DD9F28', '666666', '2022-01-13 01:59:20', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('85A9B3B32D0A4226A7BE3ED209D0F095', 'EE71C54493334D3D86702AB33D616213', '52789F6A3BBA44D9854F40580898F08D', '666666', '2022-05-03 22:22:15', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('8701619B147C469F9194CA8D95BEA8F2', '4', '872C3E391E094B53A5326CC8AE7CB3A7', '666666', '2021-10-29 02:03:00', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('87121FE59583411DBA071E422CB9C826', '4A862D6004A949E5B72064E60E0F1820', 'C26F026723794C6CB98505775F9D12BD', '666666', '2022-04-27 01:24:06', '666666', '2022-05-03 10:52:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('87BA48437BC849D3B5CC41FAB1C72896', '329BDCBD5AD74CA99A2722968AA5BFDA', '991139F0B9364367A4E5A88FD841B23B', '666666', '2021-12-03 02:21:46', '666666', '2021-12-03 02:28:51', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('87C728C3BCB64B698D88A3E3D8F54A96', '4', '0EDD3B07131F4182A7C166DED4F3E1A8', '666666', '2021-10-29 02:03:07', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('892943107F8344909B5ED9B53D017720', '4', '2B028C0AD50B4484893F35E0CBD77E44', '666666', '2021-10-31 15:35:58', '666666', '2021-11-21 01:38:36', '1', NULL);
@@ -449,26 +520,35 @@ INSERT INTO `tbl_menu_data_operate_relation` VALUES ('8F0A2D1E29434AD697541CCE19
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('8FAEAE542B39488FB424B056E35A2A7D', 'C9F42A39651E48F0887EEE7E8B784BBC', '86470DD56163445EBFC5C4209D9FB80E', '666666', '2021-11-22 00:42:34', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('8FD735F0B7104E44B2498EB2183075C2', '1AEC2B1F18824D06A14CEF072538545A', '6570E12DFA9043F0B25DF30068A86362', '666666', '2021-12-31 00:55:53', '666666', '2022-01-05 02:01:10', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('907F86FA7AF24C95AF3D775F578E24C5', '999ECF06188E4418B19BFA562EAF864D', '29DAC7A48BC941F0BD36DA71EF185892', '666666', '2022-01-12 01:26:45', '666666', '2022-01-13 01:59:20', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('90B3CB5C4268416C8200EB655244AAD6', 'E96F2EFEAEB04339BB4B685F02E25061', 'C5A9E0A7CB1D45738956AF67241EFF28', '666666', '2022-01-19 01:01:55', '666666', '2022-01-19 01:02:15', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('90BA0BE7191E45F7BC89CBA376B9808F', '4', '872C3E391E094B53A5326CC8AE7CB3A7', '666666', '2021-10-31 15:35:58', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('91E0EAD4E18D48DF8C90195FA0561051', 'EE71C54493334D3D86702AB33D616213', '3EAF8F8391E942D7BAEAA5A3F02DC18C', '666666', '2022-05-03 22:22:15', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('91F50B08927C4FA1816FB75324BA1A49', '329BDCBD5AD74CA99A2722968AA5BFDA', '2621B6E105924EC79ADCCE7990C3B38D', '666666', '2021-11-22 00:40:50', '666666', '2021-12-03 02:28:51', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('92531B0F877148CB86EAB5B294636FA9', '4', '2B028C0AD50B4484893F35E0CBD77E44', '666666', '2021-10-29 02:02:50', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('940BF3C18DD042EAA20C03ADF90BA32E', 'C19CD584F56847C1A5E2035CCF8580EF', '77C5E3FCBC4247B0BD798163EF9CEE0F', '666666', '2022-01-03 17:18:20', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('9495FB5A1C8A4159BEB99A419D79BA81', 'E96F2EFEAEB04339BB4B685F02E25061', '58D7500FB2494AFEB19BF5BED9E63E61', '666666', '2022-01-19 01:01:55', '666666', '2022-01-19 01:02:15', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('95096420A251477DA5A8C3D554403B66', '5', 'A2A3360CF45649869D5A7492BB982710', '666666', '2021-12-03 02:01:29', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('95AA40D09A1A4A38A648DD407505A280', 'AB363B00FFE746B7A274F34E52E6F1D4', '59FED7AC3A1C4EEB8C6F2F32E032DC13', '666666', '2022-01-01 23:11:08', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('969E9A37C13648359C0B95F579E8B8AE', '329BDCBD5AD74CA99A2722968AA5BFDA', 'C7D36B458CA74C7686C37378041E7086', '666666', '2021-10-29 02:03:43', '666666', '2021-12-03 02:28:51', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('99E3460D1E804F43990CF71B3143E96C', '329BDCBD5AD74CA99A2722968AA5BFDA', '3F96044756684544B46CA8CDFFF5B9B0', '666666', '2021-12-03 02:21:46', '666666', '2021-12-03 02:28:51', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('9AE0174C04964789BBC6633914507285', 'EBCEED401239413FBA461C0F978549B7', 'E20780E78111426C8FA70739C80CD24C', '666666', '2022-01-26 00:43:35', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('9C3BE8A24B844EDFBF48C1F6A8C4DA27', '4A862D6004A949E5B72064E60E0F1820', '63F332287D35493BBCE66DC1B7F82DC7', '666666', '2022-04-26 01:52:59', '666666', '2022-05-03 10:52:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('9EA9D87B8C1A471BA83A6C3940A0B38C', '4', '1EE7F79AACC44895AA49A4E8ABC7C63E', '666666', '2021-10-31 14:28:22', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('A1012AE4F2CD41FB9F9EA32D42F3ABA3', 'C4FF51003E584E0F91391AC2AFE0FC9D', 'EA8F22D4F11F4A7B875E17601EF30962', '666666', '2021-11-22 00:39:59', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('A1D13101899942E4B20EB8D2977395B2', '4', 'E1311C59CD2D4200BFBF466A4C98C026', '666666', '2021-10-20 01:05:33', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('A27C9E64A4AA44CB9147A13B83F3F472', '4', '2B028C0AD50B4484893F35E0CBD77E44', '666666', '2021-10-31 14:27:53', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('A3EE62429C9B4F34AA94326777FFD4FC', '5', '7BB207E65DBB491D9883A052C6D95FE8', '666666', '2021-12-03 01:56:15', '666666', '2021-12-03 02:01:29', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('A40AB504612C4AD384048F1DE1E56B35', '4', 'BBE6FE2D6DF64A70BB5EA3C8AE89AB61', '666666', '2021-10-29 02:02:50', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('A4828F8708544B1AB3A6C61D4E2EFE18', '4A862D6004A949E5B72064E60E0F1820', 'EAC4BF59CD3F418FBE38D8B24BB3B9E5', '666666', '2022-05-02 00:43:26', '666666', '2022-05-03 10:52:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('A495A0C5F99342D1AE2112D51B488837', '4', '9399C627612A4E059680BCEB2CFEC7F6', '666666', '2021-10-29 02:03:00', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('A60F756788294AC0A0B49529C6D914CD', '4', 'A54B9351440147A4A78ADCD75076103B', '666666', '2021-10-29 02:03:07', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('A6ADCC6AD46D4D8E82B622AC122B604B', '329BDCBD5AD74CA99A2722968AA5BFDA', '3F96044756684544B46CA8CDFFF5B9B0', '666666', '2021-12-03 02:28:51', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('A9FC39B7EB8C4C30927F86C48F4B9ED1', '4', '9399C627612A4E059680BCEB2CFEC7F6', '666666', '2021-10-31 14:27:53', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('AB4489B2778C456498DEB1F133EAEC97', '4', '2B028C0AD50B4484893F35E0CBD77E44', '666666', '2021-10-29 02:03:00', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('AC75D1F9744142188B8F22CDA45EAA79', '4A862D6004A949E5B72064E60E0F1820', '63F332287D35493BBCE66DC1B7F82DC7', '666666', '2022-05-02 00:43:26', '666666', '2022-05-03 10:52:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('AE64611B26854817A06C43B1B947BFCC', '4A862D6004A949E5B72064E60E0F1820', 'CB88BDC9F02E43309BF8C389DEE8ECCB', '666666', '2022-05-03 10:52:36', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('AEF73936AC004A4F929D61EEAEC95769', '4', 'E1311C59CD2D4200BFBF466A4C98C026', '666666', '2021-10-29 02:03:00', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('AF2A1D525F7547CFABF1964AC03BE6BB', 'EBCEED401239413FBA461C0F978549B7', 'BBE592EFB1984A3F9F903140AB65467F', '666666', '2022-01-26 00:43:35', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('AF372FE0F9F94B7C85CB5222AD2E31B5', '4', 'B1673EE1651547749B2FA7AFFE312179', '666666', '2021-10-31 15:35:58', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('AFAED216BF7F4277A6108D1FD6AD8C02', '4', '872C3E391E094B53A5326CC8AE7CB3A7', '666666', '2021-10-31 14:28:22', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('B11C858C45D545E2AB69EDE3A2C60D18', '1AEC2B1F18824D06A14CEF072538545A', '59FED7AC3A1C4EEB8C6F2F32E032DC13', '666666', '2022-01-01 01:04:52', '666666', '2022-01-05 02:01:10', '1', NULL);
@@ -478,6 +558,8 @@ INSERT INTO `tbl_menu_data_operate_relation` VALUES ('B369032BE94C409092583ABFF3
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('B5DD9EC59DDD479DB85A9CA3495270CD', '4', 'B1673EE1651547749B2FA7AFFE312179', '666666', '2021-10-31 14:27:53', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('B6A62F2B07CD45A29F9D4B78DE71CAF8', 'C19CD584F56847C1A5E2035CCF8580EF', 'F6CFBE4E09BE45DC8D424239194FE821', '666666', '2022-01-03 17:18:20', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('B6F4C043AEF54DA7BD24E827E560F0BE', 'C19CD584F56847C1A5E2035CCF8580EF', '3504712A66B14BA5B725EBBF6CFC93E9', '666666', '2022-01-03 17:18:20', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('B9DCB33DFB0F461697A6FC493790B882', '4A862D6004A949E5B72064E60E0F1820', 'CB88BDC9F02E43309BF8C389DEE8ECCB', '666666', '2022-04-27 01:24:06', '666666', '2022-05-03 10:52:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('BAE8DC4A066B43A79768F01428EAFAC6', '4A862D6004A949E5B72064E60E0F1820', 'EAC4BF59CD3F418FBE38D8B24BB3B9E5', '666666', '2022-05-03 10:52:36', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('BB4B29DC58B24A229583B782377E24B1', '29A93A61ADF8428A9DABACDA7F7FC7E0', 'C7D36B458CA74C7686C37378041E7086', '666666', '2021-12-11 09:17:12', '666666', '2021-12-11 09:17:20', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('BDC57A002D4D407690A770433569A522', 'C9F42A39651E48F0887EEE7E8B784BBC', '85F019D8CF134E5584C1BF9AC775E7CF', '666666', '2021-10-15 02:21:51', '666666', '2021-11-22 00:42:34', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('BE42197E493F4F52999E3A08F2C0E798', '4', 'BBE6FE2D6DF64A70BB5EA3C8AE89AB61', '666666', '2021-10-20 01:05:33', '666666', '2021-11-21 01:38:36', '1', NULL);
@@ -486,15 +568,24 @@ INSERT INTO `tbl_menu_data_operate_relation` VALUES ('BEB81EB7E0B0402C940E74753C
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('C1EA7FC12A7040A5BB14832543F90941', '4', '1EE7F79AACC44895AA49A4E8ABC7C63E', '666666', '2021-10-29 02:03:07', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('C3ABC5798B91426CA8625E2EA671D841', '5', 'C11B9AFBD8EC420CA8603AEFE5EF1B81', '666666', '2021-11-21 01:43:07', '666666', '2021-12-03 02:01:29', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('C43B8A4B065743ACBF052D73FBDEC900', '5', '60C03D0A123C4E23B78A815F154DD924', '666666', '2021-11-21 01:38:14', '666666', '2021-12-03 02:01:29', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('C5408311163C4ECA8D637E9607F94B10', 'E96F2EFEAEB04339BB4B685F02E25061', 'CA41EF44737C4374B40478DE2A59DF95', '666666', '2022-01-19 01:02:15', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('C54284DDD0B549539BA5B57C1B205641', 'EBCEED401239413FBA461C0F978549B7', '0BBEEDE0187C47C99D9649D99D96F4C7', '666666', '2022-01-26 00:43:35', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('C57131C9A8C44FDEA82D31B39406CFAF', '4', 'A54B9351440147A4A78ADCD75076103B', '666666', '2021-10-29 02:02:50', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('C57ACD36149D4BF9ADD5F390A8909FBC', '4A862D6004A949E5B72064E60E0F1820', 'F262F1A7FCA14D228514A76C54341291', '666666', '2022-04-27 01:24:06', '666666', '2022-05-03 10:52:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('C5B9AFD2F5FF4D0D8F6DE997C8B6BA21', '84AEFBAD231E414FBF689F4BCF2064F7', 'F67FEFAA064C4E49B80C3BC794A1FC8C', '666666', '2021-12-08 01:46:16', '666666', '2021-12-12 22:17:30', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('C5D07E2081E047AA9656FF932C3D4333', '4A862D6004A949E5B72064E60E0F1820', '0BD753C2E6564B379CE908A390AC013C', '666666', '2022-05-03 10:52:36', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('C9002ED3DFE544CAB9B69392BB7C769D', '4A862D6004A949E5B72064E60E0F1820', 'F262F1A7FCA14D228514A76C54341291', '666666', '2022-05-02 00:43:26', '666666', '2022-05-03 10:52:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('C955D743272E44B6A7A23E061F7035D6', 'C9F42A39651E48F0887EEE7E8B784BBC', 'F83BACD610E646AA9A90DB4A75D6B044', '666666', '2021-11-22 00:42:34', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('CA8B24CA132040A0B01B039DDBDCA416', '1AEC2B1F18824D06A14CEF072538545A', 'E90A1387823C462DAAA6C970C37C85B1', '666666', '2021-12-31 00:55:53', '666666', '2022-01-05 02:01:10', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('CA957CAD85D14387A086AF483288BD27', 'C9F42A39651E48F0887EEE7E8B784BBC', 'C13C5735F99C4688955F051AA5782923', '666666', '2021-11-22 00:42:34', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('CB29AE7F7C4D400A8EC5D456202D92A2', 'EBCEED401239413FBA461C0F978549B7', 'C5A9E0A7CB1D45738956AF67241EFF28', '666666', '2022-01-26 00:43:35', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('CBC2F6066A2B48F2B0EC21E16B3A7ADB', '4', '2B028C0AD50B4484893F35E0CBD77E44', '666666', '2021-10-31 14:28:22', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('CC47AE8F483842568AC9A7279DF53F9D', '4', '8E8BDEA34FA04B71AAF6B677BF0E42D6', '666666', '2021-10-29 19:49:11', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('CDBF6E087CAB4CE4A076378FF39F88FA', '29A93A61ADF8428A9DABACDA7F7FC7E0', '62EF34AF479946119FFB4F40CA5339DC', '666666', '2021-12-11 09:17:20', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('CDCEFB8B5A634058BD72D659A2B63FBA', '4A862D6004A949E5B72064E60E0F1820', '63F332287D35493BBCE66DC1B7F82DC7', '666666', '2022-05-03 10:52:36', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('CF1997C6141C44839022EF194F2063FD', '4', '9399C627612A4E059680BCEB2CFEC7F6', '666666', '2021-10-29 02:03:07', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('CF3A1BA1B085449C9F8E11751B0786C6', 'EBCEED401239413FBA461C0F978549B7', 'E20780E78111426C8FA70739C80CD24C', '666666', '2022-01-21 00:56:02', '666666', '2022-01-26 00:43:35', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('CF427622F82F4E5FAD0091EFE3BB5814', 'E96F2EFEAEB04339BB4B685F02E25061', 'E4654AE3EDF64BC883FAE8AB39C4B733', '666666', '2022-01-19 01:01:55', '666666', '2022-01-19 01:02:15', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('CFBA3885EA9C4A05A206CEDA6C11E8CF', '4', '872C3E391E094B53A5326CC8AE7CB3A7', '666666', '2021-10-29 02:02:50', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('D001C811DF3140478BE5B08FE80DC209', '1AEC2B1F18824D06A14CEF072538545A', '5800365147F34CD9A447DEF4C7F8C1E3', '666666', '2022-01-01 23:11:38', '666666', '2022-01-05 02:01:10', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('D1482287C0824EACA587CCF9B75DF336', '329BDCBD5AD74CA99A2722968AA5BFDA', '24F587D5D49549119E1C21C6AF0F1208', '666666', '2021-10-29 02:03:43', '666666', '2021-12-03 02:28:51', '1', NULL);
@@ -509,7 +600,9 @@ INSERT INTO `tbl_menu_data_operate_relation` VALUES ('D3F758C91664421189B59CC64D
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('D486BF037F484D0EB2381083ADE4C027', '4', '8E8BDEA34FA04B71AAF6B677BF0E42D6', '666666', '2021-11-21 01:38:36', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('D6FCA09E44F94EA9976234776C3AB729', '84AEFBAD231E414FBF689F4BCF2064F7', 'F7E2FEFC650D4FC3BE1CE67ED96A6DAB', '666666', '2021-12-12 22:17:30', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('D755CAA07B4249B090063211E37ED266', '4', '70ED61CFE6F64B57A4C793D1B3F11C61', '666666', '2021-10-31 14:27:53', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('D75B35282660462DA3CA61140E6B3877', 'F5E119665CA04DF1811684D4F52CE04F', 'B71C7AE0E1974BA795939665C381AC30', '666666', '2022-04-22 00:33:52', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('D78FF423D1974652A364EA6BDF695302', '29A93A61ADF8428A9DABACDA7F7FC7E0', 'B949B972B1F547C494F0C4EBC16FA8F6', '666666', '2021-12-11 09:17:20', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('D85D843485B3412C9846E5C98FC9E1DA', '4A862D6004A949E5B72064E60E0F1820', '63F332287D35493BBCE66DC1B7F82DC7', '666666', '2022-04-27 01:24:06', '666666', '2022-05-03 10:52:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('D9F172DADE0742FD93C40F5F5223B339', '4', '8E8BDEA34FA04B71AAF6B677BF0E42D6', '666666', '2021-10-31 14:28:22', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('DB10A03D3B5C450FA133DC9E975BA404', '4', '1EE7F79AACC44895AA49A4E8ABC7C63E', '666666', '2021-10-29 19:49:11', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('DB212DD01F1848A494C25F4A715DA70C', '4', '8E8BDEA34FA04B71AAF6B677BF0E42D6', '666666', '2021-10-29 02:02:50', '666666', '2021-11-21 01:38:36', '1', NULL);
@@ -519,7 +612,9 @@ INSERT INTO `tbl_menu_data_operate_relation` VALUES ('DE2A376EE8154801964B07C8F1
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('DE474E82270D449AA459F815D9BAB8C5', '5', 'F67FEFAA064C4E49B80C3BC794A1FC8C', '666666', '2021-12-03 01:56:15', '666666', '2021-12-03 02:01:29', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('DF9C0A13455B4FBAA327536D0BEBAE98', 'C4FF51003E584E0F91391AC2AFE0FC9D', '9CC0081C5C2743D9A0E5981253F693D9', '666666', '2021-11-22 00:39:59', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('DFED5C200B1E4D538FEB4B73AADB7E6C', '8075707DC0E74E3C81DFC7DB2EF9347A', '1EE7F79AACC44895AA49A4E8ABC7C63E', '666666', '2021-11-12 01:02:02', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('E2465F8145EF414D8CFAE23BB12EFFB9', '4A862D6004A949E5B72064E60E0F1820', '1083995D1828425399E659C3375B95DE', '666666', '2022-04-26 01:52:59', '666666', '2022-05-03 10:52:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('E5E65547A101415AA51BB80034FD8A48', 'C19CD584F56847C1A5E2035CCF8580EF', '135608F3B2914EC8820CA543940ACB36', '666666', '2022-01-03 17:18:20', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('E714A0CFCCB64DAF8399A0103978747F', 'E96F2EFEAEB04339BB4B685F02E25061', '24C55843CA454ADC9F09CE8D88662392', '666666', '2022-01-19 01:01:55', '666666', '2022-01-19 01:02:15', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('E7EF0260A3B541E58BEDB93994DD0DD9', '29A93A61ADF8428A9DABACDA7F7FC7E0', 'C39EA5BD5E2E4E0E9EA33776949843B2', '666666', '2021-12-11 09:17:20', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('E98C7D6DAEDE4611B8239921D1AA01A1', 'C19CD584F56847C1A5E2035CCF8580EF', 'F5E61B3A66CA4EF6A544FF6452C485A3', '666666', '2022-01-03 17:18:20', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('EB11CB4339D74779B4DA5C0F339E0F64', '329BDCBD5AD74CA99A2722968AA5BFDA', '991139F0B9364367A4E5A88FD841B23B', '666666', '2021-11-22 00:40:50', '666666', '2021-12-03 02:28:51', '1', NULL);
@@ -527,11 +622,13 @@ INSERT INTO `tbl_menu_data_operate_relation` VALUES ('EB20EB539CA24B3D9083B01706
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('EBBC533F1B21470E9C27817F7F7251F3', '4', '70ED61CFE6F64B57A4C793D1B3F11C61', '666666', '2021-10-29 02:02:50', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('ECF3861D9C9448D7B14F9DF999BD4ACD', '1AEC2B1F18824D06A14CEF072538545A', '5800365147F34CD9A447DEF4C7F8C1E3', '666666', '2022-01-05 02:01:10', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('EDC1CAB1E1794BF28EB3912F1C6F53B6', '999ECF06188E4418B19BFA562EAF864D', 'E7E0A31630414C0FA45DF54B0CF4A2CA', '666666', '2022-01-13 01:59:20', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('EDF8A97F4D1B486F87B5BD13CC0FD8E2', 'E96F2EFEAEB04339BB4B685F02E25061', '8DB4B7272A8249E1868C2D0BA67C9BD4', '666666', '2022-01-19 01:02:15', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('EF8AB30E43B64D7E9B51F80712363490', '1AEC2B1F18824D06A14CEF072538545A', '00CC1DF3CBCB4E27BADC5F1432692DF8', '666666', '2021-12-31 00:55:53', '666666', '2022-01-05 02:01:10', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('F009D1EF12DD46AE970E442401AF9622', '4', '2B028C0AD50B4484893F35E0CBD77E44', '666666', '2021-10-20 01:05:33', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('F1027FC55FAD424193EF64A0D89FC4FE', '5', '7BB207E65DBB491D9883A052C6D95FE8', '666666', '2021-12-03 02:01:29', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('F140E0EF0F644A9DB9988BDD1C591BA7', '4', 'A54B9351440147A4A78ADCD75076103B', '666666', '2021-10-31 15:35:58', '666666', '2021-11-21 01:38:36', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('F1E52EAC8D044DB2BEBF7C4028D1AA46', '4', '2B028C0AD50B4484893F35E0CBD77E44', '666666', '2021-10-29 19:49:11', '666666', '2021-11-21 01:38:36', '1', NULL);
+INSERT INTO `tbl_menu_data_operate_relation` VALUES ('F222C4896EAD4A6EA152C43CD5FB9F69', 'E96F2EFEAEB04339BB4B685F02E25061', 'C5A9E0A7CB1D45738956AF67241EFF28', '666666', '2022-01-18 00:04:01', '666666', '2022-01-19 01:02:15', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('F3BD13282ADA47F4B0E84DCD0D2940A3', '29A93A61ADF8428A9DABACDA7F7FC7E0', '62EF34AF479946119FFB4F40CA5339DC', '666666', '2021-11-21 01:37:59', '666666', '2021-12-11 09:17:20', '1', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('F42DBF161CFE45B09944B8F96ACB2282', '2A64BCD8F08B45A9A3BF144006780F08', '19FEABB23BE74452B074932139B33AC8', '666666', '2021-11-22 00:41:06', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_menu_data_operate_relation` VALUES ('F496A364412D4F4A94F2E0097D3F2548', '329BDCBD5AD74CA99A2722968AA5BFDA', '17B500D657294B0F83843C116371C7C3', '666666', '2021-12-03 02:20:44', '666666', '2021-12-03 02:28:51', '1', NULL);
@@ -576,14 +673,45 @@ CREATE TABLE `tbl_property` (
 BEGIN;
 INSERT INTO `tbl_property` VALUES ('1', '手机颜色', '2', '', '2022-01-12 01:34:13', '666666', '2022-01-14 01:01:47', '2', 'dfdf', '红色');
 INSERT INTO `tbl_property` VALUES ('2', '手机容量', '1', '', '2022-01-12 01:34:17', '666666', '2022-01-14 01:02:27', '2', NULL, '200G');
+INSERT INTO `tbl_property` VALUES ('2C5D470A1D614933874B0C5B5DCDF706', '处理器品牌', '2', '666666', '2023-02-24 23:09:39', NULL, NULL, '2', '测试数据不要删除', NULL);
 INSERT INTO `tbl_property` VALUES ('3', '腊肉重量', '3', '', '2022-01-12 01:34:21', '666666', '2022-01-14 01:04:45', '1', NULL, NULL);
 INSERT INTO `tbl_property` VALUES ('4', '手机屏幕尺寸', '1', '', '2022-01-12 01:34:25', NULL, NULL, '2', NULL, NULL);
+INSERT INTO `tbl_property` VALUES ('4F3AB3D0A57E46A38D4F78C128DA5FFE', '型号', '2', '666666', '2023-02-24 23:04:18', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('4FF0B40A50034700B92C228BC3D15DE5', '内置麦克风', '2', '666666', '2023-02-24 23:07:04', NULL, NULL, '2', '测试数据不要删除', NULL);
 INSERT INTO `tbl_property` VALUES ('5', '电脑机盖颜色', '2', '', '2022-01-12 01:34:28', NULL, NULL, '2', NULL, NULL);
-INSERT INTO `tbl_property` VALUES ('6', '电脑硬盘容量', '2', '', '2022-01-12 01:39:52', NULL, NULL, '2', NULL, NULL);
+INSERT INTO `tbl_property` VALUES ('506F56DC6B60404692206F3EE195C33D', '产品尺寸', '2', '666666', '2023-02-24 23:06:24', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('51C58722349D4F119E01C62E42177EBD', '显存类型', '2', '666666', '2023-02-24 23:10:33', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('54BCA42054BA4C7B8090D492A58CFC9E', 'Wi-Fi连接', '2', '666666', '2023-02-24 23:14:41', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('57565E883D9749BC8B62A4F3F9B8D6F1', '包装清单', '2', '666666', '2023-02-24 23:15:31', NULL, NULL, '2', '测试数据', NULL);
+INSERT INTO `tbl_property` VALUES ('6', '电脑硬盘容量', '2', '', '2022-01-12 01:39:52', '666666', '2022-01-14 23:33:31', '1', NULL, NULL);
+INSERT INTO `tbl_property` VALUES ('616441028A2744649F2A6D97E8093A7A', '产品净重（kg）', '2', '666666', '2023-02-24 23:06:05', NULL, NULL, '2', '测试数据不要删除', NULL);
 INSERT INTO `tbl_property` VALUES ('6F487D34A67744349A8ED65711148877', '屏幕尺寸', '1', '666666', '2022-01-13 01:56:57', NULL, NULL, '2', '哈哈', NULL);
 INSERT INTO `tbl_property` VALUES ('7', '电脑运行内存', '2', '', '2022-01-12 01:39:56', NULL, NULL, '2', NULL, NULL);
+INSERT INTO `tbl_property` VALUES ('79D6B4060D734A67BACA3FDAF5908996', 'CPU类型', '2', '666666', '2023-02-24 23:09:59', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('7B65045BB3FD4B96882AFFBB844DCC4D', '核心数', '2', '666666', '2023-02-24 23:09:21', NULL, NULL, '2', '测试数据不要删除', NULL);
 INSERT INTO `tbl_property` VALUES ('8', '腊肉已存放时间', '3', '', '2022-01-12 01:39:59', NULL, NULL, '2', NULL, NULL);
+INSERT INTO `tbl_property` VALUES ('856354210A0F4DFC96270A2060EB47B7', '屏幕分辨率', '2', '666666', '2023-02-24 23:12:08', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('8B1F72F4222B48D58BC5E11D63614D53', '线程数', '2', '666666', '2023-02-24 23:08:40', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('9241C3D4403648DAB8C47E761E9001E6', '指纹识别', '2', '666666', '2023-02-24 23:13:12', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('9DC67152F5684426A1C79DA2D44EAB20', '音频接口', '2', '666666', '2023-02-24 23:08:03', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('ACF9912E01F641BBA9206A04DDA566DB', '屏幕类型', '2', '666666', '2023-02-24 23:11:31', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('B0B76545AB894C63914CE1C219E0FE43', '类型', '2', '666666', '2023-02-24 23:10:17', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('B1A36B19FDBC4F129E97B6B40B9E4D16', '显示比例', '2', '666666', '2023-02-24 23:11:13', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('B27A77CEB9014208B9B9A3C5564E91C2', '触摸板', '2', '666666', '2023-02-24 23:15:06', NULL, NULL, '2', '测试数据不要删除', NULL);
 INSERT INTO `tbl_property` VALUES ('B55F559193F844588879C6943C3B8F29', '尺寸大小', '2', '666666', '2022-01-14 01:03:38', NULL, NULL, '2', '哈哈', '10米');
+INSERT INTO `tbl_property` VALUES ('B6684E95B6164C21A0A9A97EA92FAFA4', '理论续航时间', '2', '666666', '2023-02-24 23:13:50', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('B789E46A9A1D40B28439061846C96FDD', 'CPU型号', '2', '666666', '2023-02-24 23:08:55', NULL, NULL, '2', '测试数据', NULL);
+INSERT INTO `tbl_property` VALUES ('BC007573E51245D18C3A3C2D7C07D4CF', '局域网', '2', '666666', '2023-02-24 23:14:24', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('CF45FBDBB9FE4F77BC0E49C8CAAC7368', 'USB2.0接口数', '2', '666666', '2023-02-24 23:07:44', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('D558D74F042E448A876F1B41DED93401', '显存位宽', '2', '666666', '2023-02-24 23:10:50', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('DC2634F013B0445794EBEEA2FEC561ED', '认证型号', '2', '666666', '2023-02-24 23:05:44', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('E5EBEBDA057E419D980AF19E98D5B91D', '最大支持容量', '2', '666666', '2023-02-24 23:06:42', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('E6D824A6C1A049A7B6F7874CF0C400FA', '电源适配器', '2', '666666', '2023-02-24 23:14:10', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('E7891CB717B04A0B8A5E27B37407D80D', '电池容量', '2', '666666', '2023-02-24 23:13:29', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('ECD25A26C64246B088558BC18C604DFD', '显示端口', '2', '666666', '2023-02-24 23:07:26', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('F2E4A620DE874F31A94C4539492E9711', '摄像头', '2', '666666', '2023-02-24 23:12:51', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('FC251C974724463BA65FEA7DFFF10ED9', 'CPU集成显卡', '2', '666666', '2023-02-24 23:08:21', NULL, NULL, '2', '测试数据不要删除', NULL);
+INSERT INTO `tbl_property` VALUES ('FF885C2D99F04276A6FB02452BC66053', '屏幕尺寸', '2', '666666', '2023-02-24 23:11:49', NULL, NULL, '2', '测试数据不要删除', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -609,24 +737,56 @@ CREATE TABLE `tbl_property_options` (
 -- Records of tbl_property_options
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_property_options` VALUES ('1', '黑色', '1', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('10', '16G', '2', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('11', '32', '2', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('12', '1KG', '3', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('13', '2KG', '3', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('14', '0.5KG', '3', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('15', '5.5寸', '4', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('16', '6寸', '4', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('17', '8个月', '8', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('18', '1年', '8', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('2', '白色', '1', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('3', '玫瑰金', '1', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('4', '灰色', '1', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('5', '深灰', '1', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('6', '1G', '2', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('7', '2G', '2', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('8', '4G', '2', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_property_options` VALUES ('9', '8G', '2', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_property_options` VALUES ('04AC87987D3F4F94B62BF3AEDD55FE50', '1.42', '616441028A2744649F2A6D97E8093A7A', '666666', '2023-02-24 23:17:23', NULL, NULL, '2', '测试数据不要删除');
+INSERT INTO `tbl_property_options` VALUES ('08D0E2DAF839484786DA231277CFDD84', '电源键指纹识别', '9241C3D4403648DAB8C47E761E9001E6', '666666', '2023-02-24 23:30:38', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('0EEF7DBE827A4228BCC40C30242C26B6', 'RedmiBook Pro 14 锐龙版', 'DC2634F013B0445794EBEEA2FEC561ED', '666666', '2023-02-24 23:16:59', NULL, NULL, '2', '测试数据不要删除');
+INSERT INTO `tbl_property_options` VALUES ('1', '黑色12', '2', '', '2022-01-14 23:37:12', '666666', '2022-01-20 00:27:20', '1', 'kkkkk快快快');
+INSERT INTO `tbl_property_options` VALUES ('10', '16G', '2', '', '2022-01-14 23:37:16', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_property_options` VALUES ('11', '32', '2', '', '2022-01-14 23:37:25', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_property_options` VALUES ('12', '1KG', '3', '', '2022-01-14 23:37:28', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_property_options` VALUES ('13', '2KG', '3', '', '2022-01-14 23:37:31', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_property_options` VALUES ('14', '0.5KG', '3', '', '2022-01-14 23:37:35', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_property_options` VALUES ('15', '5.5寸', '4', '', '2022-01-14 23:37:38', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_property_options` VALUES ('16', '6寸', '4', '', '2022-01-14 23:37:42', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_property_options` VALUES ('17', '8个月', '8', '', '2022-01-14 23:37:45', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_property_options` VALUES ('18', '1年', '8', '', '2022-01-14 23:37:48', '666666', '2022-01-20 00:22:54', '1', NULL);
+INSERT INTO `tbl_property_options` VALUES ('2', '白色', '1', '', '2022-01-14 23:37:48', '666666', '2022-01-20 00:23:49', '1', NULL);
+INSERT INTO `tbl_property_options` VALUES ('21438B66E9F74F569BD7237E5B27FD05', 'AMD集成显卡', 'FC251C974724463BA65FEA7DFFF10ED9', '666666', '2023-02-24 23:23:27', NULL, NULL, '2', '测试数据不要删除');
+INSERT INTO `tbl_property_options` VALUES ('22218DEC81474498B60C33CF5793C2D6', '56Wh', 'E7891CB717B04A0B8A5E27B37407D80D', '666666', '2023-02-24 23:30:57', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('26D234C76877426D9E80B69B955A96D8', 'AMD', '2C5D470A1D614933874B0C5B5DCDF706', '666666', '2023-02-24 23:25:38', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('29A4CE0ED76849C9A04BE24336E3587A', '内置麦克风', '4FF0B40A50034700B92C228BC3D15DE5', '666666', '2023-02-24 23:21:21', NULL, NULL, '2', '测试数据不要删除');
+INSERT INTO `tbl_property_options` VALUES ('2AF20ECA35E04CD996E6F74D94098489', '65W Type-C 适配器', 'E6D824A6C1A049A7B6F7874CF0C400FA', '666666', '2023-02-24 23:31:50', '666666', '2023-02-24 23:32:05', '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('2BF681AA313540FF83CFECB47D2ABAC3', 'RedmiBook Pro 14 锐龙版', '4F3AB3D0A57E46A38D4F78C128DA5FFE', '666666', '2023-02-24 23:16:24', NULL, NULL, '2', '测试数据不要删除');
+INSERT INTO `tbl_property_options` VALUES ('3', '玫瑰金', '1', '', '2022-01-14 23:37:48', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_property_options` VALUES ('3C9465A96C0344CD9A227A5E8D930EDD', '无', 'D558D74F042E448A876F1B41DED93401', '666666', '2023-02-24 23:27:20', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('3D1E21111161433DA8128E90893F8913', '长315.6mm；宽220.4mm；高17.25mm', '506F56DC6B60404692206F3EE195C33D', '666666', '2023-02-24 23:18:14', NULL, NULL, '2', '测试数据不要删除');
+INSERT INTO `tbl_property_options` VALUES ('4', '灰色', '1', '', '2022-01-14 23:37:48', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_property_options` VALUES ('5', '深灰', '1', '', '2022-01-14 23:37:48', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_property_options` VALUES ('52F3BC554C8C4C53A3239DF8EAB1D885', '多点触控', 'B27A77CEB9014208B9B9A3C5564E91C2', '666666', '2023-02-24 23:33:28', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('6', '1G', '2', '', '2022-01-14 23:37:48', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_property_options` VALUES ('631EA6CBB946410C94FBDCD929D23F20', '不支持局域网', 'BC007573E51245D18C3A3C2D7C07D4CF', '666666', '2023-02-24 23:32:28', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('7', '2G', '2', '', '2022-01-14 23:37:48', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_property_options` VALUES ('716F73F8CF5C471AB0E6EA4C60E6E5A2', '2560*1600', '856354210A0F4DFC96270A2060EB47B7', '666666', '2023-02-24 23:29:05', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('78A39E57A16E4F97A03057893E1EA28F', 'AMD R5', '79D6B4060D734A67BACA3FDAF5908996', '666666', '2023-02-24 23:26:05', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('7F1D4EC2D05D4EEA82B98FC7859E2AFA', '无', '51C58722349D4F119E01C62E42177EBD', '666666', '2023-02-24 23:26:56', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('8', '4G', '2', '', '2022-01-14 23:37:48', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_property_options` VALUES ('86E97AC02A2E4FAEBB6E681E1B36FADA', 'R5-5500U', 'B789E46A9A1D40B28439061846C96FDD', '666666', '2023-02-24 23:24:39', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('8FBFA09DA64849B09ECF6DF3055E7987', '>8小时, 具体时间视使用环境而', 'B6684E95B6164C21A0A9A97EA92FAFA4', '666666', '2023-02-24 23:31:20', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('9', '8G', '2', '', '2022-01-14 23:37:48', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_property_options` VALUES ('9BD102A21ABA4ED391B668117D10C206', 'LCD', 'ACF9912E01F641BBA9206A04DDA566DB', '666666', '2023-02-24 23:28:10', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('A8C7395AF70749C280AC70F274F8B716', '笔记本电脑主机 x 1 电源适配器 x 1 USB-C充电线 x 1 入门指南（三包凭证）x 1\"', '57565E883D9749BC8B62A4F3F9B8D6F1', '666666', '2023-02-24 23:33:57', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('B16DA56F304446EB883027C8AA8897D9', '444', '4', '666666', '2022-01-19 01:03:12', NULL, NULL, '2', '哈哈');
+INSERT INTO `tbl_property_options` VALUES ('B1F54F72679C42C9B92470CE5896C1CB', '有摄像头', 'F2E4A620DE874F31A94C4539492E9711', '666666', '2023-02-24 23:29:26', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('C36E3B1996CB4529A3D65CD9D4F678B7', '宽屏16：10', 'B1A36B19FDBC4F129E97B6B40B9E4D16', '666666', '2023-02-24 23:27:44', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('C77F51E116894E11A141631F8D5F06AB', '六核', '7B65045BB3FD4B96882AFFBB844DCC4D', '666666', '2023-02-24 23:25:03', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('D58CC2DF238E4DEDB67F82BBE0385883', '集成显卡', 'B0B76545AB894C63914CE1C219E0FE43', '666666', '2023-02-24 23:26:31', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('D6D40E8FBD7F494DA8A575AFF9F9AE96', '16GB', 'E5EBEBDA057E419D980AF19E98D5B91D', '666666', '2023-02-24 23:20:59', NULL, NULL, '2', '测试数据不要删除');
+INSERT INTO `tbl_property_options` VALUES ('DCC418EFEA9446F79AB91B14B16AF631', 'Type-C', 'ECD25A26C64246B088558BC18C604DFD', '666666', '2023-02-24 23:21:53', NULL, NULL, '2', '测试数据不要删除');
+INSERT INTO `tbl_property_options` VALUES ('E6305A074A7942EAB1EEEF246477BC19', '耳机、麦克风二合一接口 3.5mm', '9DC67152F5684426A1C79DA2D44EAB20', '666666', '2023-02-24 23:22:59', NULL, NULL, '2', '测试数据不要删除');
+INSERT INTO `tbl_property_options` VALUES ('E7025BB7251045BCB6E938A889483956', 'Wi-Fi 6', '54BCA42054BA4C7B8090D492A58CFC9E', '666666', '2023-02-24 23:32:50', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('E8564FEE91EF499B81DEDC5D1C8B8CE8', '14英寸', 'FF885C2D99F04276A6FB02452BC66053', '666666', '2023-02-24 23:28:42', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('FB1DBF1BF9884FD794E275FBA7430B16', '12线程', '8B1F72F4222B48D58BC5E11D63614D53', '666666', '2023-02-24 23:24:11', NULL, NULL, '2', '测试数据不删除');
+INSERT INTO `tbl_property_options` VALUES ('FDBD535B0ED4404991E83495FA0B894C', '1个', 'CF45FBDBB9FE4F77BC0E49C8CAAC7368', '666666', '2023-02-24 23:22:27', NULL, NULL, '2', '测试数据不要删除');
 COMMIT;
 
 -- ----------------------------
@@ -683,150 +843,185 @@ CREATE TABLE `tbl_role_menu_relation` (
 -- Records of tbl_role_menu_relation
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_role_menu_relation` VALUES ('0261BD83641545E4BC9BCE6BCFF34437', '1', '8075707DC0E74E3C81DFC7DB2EF9347A', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('031F52FE1DD7485F890BCA2CD56E2BB0', '1', '2A64BCD8F08B45A9A3BF144006780F08', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('0541CDD30DA444E7815A4965DC82791D', '1', '4', '666666', '2021-11-10 01:24:57', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('0564AF5205F24B2083DB8CC2EA32E4D1', '1', 'AB363B00FFE746B7A274F34E52E6F1D4', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('08FF5B582004426B97D948D16127B2DA', '1', '2A64BCD8F08B45A9A3BF144006780F08', '666666', '2021-11-10 01:24:57', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('0AE38EBF24074A10ACA4ED2666BDE6CA', '1', 'C59E2150467C464D8974154D2B3FDDB1', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('003FF9C152FD473880BFC557A83C5CA2', '1', 'E96F2EFEAEB04339BB4B685F02E25061', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('0261BD83641545E4BC9BCE6BCFF34437', '1', '8075707DC0E74E3C81DFC7DB2EF9347A', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('031F52FE1DD7485F890BCA2CD56E2BB0', '1', '2A64BCD8F08B45A9A3BF144006780F08', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('0541CDD30DA444E7815A4965DC82791D', '1', '4', '666666', '2021-11-10 01:24:57', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('0564AF5205F24B2083DB8CC2EA32E4D1', '1', 'AB363B00FFE746B7A274F34E52E6F1D4', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('08FF5B582004426B97D948D16127B2DA', '1', '2A64BCD8F08B45A9A3BF144006780F08', '666666', '2021-11-10 01:24:57', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('0AE38EBF24074A10ACA4ED2666BDE6CA', '1', 'C59E2150467C464D8974154D2B3FDDB1', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('0CE3A4319F0A4FC4A090D50FB81018E1', '1', 'C19CD584F56847C1A5E2035CCF8580EF', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('0DF56F71CCF940C19CADDAC14B1A7DBF', '11CBE4967EB94D3C8501649410DFF112', '8075707DC0E74E3C81DFC7DB2EF9347A', '666666', '2021-11-12 01:01:40', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('0E99A9C8D6B14549A5FC74C793EA15F5', '1', '4', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('0F578E4AA0EF41AB920C1CB8948D706F', '1', '9', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('0E99A9C8D6B14549A5FC74C793EA15F5', '1', '4', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('0F578E4AA0EF41AB920C1CB8948D706F', '1', '9', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('151D14C8FB0B40F5A1F64CA8D5CAC572', '11CBE4967EB94D3C8501649410DFF112', '29A93A61ADF8428A9DABACDA7F7FC7E0', '666666', '2021-11-05 02:18:22', '666666', '2021-11-12 01:01:40', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('16E4A0C06AAD4A02A3872C95ADC6C5F0', '1', '329BDCBD5AD74CA99A2722968AA5BFDA', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('17B38B14B89149A5B9A2E456A30719B2', '1', 'C59E2150467C464D8974154D2B3FDDB1', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('17BCAA25689747C29593B6D99835EFBE', '1', '02B6B5C3A1B445979922C9D53DE0927D', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('17D0ACBAEDC34B85B589057B012AECDC', '1', '29A93A61ADF8428A9DABACDA7F7FC7E0', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('196298B543B54E0682754C4BEFCCD500', '1', '2A64BCD8F08B45A9A3BF144006780F08', '666666', '2021-11-10 01:47:53', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('1FC9FD4A71C740F989B9D8684ACD7BD6', '1', '29A93A61ADF8428A9DABACDA7F7FC7E0', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('211DF277E35E4BD8BDBE49CB043000B7', '1', '29A93A61ADF8428A9DABACDA7F7FC7E0', '666666', '2021-11-10 01:24:57', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('2157B21E8CB14C2586075120F3791660', '1', '1AEC2B1F18824D06A14CEF072538545A', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('23195B81645642DEA1ADDFBC0F1BD9C1', '1', '8', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('16C6A4E274C1424098161D70C748A6A7', '1', 'DAE20372C7B34E619B4278E05AD6A251', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('16E4A0C06AAD4A02A3872C95ADC6C5F0', '1', '329BDCBD5AD74CA99A2722968AA5BFDA', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('17B38B14B89149A5B9A2E456A30719B2', '1', 'C59E2150467C464D8974154D2B3FDDB1', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('17BCAA25689747C29593B6D99835EFBE', '1', '02B6B5C3A1B445979922C9D53DE0927D', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('17D0ACBAEDC34B85B589057B012AECDC', '1', '29A93A61ADF8428A9DABACDA7F7FC7E0', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('18591EAD2B5E4C259CD08EA3CD7B14CB', '1', '5D5FECCBEB8F498C808ECF36709B767D', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('196298B543B54E0682754C4BEFCCD500', '1', '2A64BCD8F08B45A9A3BF144006780F08', '666666', '2021-11-10 01:47:53', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('1F2C24079CF84647BA4DB1C181D26021', '1', '8', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('1FC9FD4A71C740F989B9D8684ACD7BD6', '1', '29A93A61ADF8428A9DABACDA7F7FC7E0', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('211DF277E35E4BD8BDBE49CB043000B7', '1', '29A93A61ADF8428A9DABACDA7F7FC7E0', '666666', '2021-11-10 01:24:57', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('2157B21E8CB14C2586075120F3791660', '1', '1AEC2B1F18824D06A14CEF072538545A', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('23195B81645642DEA1ADDFBC0F1BD9C1', '1', '8', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('23D8923310DD40799352B6050428533B', '11CBE4967EB94D3C8501649410DFF112', '1', '666666', '2021-11-12 01:01:40', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('25A6EC78619348328A6089B7DC4CA121', '1', '6', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('26C85D5C36994AB581E86E29F8D65944', '1', '2A64BCD8F08B45A9A3BF144006780F08', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('28F0FDDD967344B28E45DF5E56AD3E18', '1', '5', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('28F2F87F487C4A2FA79F983CBBBD5F24', '1', 'C4FF51003E584E0F91391AC2AFE0FC9D', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('2AB17175C66B43BE8BDB81A3E6CA84BE', '1', '4', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('3251CB6F20244D34B5FFECC88D8890A5', '1', '329BDCBD5AD74CA99A2722968AA5BFDA', '666666', '2021-11-10 01:24:57', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('345EE5BE80314481A253B2BFB7A1EE47', '1', '2', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('347636785DF041CF9E0CE039C3C64F2A', '1', '6', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('34A310CCEFE04F7F99F82E8D0D604714', '1', '5', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('35B1BEE9D6F24183B7A06CD690EA7D93', '1', '8075707DC0E74E3C81DFC7DB2EF9347A', '666666', '2021-11-04 01:58:55', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('36C2A7EE2E5D40A8BD595C619E47F495', '1', '4', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('36CA2C36EA3843CABD1D33B8D0D2BA50', '1', 'C4FF51003E584E0F91391AC2AFE0FC9D', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('3A5BD2E18F3E46908A32A908354D2E4E', '1', '02B6B5C3A1B445979922C9D53DE0927D', '666666', '2021-12-05 23:22:57', '666666', '2021-12-13 23:55:47', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('25A6EC78619348328A6089B7DC4CA121', '1', '6', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('26C85D5C36994AB581E86E29F8D65944', '1', '2A64BCD8F08B45A9A3BF144006780F08', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('28F0FDDD967344B28E45DF5E56AD3E18', '1', '5', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('28F2F87F487C4A2FA79F983CBBBD5F24', '1', 'C4FF51003E584E0F91391AC2AFE0FC9D', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('2AB17175C66B43BE8BDB81A3E6CA84BE', '1', '4', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('3251CB6F20244D34B5FFECC88D8890A5', '1', '329BDCBD5AD74CA99A2722968AA5BFDA', '666666', '2021-11-10 01:24:57', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('32F24FA8B3E04B0FA9925A11A199A030', '1', '84AEFBAD231E414FBF689F4BCF2064F7', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('345EE5BE80314481A253B2BFB7A1EE47', '1', '2', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('347636785DF041CF9E0CE039C3C64F2A', '1', '6', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('34A310CCEFE04F7F99F82E8D0D604714', '1', '5', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('358612A2D18E469E806F299E8618FDC0', '1', '9', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('35B1BEE9D6F24183B7A06CD690EA7D93', '1', '8075707DC0E74E3C81DFC7DB2EF9347A', '666666', '2021-11-04 01:58:55', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('36C2A7EE2E5D40A8BD595C619E47F495', '1', '4', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('36CA2C36EA3843CABD1D33B8D0D2BA50', '1', 'C4FF51003E584E0F91391AC2AFE0FC9D', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('38B66D3BAB3F4D7A92B77332431D2EF6', '1', '1AEC2B1F18824D06A14CEF072538545A', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('3A5BD2E18F3E46908A32A908354D2E4E', '1', '02B6B5C3A1B445979922C9D53DE0927D', '666666', '2021-12-05 23:22:57', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('3CF00FE3EA444EA0A734B2E643560A10', '11CBE4967EB94D3C8501649410DFF112', '8', '666666', '2021-11-12 01:01:40', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('3D239424D54F4789999BC818A136AAC6', '11CBE4967EB94D3C8501649410DFF112', '2', '666666', '2021-11-12 01:01:40', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('3E0236423929447EACD0C0546CDDD8C3', '1', 'C4FF51003E584E0F91391AC2AFE0FC9D', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('3E0236423929447EACD0C0546CDDD8C3', '1', 'C4FF51003E584E0F91391AC2AFE0FC9D', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('3E2958C72A094D04985FE0FDEBA30E70', '11CBE4967EB94D3C8501649410DFF112', '5', '666666', '2021-11-05 02:18:22', '666666', '2021-11-12 01:01:40', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('3EB9F6E1DD424D26B17F79FC6A5AFCD4', '1', 'B22E24BCB117465094F27193F2C070BF', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('44CFEB4B60CA43ADBB94F2D29ECC5FD9', '1', '5', '666666', '2021-11-10 01:24:57', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('4A5FCDCD0876480F9E716E7FADBFC994', '1', '640EF8CAA138431D842DDDD12C692B7A', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('4CF9813979A6437CB073B1B71FE13F91', '1', 'F9F2BF01330A435BA0D75907CBD69A18', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('4DCF6CF539624036B28EAE9F49533964', '1', '2A64BCD8F08B45A9A3BF144006780F08', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('503D3D03F6EA4460951B2569F3202522', '1', '3', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('50A09CA337CC4B9D9FEAEFFD679D23E9', '1', '28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '666666', '2021-11-10 01:24:57', '666666', '2021-12-13 23:55:47', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('3EB9F6E1DD424D26B17F79FC6A5AFCD4', '1', 'B22E24BCB117465094F27193F2C070BF', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('42CE799C60B34F6B971E62807FAC5A36', '1', '8075707DC0E74E3C81DFC7DB2EF9347A', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('435FE537EA5E478FA1FC3DBB8CA8251B', '1', '999ECF06188E4418B19BFA562EAF864D', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('444DBEB693624DBEBE95A75D404709B7', '1', 'DA84C47521184288892D7A01AA06E40E', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('44CFEB4B60CA43ADBB94F2D29ECC5FD9', '1', '5', '666666', '2021-11-10 01:24:57', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('4A5FCDCD0876480F9E716E7FADBFC994', '1', '640EF8CAA138431D842DDDD12C692B7A', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('4CF9813979A6437CB073B1B71FE13F91', '1', 'F9F2BF01330A435BA0D75907CBD69A18', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('4DCF6CF539624036B28EAE9F49533964', '1', '2A64BCD8F08B45A9A3BF144006780F08', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('503D3D03F6EA4460951B2569F3202522', '1', '3', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('50A09CA337CC4B9D9FEAEFFD679D23E9', '1', '28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '666666', '2021-11-10 01:24:57', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('5105BC2B13F04BD08DC6045DF3FB060B', '11CBE4967EB94D3C8501649410DFF112', '29A93A61ADF8428A9DABACDA7F7FC7E0', '666666', '2021-11-12 01:01:40', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('5554A8CEF23242D589D37AFDDAB1B394', '1', 'C4FF51003E584E0F91391AC2AFE0FC9D', '666666', '2021-11-10 01:47:53', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('590278F2FCEB4514B04B06E544CB05FF', '1', 'C9F42A39651E48F0887EEE7E8B784BBC', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('590D252DEE8D4EBB9A526C6402D7C181', '1', '4', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('59BE98F0F7B94A2587339BA4CC5D79B4', '1', '329BDCBD5AD74CA99A2722968AA5BFDA', '666666', '2021-11-10 01:47:53', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('5A2814567BBC48D58DE7EDA7A3128291', '1', '8075707DC0E74E3C81DFC7DB2EF9347A', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('5B2720F8332A45819EA5EB6CE8D57479', '1', 'B22E24BCB117465094F27193F2C070BF', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('5E806562063B4DCAB96532B323BE735B', '1', 'C59E2150467C464D8974154D2B3FDDB1', '666666', '2021-11-10 01:47:53', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('5FF8DF2EC3814DF9A5C1B6A200C4D7A2', '1', 'C9F42A39651E48F0887EEE7E8B784BBC', '666666', '2021-11-10 01:24:57', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('61633B01305445DFA3B14C57D4BB7DF4', '1', '4A862D6004A949E5B72064E60E0F1820', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('62305808FB4146EF8F064AAADDDB40F7', '1', '8', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('5554A8CEF23242D589D37AFDDAB1B394', '1', 'C4FF51003E584E0F91391AC2AFE0FC9D', '666666', '2021-11-10 01:47:53', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('590278F2FCEB4514B04B06E544CB05FF', '1', 'C9F42A39651E48F0887EEE7E8B784BBC', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('590D252DEE8D4EBB9A526C6402D7C181', '1', '4', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('59BE98F0F7B94A2587339BA4CC5D79B4', '1', '329BDCBD5AD74CA99A2722968AA5BFDA', '666666', '2021-11-10 01:47:53', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('5A2814567BBC48D58DE7EDA7A3128291', '1', '8075707DC0E74E3C81DFC7DB2EF9347A', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('5B2720F8332A45819EA5EB6CE8D57479', '1', 'B22E24BCB117465094F27193F2C070BF', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('5E806562063B4DCAB96532B323BE735B', '1', 'C59E2150467C464D8974154D2B3FDDB1', '666666', '2021-11-10 01:47:53', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('5FF8DF2EC3814DF9A5C1B6A200C4D7A2', '1', 'C9F42A39651E48F0887EEE7E8B784BBC', '666666', '2021-11-10 01:24:57', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('61633B01305445DFA3B14C57D4BB7DF4', '1', '4A862D6004A949E5B72064E60E0F1820', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('62305808FB4146EF8F064AAADDDB40F7', '1', '8', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('62C95E31CA76415E88ECAF9523B5D00D', '11CBE4967EB94D3C8501649410DFF112', '2A64BCD8F08B45A9A3BF144006780F08', '666666', '2021-11-05 02:18:22', '666666', '2021-11-12 01:01:40', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('643648025C9842799A45CCC6F9CC6A28', '1', '6', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('65CD1FF51D2742568EC5E5764E3FDB66', '1', '29A93A61ADF8428A9DABACDA7F7FC7E0', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('67A631A492594CF09290EE0C3D2431F4', '1', '29A93A61ADF8428A9DABACDA7F7FC7E0', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('643648025C9842799A45CCC6F9CC6A28', '1', '6', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('64BC48D1C920410E9ABE8735FEE106FC', '1', 'B0167A92314A4356AD6FB543F44B854A', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('65CD1FF51D2742568EC5E5764E3FDB66', '1', '29A93A61ADF8428A9DABACDA7F7FC7E0', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('67A631A492594CF09290EE0C3D2431F4', '1', '29A93A61ADF8428A9DABACDA7F7FC7E0', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('683EE7EE99F144E394E72B8BE7CF590C', '11CBE4967EB94D3C8501649410DFF112', '2A64BCD8F08B45A9A3BF144006780F08', '666666', '2021-11-12 01:01:40', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('6BACEA02E85F45CAABAD70256F89EADA', '11CBE4967EB94D3C8501649410DFF112', '28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '666666', '2021-11-05 02:18:22', '666666', '2021-11-12 01:01:40', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('6D0C28A3B48D46B3A166029B2A6E50BE', '1', 'DAE20372C7B34E619B4278E05AD6A251', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('6E996781C90E4DE4860D31CBC99E2509', '1', '329BDCBD5AD74CA99A2722968AA5BFDA', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('70913610965D4D2E9926C7C1A36B7F96', '1', '2A64BCD8F08B45A9A3BF144006780F08', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('717348AED6954595A07B34198FD6FB89', '1', '2', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('7178202FA5FF4FEFA906073430CFDD4A', '1', '3', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('6D0C28A3B48D46B3A166029B2A6E50BE', '1', 'DAE20372C7B34E619B4278E05AD6A251', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('6D36A0E8B567490FB699CC4B4127D0B1', '1', '3', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('6E996781C90E4DE4860D31CBC99E2509', '1', '329BDCBD5AD74CA99A2722968AA5BFDA', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('70913610965D4D2E9926C7C1A36B7F96', '1', '2A64BCD8F08B45A9A3BF144006780F08', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('717348AED6954595A07B34198FD6FB89', '1', '2', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('7178202FA5FF4FEFA906073430CFDD4A', '1', '3', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('78256C27D3E34A1283528AABB22BE4AB', '11CBE4967EB94D3C8501649410DFF112', '28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '666666', '2021-11-12 01:01:40', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('7C5964C1A6854454AF14184B5338C625', '1', '2A8B9D6453874843A20F425304891A81', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('7C8B4A13F42F4CBABBDAFB913E81EE16', '1', '8', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('7CA63D0B543A4A41B1C243F3FE4674ED', '1', '1', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('7DEBED461D6245BC92D38510DD8E1F5C', '1', '1', '666666', '2021-12-05 23:22:57', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('7F145DA5F4154ED499AA22A986F6827B', '1', '5', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('8077B7E2E9254BC2BF261014512A707F', '1', 'F9F2BF01330A435BA0D75907CBD69A18', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('7C5964C1A6854454AF14184B5338C625', '1', '2A8B9D6453874843A20F425304891A81', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('7C8B4A13F42F4CBABBDAFB913E81EE16', '1', '8', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('7CA63D0B543A4A41B1C243F3FE4674ED', '1', '1', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('7DEBED461D6245BC92D38510DD8E1F5C', '1', '1', '666666', '2021-12-05 23:22:57', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('7E64773764C94FAD9D6C39828E646580', '1', '329BDCBD5AD74CA99A2722968AA5BFDA', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('7E865A9793E14E13A3D71C73D63379F1', '1', '29A93A61ADF8428A9DABACDA7F7FC7E0', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('7F145DA5F4154ED499AA22A986F6827B', '1', '5', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('8077B7E2E9254BC2BF261014512A707F', '1', 'F9F2BF01330A435BA0D75907CBD69A18', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('81611219C10044CAA1D553586FAE772A', '11CBE4967EB94D3C8501649410DFF112', '329BDCBD5AD74CA99A2722968AA5BFDA', '666666', '2021-11-05 02:18:22', '666666', '2021-11-12 01:01:40', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('8268540F87AF4B26BC7436F8EB01F7FC', '1', '5', '666666', '2021-11-10 01:47:53', '666666', '2021-12-13 23:55:47', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('8268540F87AF4B26BC7436F8EB01F7FC', '1', '5', '666666', '2021-11-10 01:47:53', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('83D275073BBD4021BF24AD1D33BE0E3A', '11CBE4967EB94D3C8501649410DFF112', 'C59E2150467C464D8974154D2B3FDDB1', '666666', '2021-11-12 01:01:40', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('841FFE245B6B41C783441BC710EFB5E7', '11CBE4967EB94D3C8501649410DFF112', '8075707DC0E74E3C81DFC7DB2EF9347A', '666666', '2021-11-05 02:18:22', '666666', '2021-11-12 01:01:40', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('880864DD314446E5A2A0D5C89928799D', '11CBE4967EB94D3C8501649410DFF112', 'C59E2150467C464D8974154D2B3FDDB1', '666666', '2021-11-05 02:18:22', '666666', '2021-11-12 01:01:40', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('898B1636EA9E422A8DF10F9F7560805D', '1', 'AB363B00FFE746B7A274F34E52E6F1D4', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('8A0CB866F7704DFF8CC1CCEDBAFAB7EE', '1', 'C4FF51003E584E0F91391AC2AFE0FC9D', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('8F67F9C436A44B73BA0A03F31E6D52F7', '1', 'F9F2BF01330A435BA0D75907CBD69A18', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('9076165B753E40169594585D15B87774', '11CBE4967EB94D3C8501649410DFF112', '329BDCBD5AD74CA99A2722968AA5BFDA', '666666', '2021-11-12 01:01:40', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('907837A5441D4AF2B72C7FF599E5C541', '1', '28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('9105192F508248DCA9ECD1B457944560', '1', '28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('933D8755636940AE8674A5EA7C57FB39', '1', '3', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('93AE360BBBED4CE9926ECF3C7B9697AE', '1', '84AEFBAD231E414FBF689F4BCF2064F7', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('95D99142CFF1434594C41A24F5D9982E', '1', '29A93A61ADF8428A9DABACDA7F7FC7E0', '666666', '2021-11-10 01:47:53', '666666', '2021-12-13 23:55:47', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('907837A5441D4AF2B72C7FF599E5C541', '1', '28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('9105192F508248DCA9ECD1B457944560', '1', '28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('933D8755636940AE8674A5EA7C57FB39', '1', '3', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('93AE360BBBED4CE9926ECF3C7B9697AE', '1', '84AEFBAD231E414FBF689F4BCF2064F7', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('95D99142CFF1434594C41A24F5D9982E', '1', '29A93A61ADF8428A9DABACDA7F7FC7E0', '666666', '2021-11-10 01:47:53', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('96A72CF462074EEBA3F6BCE51612783D', '1', 'B22E24BCB117465094F27193F2C070BF', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('9853477116A34B32B780C776E66C9835', '11CBE4967EB94D3C8501649410DFF112', '6', '666666', '2021-11-12 01:01:40', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('995F37BF18D044EA914E1DE8659110AE', '1', 'DAE20372C7B34E619B4278E05AD6A251', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('9A5750CAFA9646C6BC2C1FAE408DD66C', '1', 'F9F2BF01330A435BA0D75907CBD69A18', '666666', '2021-11-10 01:47:53', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('9D17EE494A9C46EA97E4F2AEC32E26A8', '1', '8075707DC0E74E3C81DFC7DB2EF9347A', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('9D699D30C4644CBDB43A5B1FA7D55715', '1', '2', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('A2610E80C9FE46179DD4144F537FA161', '1', '8', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('A2EE4140284B4C9B9C3485762A321F7E', '1', '4', '666666', '2021-11-04 01:58:55', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('A3C30586884E474A89648D733FBB4439', '1', '640EF8CAA138431D842DDDD12C692B7A', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('A671019954BF453CA57C68AAB4800285', '1', '2A8B9D6453874843A20F425304891A81', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('A751C5A6274C43E59240FE3990210160', '1', 'C9F42A39651E48F0887EEE7E8B784BBC', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('A7E38B30227E4FDB86A39272E7240D41', '1', '28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('A7E512EBA24047E499B87B4AC5FA7A36', '1', 'DAE20372C7B34E619B4278E05AD6A251', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('AC6F2FA406454B269D6F264647ABE131', '1', '640EF8CAA138431D842DDDD12C692B7A', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('ACCCF8EA968341AF9113CF7B022CCE6D', '1', 'E96F2EFEAEB04339BB4B685F02E25061', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('AFB2E388243B4B82929863E857C87587', '1', '8075707DC0E74E3C81DFC7DB2EF9347A', '666666', '2021-11-10 01:47:53', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('B0F7849E176940CEA9EFE03993A5B986', '1', 'F5E119665CA04DF1811684D4F52CE04F', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('B1630A8FEBD9433F9894791F72BA44D3', '1', '329BDCBD5AD74CA99A2722968AA5BFDA', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('BAB4CB71A0C745D1A634D55ECDD2BD9B', '1', '02B6B5C3A1B445979922C9D53DE0927D', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('BC69385534D345758939832338A7E7BD', '1', 'EE71C54493334D3D86702AB33D616213', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('995F37BF18D044EA914E1DE8659110AE', '1', 'DAE20372C7B34E619B4278E05AD6A251', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('9A5750CAFA9646C6BC2C1FAE408DD66C', '1', 'F9F2BF01330A435BA0D75907CBD69A18', '666666', '2021-11-10 01:47:53', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('9ADE969EED5D4B25B672863209775839', '1', '1', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('9D17EE494A9C46EA97E4F2AEC32E26A8', '1', '8075707DC0E74E3C81DFC7DB2EF9347A', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('9D699D30C4644CBDB43A5B1FA7D55715', '1', '2', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('A2610E80C9FE46179DD4144F537FA161', '1', '8', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('A2EE4140284B4C9B9C3485762A321F7E', '1', '4', '666666', '2021-11-04 01:58:55', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('A3C30586884E474A89648D733FBB4439', '1', '640EF8CAA138431D842DDDD12C692B7A', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('A671019954BF453CA57C68AAB4800285', '1', '2A8B9D6453874843A20F425304891A81', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('A751C5A6274C43E59240FE3990210160', '1', 'C9F42A39651E48F0887EEE7E8B784BBC', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('A7E38B30227E4FDB86A39272E7240D41', '1', '28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('A7E512EBA24047E499B87B4AC5FA7A36', '1', 'DAE20372C7B34E619B4278E05AD6A251', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('AC6F2FA406454B269D6F264647ABE131', '1', '640EF8CAA138431D842DDDD12C692B7A', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('ACCCF8EA968341AF9113CF7B022CCE6D', '1', 'E96F2EFEAEB04339BB4B685F02E25061', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('AFB2E388243B4B82929863E857C87587', '1', '8075707DC0E74E3C81DFC7DB2EF9347A', '666666', '2021-11-10 01:47:53', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('B0F7849E176940CEA9EFE03993A5B986', '1', 'F5E119665CA04DF1811684D4F52CE04F', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('B1630A8FEBD9433F9894791F72BA44D3', '1', '329BDCBD5AD74CA99A2722968AA5BFDA', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('B3454CC7EB6F415199BCF2436A260326', '1', '4', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('B58991CC3CC44035BCE1B0492A97F165', '1', '2A64BCD8F08B45A9A3BF144006780F08', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('BAB4CB71A0C745D1A634D55ECDD2BD9B', '1', '02B6B5C3A1B445979922C9D53DE0927D', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('BC69385534D345758939832338A7E7BD', '1', 'EE71C54493334D3D86702AB33D616213', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('BC757C40984C496493E05A2E3B37B147', '11CBE4967EB94D3C8501649410DFF112', 'C4FF51003E584E0F91391AC2AFE0FC9D', '666666', '2021-11-05 02:18:22', '666666', '2021-11-12 01:01:40', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('BDD6171B209B472A94BE2AA9A28A3A10', '1', 'DAE20372C7B34E619B4278E05AD6A251', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('BF03218A9D0745BD9A4F4F40DE368A15', '1', '5', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('C1FF81FD60CF493FAAB47668D457C7F2', '1', '9', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('C49BB485C11543B8B44433F20DA6FC29', '1', 'C4FF51003E584E0F91391AC2AFE0FC9D', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('C53352728CF5456887FB956A4A1E6A6E', '1', 'B22E24BCB117465094F27193F2C070BF', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('BDD6171B209B472A94BE2AA9A28A3A10', '1', 'DAE20372C7B34E619B4278E05AD6A251', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('BF03218A9D0745BD9A4F4F40DE368A15', '1', '5', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('C15CDBE74D1644539A2149EBE7CA2CF4', '1', '28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('C1D942026235422B898561D2D6CAE44A', '1', '02B6B5C3A1B445979922C9D53DE0927D', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('C1FF81FD60CF493FAAB47668D457C7F2', '1', '9', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('C4883694F5E14612BF7A4BE6E9A69B20', '1', '5', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('C49BB485C11543B8B44433F20DA6FC29', '1', 'C4FF51003E584E0F91391AC2AFE0FC9D', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('C53352728CF5456887FB956A4A1E6A6E', '1', 'B22E24BCB117465094F27193F2C070BF', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('C5464BA5F93649C29AED61AB730CFAB8', '11CBE4967EB94D3C8501649410DFF112', '9', '666666', '2021-11-12 01:01:40', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('C5DFB556046D4285B7D5AF68D5C716F5', '1', '9', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('CE81484987A148C7954F40F7A2C888A7', '1', 'C9F42A39651E48F0887EEE7E8B784BBC', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('D0B97C89E3A741ED98FA068B1434C0C4', '1', '329BDCBD5AD74CA99A2722968AA5BFDA', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('D2AA214001094A038573D47CE6825BC1', '1', '5D5FECCBEB8F498C808ECF36709B767D', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('D6E97F7A3289442480646BF4F65E7DCE', '1', 'B0167A92314A4356AD6FB543F44B854A', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('C5DFB556046D4285B7D5AF68D5C716F5', '1', '9', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('CCC1862345D74057821AF0989A1F4170', '1', '2A8B9D6453874843A20F425304891A81', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('CE81484987A148C7954F40F7A2C888A7', '1', 'C9F42A39651E48F0887EEE7E8B784BBC', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('D0B97C89E3A741ED98FA068B1434C0C4', '1', '329BDCBD5AD74CA99A2722968AA5BFDA', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('D2AA214001094A038573D47CE6825BC1', '1', '5D5FECCBEB8F498C808ECF36709B767D', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('D311428D513043FF9D4E185BEFD429A5', '1', 'F5E119665CA04DF1811684D4F52CE04F', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('D6E97F7A3289442480646BF4F65E7DCE', '1', 'B0167A92314A4356AD6FB543F44B854A', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('DA03EAEF067B406ABD3C772187351C59', '11CBE4967EB94D3C8501649410DFF112', 'C9F42A39651E48F0887EEE7E8B784BBC', '666666', '2021-11-05 02:18:22', '666666', '2021-11-12 01:01:40', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('DAB2F7378D854504AC83BD31FBC32EF2', '1', 'F9F2BF01330A435BA0D75907CBD69A18', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('DA2020E1531E4BA894868B11B28B63F2', '1', 'C9F42A39651E48F0887EEE7E8B784BBC', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('DAB2F7378D854504AC83BD31FBC32EF2', '1', 'F9F2BF01330A435BA0D75907CBD69A18', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('DB6289E921A94899AB40BCF54C21AC17', '11CBE4967EB94D3C8501649410DFF112', '5', '666666', '2021-11-12 01:01:40', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('DB6D50A3EB764B679034E5E3BA5BE75D', '1', 'F9F2BF01330A435BA0D75907CBD69A18', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('DB6D50A3EB764B679034E5E3BA5BE75D', '1', 'F9F2BF01330A435BA0D75907CBD69A18', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('DB9178D803EB4C99A0C5AD6940364395', '11CBE4967EB94D3C8501649410DFF112', '4', '666666', '2021-11-05 02:18:22', '666666', '2021-11-12 01:01:40', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('DD5E8D29BF36471A8F9169ACC8D6564A', '1', '4', '666666', '2021-11-10 01:47:53', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('DEB0B9CFFA1F48AAB1EAF6EABF76C90B', '1', '4', '666666', '2021-11-05 02:18:07', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('DF0B56FF9D994866AEC2AFEF89FE000C', '1', 'C4FF51003E584E0F91391AC2AFE0FC9D', '666666', '2021-11-10 01:24:57', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('E7BBDFD2CBDB45DCB8B1DE52BAF6EB3E', '1', 'C9F42A39651E48F0887EEE7E8B784BBC', '666666', '2021-11-10 01:47:53', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('E809011B8CB84E8F8482AB5EAF457A6A', '1', 'DA84C47521184288892D7A01AA06E40E', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('E9D0E12176284A90B460EBDEF69F6A41', '1', '1', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('EC79ECE432584259968E2F923563D9B3', '1', '28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('DD5E8D29BF36471A8F9169ACC8D6564A', '1', '4', '666666', '2021-11-10 01:47:53', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('DE394CAE3FA044DE87EF160A47C96DC6', '1', 'EBCEED401239413FBA461C0F978549B7', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('DEB0B9CFFA1F48AAB1EAF6EABF76C90B', '1', '4', '666666', '2021-11-05 02:18:07', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('DF0B56FF9D994866AEC2AFEF89FE000C', '1', 'C4FF51003E584E0F91391AC2AFE0FC9D', '666666', '2021-11-10 01:24:57', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('E7BBDFD2CBDB45DCB8B1DE52BAF6EB3E', '1', 'C9F42A39651E48F0887EEE7E8B784BBC', '666666', '2021-11-10 01:47:53', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('E809011B8CB84E8F8482AB5EAF457A6A', '1', 'DA84C47521184288892D7A01AA06E40E', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('E9D0E12176284A90B460EBDEF69F6A41', '1', '1', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('EC79ECE432584259968E2F923563D9B3', '1', '28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('ED37C466EB894986B84CBF72F732F30F', '11CBE4967EB94D3C8501649410DFF112', '4', '666666', '2021-11-12 01:01:40', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('EE5AE7139EE449C49006E62C57DF11CE', '1', '999ECF06188E4418B19BFA562EAF864D', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('EEF400BD87D3474A85E59C079E99D10F', '1', '2', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('F119D6BD975743928E4FBB2FB49BB98D', '1', '1', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('F1214B8B9DB341479D39D206EFCCA21D', '1', 'B22E24BCB117465094F27193F2C070BF', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('F1830BEF4B2049F892F5979256043319', '1', '9', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('F1CCB7015A114913B7BD93D919A1F9DB', '1', 'C9F42A39651E48F0887EEE7E8B784BBC', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('F2B55F911B5B44D999B30B5A7EFBF5A9', '1', '3', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('F84A0F481ED9474FA09CA571543BA3AB', '1', 'C59E2150467C464D8974154D2B3FDDB1', '666666', '2021-11-10 01:50:37', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('FB72ADB8F92342B7BB6C7A439FC8A8BC', '1', 'C19CD584F56847C1A5E2035CCF8580EF', '666666', '2021-12-13 23:55:47', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('EE5AE7139EE449C49006E62C57DF11CE', '1', '999ECF06188E4418B19BFA562EAF864D', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('EEF400BD87D3474A85E59C079E99D10F', '1', '2', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('F119D6BD975743928E4FBB2FB49BB98D', '1', '1', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('F1214B8B9DB341479D39D206EFCCA21D', '1', 'B22E24BCB117465094F27193F2C070BF', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('F1272E0B9FBE42E4B322928E8481B50A', '1', 'C59E2150467C464D8974154D2B3FDDB1', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('F1830BEF4B2049F892F5979256043319', '1', '9', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('F1CCB7015A114913B7BD93D919A1F9DB', '1', 'C9F42A39651E48F0887EEE7E8B784BBC', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('F2B55F911B5B44D999B30B5A7EFBF5A9', '1', '3', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('F2BA913AA1DC4E059761E379FD2D6200', '1', 'EE71C54493334D3D86702AB33D616213', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('F7CDC464CA744FDC95A0A07F3AF0862D', '1', '6', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('F84A0F481ED9474FA09CA571543BA3AB', '1', 'C59E2150467C464D8974154D2B3FDDB1', '666666', '2021-11-10 01:50:37', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('F8C6A080296F46009CEB9C02C21B3088', '1', '640EF8CAA138431D842DDDD12C692B7A', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('FB72ADB8F92342B7BB6C7A439FC8A8BC', '1', 'C19CD584F56847C1A5E2035CCF8580EF', '666666', '2021-12-13 23:55:47', '666666', '2022-01-21 00:57:03', '1', NULL);
 INSERT INTO `tbl_role_menu_relation` VALUES ('FB87A4DCDA0D427BB8A91AE15FE8AE88', 'A86247E3DD4A4980BA4254577DE0C28D', 'F9F2BF01330A435BA0D75907CBD69A18', '666666', '2021-11-06 23:39:27', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('FBC0D4D34A034FAD8FB132F23ABA5A8E', '1', 'C59E2150467C464D8974154D2B3FDDB1', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('FC042ECC854140B2BF7F009CB01CB7B4', '1', '640EF8CAA138431D842DDDD12C692B7A', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('FC646B929FBB4738A5ED7515377A34D4', '1', '6', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('FEB859B010BA49CA99B56ECE7A46253D', '1', '8075707DC0E74E3C81DFC7DB2EF9347A', '666666', '2021-12-05 23:22:58', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('FF10A1143136426E8E08F8C101710C53', '1', '84AEFBAD231E414FBF689F4BCF2064F7', '666666', '2021-12-06 00:50:14', '666666', '2021-12-13 23:55:47', '1', NULL);
-INSERT INTO `tbl_role_menu_relation` VALUES ('FFA89ADAD4C94068960B93EE2C6AFB18', '1', '28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '666666', '2021-11-10 01:47:53', '666666', '2021-12-13 23:55:47', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('FBC0D4D34A034FAD8FB132F23ABA5A8E', '1', 'C59E2150467C464D8974154D2B3FDDB1', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('FC042ECC854140B2BF7F009CB01CB7B4', '1', '640EF8CAA138431D842DDDD12C692B7A', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('FC646B929FBB4738A5ED7515377A34D4', '1', '6', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('FD42FF0E07E44BABB75D04A605F4971F', '1', '4A862D6004A949E5B72064E60E0F1820', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('FEB859B010BA49CA99B56ECE7A46253D', '1', '8075707DC0E74E3C81DFC7DB2EF9347A', '666666', '2021-12-05 23:22:58', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('FF10A1143136426E8E08F8C101710C53', '1', '84AEFBAD231E414FBF689F4BCF2064F7', '666666', '2021-12-06 00:50:14', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('FFA89ADAD4C94068960B93EE2C6AFB18', '1', '28C9E8AC6ABF4E7BA0A6CE7D8A114D09', '666666', '2021-11-10 01:47:53', '666666', '2022-01-21 00:57:03', '1', NULL);
+INSERT INTO `tbl_role_menu_relation` VALUES ('FFF0BDD67EF840F8859EA4EC78771434', '1', '2', '666666', '2022-01-21 00:57:03', NULL, NULL, '2', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -873,7 +1068,7 @@ COMMIT;
 DROP TABLE IF EXISTS `tbl_sku`;
 CREATE TABLE `tbl_sku` (
   `id` varchar(255) NOT NULL COMMENT 'SKU产品ID',
-  `name` varchar(50) DEFAULT NULL COMMENT '产品名称',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '产品名称',
   `code` varchar(50) DEFAULT NULL COMMENT '产品编码',
   `price` decimal(10,2) DEFAULT NULL COMMENT '产品价格',
   `spu_id` varchar(255) DEFAULT NULL COMMENT 'SPU货品ID',
@@ -883,6 +1078,7 @@ CREATE TABLE `tbl_sku` (
   `update_time` datetime DEFAULT NULL COMMENT '修改时间',
   `del_tag` varchar(2) NOT NULL DEFAULT '2' COMMENT '删除标志[1: 删除; 2: 保留]',
   `remark` varchar(256) DEFAULT NULL COMMENT '备注',
+  `sku_number` int(50) NOT NULL COMMENT '产品数量',
   PRIMARY KEY (`id`),
   KEY `fk1` (`spu_id`),
   CONSTRAINT `fk1` FOREIGN KEY (`spu_id`) REFERENCES `tbl_spu` (`id`)
@@ -892,12 +1088,17 @@ CREATE TABLE `tbl_sku` (
 -- Records of tbl_sku
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_sku` VALUES ('1', '黑色128G电信版苹果12', 'phone_12_11', 5894.00, '1', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku` VALUES ('2', '蓝色500G华为Mate11', 'mate11', 1000.00, '1', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku` VALUES ('3', '卫华1代电脑', 'HUAWEI_1', 5000.00, '2', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku` VALUES ('4', '华为2代电脑', 'HUAWEI_2', 60000.00, '2', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku` VALUES ('5', '烟熏肉1', 'yxr1', 100.00, '3', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku` VALUES ('6', '风干猪肉1', 'fgzr1', 150.00, '3', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku` VALUES ('041B226B03D540319168B98006D9E61B', '小米笔记本电脑 RedmiBookPro 14英寸 2.5K全面屏 高性能轻薄本(R5 16G 512G 摄像头 长续航 CNC全金属)', 'xiaomi01', 5000.00, '2', '666666', '2023-02-24 23:48:22', NULL, NULL, '2', '测试产品，不删除', 10);
+INSERT INTO `tbl_sku` VALUES ('0C2031B3934E4D0D822BDF4FA5E964F3', '1111', '1111', 3.00, '1', '666666', '2023-02-24 02:04:08', NULL, NULL, '2', '112', 3);
+INSERT INTO `tbl_sku` VALUES ('1', '黑色128G电信版苹果12', 'phone_12_11', 5894.00, '1', '', '2022-01-26 00:48:28', NULL, NULL, '2', NULL, 1);
+INSERT INTO `tbl_sku` VALUES ('2', '蓝色500G华为Mate11', 'mate11', 1000.00, '1', '', '2022-01-26 00:48:28', NULL, NULL, '2', NULL, 1);
+INSERT INTO `tbl_sku` VALUES ('3', '卫华1代电脑', 'HUAWEI_1', 5000.00, '2', '', '2022-01-26 00:48:28', NULL, NULL, '2', NULL, 1);
+INSERT INTO `tbl_sku` VALUES ('4', '华为2代电脑', 'HUAWEI_2', 60000.00, '2', '', '2022-01-26 00:48:28', NULL, NULL, '2', NULL, 1);
+INSERT INTO `tbl_sku` VALUES ('5', '烟熏肉1', 'yxr1', 100.00, '3', '', '2022-01-26 00:48:28', NULL, NULL, '2', NULL, 1);
+INSERT INTO `tbl_sku` VALUES ('6', '风干猪肉1', 'fgzr1', 150.00, '3', '', '2022-01-26 00:48:28', NULL, NULL, '2', NULL, 2);
+INSERT INTO `tbl_sku` VALUES ('6D873F151AAA4D5EB9A125E6A03EA18D', '小米笔记本电脑 RedmiBookPro 14英寸 2.5K全面屏 高性能轻薄本(R5 16G 512G 摄像头 长续航 CNC全金属)', 'xiaomi01', 5000.00, '2', '666666', '2023-02-24 23:45:14', NULL, NULL, '2', '测试产品，不删除', 10);
+INSERT INTO `tbl_sku` VALUES ('8A1C0918EF2241ECA328B25829D0A1DD', '小米笔记本电脑 RedmiBookPro 14英寸 2.5K全面屏 高性能轻薄本(R5 16G 512G 摄像头 长续航 CNC全金属)', 'xiaomi01', 5000.00, '2', '666666', '2023-02-24 23:45:22', NULL, NULL, '2', '测试产品，不删除', 10);
+INSERT INTO `tbl_sku` VALUES ('FF462926DABD428F940B65B460690BE8', '小米笔记本电脑 RedmiBookPro 14英寸 2.5K全面屏 高性能轻薄本(R5 16G 512G 摄像头 长续航 CNC全金属)', 'xiaomi01', 5000.00, '2', '666666', '2023-02-24 23:47:20', NULL, NULL, '2', '测试产品，不删除', 10);
 COMMIT;
 
 -- ----------------------------
@@ -925,16 +1126,18 @@ CREATE TABLE `tbl_sku_property_option` (
 -- Records of tbl_sku_property_option
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_sku_property_option` VALUES ('1', '1', '1', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku_property_option` VALUES ('10', '1', '10', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku_property_option` VALUES ('2', '1', '2', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku_property_option` VALUES ('3', '1', '3', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku_property_option` VALUES ('4', '1', '4', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku_property_option` VALUES ('5', '1', '5', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku_property_option` VALUES ('6', '1', '6', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku_property_option` VALUES ('7', '1', '7', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku_property_option` VALUES ('8', '1', '8', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku_property_option` VALUES ('9', '1', '9', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_property_option` VALUES ('1', '1', '1', '', '2022-01-21 00:58:17', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_property_option` VALUES ('10', '1', '10', '', '2022-01-21 00:58:21', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_property_option` VALUES ('2', '1', '2', '', '2022-01-21 00:58:26', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_property_option` VALUES ('3', '1', '3', '', '2022-01-21 00:58:21', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_property_option` VALUES ('4', '1', '4', '', '2022-01-21 00:58:21', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_property_option` VALUES ('5', '1', '5', '', '2022-01-21 00:58:21', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_property_option` VALUES ('6', '1', '6', '', '2022-01-21 00:58:21', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_property_option` VALUES ('7', '1', '7', '', '2022-01-21 00:58:21', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_property_option` VALUES ('8', '1', '8', '', '2022-01-21 00:58:21', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_property_option` VALUES ('8CC237EBBF51495AA9CCB4E1F0344053', '0C2031B3934E4D0D822BDF4FA5E964F3', '11', '666666', '2023-02-24 02:04:08', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_property_option` VALUES ('9', '1', '9', '', '2022-01-21 00:58:21', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_property_option` VALUES ('F5DE74AD07D54B4FB32010DB79EB619C', '0C2031B3934E4D0D822BDF4FA5E964F3', '12', '666666', '2023-02-24 02:04:08', NULL, NULL, '2', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -962,13 +1165,15 @@ CREATE TABLE `tbl_sku_specification_option` (
 -- Records of tbl_sku_specification_option
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_sku_specification_option` VALUES ('1', '1', '1', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku_specification_option` VALUES ('2', '1', '2', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku_specification_option` VALUES ('3', '1', '3', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku_specification_option` VALUES ('4', '1', '4', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku_specification_option` VALUES ('5', '1', '5', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku_specification_option` VALUES ('6', '1', '6', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_sku_specification_option` VALUES ('7', '1', '7', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_specification_option` VALUES ('1', '1', '1', '', '2022-04-18 00:54:15', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_specification_option` VALUES ('2', '1', '2', '', '2022-04-18 00:54:20', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_specification_option` VALUES ('3', '1', '3', '', '2022-04-18 00:54:25', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_specification_option` VALUES ('4', '1', '4', '', '2022-04-18 00:54:30', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_specification_option` VALUES ('402FCD6BE9604AC7918079A70BD36787', '0C2031B3934E4D0D822BDF4FA5E964F3', '1', '666666', '2023-02-24 02:04:08', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_specification_option` VALUES ('5', '1', '5', '', '2022-04-18 00:54:35', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_specification_option` VALUES ('6', '1', '6', '', '2022-04-18 00:54:39', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_specification_option` VALUES ('7', '1', '7', '', '2022-04-18 00:54:43', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_sku_specification_option` VALUES ('B02080DC517548DB9691897104AFB4B4', '0C2031B3934E4D0D822BDF4FA5E964F3', '2', '666666', '2023-02-24 02:04:08', NULL, NULL, '2', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -1002,10 +1207,60 @@ INSERT INTO `tbl_specification` VALUES ('1', '品牌', '1', '1', '1', '', '2022-
 INSERT INTO `tbl_specification` VALUES ('2', '型号', '1', '1', '2', '', '2022-01-01 01:45:08', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_specification` VALUES ('3', '颜色', '1', '1', '3', '', '2022-01-01 01:45:12', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_specification` VALUES ('4', '4G网络制式', '2', '1', '3', '', '2022-01-01 01:45:15', '666666', '2022-01-06 01:05:20', '2', '二人');
+INSERT INTO `tbl_specification` VALUES ('4BA756EF269C4DAA96DF5C6F56335256', '选择版本', 'D03BA4DE066E46D086880802901F5190', '2', '2', '666666', '2023-03-03 00:37:15', NULL, NULL, '2', '测试数据不删除');
 INSERT INTO `tbl_specification` VALUES ('5', '5G网络制式', '2', '1', '5', '', '2022-01-01 01:45:18', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_specification` VALUES ('6', '机身内存', '3', '1', '6', '', '2022-01-01 01:45:22', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_specification` VALUES ('7', '存储卡内省', '3', '1', '7', '', '2022-01-01 01:45:25', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_specification` VALUES ('DE546077192942A590EF3EB58F809179', '测试22', 'D03BA4DE066E46D086880802901F5190', '2', '4', '666666', '2022-01-05 00:51:55', '666666', '2022-01-06 01:12:56', '1', '还是说333');
+INSERT INTO `tbl_specification` VALUES ('D704426796EA475983F90BDA08788659', '选择颜色', 'D03BA4DE066E46D086880802901F5190', '2', '1', '666666', '2023-03-03 00:36:23', '666666', '2023-03-03 00:36:34', '2', '测试数据不删除');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for tbl_specification_bak
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_specification_bak`;
+CREATE TABLE `tbl_specification_bak` (
+  `id` varchar(255) NOT NULL COMMENT '规格ID',
+  `name` varchar(50) DEFAULT NULL COMMENT '参数名称',
+  `group_id` varchar(255) DEFAULT NULL COMMENT '规格组ID',
+  `type_id` varchar(255) DEFAULT NULL COMMENT '分类ID',
+  `addr` varchar(50) DEFAULT NULL COMMENT '显示位置',
+  `create_user` varchar(6) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_user` varchar(6) DEFAULT NULL COMMENT '修改人',
+  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
+  `del_tag` varchar(2) NOT NULL DEFAULT '2' COMMENT '删除标志[1: 删除; 2: 保留]',
+  `remark` varchar(256) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`),
+  KEY `fk_speci_1` (`group_id`),
+  KEY `fk_speci_type_id` (`type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='规格表';
+
+-- ----------------------------
+-- Records of tbl_specification_bak
+-- ----------------------------
+BEGIN;
+INSERT INTO `tbl_specification_bak` VALUES ('038CDA53A7104DB8B866CCFB7BAB10D3', '音效系统', 'D03BA4DE066E46D086880802901F5190', '2', '4', '666666', '2023-02-24 22:58:26', NULL, NULL, '2', '测试数据，请不要删除');
+INSERT INTO `tbl_specification_bak` VALUES ('07EE8F512B244642B4E5467AD6202935', '显示器', 'D03BA4DE066E46D086880802901F5190', '2', '8', '666666', '2023-02-24 23:00:39', NULL, NULL, '2', '测试数据不要删除');
+INSERT INTO `tbl_specification_bak` VALUES ('0E8326B61E7741B08AD04D518C4AF5AC', 'grr==', '1', '2', '1', '666666', '2022-04-11 22:22:16', '666666', '2022-04-11 22:22:35', '1', 'rgrg');
+INSERT INTO `tbl_specification_bak` VALUES ('1', '品牌', '1', '1', '1', '', '2022-01-01 01:45:03', '666666', '2022-01-06 00:56:13', '2', NULL);
+INSERT INTO `tbl_specification_bak` VALUES ('11A8E6276B7A4C8AA1265BB97FEB4AA6', '包装清单', 'D03BA4DE066E46D086880802901F5190', '2', '13', '666666', '2023-02-24 23:03:16', '666666', '2023-02-24 23:15:45', '1', '测试数据不要删除');
+INSERT INTO `tbl_specification_bak` VALUES ('2', '型号', '1', '1', '2', '', '2022-01-01 01:45:08', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_bak` VALUES ('3', '颜色', '1', '1', '3', '', '2022-01-01 01:45:12', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_bak` VALUES ('3C40517FA6734C6C9C26C31E0BFE8E75', '机器规格', 'D03BA4DE066E46D086880802901F5190', '2', '2', '666666', '2023-02-24 22:56:56', '666666', '2023-02-24 22:58:00', '2', '测试数据，请不要删除');
+INSERT INTO `tbl_specification_bak` VALUES ('4', '4G网络制式', '2', '1', '3', '', '2022-01-01 01:45:15', '666666', '2022-01-06 01:05:20', '2', '二人');
+INSERT INTO `tbl_specification_bak` VALUES ('5', '5G网络制式', '2', '1', '5', '', '2022-01-01 01:45:18', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_bak` VALUES ('5043F020028640FE9431AA38424D1B0D', '端口', 'D03BA4DE066E46D086880802901F5190', '2', '5', '666666', '2023-02-24 22:59:10', NULL, NULL, '2', '测试数据请不要删除');
+INSERT INTO `tbl_specification_bak` VALUES ('6', '机身内存', '3', '1', '6', '', '2022-01-01 01:45:22', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_bak` VALUES ('7', '存储卡内省', '3', '1', '7', '', '2022-01-01 01:45:25', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_bak` VALUES ('A22740BC2503490A8A2B4C1D7128D3F0', '电源', 'D03BA4DE066E46D086880802901F5190', '2', '10', '666666', '2023-02-24 23:01:45', NULL, NULL, '2', '测试数据不要删除');
+INSERT INTO `tbl_specification_bak` VALUES ('A8B760521D01423AAF284EF7C17107FC', '显卡', 'D03BA4DE066E46D086880802901F5190', '2', '7', '666666', '2023-02-24 23:00:09', NULL, NULL, '2', '测试数据不要删除');
+INSERT INTO `tbl_specification_bak` VALUES ('C5B546CB89D144EEAC0FF46B71E45966', '输入设备', 'D03BA4DE066E46D086880802901F5190', '2', '12', '666666', '2023-02-24 23:02:36', NULL, NULL, '2', '测试数据不要删除');
+INSERT INTO `tbl_specification_bak` VALUES ('D7DB4F2F4FF34D449E990D44FB7F29AA', '处理器', 'D03BA4DE066E46D086880802901F5190', '2', '6', '666666', '2023-02-24 22:59:38', NULL, NULL, '2', '测试数据，请不要删除');
+INSERT INTO `tbl_specification_bak` VALUES ('DE546077192942A590EF3EB58F809179', '测试22', 'D03BA4DE066E46D086880802901F5190', '2', '4', '666666', '2022-01-05 00:51:55', '666666', '2022-01-06 01:12:56', '1', '还是说333');
+INSERT INTO `tbl_specification_bak` VALUES ('E795518DD75A4182A2850BA593680D45', '其它设备', 'D03BA4DE066E46D086880802901F5190', '2', '9', '666666', '2023-02-24 23:01:17', NULL, NULL, '2', '测试数据不要删除');
+INSERT INTO `tbl_specification_bak` VALUES ('F161B8FAF42841FF9E045A27BAD02FAE', '内存', 'D03BA4DE066E46D086880802901F5190', '2', '3', '666666', '2023-02-24 22:57:33', NULL, NULL, '2', '测试数据，请不要删除');
+INSERT INTO `tbl_specification_bak` VALUES ('F934FF2DDC6B4184A386C3BB39E36DBA', '网络传输', 'D03BA4DE066E46D086880802901F5190', '2', '11', '666666', '2023-02-24 23:02:11', NULL, NULL, '2', '测试数据不要删除');
+INSERT INTO `tbl_specification_bak` VALUES ('FEF71B5DB65448A8A52D59FA7799A47B', '主体', 'D03BA4DE066E46D086880802901F5190', '2', '1', '666666', '2023-02-24 22:56:04', '666666', '2023-02-24 22:57:52', '2', '测试数据，请不要删除');
 COMMIT;
 
 -- ----------------------------
@@ -1031,7 +1286,7 @@ BEGIN;
 INSERT INTO `tbl_specification_group` VALUES ('1', '主体2', '', '2021-12-30 01:14:18', '666666', '2022-01-01 01:33:20', '2', 'fvf ffg三顿饭');
 INSERT INTO `tbl_specification_group` VALUES ('2', '主体', '', '2021-12-30 01:14:22', '666666', '2022-01-01 01:27:56', '2', NULL);
 INSERT INTO `tbl_specification_group` VALUES ('3', '存储', '', '2021-12-30 01:14:27', '666666', '2022-01-01 01:06:01', '1', NULL);
-INSERT INTO `tbl_specification_group` VALUES ('D03BA4DE066E46D086880802901F5190', '哈哈', '666666', '2022-01-01 01:06:15', '666666', '2022-01-01 01:06:29', '2', '哈哈哈二');
+INSERT INTO `tbl_specification_group` VALUES ('D03BA4DE066E46D086880802901F5190', '默认分组', '666666', '2022-01-01 01:06:15', '666666', '2023-02-24 23:35:40', '2', '测试数据不删除');
 INSERT INTO `tbl_specification_group` VALUES ('F1459C28212C4D81B0270CABA294C927', '覆盖', '666666', '2021-12-31 00:36:14', '666666', '2022-01-01 01:05:56', '1', NULL);
 INSERT INTO `tbl_specification_group` VALUES ('F5E51F4F72C14588BF0D0491CE033038', 'fj', '666666', '2021-12-31 00:39:04', '666666', '2022-01-01 01:23:20', '1', '缴');
 COMMIT;
@@ -1059,13 +1314,23 @@ CREATE TABLE `tbl_specification_option` (
 -- Records of tbl_specification_option
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_specification_option` VALUES ('1', '苹果', '1', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_specification_option` VALUES ('2', '爱疯6plus', '2', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_specification_option` VALUES ('3', '灰色', '3', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_specification_option` VALUES ('4', '移动联通4G', '4', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_specification_option` VALUES ('5', '联通5G', '5', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_specification_option` VALUES ('6', '8G', '6', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_specification_option` VALUES ('7', '32G', '7', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('1', '苹果', '1', '', '2022-01-14 23:45:51', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('10', 'R5 16G 512G', '4BA756EF269C4DAA96DF5C6F56335256', '666666', '2023-03-03 00:45:29', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('11', 'R7 16G 512G', '4BA756EF269C4DAA96DF5C6F56335256', '666666', '2023-03-03 00:45:29', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('12', 'R7标压 16G 512G独显', '4BA756EF269C4DAA96DF5C6F56335256', '666666', '2023-03-03 00:45:29', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('13', 'R5标压 16G 512G独显', '4BA756EF269C4DAA96DF5C6F56335256', '666666', '2023-03-03 00:45:29', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('14', '新小米Pro 14英寸 2.8K屏', 'D704426796EA475983F90BDA08788659', '666666', '2023-03-03 00:49:47', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('15', 'Redmi Pro 14英寸 2.5K屏', 'D704426796EA475983F90BDA08788659', '666666', '2023-03-03 00:49:47', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('16', '新Redmi Pro 14英寸 2.5K屏', 'D704426796EA475983F90BDA08788659', '666666', '2023-03-03 00:49:47', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('17', '新Redmi Pro 15英寸 3.2K屏', 'D704426796EA475983F90BDA08788659', '666666', '2023-03-03 00:49:47', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('2', '爱疯6plus', '2', '', '2022-01-14 23:45:51', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('3', '灰色', '3', '', '2022-01-14 23:45:51', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('4', '移动联通4G', '4', '', '2022-01-14 23:45:51', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('5', '联通5G', '5', '', '2022-01-14 23:45:51', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('6', '8G', '6', '', '2022-01-14 23:45:51', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('7', '32G', '7', '', '2022-01-14 23:45:51', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('8', 'R7标压 16G 512G', '4BA756EF269C4DAA96DF5C6F56335256', '666666', '2023-03-03 00:45:29', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_specification_option` VALUES ('9', 'R5标压 16G 512G', '4BA756EF269C4DAA96DF5C6F56335256', '666666', '2023-03-03 00:45:29', NULL, NULL, '2', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -1097,9 +1362,13 @@ CREATE TABLE `tbl_spu` (
 -- Records of tbl_spu
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_spu` VALUES ('1', '手机', 'shouji', '这是好用的手机', '这是手机的详细信息说明', '1', '1', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_spu` VALUES ('2', '电脑', 'diannao_01', '这电脑好用', '打电脑', '2', '2', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
-INSERT INTO `tbl_spu` VALUES ('3', '烟熏肉', 'yznxurou_01', '超级好吃的烟熏肉', '这是5年老腊肉，做法多多', '3', '3', '', '0000-00-00 00:00:00', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_spu` VALUES ('020E187042384698BC5E098EBCC530E6', '测试啊', 'ddk', '打开的分开发', '费日日', '99D84F19D1F846509490B780A9FF94EA', '3', '666666', '2022-05-02 13:25:40', '666666', '2022-05-02 15:13:27', '1', '咳咳咳');
+INSERT INTO `tbl_spu` VALUES ('1', '手机', 'shouji', '这是好用的手机', '这是手机的详细信息说明', '1', '1', '', '2022-04-26 01:54:05', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_spu` VALUES ('1C953D2E182146D1B9D8EF9DC1D2AD27', '航天器', 'hangtianqicai', '航天器1', '航天器1', '92C8DF6A3F5D4694906C82FA90C1E725', '1', '666666', '2022-05-16 00:15:39', '666666', '2022-05-16 00:16:02', '2', '航天器1');
+INSERT INTO `tbl_spu` VALUES ('2', '电脑', 'diannao_01', '这电脑好用', '打电脑', '2', '2', '', '2022-04-26 01:54:09', '666666', '2023-02-24 00:48:04', '2', '这是造的数据，不要删除。');
+INSERT INTO `tbl_spu` VALUES ('3', '烟熏肉', 'yznxurou_01', '超级好吃的烟熏肉', '这是5年老腊肉，做法多多', '3', '3', '', '2022-04-26 01:54:12', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_spu` VALUES ('52D3B16B43464D07B22B7AC86470D5ED', 'ff发', 'erer', 'eer', 'fgf', '2', '2', '666666', '2022-05-02 13:21:21', '666666', '2022-05-03 10:10:00', '2', 'uiui');
+INSERT INTO `tbl_spu` VALUES ('79C018F8EF834FD398492F110B6FCCBB', '猕猴桃', 'ddkf', '猕猴桃类产品都包含在这一类。', NULL, '3D8604F05EE74AE9803617E7581C4C2E', '3', '666666', '2022-05-02 00:11:45', NULL, NULL, '2', '比如说红心猕猴桃，野生小果猕猴桃等等。');
 COMMIT;
 
 -- ----------------------------
@@ -1123,9 +1392,12 @@ CREATE TABLE `tbl_spu_brand` (
 -- Records of tbl_spu_brand
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_spu_brand` VALUES ('1', '苹果', 'Apple', '', NULL, NULL, '2', NULL, '0000-00-00 00:00:00');
-INSERT INTO `tbl_spu_brand` VALUES ('2', '华为', 'HUAWEI', '', NULL, NULL, '2', NULL, '0000-00-00 00:00:00');
-INSERT INTO `tbl_spu_brand` VALUES ('3', '哈哈', 'haha', '', NULL, NULL, '2', NULL, '0000-00-00 00:00:00');
+INSERT INTO `tbl_spu_brand` VALUES ('1', '苹果', 'Apple', '', NULL, NULL, '2', NULL, '2022-04-22 00:35:12');
+INSERT INTO `tbl_spu_brand` VALUES ('2', '华为', 'HUAWEI', '', NULL, NULL, '2', NULL, '2022-04-22 00:35:16');
+INSERT INTO `tbl_spu_brand` VALUES ('20556FA6253940B4989EF2EF7B58D83F', '1wew', '1', '666666', '666666', '2022-04-24 00:31:36', '1', '1大幅度发', '2022-04-23 18:34:27');
+INSERT INTO `tbl_spu_brand` VALUES ('3', '哈哈', 'haha', '', NULL, NULL, '2', NULL, '2022-04-22 00:35:19');
+INSERT INTO `tbl_spu_brand` VALUES ('44B9CDF31C3246A4BEBE225ADDB14F16', '小米', 'xiaomi', '666666', NULL, NULL, '2', '小米啊', '2023-02-24 00:40:56');
+INSERT INTO `tbl_spu_brand` VALUES ('9D56D857234E4410967C8C498A8C1770', '联想', 'lianxiang', '666666', NULL, NULL, '2', '联想啊', '2023-02-24 00:41:28');
 COMMIT;
 
 -- ----------------------------
@@ -1149,11 +1421,12 @@ CREATE TABLE `tbl_spu_type` (
 -- Records of tbl_spu_type
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_spu_type` VALUES ('1', '手机', 'spu_shouji', '', '2022-01-03 17:23:00', NULL, NULL, '2', NULL);
+INSERT INTO `tbl_spu_type` VALUES ('1', '手机qqq', 'spu_shouji', '', '2022-01-03 17:23:00', '666666', '2022-04-15 00:00:06', '2', 'dffd');
 INSERT INTO `tbl_spu_type` VALUES ('18EB9A53B09D45DABDCCCD6BFBD8C690', 'grgr哈哈哈', 'sdsd', '666666', '2022-01-09 12:14:59', '666666', '2022-01-10 13:31:34', '1', 'erer哈哈哈');
 INSERT INTO `tbl_spu_type` VALUES ('2', '电脑', 'spu_diannao', '', '2022-01-03 17:23:05', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_spu_type` VALUES ('3', '腊肉', 'spu_larou', '', '2022-01-03 17:23:09', NULL, NULL, '2', NULL);
 INSERT INTO `tbl_spu_type` VALUES ('3D8604F05EE74AE9803617E7581C4C2E', '水果', 'shuiguo', '666666', '2022-01-10 00:14:34', NULL, NULL, '2', '这是水果');
+INSERT INTO `tbl_spu_type` VALUES ('92C8DF6A3F5D4694906C82FA90C1E725', '电子产品', 'dianzichanping', '666666', '2022-05-16 00:14:41', NULL, NULL, '2', '电子产品');
 INSERT INTO `tbl_spu_type` VALUES ('99D84F19D1F846509490B780A9FF94EA', '牛肉', 'niurou', '666666', '2022-01-10 00:15:36', NULL, NULL, '2', '带你飞分局就覅大V发v看看发v费率发v发v就覅发v方面你发VN发vv带你飞分局就覅大V发v看看发v费率发v发v就覅发v方面你发VN发vv带你飞分局就覅大V发v看看发v费率发v发v就覅发v方面你发VN发vv带你飞分局就覅大V发v看看发v费率发v发v就覅发v方面你发VN发vv带你飞分局就覅大V发v看看发v费率发v发v就覅发v方面你发VN发vv带你飞分局就覅大V发v看看发v费率发v发v就覅发v方面你发VN发vv');
 COMMIT;
 
@@ -1214,7 +1487,6 @@ INSERT INTO `tbl_user` VALUES ('450977', '33', '33', '666666', '2021-05-27 00:47
 INSERT INTO `tbl_user` VALUES ('523964', 'er', 'df', '666666', '2021-05-29 00:46:19', NULL, NULL, 3, '2', NULL, 'e', 'd', '1', '6', NULL, '2', NULL);
 INSERT INTO `tbl_user` VALUES ('528107', 'wangsheng1', '666666', NULL, '2021-07-08 01:01:57', NULL, NULL, 3, '1', NULL, '1', '1', '1', '7', NULL, '2', NULL);
 INSERT INTO `tbl_user` VALUES ('540861', 'wangsheng4', '666666', NULL, '2021-07-08 01:06:57', NULL, NULL, 3, '1', NULL, '1', '1', '1', '7', NULL, '2', NULL);
-INSERT INTO `tbl_user` VALUES ('600928', NULL, NULL, '666666', '2021-06-27 01:14:18', NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', NULL);
 INSERT INTO `tbl_user` VALUES ('611520', '刘备2', '666666', NULL, '2021-07-11 00:30:31', '666666', '2021-08-29 02:40:22', 96, '2', '2021-08-10', '11', '11', '11@qq.com', '7', 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg', '2', NULL);
 INSERT INTO `tbl_user` VALUES ('613426', 'wangsheng3', '666666', NULL, '2021-07-08 01:05:41', NULL, NULL, 3, '1', NULL, '1', '1', '1', '7', NULL, '2', NULL);
 INSERT INTO `tbl_user` VALUES ('624614', 'ereir', '666666', '666666', '2021-09-30 21:23:48', '666666', '2021-09-30 21:24:19', 3, '2', '2021-09-08', '1', '34', '23', '6', NULL, '2', NULL);
@@ -1233,6 +1505,7 @@ INSERT INTO `tbl_user` VALUES ('794722', NULL, NULL, '666666', '2021-05-29 02:17
 INSERT INTO `tbl_user` VALUES ('794783', '3444', '444', '666666', '2021-06-02 13:21:12', NULL, NULL, 5, '2', NULL, '44', '44', '44', '2', '/Users/wangsheng/headPortrai/794783_123E2C64E8D844AC830052E4A8E2C3ED.jpeg', '2', NULL);
 INSERT INTO `tbl_user` VALUES ('805061', '12', '666666', NULL, '2021-07-08 01:35:58', NULL, NULL, 1, '2', NULL, '1', '1', '1', '3', '/Users/wangsheng/headPortrai/805061_659FFCDF819B4443A9092031BED9DCF9.jpeg', '2', NULL);
 INSERT INTO `tbl_user` VALUES ('818917', 'as', '34', '666666', '2021-05-29 00:52:44', NULL, NULL, 3, '2', NULL, '23', '34', '34', '4', NULL, '2', NULL);
+INSERT INTO `tbl_user` VALUES ('857154', '张杰', '666666', '666666', '2022-05-29 23:47:45', NULL, NULL, 5, '1', NULL, '1', '1', '1', '1', '/Users/wangsheng/headPortrai/857154_08772EF36D2D4DD092F629EBBF5C75FF.jpg', '2', NULL);
 INSERT INTO `tbl_user` VALUES ('857177', '555', '666666', NULL, '2021-08-25 01:23:20', NULL, NULL, 1, '2', NULL, '5', '5', '5', '7', NULL, '2', NULL);
 INSERT INTO `tbl_user` VALUES ('888888', '小明waz', '123456', '234', '2020-11-13 00:17:31', '666666', '2020-12-14 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', NULL);
 INSERT INTO `tbl_user` VALUES ('919798', 'hhh', '666666', NULL, '2021-07-08 01:10:14', NULL, NULL, 1, '2', NULL, 'q', 'q', 'q', '1', NULL, '2', NULL);
@@ -1276,14 +1549,17 @@ INSERT INTO `tbl_user_likes` VALUES ('137338D9A0E04AB1B786EB4528726D36', '1', '9
 INSERT INTO `tbl_user_likes` VALUES ('14E49EDBC2EC442D94B915A224A65323', '3', '337172', '337172', '2021-06-27 11:29:17', NULL, NULL);
 INSERT INTO `tbl_user_likes` VALUES ('1815297E42D24A008CB1617132223CC8', '1', '788254', '666666', '2021-09-24 00:48:04', NULL, NULL);
 INSERT INTO `tbl_user_likes` VALUES ('2', '2', '2', NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('216C8AB4F4C641978DB662A84BEFEA7C', '2', '857154', '666666', '2022-05-29 23:47:45', NULL, NULL);
 INSERT INTO `tbl_user_likes` VALUES ('21B21082D4AE453D95CAFF5A2A46B84E', '1', '172492', '172492', '2021-05-27 00:39:53', NULL, NULL);
 INSERT INTO `tbl_user_likes` VALUES ('237AE4761D9A4609B06F9141A220D88F', '2', '818917', '818917', '2021-05-29 00:52:44', NULL, NULL);
 INSERT INTO `tbl_user_likes` VALUES ('35C897155EC343628DB0E799B68709EF', '1', '739813', '739813', '2021-05-18 00:27:01', NULL, NULL);
 INSERT INTO `tbl_user_likes` VALUES ('3A89F9B085134AC1833AD9C6A156A398', '3', '973852', '973852', '2021-05-29 00:47:52', NULL, NULL);
 INSERT INTO `tbl_user_likes` VALUES ('3D0C640923CE44ADB71007C4FDB72D81', '1', '625288', '625288', '2021-05-18 00:36:26', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('3E877C284B884174896FB954D498567C', '3', '857154', '666666', '2022-05-29 23:47:45', NULL, NULL);
 INSERT INTO `tbl_user_likes` VALUES ('426E2651437742D78AE57039A8936DE6', '1', '630163', '630163', '2021-07-08 01:08:40', NULL, NULL);
 INSERT INTO `tbl_user_likes` VALUES ('42A29292075542198B24B10DAFA3BBCD', '3', '705089', '705089', '2021-06-02 01:33:49', NULL, NULL);
 INSERT INTO `tbl_user_likes` VALUES ('443D68A3AC1B480FA510C11AAF076407', '1', '395823', '395823', '2021-05-18 00:34:02', NULL, NULL);
+INSERT INTO `tbl_user_likes` VALUES ('4648A5E6CB024366989AD67A6502B211', '1', '857154', '666666', '2022-05-29 23:47:45', NULL, NULL);
 INSERT INTO `tbl_user_likes` VALUES ('4A9A64BA83154D82A5440D0F5F5C7792', '3', '523964', '523964', '2021-05-29 00:46:19', NULL, NULL);
 INSERT INTO `tbl_user_likes` VALUES ('4D49D793D5164F4293B898E462A2B2BB', '1', '993443', '993443', '2021-05-27 00:37:01', NULL, NULL);
 INSERT INTO `tbl_user_likes` VALUES ('5434CB12DD6E4595A0F5DE5B57B81E22', '2', '775217', '775217', '2021-06-29 00:49:56', NULL, NULL);
@@ -1327,6 +1603,3 @@ INSERT INTO `tbl_user_likes` VALUES ('FB6426DCB18A454AB0327929F87749C7', '1', '7
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
-
-ALTER TABLE `api`.`tbl_sku`
-ADD COLUMN `sku_number` int(50) NOT NULL COMMENT '产品数量' AFTER `remark`;
