@@ -1,6 +1,6 @@
 package com.test.api.api.dto;
 
-import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -14,6 +14,7 @@ import java.io.Serializable;
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
+@Data
 public class BaseDto implements Serializable {
     private static final long serialVersionUID = 4883794572655084056L;
     /**
@@ -24,36 +25,5 @@ public class BaseDto implements Serializable {
     /**
      * 删除标志
      */
-//    @NotNull(message = "删除标志不能为空")
-//    @NotBlank(message = "删除标志不能为空")
     private String delTag;
-
-    public BaseDto() {
-    }
-
-    public BaseDto(String remark, String delTag) {
-        this.remark = remark;
-        this.delTag = delTag;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public String getDelTag() {
-        return delTag;
-    }
-
-    public void setDelTag(String delTag) {
-        this.delTag = delTag;
-    }
-
-    @Override
-    public String toString() {
-        return "BaseDto{" + JSONObject.toJSONString(this) + "}";
-    }
 }

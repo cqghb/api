@@ -54,8 +54,23 @@ public class CommConstant {
     // 删除标记
     public static final String DEL_TAG = "delTag";
     public static final String UPDATE_USER = "updateUser";
+    public static final String UPDATE_TIME = "updateTime";
     public static final String CREATE_USER = "createUser";
+    public static final String CREATE_TIME = "createTime";
+    /**
+     * 产品默认版本号
+     */
+    public static final String PRO_VERSION = "v1.0";
+    /**
+     * 常量0
+     */
+    public static final String ZERO = "0";
+
     /** 公共常量 end **/
+
+    /** 日期格式 start**/
+    public static final String DATE_FORMATTER_1 = "yyyyMMddHHmmss";
+    /** 日期格式 end**/
 
     /** 通过反射调用方法的方法名统一写到这里 start **/
     // 列表查询

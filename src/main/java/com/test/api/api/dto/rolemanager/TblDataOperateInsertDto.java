@@ -1,6 +1,6 @@
 package com.test.api.api.dto.rolemanager;
 
-import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,6 +16,7 @@ import java.io.Serializable;
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
+@Data
 public class TblDataOperateInsertDto implements Serializable {
 
     private static final long serialVersionUID = 3343610222187425126L;
@@ -54,64 +55,4 @@ public class TblDataOperateInsertDto implements Serializable {
     @NotBlank(message = "所属分组不能为空")
     private String subgroup;
 
-
-
-    public TblDataOperateInsertDto(String id, @NotNull(message =
-            "操作名称不能为空") @NotBlank(message = "操作名称不能为空") String name,
-                                   @NotNull(message = "操作地址不能为空") @NotBlank(message = "操作地址不能为空") String operateAddr,
-                                   String remark, @NotNull(message = "所属分组不能为空")
-                                   @NotBlank(message = "所属分组不能为空") String subgroup) {
-        this.id = id;
-        this.name = name;
-        this.operateAddr = operateAddr;
-        this.remark = remark;
-    }
-
-    public TblDataOperateInsertDto() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getOperateAddr() {
-        return operateAddr;
-    }
-
-    public void setOperateAddr(String operateAddr) {
-        this.operateAddr = operateAddr;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public String getSubgroup() {
-        return subgroup;
-    }
-
-    public void setSubgroup(String subgroup) {
-        this.subgroup = subgroup;
-    }
-
-    @Override
-    public String toString() {
-        return "TblDataOperateDto{" + JSONObject.toJSONString(this) + "}";
-    }
 }

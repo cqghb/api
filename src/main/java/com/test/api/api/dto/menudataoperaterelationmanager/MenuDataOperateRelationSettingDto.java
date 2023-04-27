@@ -1,6 +1,6 @@
 package com.test.api.api.dto.menudataoperaterelationmanager;
 
-import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,6 +16,7 @@ import java.io.Serializable;
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
+@Data
 public class MenuDataOperateRelationSettingDto implements Serializable {
     private static final long serialVersionUID = 4963242540822315554L;
 
@@ -29,33 +30,4 @@ public class MenuDataOperateRelationSettingDto implements Serializable {
      * 数据操作ID列表
      */
     private String[] dataOperateList;
-
-    public MenuDataOperateRelationSettingDto(@NotNull(message = "菜单主键不能为空") @NotBlank(message = "菜单主键不能为空") String menuId, String[] dataOperateList) {
-        this.menuId = menuId;
-        this.dataOperateList = dataOperateList;
-    }
-
-    public MenuDataOperateRelationSettingDto() {
-    }
-
-    public String getMenuId() {
-        return menuId;
-    }
-
-    public void setMenuId(String menuId) {
-        this.menuId = menuId;
-    }
-
-    public String[] getDataOperateList() {
-        return dataOperateList;
-    }
-
-    public void setDataOperateList(String[] dataOperateList) {
-        this.dataOperateList = dataOperateList;
-    }
-
-    @Override
-    public String toString() {
-        return "MenuDataOperateRelationSettingDto{"+ JSONObject.toJSONString(this) +"}";
-    }
 }

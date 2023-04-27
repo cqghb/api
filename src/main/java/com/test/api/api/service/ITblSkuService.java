@@ -1,5 +1,6 @@
 package com.test.api.api.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.test.api.api.bean.TblSku;
 import com.test.api.api.dto.commodity.sku.AddSkuDto;
 import com.test.api.api.vo.page.PageRequest;
@@ -15,7 +16,7 @@ import com.test.api.api.vo.page.PageResult;
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
-public interface ITblSkuService {
+public interface ITblSkuService extends IService<TblSku> {
 
     int deleteByPrimaryKey(String id);
 
@@ -43,4 +44,10 @@ public interface ITblSkuService {
      * @return
      */
     int updateDelTag(TblSku record);
+
+    /**
+     * 添加商品
+     * @param addSkuDto 商品信息
+     */
+    boolean addSku(AddSkuDto addSkuDto);
 }

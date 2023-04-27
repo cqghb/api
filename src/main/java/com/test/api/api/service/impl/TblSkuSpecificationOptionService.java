@@ -1,9 +1,11 @@
 package com.test.api.api.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.test.api.api.bean.TblSkuSpecificationOption;
 import com.test.api.api.constant.CommConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
-import com.test.api.api.dao.TblSkuSpecificationOptionDao;
+import com.test.api.api.dao.TblSkuSpecificationOptionExtendsDao;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblSkuSpecificationOptionService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
@@ -26,64 +28,72 @@ import org.springframework.stereotype.Service;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblSkuSpecificationOptionService extends CommonService implements ITblSkuSpecificationOptionService {
+public class TblSkuSpecificationOptionService extends ServiceImpl<TblSkuSpecificationOptionExtendsDao,TblSkuSpecificationOption> implements ITblSkuSpecificationOptionService {
 
     protected static final Logger logger = LoggerFactory.getLogger(TblSkuSpecificationOptionService.class);
 
     @Autowired
-    private TblSkuSpecificationOptionDao skuSpecificationOptionDao;
+    private TblSkuSpecificationOptionExtendsDao skuSpecificationOptionExtendsDao;
+    @Autowired
+    private ICommonService iCommonService;
 
 
     @Override
     public int deleteByPrimaryKey(String id) {
-        return skuSpecificationOptionDao.deleteByPrimaryKey(id);
+        return skuSpecificationOptionExtendsDao.deleteByPrimaryKey(id);
     }
 
     @Override
     public int insert(TblSkuSpecificationOption record) {
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
-        return skuSpecificationOptionDao.insert(record);
+        iCommonService.setObjectInsertInfo(record, null);
+//        return skuSpecificationOptionExtendsDao.insert(record);
+        return 0;
     }
 
     @Override
     public int insertSelective(TblSkuSpecificationOption record) {
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
-        return skuSpecificationOptionDao.insertSelective(record);
+        iCommonService.setObjectInsertInfo(record, null);
+//        return skuSpecificationOptionExtendsDao.insertSelective(record);
+        return 0;
     }
 
     @Override
     public TblSkuSpecificationOption selectByPrimaryKey(String id) {
-        return skuSpecificationOptionDao.selectByPrimaryKey(id);
+//        return skuSpecificationOptionExtendsDao.selectByPrimaryKey(id);
+        return null;
     }
 
     @Override
     public int updateByPrimaryKeySelective(TblSkuSpecificationOption record) {
-        TblSkuSpecificationOption skuSpecificationOption = getInfo(skuSpecificationOptionDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblSkuSpecificationOption skuSpecificationOption = iCommonService.getInfo(skuSpecificationOptionExtendsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, skuSpecificationOption);
-        setObjectUpdateInfo(skuSpecificationOption, null);
-        return skuSpecificationOptionDao.updateByPrimaryKeySelective(skuSpecificationOption);
+        iCommonService.setObjectUpdateInfo(skuSpecificationOption, null);
+//        return skuSpecificationOptionExtendsDao.updateByPrimaryKeySelective(skuSpecificationOption);
+        return 0;
     }
 
     @Override
     public int updateByPrimaryKey(TblSkuSpecificationOption record) {
-        TblSkuSpecificationOption skuSpecificationOption = getInfo(skuSpecificationOptionDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblSkuSpecificationOption skuSpecificationOption = iCommonService.getInfo(skuSpecificationOptionExtendsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, skuSpecificationOption);
-        setObjectUpdateInfo(skuSpecificationOption, null);
-        return skuSpecificationOptionDao.updateByPrimaryKey(skuSpecificationOption);
+        iCommonService.setObjectUpdateInfo(skuSpecificationOption, null);
+//        return skuSpecificationOptionExtendsDao.updateByPrimaryKey(skuSpecificationOption);
+        return 0;
     }
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo(skuSpecificationOptionDao, CommConstant.QUERY_LIST, pageRequest));
+        return PageUtils.getPageResult(iCommonService.getPageInfo(skuSpecificationOptionExtendsDao, CommConstant.QUERY_LIST, pageRequest));
     }
 
     @Override
     public int updateDelTag(TblSkuSpecificationOption record) {
-        getInfo(skuSpecificationOptionDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        iCommonService.getInfo(skuSpecificationOptionExtendsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
-        setObjectUpdateInfo(record, null);
-        return skuSpecificationOptionDao.updateDelTag(record);
+        iCommonService.setObjectUpdateInfo(record, null);
+//        return skuSpecificationOptionExtendsDao.updateDelTag(record);
+        return 0;
     }
 }

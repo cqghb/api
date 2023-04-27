@@ -12,6 +12,7 @@ import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.constant.TableColumnConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblCodeValueDao;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblCodeValueService;
 import com.test.api.api.service.ITblDataOperateService;
 import com.test.api.api.utils.PageUtils;
@@ -39,15 +40,16 @@ import java.util.Map;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblCodeValueService extends CommonService implements ITblCodeValueService {
+public class TblCodeValueService implements ITblCodeValueService {
 
     protected static Logger logger = LoggerFactory.getLogger(TblCodeValueService.class);
 
     @Autowired
     private TblCodeValueDao tblCodeValueDao;
-
     @Autowired
     private ITblDataOperateService dataOperateService;
+    @Autowired
+    private ICommonService iCommonService;
 
     @Override
     public List<Map<String, String>> searchCodeKeyValue(CodeValueBO codeValueBO) {
@@ -65,7 +67,8 @@ public class TblCodeValueService extends CommonService implements ITblCodeValueS
 
     @Override
     public PageResult findPageChildren(PageRequest pageQuery) {
-        PageInfo<CodeValueVO> codeValuePageInfoList = (PageInfo<CodeValueVO>) getPageInfo(tblCodeValueDao, CommConstant.QUERY_DATA_OPERATE_SUBGROUP,
+        PageInfo<CodeValueVO> codeValuePageInfoList =
+                (PageInfo<CodeValueVO>) iCommonService.getPageInfo(tblCodeValueDao, CommConstant.QUERY_DATA_OPERATE_SUBGROUP,
                 pageQuery);
         List<CodeValueVO> dataOperateGroup = codeValuePageInfoList.getList();
         this.getDataOperateList(dataOperateGroup, pageQuery);

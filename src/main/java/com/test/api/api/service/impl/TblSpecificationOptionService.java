@@ -1,9 +1,11 @@
 package com.test.api.api.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.test.api.api.bean.TblSpecificationOption;
 import com.test.api.api.constant.CommConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
-import com.test.api.api.dao.TblSpecificationOptionDao;
+import com.test.api.api.dao.TblSpecificationOptionExtendsDao;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblSpecificationOptionService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
@@ -26,59 +28,62 @@ import org.springframework.stereotype.Service;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblSpecificationOptionService extends CommonService implements ITblSpecificationOptionService {
+public class TblSpecificationOptionService extends ServiceImpl<TblSpecificationOptionExtendsDao,TblSpecificationOption> implements ITblSpecificationOptionService {
 
     protected static final Logger logger = LoggerFactory.getLogger(TblSpecificationOptionService.class);
 
     @Autowired
-    private TblSpecificationOptionDao specificationOptionDao;
-
+    private TblSpecificationOptionExtendsDao tblSpecificationOptionExtendsDao;
+    @Autowired
+    private ICommonService iCommonService;
 
     @Override
     public int deleteByPrimaryKey(String id) {
-        return specificationOptionDao.deleteByPrimaryKey(id);
+        return tblSpecificationOptionExtendsDao.deleteByPrimaryKey(id);
     }
 
     @Override
     public int insert(TblSpecificationOption record) {
-        return specificationOptionDao.insert(record);
+//        return tblSpecificationOptionExtendsDao.insert(record);
+        return 0;
     }
 
     @Override
     public int insertSelective(TblSpecificationOption record) {
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
-        return specificationOptionDao.insertSelective(record);
+        iCommonService.setObjectInsertInfo(record, null);
+        return tblSpecificationOptionExtendsDao.insertSelective(record);
     }
 
     @Override
     public TblSpecificationOption selectByPrimaryKey(String id) {
-        return specificationOptionDao.selectByPrimaryKey(id);
+        return tblSpecificationOptionExtendsDao.selectByPrimaryKey(id);
     }
 
     @Override
     public int updateByPrimaryKeySelective(TblSpecificationOption record) {
-        TblSpecificationOption specificationOption = getInfo(specificationOptionDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblSpecificationOption specificationOption = iCommonService.getInfo(tblSpecificationOptionExtendsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, specificationOption);
-        setObjectUpdateInfo(specificationOption, null);
-        return specificationOptionDao.updateByPrimaryKeySelective(specificationOption);
+        iCommonService.setObjectUpdateInfo(specificationOption, null);
+        return tblSpecificationOptionExtendsDao.updateByPrimaryKeySelective(specificationOption);
     }
 
     @Override
     public int updateByPrimaryKey(TblSpecificationOption record) {
-        return specificationOptionDao.updateByPrimaryKey(record);
+        return tblSpecificationOptionExtendsDao.updateByPrimaryKey(record);
     }
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo(specificationOptionDao, CommConstant.QUERY_LIST, pageRequest));
+        return PageUtils.getPageResult(iCommonService.getPageInfo(tblSpecificationOptionExtendsDao, CommConstant.QUERY_LIST, pageRequest));
     }
 
     @Override
     public int updateDelTag(TblSpecificationOption record) {
-        getInfo(specificationOptionDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        iCommonService.getInfo(tblSpecificationOptionExtendsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
-        setObjectUpdateInfo(record, null);
-        return specificationOptionDao.updateDelTag(record);
+        iCommonService.setObjectUpdateInfo(record, null);
+//        return tblSpecificationOptionExtendsDao.updateDelTag(record);
+        return 0;
     }
 }

@@ -1,6 +1,6 @@
 package com.test.api.api.dto;
 
-import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,6 +16,7 @@ import java.io.Serializable;
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
+@Data
 public class CommonIdDto implements Serializable {
     private static final long serialVersionUID = 4569587853145538722L;
 
@@ -26,23 +27,4 @@ public class CommonIdDto implements Serializable {
     @NotBlank(message = "ID不能为空")
     private String id;
 
-    public CommonIdDto() {
-    }
-
-    public CommonIdDto(@NotNull(message = "ID不能为空") @NotBlank(message = "ID不能为空") String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "DeleteDataDto{" + JSONObject.toJSONString(this) + "}";
-    }
 }

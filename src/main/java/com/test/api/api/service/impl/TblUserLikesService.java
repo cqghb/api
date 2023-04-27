@@ -2,6 +2,7 @@ package com.test.api.api.service.impl;
 
 import com.test.api.api.bean.TblUserLikes;
 import com.test.api.api.dao.TblUserLikesDao;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblUserLikesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,8 @@ public class TblUserLikesService implements ITblUserLikesService {
 
     @Autowired
     private TblUserLikesDao userLikesDao;
+    @Autowired
+    private ICommonService iCommonService;
 
     @Override
     public int deleteByPrimaryKey(String id) {

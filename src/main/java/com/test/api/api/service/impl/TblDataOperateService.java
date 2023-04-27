@@ -6,6 +6,7 @@ import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblDataOperateDao;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblDataOperateService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
@@ -28,10 +29,13 @@ import java.util.List;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblDataOperateService extends CommonService implements ITblDataOperateService {
+public class TblDataOperateService implements ITblDataOperateService {
 
     @Autowired
     private TblDataOperateDao dataOperateDao;
+    @Autowired
+    private ICommonService iCommonService;
+
 
     @Override
     public int deleteByPrimaryKey(String id) {
@@ -46,7 +50,7 @@ public class TblDataOperateService extends CommonService implements ITblDataOper
     @Override
     public int insertSelective(TblDataOperate record) {
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
+        iCommonService.setObjectInsertInfo(record, null);
         return dataOperateDao.insertSelective(record);
     }
 
@@ -57,9 +61,9 @@ public class TblDataOperateService extends CommonService implements ITblDataOper
 
     @Override
     public int updateByPrimaryKeySelective(TblDataOperate record) throws AppException {
-        TblDataOperate dataOperate = getInfo(dataOperateDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblDataOperate dataOperate = iCommonService.getInfo(dataOperateDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, dataOperate);
-        setObjectUpdateInfo(dataOperate, null);
+        iCommonService.setObjectUpdateInfo(dataOperate, null);
         return dataOperateDao.updateByPrimaryKeySelective(dataOperate);
     }
 
@@ -70,14 +74,14 @@ public class TblDataOperateService extends CommonService implements ITblDataOper
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo(dataOperateDao, CommConstant.QUERY_LIST, pageRequest));
+        return PageUtils.getPageResult(iCommonService.getPageInfo(dataOperateDao, CommConstant.QUERY_LIST, pageRequest));
     }
 
     @Override
     public int updateDelTag(TblDataOperate record) throws AppException {
-        getInfo(dataOperateDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        iCommonService.getInfo(dataOperateDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
-        setObjectUpdateInfo(record, null);
+        iCommonService.setObjectUpdateInfo(record, null);
         return dataOperateDao.updateDelTag(record);
     }
 

@@ -1,6 +1,6 @@
 package com.test.api.api.dto.roleuserrelation;
 
-import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,6 +16,7 @@ import java.io.Serializable;
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
+@Data
 public class UserRoleRelationSettingDto implements Serializable {
 
     private static final long serialVersionUID = -3202293337357528662L;
@@ -29,34 +30,4 @@ public class UserRoleRelationSettingDto implements Serializable {
      * 数据操作ID列表
      */
     private String[] roleIdList;
-
-    public UserRoleRelationSettingDto(@NotNull(message = "用户主键不能为空") @NotBlank(message = "用户主键不能为空") String usertId,
-                                      String[] roleIdList) {
-        this.userId = userId;
-        this.roleIdList = roleIdList;
-    }
-
-    public UserRoleRelationSettingDto() {
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String[] getRoleIdList() {
-        return roleIdList;
-    }
-
-    public void setRoleIdList(String[] roleIdList) {
-        this.roleIdList = roleIdList;
-    }
-
-    @Override
-    public String toString() {
-        return "UserRoleRelationSettingDto{"+ JSONObject.toJSONString(this) +"}";
-    }
 }

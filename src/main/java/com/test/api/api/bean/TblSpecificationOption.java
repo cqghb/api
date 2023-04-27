@@ -1,69 +1,48 @@
 package com.test.api.api.bean;
 
-import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
- * tbl_specification_option 产品规格选项表实体类
- *
- * @author
+ * tbl_specification_option
+ * @author 
  */
+@Data
+@TableName("tbl_specification_option")
 public class TblSpecificationOption extends BaseBean implements Serializable {
-    private static final long serialVersionUID = -5169631099866597898L;
     /**
      * 规格选项ID
      */
+    @TableId
     private String id;
 
     /**
-     * 选项值
+     * 属性值
      */
+    @TableField(value = "value")
     private String value;
 
     /**
      * 规格ID
      */
+    @TableField(value = "spec_id")
     private String specId;
 
-    public TblSpecificationOption() {
-    }
+    /**
+     * 属性名
+     */
+    @TableField(value = "`name`")
+    private String name;
 
-    public TblSpecificationOption(String createUser, Date createTime, String updateUser, Date updateTime,
-                                  String remark, String delTag, String id, String value, String specId) {
-        super(createUser, createTime, updateUser, updateTime, remark, delTag);
-        this.id = id;
-        this.value = value;
-        this.specId = specId;
-    }
+    /**
+     * 序号
+     */
+    @TableField(value = "`index`")
+    private Integer index;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public String getSpecId() {
-        return specId;
-    }
-
-    public void setSpecId(String specId) {
-        this.specId = specId;
-    }
-
-    @Override
-    public String toString() {
-        return "TblSpecificationOption{" + JSONObject.toJSONString(this) + "}";
-    }
+    private static final long serialVersionUID = 1L;
 }

@@ -1,6 +1,6 @@
 package com.test.api.api.dto.commodity.spubrand;
 
-import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,6 +16,7 @@ import java.io.Serializable;
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
+@Data
 public class UpdateSpuBrandDto extends AddSpuBrandDto implements Serializable {
     private static final long serialVersionUID = 8122275565816121190L;
 
@@ -25,27 +26,4 @@ public class UpdateSpuBrandDto extends AddSpuBrandDto implements Serializable {
     @NotNull(message = "品牌ID不能为空")
     @NotBlank(message = "品牌ID不能为空")
     private String id;
-
-    public UpdateSpuBrandDto() {
-    }
-
-    public UpdateSpuBrandDto(String remark, String delTag, @NotNull(message = "品牌名称不能为空") @NotBlank(message =
-            "品牌名称不能为空") String name, @NotNull(message = "品牌编码不能为空") @NotBlank(message = "品牌编码不能为空") String code,
-                             @NotNull(message = "品牌ID不能为空") @NotBlank(message = "品牌ID不能为空") String id) {
-        super(remark, delTag, name, code);
-        this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "UpdateSpuBrandDto{" + JSONObject.toJSONString(this) + "}";
-    }
 }

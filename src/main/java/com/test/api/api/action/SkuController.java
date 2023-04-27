@@ -90,8 +90,8 @@ public class SkuController {
     @ApiImplicitParam(name = "addSkuDto", value = "逻辑删除的数据操参数")
     @ApiOperation(value = "添加产品", notes = "添加产品")
     public Result addSku(@RequestBody @Validated AddSkuDto addSkuDto) {
-        int num = skuService.insertSelective(addSkuDto);
-        return ResultUtil.success(num);
+        boolean r = skuService.addSku(addSkuDto);
+        return ResultUtil.success(r);
     }
 
 }

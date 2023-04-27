@@ -12,6 +12,7 @@ import com.test.api.api.constant.TableColumnConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblMenuDao;
 import com.test.api.api.dto.menumanager.TblMenuDto;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblMenuService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
@@ -36,10 +37,12 @@ import java.util.List;
  * @department demo
  */
 @Service
-public class TblMenuService extends CommonService implements ITblMenuService {
+public class TblMenuService implements ITblMenuService {
 
     @Autowired
     private TblMenuDao menuDao;
+    @Autowired
+    private ICommonService iCommonService;
 
     @Override
     public MenuTree queryMenu() {
@@ -56,7 +59,7 @@ public class TblMenuService extends CommonService implements ITblMenuService {
     @Override
     public MenuTree queryUserMenuTree(String userNo) {
         if(StringUtil.objIsEmpty(userNo)){
-            TblUser loginUser = getLoginUser();
+            TblUser loginUser = iCommonService.getLoginUser();
             String loginUserId = loginUser.getId();
             userNo = loginUserId;
         }
@@ -87,7 +90,7 @@ public class TblMenuService extends CommonService implements ITblMenuService {
     @Override
     public PageResult queryMenuList(PageRequest pageQuery) {
         // parentList 只有根节点数据
-        PageInfo<TblMenu> pageInfo = (PageInfo<TblMenu>) getPageInfo(menuDao, CommConstant.QUERY_LIST, pageQuery);
+        PageInfo<TblMenu> pageInfo = (PageInfo<TblMenu>) iCommonService.getPageInfo(menuDao, CommConstant.QUERY_LIST, pageQuery);
         List<TblMenu> parentList = pageInfo.getList();
         // 查根菜单的子菜单
         List<TblMenu> treeList = this.getChildren(parentList,pageQuery);
@@ -97,7 +100,7 @@ public class TblMenuService extends CommonService implements ITblMenuService {
 
     @Override
     public int insertSelective(TblMenu menu) {
-        TblUser loginUser = getLoginUser();
+        TblUser loginUser = iCommonService.getLoginUser();
         String loginUserId = loginUser.getId();
         menu.setId(StringUtil.uuid());
         menu.setCreateUser(loginUserId);
@@ -137,7 +140,7 @@ public class TblMenuService extends CommonService implements ITblMenuService {
 
     @Override
     public PageResult queryParentMenu(PageRequest pageQuery) {
-        PageInfo<TblMenu> pageInfo = (PageInfo<TblMenu>) getPageInfo(menuDao,CommConstant.QUERY_PAGE_PARENT_MENU,pageQuery);
+        PageInfo<TblMenu> pageInfo = (PageInfo<TblMenu>) iCommonService.getPageInfo(menuDao,CommConstant.QUERY_PAGE_PARENT_MENU,pageQuery);
         return PageUtils.getPageResult(pageInfo);
     }
 
@@ -149,7 +152,7 @@ public class TblMenuService extends CommonService implements ITblMenuService {
             throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.MENU_INFO_IS_NULL);
         }
         BeanUtils.copyProperties(record, menu);
-        TblUser loginUser = getLoginUser();
+        TblUser loginUser = iCommonService.getLoginUser();
         String loginUserId = loginUser.getId();
         menu.setUpdateUser(loginUserId);
         return menuDao.updateByPrimaryKeySelective(menu);

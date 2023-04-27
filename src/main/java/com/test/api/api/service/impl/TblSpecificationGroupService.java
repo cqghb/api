@@ -7,6 +7,7 @@ import com.test.api.api.constant.ErrorMsgConstant;
 import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblSpecificationGroupDao;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblSpecificationGroupService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
@@ -29,10 +30,12 @@ import java.util.List;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblSpecificationGroupService extends CommonService implements ITblSpecificationGroupService {
+public class TblSpecificationGroupService implements ITblSpecificationGroupService {
 
     @Autowired
     private TblSpecificationGroupDao specificationGroupDao;
+    @Autowired
+    private ICommonService iCommonService;
 
 
     @Override
@@ -43,7 +46,7 @@ public class TblSpecificationGroupService extends CommonService implements ITblS
     @Override
     public int insert(TblSpecificationGroup record) {
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
+        iCommonService.setObjectInsertInfo(record, null);
         return specificationGroupDao.insert(record);
     }
 
@@ -52,7 +55,7 @@ public class TblSpecificationGroupService extends CommonService implements ITblS
         /* 分组名称不能重复 */
         this.checkSGName(record.getName());
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
+        iCommonService.setObjectInsertInfo(record, null);
         return specificationGroupDao.insertSelective(record);
     }
 
@@ -64,32 +67,32 @@ public class TblSpecificationGroupService extends CommonService implements ITblS
     @Override
     public int updateByPrimaryKeySelective(TblSpecificationGroup record) {
         this.checkSGName(record.getName());
-        TblSpecificationGroup specificationGroup = getInfo(specificationGroupDao, CommConstant.SELECT_BY_PRIMARY_KEY,
+        TblSpecificationGroup specificationGroup = iCommonService.getInfo(specificationGroupDao, CommConstant.SELECT_BY_PRIMARY_KEY,
                 record.getId());
         BeanUtils.copyProperties(record, specificationGroup);
-        setObjectUpdateInfo(specificationGroup, null);
+        iCommonService.setObjectUpdateInfo(specificationGroup, null);
         return specificationGroupDao.updateByPrimaryKeySelective(specificationGroup);
     }
 
     @Override
     public int updateByPrimaryKey(TblSpecificationGroup record) {
-        TblSpecificationGroup specificationGroup = getInfo(specificationGroupDao, CommConstant.SELECT_BY_PRIMARY_KEY,
+        TblSpecificationGroup specificationGroup = iCommonService.getInfo(specificationGroupDao, CommConstant.SELECT_BY_PRIMARY_KEY,
                 record.getId());
         BeanUtils.copyProperties(record, specificationGroup);
-        setObjectUpdateInfo(specificationGroup, null);
+        iCommonService.setObjectUpdateInfo(specificationGroup, null);
         return specificationGroupDao.updateByPrimaryKey(specificationGroup);
     }
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo(specificationGroupDao, CommConstant.QUERY_LIST, pageRequest));
+        return PageUtils.getPageResult(iCommonService.getPageInfo(specificationGroupDao, CommConstant.QUERY_LIST, pageRequest));
     }
 
     @Override
     public int updateDelTag(TblSpecificationGroup record) {
-        getInfo(specificationGroupDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        iCommonService.getInfo(specificationGroupDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
-        setObjectUpdateInfo(record, null);
+        iCommonService.setObjectUpdateInfo(record, null);
         return specificationGroupDao.updateDelTag(record);
     }
 

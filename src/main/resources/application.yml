@@ -59,5 +59,9 @@ swagger:
   application-version: 1.0.0
   application-description: springfox swagger 3.0整合Demo
   try-host: http://localhost:${server.port}
+#mybatis-plus配置控制台打印完整带参数SQL语句
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 

@@ -1,12 +1,14 @@
 package com.test.api.api.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.test.api.api.bean.TblProperty;
 import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
 import com.test.api.api.constant.ErrorMsgConstant;
 import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
-import com.test.api.api.dao.TblPropertyDao;
+import com.test.api.api.dao.TblPropertyExtendsDao;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblPropertyService;
 import com.test.api.api.service.ITblSpuTypeService;
 import com.test.api.api.utils.PageUtils;
@@ -31,71 +33,76 @@ import org.springframework.stereotype.Service;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblPropertyService extends CommonService implements ITblPropertyService {
+public class TblPropertyService extends ServiceImpl<TblPropertyExtendsDao, TblProperty> implements ITblPropertyService {
 
     protected static final Logger logger = LoggerFactory.getLogger(TblPropertyService.class);
 
     @Autowired
-    private TblPropertyDao propertyDao;
+    private TblPropertyExtendsDao tblPropertyExtendsDao;
+
     @Autowired
     private ITblSpuTypeService spuTypeService;
+    @Autowired
+    private ICommonService iCommonService;
 
 
     @Override
     public int deleteByPrimaryKey(String id) {
-        return propertyDao.deleteByPrimaryKey(id);
+        return tblPropertyExtendsDao.deleteByPrimaryKey(id);
     }
 
     @Override
     public int insert(TblProperty record) {
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
-        return propertyDao.insert(record);
+        iCommonService.setObjectInsertInfo(record, null);
+//        tblPropertyExtendsDao.insert(record);
+        return 1;
     }
 
     @Override
     public int insertSelective(TblProperty record) {
         /* 检查货品类型是否有效 */
-        spuTypeService.checkDelTag(record.getTypeId());
+//        spuTypeService.checkDelTag(record.getTypeId());
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
-        return propertyDao.insertSelective(record);
+        iCommonService.setObjectInsertInfo(record, null);
+        return tblPropertyExtendsDao.insertSelective(record);
     }
 
     @Override
     public TblProperty selectByPrimaryKey(String id) {
-        return propertyDao.selectByPrimaryKey(id);
+        return tblPropertyExtendsDao.selectByPrimaryKey(id);
     }
 
     @Override
     public int updateByPrimaryKeySelective(TblProperty record) {
         /* 检查货品类型是否有效 */
-        spuTypeService.checkDelTag(record.getTypeId());
-        TblProperty property = getInfo(propertyDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+//        spuTypeService.checkDelTag(record.getTypeId());
+        TblProperty property = iCommonService.getInfo(tblPropertyExtendsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, property);
-        setObjectUpdateInfo(property, null);
-        return propertyDao.updateByPrimaryKeySelective(property);
+        iCommonService.setObjectUpdateInfo(property, null);
+        return tblPropertyExtendsDao.updateByPrimaryKeySelective(property);
     }
 
     @Override
     public int updateByPrimaryKey(TblProperty record) {
-        TblProperty property = getInfo(propertyDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblProperty property = iCommonService.getInfo(tblPropertyExtendsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, property);
-        setObjectUpdateInfo(property, null);
-        return propertyDao.updateByPrimaryKey(property);
+        iCommonService.setObjectUpdateInfo(property, null);
+        return tblPropertyExtendsDao.updateByPrimaryKey(property);
     }
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo(propertyDao, CommConstant.QUERY_LIST, pageRequest));
+        return PageUtils.getPageResult(iCommonService.getPageInfo(tblPropertyExtendsDao, CommConstant.QUERY_LIST, pageRequest));
     }
 
     @Override
     public int updateDelTag(TblProperty record) {
-        getInfo(propertyDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        iCommonService.getInfo(tblPropertyExtendsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
-        setObjectUpdateInfo(record, null);
-        return propertyDao.updateDelTag(record);
+        iCommonService.setObjectUpdateInfo(record, null);
+//        return tblPropertyExtendsDao.updateDelTag(record);
+        return 0;
     }
 
     @Override
@@ -103,7 +110,8 @@ public class TblPropertyService extends CommonService implements ITblPropertySer
         if(StringUtil.objIsEmpty(id)){
             throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.ID_IS_NOT_NULL);
         }
-        return propertyDao.queryDetail(id);
+//        return tblPropertyExtendsDao.queryDetail(id);
+        return null;
     }
 
     @Override

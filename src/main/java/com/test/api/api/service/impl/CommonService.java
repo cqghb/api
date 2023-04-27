@@ -27,6 +27,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -139,6 +140,11 @@ public class CommonService implements ICommonService {
                     field.set(obj, loginUserId);
                     continue;
                 }
+                if (field.getName().equals(CommConstant.UPDATE_TIME)) {
+                    field.setAccessible(true);
+                    field.set(obj, new Date());
+                    continue;
+                }
             }
         } catch (IllegalAccessException e) {
             logger.info("没有权限访问对象的 " + CommConstant.UPDATE_USER + " 属性");
@@ -163,6 +169,11 @@ public class CommonService implements ICommonService {
                 if (field.getName().equals(CommConstant.DEL_TAG)) {
                     field.setAccessible(true);
                     field.set(obj, DelTagEnum.DEL_TAG_2.getCode());
+                    continue;
+                }
+                if (field.getName().equals(CommConstant.CREATE_TIME)) {
+                    field.setAccessible(true);
+                    field.set(obj, new Date());
                     continue;
                 }
             }

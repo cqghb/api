@@ -1,6 +1,6 @@
 package com.test.api.api.vo.page;
 
-import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
 
 import java.util.List;
 
@@ -14,6 +14,7 @@ import java.util.List;
  * @company
  * @department
  */
+@Data
 public class PageResult {
     /**
      * 当前页码
@@ -35,60 +36,4 @@ public class PageResult {
      * 数据模型
      */
     private List<?> content;
-
-    public PageResult() {
-    }
-
-    public PageResult(int currentPage, int pageSize, long totalSize, int totalPages, List<?> content) {
-        this.currentPage = currentPage;
-        this.pageSize = pageSize;
-        this.totalSize = totalSize;
-        this.totalPages = totalPages;
-        this.content = content;
-    }
-
-    public int getCurrentPage() {
-        return currentPage;
-    }
-
-    public void setCurrentPage(int currentPage) {
-        this.currentPage = currentPage;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public long getTotalSize() {
-        return totalSize;
-    }
-
-    public void setTotalSize(long totalSize) {
-        this.totalSize = totalSize;
-    }
-
-    public int getTotalPages() {
-        return totalPages;
-    }
-
-    public void setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
-    }
-
-    public List<?> getContent() {
-        return content;
-    }
-
-    public void setContent(List<?> content) {
-        this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        return "PageResult{" + JSONObject.toJSONString(this) +'}';
-    }
 }

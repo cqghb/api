@@ -9,6 +9,7 @@ import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblRoleMenuRelationDao;
 import com.test.api.api.dto.rolemenurelation.RoleMenuRelationSettingDto;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblMenuService;
 import com.test.api.api.service.ITblRoleMenuRelationService;
 import com.test.api.api.service.ITblRoleService;
@@ -30,7 +31,7 @@ import java.util.List;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblRoleMenuRelationService extends CommonService implements ITblRoleMenuRelationService {
+public class TblRoleMenuRelationService implements ITblRoleMenuRelationService {
 
     @Autowired
     private TblRoleMenuRelationDao roleMenuRelationDao;
@@ -40,6 +41,8 @@ public class TblRoleMenuRelationService extends CommonService implements ITblRol
 
     @Autowired
     private ITblMenuService menuService;
+    @Autowired
+    private ICommonService iCommonService;
 
     @Override
     public int deleteByPrimaryKey(String id) {
@@ -54,7 +57,7 @@ public class TblRoleMenuRelationService extends CommonService implements ITblRol
     @Override
     public int insertSelective(TblRoleMenuRelation record) {
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
+        iCommonService.setObjectInsertInfo(record, null);
         return roleMenuRelationDao.insertSelective(record);
     }
 
@@ -95,7 +98,7 @@ public class TblRoleMenuRelationService extends CommonService implements ITblRol
 
         // 2. 清理掉原来的关系
         TblRoleMenuRelation roleMenuRelation = new TblRoleMenuRelation();
-        setObjectUpdateInfo(roleMenuRelation, null);
+        iCommonService.setObjectUpdateInfo(roleMenuRelation, null);
         roleMenuRelation.setRoleId(roleId);
         roleMenuRelation.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
         roleMenuRelationDao.deleteByRoleId(roleMenuRelation);

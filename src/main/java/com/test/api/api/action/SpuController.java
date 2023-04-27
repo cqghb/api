@@ -24,6 +24,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @projectName api
  * @package com.test.api.api.action
@@ -129,6 +132,20 @@ public class SpuController {
         BeanUtils.copyProperties(update, spu);
         int num = spuService.updateByPrimaryKeySelective(spu);
         return ResultUtil.success(num);
+    }
+
+    /**
+     * 查询SPU的ID和名称[前端下拉选项]
+     * @param ddDto 查询条件
+     * @return
+     */
+    @PostMapping(value="/searchSpuCodeName")
+    public Result searchSpuCodeName(@RequestBody AddSpuDto ddDto) {
+        logger.info("[查询SPU的ID和名称] action start: codeType=" + ddDto.getCode());
+        List<Map<String, String>> codeKeyValueList = spuService.searchSpuCodeName(ddDto.getCode());
+        logger.info("[查询SPU的ID和名称] action end");
+
+        return ResultUtil.success(codeKeyValueList);
     }
 
 }

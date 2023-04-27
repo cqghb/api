@@ -7,6 +7,7 @@ import com.test.api.api.constant.ErrorMsgConstant;
 import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblSpuBrandDao;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblSpuBrandService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
@@ -30,10 +31,12 @@ import java.util.Map;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblSpuBrandService extends CommonService implements ITblSpuBrandService {
+public class TblSpuBrandService implements ITblSpuBrandService {
 
     @Autowired
     private TblSpuBrandDao spuBrandDao;
+    @Autowired
+    private ICommonService iCommonService;
 
     @Override
     public int deleteByPrimaryKey(String id) {
@@ -54,7 +57,7 @@ public class TblSpuBrandService extends CommonService implements ITblSpuBrandSer
         TblSpuBrand oldSpuBrand = spuBrandDao.queryOne(record);
         checkCodeName(oldSpuBrand, record);
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
+        iCommonService.setObjectInsertInfo(record, null);
         return spuBrandDao.insertSelective(record);
     }
 
@@ -65,11 +68,11 @@ public class TblSpuBrandService extends CommonService implements ITblSpuBrandSer
 
     @Override
     public int updateByPrimaryKeySelective(TblSpuBrand record) {
-        TblSpuBrand oldSpuBrand = getInfo(spuBrandDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblSpuBrand oldSpuBrand = iCommonService.getInfo(spuBrandDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         TblSpuBrand oldSpuBrand2 = spuBrandDao.queryOne(record);
         checkCodeName(oldSpuBrand2, record);
         BeanUtils.copyProperties(record, oldSpuBrand);
-        setObjectUpdateInfo(oldSpuBrand, null);
+        iCommonService.setObjectUpdateInfo(oldSpuBrand, null);
         return spuBrandDao.updateByPrimaryKeySelective(oldSpuBrand);
     }
 
@@ -80,14 +83,14 @@ public class TblSpuBrandService extends CommonService implements ITblSpuBrandSer
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo(spuBrandDao, CommConstant.QUERY_LIST, pageRequest));
+        return PageUtils.getPageResult(iCommonService.getPageInfo(spuBrandDao, CommConstant.QUERY_LIST, pageRequest));
     }
 
     @Override
     public int updateDelTag(TblSpuBrand record) throws AppException {
-        TblSpuBrand tab = getInfo(spuBrandDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblSpuBrand tab = iCommonService.getInfo(spuBrandDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
-        setObjectUpdateInfo(record, null);
+        iCommonService.setObjectUpdateInfo(record, null);
         return spuBrandDao.updateDelTag(record);
     }
 

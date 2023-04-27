@@ -7,6 +7,7 @@ import com.test.api.api.constant.ErrorMsgConstant;
 import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblSpuTypeDao;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblSpuTypeService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
@@ -32,12 +33,14 @@ import java.util.Map;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblSpuTypeService extends CommonService implements ITblSpuTypeService {
+public class TblSpuTypeService implements ITblSpuTypeService {
 
     protected static final Logger logger = LoggerFactory.getLogger(TblSpuTypeService.class);
 
     @Autowired
     private TblSpuTypeDao spuTypeDao;
+    @Autowired
+    private ICommonService iCommonService;
 
 
     @Override
@@ -48,7 +51,7 @@ public class TblSpuTypeService extends CommonService implements ITblSpuTypeServi
     @Override
     public int insert(TblSpuType record) {
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
+        iCommonService.setObjectInsertInfo(record, null);
         return spuTypeDao.insert(record);
     }
 
@@ -56,7 +59,7 @@ public class TblSpuTypeService extends CommonService implements ITblSpuTypeServi
     public int insertSelective(TblSpuType record) {
         this.checkSpuType(record);
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
+        iCommonService.setObjectInsertInfo(record, null);
         return spuTypeDao.insertSelective(record);
     }
 
@@ -67,31 +70,31 @@ public class TblSpuTypeService extends CommonService implements ITblSpuTypeServi
 
     @Override
     public int updateByPrimaryKeySelective(TblSpuType record) {
-        TblSpuType spuType = getInfo(spuTypeDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblSpuType spuType = iCommonService.getInfo(spuTypeDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         this.checkSpuType(record);
         BeanUtils.copyProperties(record, spuType);
-        setObjectUpdateInfo(spuType, null);
+        iCommonService.setObjectUpdateInfo(spuType, null);
         return spuTypeDao.updateByPrimaryKeySelective(spuType);
     }
 
     @Override
     public int updateByPrimaryKey(TblSpuType record) {
-        TblSpuType spuType = getInfo(spuTypeDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblSpuType spuType = iCommonService.getInfo(spuTypeDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, spuType);
-        setObjectUpdateInfo(spuType, null);
+        iCommonService.setObjectUpdateInfo(spuType, null);
         return spuTypeDao.updateByPrimaryKey(spuType);
     }
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo(spuTypeDao, CommConstant.QUERY_LIST, pageRequest));
+        return PageUtils.getPageResult(iCommonService.getPageInfo(spuTypeDao, CommConstant.QUERY_LIST, pageRequest));
     }
 
     @Override
     public int updateDelTag(TblSpuType record) {
-        getInfo(spuTypeDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        iCommonService.getInfo(spuTypeDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
-        setObjectUpdateInfo(record, null);
+        iCommonService.setObjectUpdateInfo(record, null);
         return spuTypeDao.updateDelTag(record);
     }
 

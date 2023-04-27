@@ -6,6 +6,7 @@ import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblIconDao;
 import com.test.api.api.dto.iconmanager.TblIconAddDto;
 import com.test.api.api.dto.iconmanager.TblIconUpdateDto;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblIconService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
@@ -28,10 +29,12 @@ import java.util.List;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblIconService extends CommonService implements ITblIconService {
+public class TblIconService implements ITblIconService {
 
     @Autowired
     private TblIconDao tblIconDao;
+    @Autowired
+    private ICommonService iCommonService;
 
     @Override
     public int deleteByPrimaryKey(String id) {
@@ -48,7 +51,7 @@ public class TblIconService extends CommonService implements ITblIconService {
         TblIcon tblIcon = new TblIcon();
         BeanUtils.copyProperties(record, tblIcon);
         tblIcon.setId(StringUtil.uuid());
-        setObjectInsertInfo(tblIcon, null);
+        iCommonService.setObjectInsertInfo(tblIcon, null);
         return tblIconDao.insertSelective(tblIcon);
     }
 
@@ -59,9 +62,9 @@ public class TblIconService extends CommonService implements ITblIconService {
 
     @Override
     public int updateByPrimaryKeySelective(TblIconUpdateDto record) {
-        TblIcon icon = getInfo(tblIconDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblIcon icon = iCommonService.getInfo(tblIconDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, icon);
-        setObjectUpdateInfo(icon, null);
+        iCommonService.setObjectUpdateInfo(icon, null);
         return tblIconDao.updateByPrimaryKeySelective(icon);
     }
 
@@ -72,7 +75,7 @@ public class TblIconService extends CommonService implements ITblIconService {
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo(tblIconDao, CommConstant.QUERY_LIST, pageRequest));
+        return PageUtils.getPageResult(iCommonService.getPageInfo(tblIconDao, CommConstant.QUERY_LIST, pageRequest));
     }
 
     @Override
@@ -84,7 +87,7 @@ public class TblIconService extends CommonService implements ITblIconService {
     public int updateDelTag(String id) {
         TblIcon icon = this.selectByPrimaryKey(id);
         icon.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
-        setObjectUpdateInfo(icon, null);
+        iCommonService.setObjectUpdateInfo(icon, null);
         return tblIconDao.updateDelTag(icon);
     }
 }

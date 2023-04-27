@@ -1,6 +1,6 @@
 package com.test.api.api.dto.rolemenurelation;
 
-import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,6 +16,7 @@ import java.io.Serializable;
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
+@Data
 public class RoleMenuRelationSettingDto implements Serializable {
 
     private static final long serialVersionUID = 2670947224048677039L;
@@ -29,34 +30,4 @@ public class RoleMenuRelationSettingDto implements Serializable {
      * 数据操作ID列表
      */
     private String[] menuIdList;
-
-    public RoleMenuRelationSettingDto(@NotNull(message = "角色主键不能为空") @NotBlank(message = "角色主键不能为空") String roleId,
-                                      String[] menuIdList) {
-        this.roleId = roleId;
-        this.menuIdList = menuIdList;
-    }
-
-    public RoleMenuRelationSettingDto() {
-    }
-
-    public String getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
-    }
-
-    public String[] getMenuIdList() {
-        return menuIdList;
-    }
-
-    public void setMenuIdList(String[] menuIdList) {
-        this.menuIdList = menuIdList;
-    }
-
-    @Override
-    public String toString() {
-        return "RoleMenuRelationSettingDto{"+ JSONObject.toJSONString(this) +"}";
-    }
 }

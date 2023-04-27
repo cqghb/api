@@ -1,6 +1,6 @@
 package com.test.api.api.vo.page;
 
-import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
 
 /**
  * @projectName api
@@ -12,6 +12,7 @@ import com.alibaba.fastjson.JSONObject;
  * @company
  * @department
  */
+@Data
 public class PageRequest<T> {
     /**
      * 当前页码
@@ -24,42 +25,4 @@ public class PageRequest<T> {
 
     private T params;
 
-    public PageRequest() {
-    }
-
-    public PageRequest(int currentPage, int pageSize, T params) {
-        this.currentPage = currentPage;
-        this.pageSize = pageSize;
-        this.params = params;
-    }
-
-    public int getCurrentPage() {
-        return currentPage;
-    }
-
-    public void setCurrentPage(int currentPage) {
-        this.currentPage = currentPage;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public T getParams() {
-        return params;
-    }
-
-    public void setParams(T params) {
-        this.params = params;
-    }
-
-    @Override
-    public String toString() {
-        return "PageRequest{" + JSONObject.toJSONString(this) +
-                '}';
-    }
 }

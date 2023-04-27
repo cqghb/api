@@ -1,10 +1,9 @@
 package com.test.api.api.vo;
 
-import com.alibaba.fastjson.JSONObject;
 import com.test.api.api.bean.TblDataOperate;
+import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,29 +16,8 @@ import java.util.List;
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
+@Data
 public class CodeValueVO extends TblDataOperate implements Serializable {
 
     private List childrenList;
-
-    public CodeValueVO() {
-    }
-
-    public CodeValueVO(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name
-            , String operateAddr, String remark, String delTag, String subgroup, List childrenList) {
-        super(createUser, createTime, updateUser, updateTime, id, name, operateAddr, remark, delTag, subgroup);
-        this.childrenList = childrenList;
-    }
-
-    public List getChildrenList() {
-        return childrenList;
-    }
-
-    public void setChildrenList(List childrenList) {
-        this.childrenList = childrenList;
-    }
-
-    @Override
-    public String toString() {
-        return "CodeValueVO{" + JSONObject.toJSONString(this) + "}";
-    }
 }

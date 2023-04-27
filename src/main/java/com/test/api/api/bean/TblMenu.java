@@ -1,8 +1,7 @@
 package com.test.api.api.bean;
 
-import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,6 +14,7 @@ import java.util.List;
  * @company demo
  * @department demo
  */
+@Data
 public class TblMenu extends BaseBean implements java.io.Serializable {
 
     private static final long serialVersionUID = 4559101099074179257L;
@@ -39,98 +39,4 @@ public class TblMenu extends BaseBean implements java.io.Serializable {
     // 子菜单
     List<TblMenu> childrenList;
 
-    public TblMenu() {
-    }
-
-    public TblMenu(String createUser, Date createTime, String updateUser, Date updateTime, String id, String name,
-                   String icon, String parentNode, String defaultSelect, String uri, List<String> defaultSelectList,
-                   List<TblMenu> childrenList, String remark, String delTag, String childrenFlag) {
-        super(createUser, createTime, updateUser, updateTime, remark, delTag);
-        this.id = id;
-        this.name = name;
-        this.icon = icon;
-        this.parentNode = parentNode;
-        this.defaultSelect = defaultSelect;
-        this.uri = uri;
-        this.childrenFlag = childrenFlag;
-        this.defaultSelectList = defaultSelectList;
-        this.childrenList = childrenList;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public String getParentNode() {
-        return parentNode;
-    }
-
-    public void setParentNode(String parentNode) {
-        this.parentNode = parentNode;
-    }
-
-    public String getDefaultSelect() {
-        return defaultSelect;
-    }
-
-    public void setDefaultSelect(String defaultSelect) {
-        this.defaultSelect = defaultSelect;
-    }
-
-    public String getUri() {
-        return uri;
-    }
-
-    public void setUri(String uri) {
-        this.uri = uri;
-    }
-
-    public List<String> getDefaultSelectList() {
-        return defaultSelectList;
-    }
-
-    public void setDefaultSelectList(List<String> defaultSelectList) {
-        this.defaultSelectList = defaultSelectList;
-    }
-
-    public List<TblMenu> getChildrenList() {
-        return childrenList;
-    }
-
-    public void setChildrenList(List<TblMenu> childrenList) {
-        this.childrenList = childrenList;
-    }
-
-    public String getChildrenFlag() {
-        return childrenFlag;
-    }
-
-    public void setChildrenFlag(String childrenFlag) {
-        this.childrenFlag = childrenFlag;
-    }
-
-    @Override
-    public String toString() {
-        return "TblMenu{" + JSONObject.toJSONString(this) + "}";
-    }
-}
+   }

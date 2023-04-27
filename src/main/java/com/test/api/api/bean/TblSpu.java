@@ -1,17 +1,16 @@
 package com.test.api.api.bean;
 
-import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * tbl_spu 货品实体类
- *
- * @author
+ * tbl_spu
+ * @author 
  */
-public class TblSpu extends BaseBean implements Serializable {
-    private static final long serialVersionUID = -6696216106874013819L;
+@Data
+public class TblSpu implements Serializable {
     /**
      * 货品ID
      */
@@ -23,9 +22,9 @@ public class TblSpu extends BaseBean implements Serializable {
     private String name;
 
     /**
-     * 货品编码
+     * 货品编号
      */
-    private String code;
+    private String no;
 
     /**
      * 货品简介
@@ -47,80 +46,35 @@ public class TblSpu extends BaseBean implements Serializable {
      */
     private String brandId;
 
-    public TblSpu() {
-    }
+    /**
+     * 创建人
+     */
+    private String createUser;
 
-    public TblSpu(String createUser, Date createTime, String updateUser, Date updateTime, String remark,
-                  String delTag, String id, String name, String code, String briefIntroduction, String detail,
-                  String typeId, String brandId) {
-        super(createUser, createTime, updateUser, updateTime, remark, delTag);
-        this.id = id;
-        this.name = name;
-        this.code = code;
-        this.briefIntroduction = briefIntroduction;
-        this.detail = detail;
-        this.typeId = typeId;
-        this.brandId = brandId;
-    }
+    /**
+     * 创建时间
+     */
+    private Date createTime;
 
-    public String getId() {
-        return id;
-    }
+    /**
+     * 修改人
+     */
+    private String updateUser;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    /**
+     * 修改时间
+     */
+    private Date updateTime;
 
-    public String getName() {
-        return name;
-    }
+    /**
+     * 删除标志[1: 删除; 2: 保留]
+     */
+    private String delTag;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    /**
+     * 备注
+     */
+    private String remark;
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getBriefIntroduction() {
-        return briefIntroduction;
-    }
-
-    public void setBriefIntroduction(String briefIntroduction) {
-        this.briefIntroduction = briefIntroduction;
-    }
-
-    public String getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
-
-    public String getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(String typeId) {
-        this.typeId = typeId;
-    }
-
-    public String getBrandId() {
-        return brandId;
-    }
-
-    public void setBrandId(String brandId) {
-        this.brandId = brandId;
-    }
-
-    @Override
-    public String toString() {
-        return "TblSpu{" + JSONObject.toJSONString(this) + "}";
-    }
+    private static final long serialVersionUID = 1L;
 }

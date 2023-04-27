@@ -1,112 +1,61 @@
 package com.test.api.api.bean;
 
-import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
- * tbl_sku 产品表实体
- *
- * @author
+ * tbl_sku 产品持久化对象
+ * @author 
  */
+@Data
+@TableName("tbl_sku")
 public class TblSku extends BaseBean implements Serializable {
-    private static final long serialVersionUID = 3865294686364389065L;
     /**
      * SKU产品ID
      */
+    @TableId
     private String id;
 
     /**
      * 产品名称
      */
+    @TableField("name")
     private String name;
-
-    /**
-     * 产品编码
-     */
-    private String code;
 
     /**
      * 产品价格
      */
+    @TableField("price")
     private BigDecimal price;
-
-    /**
-     * 产品数量
-     */
-    private int skuNumber;
 
     /**
      * SPU货品ID
      */
-    private String spuId;
+    @TableField("spu_no")
+    private String spuNo;
 
-    public TblSku() {
-    }
+    /**
+     * 版本
+     */
+    @TableField("version")
+    private String version;
 
-    public TblSku(String createUser, Date createTime, String updateUser, Date updateTime, String remark,
-                  String delTag, String id, String name, String code, BigDecimal price, int skuNumber, String spuId) {
-        super(createUser, createTime, updateUser, updateTime, remark, delTag);
-        this.id = id;
-        this.name = name;
-        this.code = code;
-        this.price = price;
-        this.skuNumber = skuNumber;
-        this.spuId = spuId;
-    }
+    /**
+     * 商品编号
+     */
+    @TableField("no")
+    private String no;
 
-    public String getId() {
-        return id;
-    }
+    /**
+     * 数量
+     */
+    @TableField("number")
+    private Integer number;
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public int getSkuNumber() {
-        return skuNumber;
-    }
-
-    public void setSkuNumber(int skuNumber) {
-        this.skuNumber = skuNumber;
-    }
-
-    public String getSpuId() {
-        return spuId;
-    }
-
-    public void setSpuId(String spuId) {
-        this.spuId = spuId;
-    }
-
-    @Override
-    public String toString() {
-        return "TblSku{" + JSONObject.toJSONString(this) + "}";
-    }
+    private static final long serialVersionUID = 1L;
 }

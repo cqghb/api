@@ -6,6 +6,7 @@ import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblRoleDao;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblRoleService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
@@ -30,12 +31,14 @@ import java.util.List;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblRoleService extends CommonService implements ITblRoleService {
+public class TblRoleService implements ITblRoleService {
 
     protected static Logger logger = LoggerFactory.getLogger(TblRoleService.class);
 
     @Autowired
     private TblRoleDao roleDao;
+    @Autowired
+    private ICommonService iCommonService;
 
     @Override
     public int deleteByPrimaryKey(String id) {
@@ -50,7 +53,7 @@ public class TblRoleService extends CommonService implements ITblRoleService {
     @Override
     public int insertSelective(TblRole record) {
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
+        iCommonService.setObjectInsertInfo(record, null);
         return roleDao.insertSelective(record);
     }
 
@@ -61,9 +64,9 @@ public class TblRoleService extends CommonService implements ITblRoleService {
 
     @Override
     public int updateByPrimaryKeySelective(TblRole record) throws AppException {
-        TblRole oldRole = getInfo(roleDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblRole oldRole = iCommonService.getInfo(roleDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, oldRole);
-        setObjectUpdateInfo(oldRole, null);
+        iCommonService.setObjectUpdateInfo(oldRole, null);
         return roleDao.updateByPrimaryKeySelective(oldRole);
     }
 
@@ -74,14 +77,14 @@ public class TblRoleService extends CommonService implements ITblRoleService {
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo(roleDao, CommConstant.QUERY_LIST, pageRequest));
+        return PageUtils.getPageResult(iCommonService.getPageInfo(roleDao, CommConstant.QUERY_LIST, pageRequest));
     }
 
     @Override
     public int updateRoleDelTag(TblRole record) throws AppException {
-        TblRole tab = getInfo(roleDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblRole tab = iCommonService.getInfo(roleDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
-        setObjectUpdateInfo(record, null);
+        iCommonService.setObjectUpdateInfo(record, null);
         return roleDao.updateRoleDelTag(record);
     }
 

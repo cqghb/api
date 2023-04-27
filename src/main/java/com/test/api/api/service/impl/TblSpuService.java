@@ -1,12 +1,14 @@
 package com.test.api.api.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.test.api.api.bean.TblSpu;
 import com.test.api.api.config.AppException;
 import com.test.api.api.constant.CommConstant;
 import com.test.api.api.constant.ErrorMsgConstant;
 import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
-import com.test.api.api.dao.TblSpuDao;
+import com.test.api.api.dao.TblSpuExtendsDao;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblSpuService;
 import com.test.api.api.utils.PageUtils;
 import com.test.api.api.utils.StringUtil;
@@ -20,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @projectName api
@@ -32,29 +35,33 @@ import java.util.List;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblSpuService extends CommonService implements ITblSpuService {
+public class TblSpuService extends ServiceImpl<TblSpuExtendsDao, TblSpu> implements ITblSpuService {
 
     protected static final Logger logger = LoggerFactory.getLogger(TblSpuService.class);
 
     @Autowired
-    private TblSpuDao spuDao;
+    private TblSpuExtendsDao tblSpuExtendsDao;
 
     @Autowired
     private TblSpuTypeService spuTypeService;
 
     @Autowired
     private TblSpuBrandService spuBrandService;
+    @Autowired
+    private ICommonService iCommonService;
 
     @Override
     public int deleteByPrimaryKey(String id) {
-        return spuDao.deleteByPrimaryKey(id);
+//        return tblSpuExtendsDao.deleteByPrimaryKey(id);
+        return 0;
     }
 
     @Override
     public int insert(TblSpu record) {
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
-        return spuDao.insert(record);
+        iCommonService.setObjectInsertInfo(record, null);
+//        return tblSpuExtendsDao.insert(record);
+        return 0;
     }
 
     @Override
@@ -64,7 +71,7 @@ public class TblSpuService extends CommonService implements ITblSpuService {
          * 2. 检查货品类型是否存在
          * 3. 检查品牌是否存在
          */
-        String code = record.getCode();
+        String code = record.getNo();
         String typeId = record.getTypeId();
         String brandId = record.getBrandId();
         /* 1.货品编码不能重复[检查是否有货品编码重复的] */
@@ -74,13 +81,13 @@ public class TblSpuService extends CommonService implements ITblSpuService {
         /* 3. 检查品牌是否存在 */
         spuBrandService.checkSpuBrandDelTag(brandId);
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
-        return spuDao.insertSelective(record);
+        iCommonService.setObjectInsertInfo(record, null);
+        return tblSpuExtendsDao.insertSelective(record);
     }
 
     @Override
     public TblSpu selectByPrimaryKey(String id) {
-        return spuDao.selectByPrimaryKey(id);
+        return tblSpuExtendsDao.selectByPrimaryKey(id);
     }
 
     @Override
@@ -96,43 +103,43 @@ public class TblSpuService extends CommonService implements ITblSpuService {
         /* 2. 检查品牌是否存在 */
         spuBrandService.checkSpuBrandDelTag(brandId);
         /* getInfo会检查货品师傅存在 */
-        TblSpu spu = getInfo(spuDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblSpu spu = iCommonService.getInfo(tblSpuExtendsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, spu);
-        setObjectUpdateInfo(spu, null);
-        return spuDao.updateByPrimaryKeySelective(spu);
+        iCommonService.setObjectUpdateInfo(spu, null);
+        return tblSpuExtendsDao.updateByPrimaryKeySelective(spu);
     }
 
     @Override
     public int updateByPrimaryKey(TblSpu record) {
-        TblSpu spu = getInfo(spuDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblSpu spu = iCommonService.getInfo(tblSpuExtendsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, spu);
-        setObjectUpdateInfo(spu, null);
-        return spuDao.updateByPrimaryKey(spu);
+        iCommonService.setObjectUpdateInfo(spu, null);
+        return tblSpuExtendsDao.updateByPrimaryKey(spu);
     }
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo(spuDao, CommConstant.QUERY_LIST, pageRequest));
+        return PageUtils.getPageResult(iCommonService.getPageInfo(tblSpuExtendsDao, CommConstant.QUERY_LIST, pageRequest));
     }
 
     @Override
     public int updateDelTag(TblSpu record) {
-        getInfo(spuDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        iCommonService.getInfo(tblSpuExtendsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
-        setObjectUpdateInfo(record, null);
-        return spuDao.updateDelTag(record);
+        iCommonService.setObjectUpdateInfo(record, null);
+        return tblSpuExtendsDao.updateDelTag(record);
     }
 
     @Override
     public ListSpuVO selectDetail(String id) {
-        return spuDao.selectDetail(id);
+        return tblSpuExtendsDao.selectDetail(id);
     }
 
     @Override
     public void spuCodeRepeat(String code) throws AppException {
         TblSpu param = new TblSpu();
-        param.setCode(code);
-        List<TblSpu> list = spuDao.searchList(param);
+        param.setNo(code);
+        List<TblSpu> list = tblSpuExtendsDao.searchList(param);
         if(StringUtil.objIsNotEmpty(list)){
             throw new AppException(MsgCodeConstant.ERROR_CODE, ErrorMsgConstant.SPU_CODE_REPEAT);
         }
@@ -140,7 +147,12 @@ public class TblSpuService extends CommonService implements ITblSpuService {
 
     @Override
     public TblSpu queryByCode(String code) {
-        return spuDao.queryByCode(code);
+        return tblSpuExtendsDao.queryByNo(code);
+    }
+
+    @Override
+    public List<Map<String, String>> searchSpuCodeName(String code) {
+        return tblSpuExtendsDao.searchSpuNoName(code);
     }
 
 

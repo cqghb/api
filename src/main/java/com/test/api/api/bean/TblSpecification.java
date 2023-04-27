@@ -1,97 +1,43 @@
 package com.test.api.api.bean;
 
-import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
- * tbl_specification 产品规格表实体
- *
- * @author
+ * tbl_specification
+ * @author 
  */
+@Data
+@TableName("tbl_specification")
 public class TblSpecification extends BaseBean implements Serializable {
-    private static final long serialVersionUID = -4117968001445917909L;
     /**
      * 规格ID
      */
+    @TableId
     private String id;
 
     /**
-     * 参数名称
+     * 分组名称
      */
+    @TableField(value = "`name`")
     private String name;
 
     /**
-     * 规格组ID
+     * 商品编号
      */
-    private String groupId;
-
-    /**
-     * 分类ID
-     */
-    private String typeId;
+    @TableField(value = "sku_no")
+    private String skuNo;
 
     /**
      * 显示位置
+     * 字段名是关键字段的需要映射一下
      */
-    private String addr;
+    @TableField(value = "`index`")
+    private Integer index;
 
-    public TblSpecification() {
-    }
-
-    public TblSpecification(String createUser, Date createTime, String updateUser, Date updateTime, String remark,
-                            String delTag, String id, String name, String groupId, String typeId, String addr) {
-        super(createUser, createTime, updateUser, updateTime, remark, delTag);
-        this.id = id;
-        this.name = name;
-        this.groupId = groupId;
-        this.typeId = typeId;
-        this.addr = addr;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
-    }
-
-    public String getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(String typeId) {
-        this.typeId = typeId;
-    }
-
-    public String getAddr() {
-        return addr;
-    }
-
-    public void setAddr(String addr) {
-        this.addr = addr;
-    }
-
-    @Override
-    public String toString() {
-        return "TblSpecification{" + JSONObject.toJSONString(this) + "}";
-    }
+    private static final long serialVersionUID = 1L;
 }

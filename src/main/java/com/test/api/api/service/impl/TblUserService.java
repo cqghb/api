@@ -10,6 +10,7 @@ import com.test.api.api.constant.ErrorMsgConstant;
 import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblUserDao;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblUserLikesService;
 import com.test.api.api.service.ITblUserService;
 import com.test.api.api.utils.*;
@@ -44,7 +45,7 @@ import java.util.concurrent.TimeUnit;
  * @department demo
  */
 @Service
-public class TblUserService extends CommonService implements ITblUserService {
+public class TblUserService implements ITblUserService {
 
     protected static Logger logger = LoggerFactory.getLogger(TblUserService.class);
 
@@ -59,6 +60,8 @@ public class TblUserService extends CommonService implements ITblUserService {
 
     @Autowired
     private ITblUserLikesService userLikesService;
+    @Autowired
+    private ICommonService iCommonService;
 
     @Override
     public TblUser login(String id, String pass) {
@@ -78,14 +81,14 @@ public class TblUserService extends CommonService implements ITblUserService {
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo(userDao, CommConstant.QUERY_LIST, pageRequest));
+        return PageUtils.getPageResult(iCommonService.getPageInfo(userDao, CommConstant.QUERY_LIST, pageRequest));
     }
 
     @Override
     @Transactional
     public String insert(UserBo user) {
         // 用户主键
-        String userId = getUserId();
+        String userId = iCommonService.getUserId();
         user.setId(userId);
         // 保存用户信息
         String oldPath = user.getHeadPortraitUrl();
@@ -96,7 +99,7 @@ public class TblUserService extends CommonService implements ITblUserService {
         }
         // 设置默认密码
         user.setPass(CommConstant.DEFAULT_PASSS);
-        TblUser loginUser = getLoginUser();
+        TblUser loginUser = iCommonService.getLoginUser();
         String loginUserId = loginUser.getId();
         user.setCreateUser(loginUserId);
         userDao.insert(user);
@@ -139,7 +142,7 @@ public class TblUserService extends CommonService implements ITblUserService {
         }
         // 添加新的爱好
         String[] likes = user.getLikes();
-        TblUser loginUser = getLoginUser();
+        TblUser loginUser = iCommonService.getLoginUser();
         String loginUserId = loginUser.getId();
         this.addUserLikes(likes, userId, loginUserId);
         user.setUpdateUser(loginUserId);

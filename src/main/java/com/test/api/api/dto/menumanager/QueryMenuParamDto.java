@@ -1,6 +1,6 @@
 package com.test.api.api.dto.menumanager;
 
-import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
@@ -15,29 +15,10 @@ import java.io.Serializable;
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
+@Data
 public class QueryMenuParamDto implements Serializable {
     private static final long serialVersionUID = -8751835891322753595L;
 
     @NotBlank(message = "ID不能为空")
     private String id;
-
-    public QueryMenuParamDto() {
-    }
-
-    public QueryMenuParamDto(@NotBlank(message = "ID不能为空") String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "QueryMenuParamDto{" + JSONObject.toJSONString(this) + "}";
-    }
 }

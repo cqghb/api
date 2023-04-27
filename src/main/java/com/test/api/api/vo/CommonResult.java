@@ -1,5 +1,7 @@
 package com.test.api.api.vo;
 
+import lombok.Data;
+
 /**
  * @projectName api
  * @package com.test.api.api.vo
@@ -10,7 +12,7 @@ package com.test.api.api.vo;
  * @company demo
  * @department demo
  */
-//@Data
+@Data
 public class CommonResult<T> {
     // 状态码
     private int status = 1;
@@ -20,59 +22,4 @@ public class CommonResult<T> {
     private String errorMsg = "";
 
     private T resultBody;
-
-    public CommonResult() {
-    }
-    public CommonResult(T resultBody) {
-        this.resultBody = resultBody;
-    }
-
-    public CommonResult(int status, String errorCode, String errorMsg, T resultBody) {
-        this.status = status;
-        this.errorCode = errorCode;
-        this.errorMsg = errorMsg;
-        this.resultBody = resultBody;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
-    }
-
-    public String getErrorMsg() {
-        return errorMsg;
-    }
-
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
-    }
-
-    public T getResultBody() {
-        return resultBody;
-    }
-
-    public void setResultBody(T resultBody) {
-        this.resultBody = resultBody;
-    }
-
-    @Override
-    public String toString() {
-        return "CommonResult{" +
-                "status=" + status +
-                ", errorCode='" + errorCode + '\'' +
-                ", errorMsg='" + errorMsg + '\'' +
-                ", resultBody=" + resultBody +
-                '}';
-    }
 }

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.api.api.dao.TblSpuExtendsDao">
+    <resultMap id="ListResultMap" type="com.test.api.api.vo.commodity.spu.ListSpuVO">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="no" jdbcType="VARCHAR" property="no"/>
+        <result column="brief_introduction" jdbcType="VARCHAR" property="briefIntroduction"/>
+        <result column="detail" jdbcType="VARCHAR" property="detail"/>
+        <result column="type_name" jdbcType="VARCHAR" property="typeName"/>
+        <result column="type_id" jdbcType="VARCHAR" property="typeId"/>
+        <result column="brand_name" jdbcType="VARCHAR" property="brandName"/>
+        <result column="brand_id" jdbcType="VARCHAR" property="brandId"/>
+        <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="del_tag" jdbcType="VARCHAR" property="delTag"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+    </resultMap>
+    <select id="searchSpuNoName" parameterType="java.lang.String" resultType="java.util.Map">
+        SELECT t.`no` as value,t.name label
+        from tbl_spu t
+        <where>
+            del_tag = '2'
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(no)">
+                and t.no = #{no,jdbcType=VARCHAR}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+    <select id="queryByNo" parameterType="java.lang.String" resultMap="com.test.api.api.dao.TblSpuDao.BaseResultMap">
+        select
+        <include refid="com.test.api.api.dao.TblSpuDao.Base_Column_List"/>
+        from tbl_spu
+        where no = #{no,jdbcType=VARCHAR}
+    </select>
+    <select id="queryList" parameterType="com.test.api.api.bean.TblSpu" resultMap="ListResultMap">
+        SELECT
+        t1.id,
+        t1.`name`,
+        t1.`code`,
+        concat_ws( '-', t3.id, t3.`name` ) AS type_name,
+        concat_ws( '-', t2.id, t2.`name` ) AS brand_name,
+        t1.create_time,
+        t1.create_user,
+        t1.update_time,
+        t1.update_user,
+        t1.remark,
+        t1.brief_introduction,
+        t1.detail,
+        t1.del_tag
+        FROM
+        tbl_spu t1
+        LEFT JOIN tbl_spu_brand t2 ON t1.brand_id = t2.id
+        LEFT JOIN tbl_spu_type t3 ON t1.type_id = t3.id
+        <where>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
+                and t1.id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(code)">
+                and t1.code = #{code,jdbcType=VARCHAR}
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
+                and t1.`name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+                and t1.del_tag = #{delTag,jdbcType=VARCHAR}
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(brandId)">
+                and t2.id = #{brandId,jdbcType=VARCHAR}
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(typeId)">
+                and t3.id = #{typeId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateDelTag" parameterType="com.test.api.api.bean.TblSpu">
+        update tbl_spu
+        <set>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+                del_tag = #{delTag,jdbcType=VARCHAR},
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(updateUser)">
+                update_user = #{updateUser,jdbcType=VARCHAR},
+            </if>
+            update_time = sysdate()
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectDetail" parameterType="java.lang.String" resultMap="ListResultMap">
+        SELECT
+        t1.id,
+        t1.`name`,
+        t1.`code`,
+        t1.detail,
+        t1.brief_introduction,
+        t3.id type_id,
+        t2.id brand_id,
+        concat_ws( '-', t3.id, t3.`name` ) AS type_name,
+        concat_ws( '-', t2.id, t2.`name` ) AS brand_name,
+        t1.create_time,
+        t1.create_user,
+        t1.update_time,
+        t1.update_user,
+        t1.remark,
+        t1.del_tag
+        FROM
+        tbl_spu t1
+        LEFT JOIN tbl_spu_brand t2 ON t1.brand_id = t2.id
+        LEFT JOIN tbl_spu_type t3 ON t1.type_id = t3.id
+        where t1.id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="searchList" parameterType="com.test.api.api.bean.TblSpu" resultMap="com.test.api.api.dao.TblSpuDao.BaseResultMap">
+        select
+        <include refid="com.test.api.api.dao.TblSpuDao.Base_Column_List"/>
+        from tbl_spu
+        <where>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
+                and id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(code)">
+                and code = #{code,jdbcType=VARCHAR}
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
+                and `name` = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+                and del_tag = #{delTag,jdbcType=VARCHAR}
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(brandId)">
+                and brand_id = #{brandId,jdbcType=VARCHAR}
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(typeId)">
+                and type_id = #{typeId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+</mapper>

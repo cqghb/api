@@ -1,10 +1,9 @@
 package com.test.api.api.vo.rolemenurelation;
 
-import com.alibaba.fastjson.JSONObject;
 import com.test.api.api.bean.TblRoleMenuRelation;
+import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,30 +16,9 @@ import java.util.List;
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
+@Data
 public class RoleMenuRelationVO extends TblRoleMenuRelation implements Serializable {
     private static final long serialVersionUID = 2277122435066595162L;
 
     private List childrenList;
-
-    public RoleMenuRelationVO() {
-    }
-
-    public RoleMenuRelationVO(String createUser, Date createTime, String updateUser, Date updateTime, String id,
-                              String roleId, String menuId, String remark, String delTag, List childrenList) {
-        super(createUser, createTime, updateUser, updateTime, id, roleId, menuId, remark, delTag);
-        this.childrenList = childrenList;
-    }
-
-    public List getChildrenList() {
-        return childrenList;
-    }
-
-    public void setChildrenList(List childrenList) {
-        this.childrenList = childrenList;
-    }
-
-    @Override
-    public String toString() {
-        return "RoleMenuRelationVO{" + JSONObject.toJSONString(this) + "}";
-    }
 }

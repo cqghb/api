@@ -1,6 +1,6 @@
 package com.test.api.api.dto.rolemanager;
 
-import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,6 +16,7 @@ import java.io.Serializable;
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
+@Data
 public class TblRoleDto implements Serializable {
     private static final long serialVersionUID = -6051306325137183341L;
 
@@ -35,42 +36,4 @@ public class TblRoleDto implements Serializable {
      * 角色备注
      */
     private String remark;
-
-    public TblRoleDto() {
-    }
-
-    public TblRoleDto(String id, @NotNull(message = "角色不能为空") @NotBlank(message = "角色不能为空") String name, String remark) {
-        this.id = id;
-        this.name = name;
-        this.remark = remark;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    @Override
-    public String toString() {
-        return "TblRoleDto{" + JSONObject.toJSONString(this) + '}';
-    }
 }

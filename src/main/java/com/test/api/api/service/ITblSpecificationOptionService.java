@@ -1,5 +1,6 @@
 package com.test.api.api.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.test.api.api.bean.TblSpecificationOption;
 import com.test.api.api.vo.page.PageRequest;
 import com.test.api.api.vo.page.PageResult;
@@ -14,7 +15,7 @@ import com.test.api.api.vo.page.PageResult;
  * @company 四川省万源市一生活智能科技有限公司
  * @department 小程序-微信小程序
  */
-public interface ITblSpecificationOptionService {
+public interface ITblSpecificationOptionService extends IService<TblSpecificationOption> {
 
     int deleteByPrimaryKey(String id);
 

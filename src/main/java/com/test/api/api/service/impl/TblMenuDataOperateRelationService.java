@@ -10,6 +10,7 @@ import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblMenuDataOperateRelationDao;
 import com.test.api.api.dto.menudataoperaterelationmanager.MenuDataOperateRelationSettingDto;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblDataOperateService;
 import com.test.api.api.service.ITblMenuDataOperateRelationService;
 import com.test.api.api.service.ITblMenuService;
@@ -33,7 +34,7 @@ import java.util.List;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblMenuDataOperateRelationService extends CommonService implements ITblMenuDataOperateRelationService {
+public class TblMenuDataOperateRelationService implements ITblMenuDataOperateRelationService {
 
     @Autowired
     private TblMenuDataOperateRelationDao menuDataOperateRelationDao;
@@ -43,6 +44,8 @@ public class TblMenuDataOperateRelationService extends CommonService implements 
 
     @Autowired
     private ITblMenuService menuService;
+    @Autowired
+    private ICommonService iCommonService;
 
     @Override
     public int deleteByPrimaryKey(String id) {
@@ -57,7 +60,7 @@ public class TblMenuDataOperateRelationService extends CommonService implements 
     @Override
     public int insertSelective(TblMenuDataOperateRelation record) {
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
+        iCommonService.setObjectInsertInfo(record, null);
         return menuDataOperateRelationDao.insertSelective(record);
     }
 
@@ -68,9 +71,9 @@ public class TblMenuDataOperateRelationService extends CommonService implements 
 
     @Override
     public int updateByPrimaryKeySelective(TblMenuDataOperateRelation record) {
-        TblMenuDataOperateRelation oldMenuDataOperateRelation = getInfo(menuDataOperateRelationDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblMenuDataOperateRelation oldMenuDataOperateRelation = iCommonService.getInfo(menuDataOperateRelationDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, oldMenuDataOperateRelation);
-        setObjectUpdateInfo(oldMenuDataOperateRelation, null);
+        iCommonService.setObjectUpdateInfo(oldMenuDataOperateRelation, null);
         return menuDataOperateRelationDao.updateByPrimaryKeySelective(oldMenuDataOperateRelation);
     }
 
@@ -101,7 +104,7 @@ public class TblMenuDataOperateRelationService extends CommonService implements 
         }
         // 2. 清理掉原来的关系
         TblMenuDataOperateRelation dataOperateRelation = new TblMenuDataOperateRelation();
-        setObjectUpdateInfo(dataOperateRelation, null);
+        iCommonService.setObjectUpdateInfo(dataOperateRelation, null);
         dataOperateRelation.setMenuId(menuId);
         dataOperateRelation.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
         menuDataOperateRelationDao.deleteByMenuId(dataOperateRelation);

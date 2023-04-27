@@ -4,6 +4,8 @@ import com.test.api.api.constant.CommConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -87,7 +89,22 @@ public class StringUtil {
     public static boolean objIsNotEmpty(Object obj){
         return !objIsEmpty(obj);
     }
+
+    /**
+     * 生成编号
+     * 生成规则: 时间(yyyyMMddHHmmssSSS)+4位随机数
+     * @return
+     */
+    public static String getNo() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String dateStr = DateTimeFormatter.ofPattern(CommConstant.DATE_FORMATTER_1).format(localDateTime);
+        String number = dateStr + String.valueOf(localDateTime.getNano() / 1000000) + getRandNum(4);
+        return number;
+    }
+
     public static void main(String[] args) {
-        logger.info(getRandNum(6));
+        LocalDateTime dateTime = LocalDateTime.now();
+        String  date= DateTimeFormatter.ofPattern(CommConstant.DATE_FORMATTER_1).format(dateTime);
+        logger.info(date);
     }
 }

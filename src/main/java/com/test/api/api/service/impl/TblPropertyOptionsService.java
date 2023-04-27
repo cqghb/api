@@ -7,6 +7,7 @@ import com.test.api.api.constant.ErrorMsgConstant;
 import com.test.api.api.constant.MsgCodeConstant;
 import com.test.api.api.constant.TableColumnEnum.DelTagEnum;
 import com.test.api.api.dao.TblPropertyOptionsDao;
+import com.test.api.api.service.ICommonService;
 import com.test.api.api.service.ITblPropertyOptionsService;
 import com.test.api.api.service.ITblPropertyService;
 import com.test.api.api.utils.PageUtils;
@@ -31,7 +32,7 @@ import org.springframework.stereotype.Service;
  * @department 小程序-微信小程序
  */
 @Service
-public class TblPropertyOptionsService extends CommonService implements ITblPropertyOptionsService {
+public class TblPropertyOptionsService implements ITblPropertyOptionsService {
 
     protected static final Logger logger = LoggerFactory.getLogger(TblPropertyOptionsService.class);
 
@@ -40,6 +41,8 @@ public class TblPropertyOptionsService extends CommonService implements ITblProp
 
     @Autowired
     private ITblPropertyService propertyService;
+    @Autowired
+    private ICommonService iCommonService;
 
     @Override
     public int deleteByPrimaryKey(String id) {
@@ -49,7 +52,7 @@ public class TblPropertyOptionsService extends CommonService implements ITblProp
     @Override
     public int insert(TblPropertyOptions record) {
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
+        iCommonService.setObjectInsertInfo(record, null);
         return propertyOptionsDao.insert(record);
     }
 
@@ -58,7 +61,7 @@ public class TblPropertyOptionsService extends CommonService implements ITblProp
         /* 检查产品属性是否正常 */
         propertyService.checkDelTag(record.getAttrId());
         record.setId(StringUtil.uuid());
-        setObjectInsertInfo(record, null);
+        iCommonService.setObjectInsertInfo(record, null);
         return propertyOptionsDao.insertSelective(record);
     }
 
@@ -71,30 +74,30 @@ public class TblPropertyOptionsService extends CommonService implements ITblProp
     public int updateByPrimaryKeySelective(TblPropertyOptions record) {
         /* 检查产品属性是否正常 */
         propertyService.checkDelTag(record.getAttrId());
-        TblPropertyOptions propertyOptions = getInfo(propertyOptionsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblPropertyOptions propertyOptions = iCommonService.getInfo(propertyOptionsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, propertyOptions);
-        setObjectUpdateInfo(propertyOptions, null);
+        iCommonService.setObjectUpdateInfo(propertyOptions, null);
         return propertyOptionsDao.updateByPrimaryKeySelective(propertyOptions);
     }
 
     @Override
     public int updateByPrimaryKey(TblPropertyOptions record) {
-        TblPropertyOptions propertyOptions = getInfo(propertyOptionsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        TblPropertyOptions propertyOptions = iCommonService.getInfo(propertyOptionsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         BeanUtils.copyProperties(record, propertyOptions);
-        setObjectUpdateInfo(propertyOptions, null);
+        iCommonService.setObjectUpdateInfo(propertyOptions, null);
         return propertyOptionsDao.updateByPrimaryKey(propertyOptions);
     }
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo(propertyOptionsDao, CommConstant.QUERY_LIST, pageRequest));
+        return PageUtils.getPageResult(iCommonService.getPageInfo(propertyOptionsDao, CommConstant.QUERY_LIST, pageRequest));
     }
 
     @Override
     public int updateDelTag(TblPropertyOptions record) {
-        getInfo(propertyOptionsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
+        iCommonService.getInfo(propertyOptionsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
-        setObjectUpdateInfo(record, null);
+        iCommonService.setObjectUpdateInfo(record, null);
         return propertyOptionsDao.updateDelTag(record);
     }
 
