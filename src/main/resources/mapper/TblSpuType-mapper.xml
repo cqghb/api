@@ -164,7 +164,7 @@
   </select>
 
   <select id="searchSPUTypeCode" parameterType="com.test.api.api.bean.TblSpuType" resultType="java.util.Map">
-    SELECT t.id as value,t.name label from tbl_spu_type t
+    SELECT t.code as value,t.name label from tbl_spu_type t
     <where>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
         and t.del_tag = #{delTag,jdbcType=VARCHAR}

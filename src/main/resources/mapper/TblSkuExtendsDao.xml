@@ -1,5 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.test.api.api.dao.TblSkuExtendsDao">
+    <resultMap id="MainResultMap" type="com.test.api.api.vo.commodity.sku.SkuMainVo">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="price" jdbcType="DECIMAL" property="price" />
+        <result column="spu_no" jdbcType="VARCHAR" property="spuNo" />
+        <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="del_tag" jdbcType="VARCHAR" property="delTag" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="version" jdbcType="VARCHAR" property="version" />
+        <result column="no" jdbcType="VARCHAR" property="no" />
+        <result column="number" jdbcType="INTEGER" property="number" />
+        <result column="spuId" jdbcType="VARCHAR" property="spuId" />
+        <result column="spuNo" jdbcType="VARCHAR" property="spuNo" />
+        <result column="spuName" jdbcType="VARCHAR" property="spuName" />
+        <result column="spuTypeId" jdbcType="VARCHAR" property="spuTypeId" />
+        <result column="spuTypeCode" jdbcType="VARCHAR" property="spuTypeCode" />
+        <result column="spuTypeName" jdbcType="VARCHAR" property="spuTypeName" />
+        <result column="brandId" jdbcType="VARCHAR" property="brandId" />
+        <result column="brandCode" jdbcType="VARCHAR" property="brandCode" />
+        <result column="brandName" jdbcType="VARCHAR" property="brandName" />
+        <result column="skuImageId" jdbcType="VARCHAR" property="skuImageId" />
+        <result column="skuImagePath" jdbcType="VARCHAR" property="skuImagePath" />
+        <result column="skuImageName" jdbcType="VARCHAR" property="skuImageName" />
+    </resultMap>
 
+    <select id="queryList" parameterType="com.test.api.api.vo.commodity.sku.SkuMainVo" resultMap="MainResultMap">
+        select t1.id, t1.`name`, t1.price, t1.spu_no, t1.create_user, t1.create_time, t1.update_user, t1.update_time,
+        t1.del_tag, t1.remark, t1.version, t1.`no`, t1.`number`, t2.name as spuName, t2.no as spuNo, t3.`code` as
+        spuTypeCode, t3.`name` as spuTypeName, t3.id as spuTypeId, t4.`code` as brandCode, t4.`name` as
+        brandName, t4.id as brandId, t2.id as spuId, t5.id as skuImageId, t5.path as skuImagePath, t5.name as
+        skuImageName
+        from tbl_sku t1
+        left join tbl_spu t2 on t1.spu_no = t2.no
+        left join tbl_spu_type t3 on t2.type_id = t3.id
+        left join tbl_spu_brand t4 on t4.id = t2.brand_id
+        left join tbl_image t5 on t5.sku_no = t1.no and t5.`index` = 1
+        <where>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
+                and t1.id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(no)">
+                and t1.no = #{no,jdbcType=VARCHAR}
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(name)">
+                and t1.`name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+                and t1.del_tag = #{delTag,jdbcType=VARCHAR}
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(spuNo)">
+                and t2.no = #{spuNo,jdbcType=VARCHAR}
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(spuName)">
+                and t2.name like concat('%', #{spuName,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(spuTypeCode)">
+                and t3.code = #{spuTypeCode,jdbcType=VARCHAR}
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(brandCode)">
+                and t4.code = #{brandCode,jdbcType=VARCHAR}
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(brandName)">
+                and t4.`name` like concat('%', #{brandName,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
+    </select>
+    <update id="updateDelTag" parameterType="com.test.api.api.bean.TblSku">
+        update tbl_sku
+        <set>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(delTag)">
+                del_tag = #{delTag,jdbcType=VARCHAR},
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(remark)">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(updateUser)">
+                update_user = #{updateUser,jdbcType=VARCHAR},
+            </if>
+            update_time = sysdate()
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
 </mapper>

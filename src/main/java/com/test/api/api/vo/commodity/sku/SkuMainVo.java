@@ -18,23 +18,18 @@ import java.io.Serializable;
 @Data
 public class SkuMainVo extends TblSku implements Serializable {
     private static final long serialVersionUID = 5369861084550121322L;
-
     /**
-     * 产品编码-名称
+     * spuId
      */
-    private String skuCodeName;
+    private String spuId;
     /**
      * 货品编码
      */
-    private String spuCode;
+    private String spuNo;
     /**
      * 货品名称
      */
     private String spuName;
-    /**
-     * 货品编码-名称
-     */
-    private String spuCodeName;
     /**
      * 品牌ID
      */
@@ -48,10 +43,6 @@ public class SkuMainVo extends TblSku implements Serializable {
      */
     private String brandName;
     /**
-     * 品牌编码-名称
-     */
-    private String brandCodeName;
-    /**
      * 货品类型ID
      */
     private String spuTypeId;
@@ -63,20 +54,18 @@ public class SkuMainVo extends TblSku implements Serializable {
      * 货品类型名称
      */
     private String spuTypeName;
+
     /**
-     * 货品类型编码-名称
+     * 图片名称
      */
-    private String spuTypeCodeName;
+    private String skuImageName;
     /**
-     * 产品规格ID
+     * 图片路径
      */
-    private String speId;
+    private String skuImagePath;
     /**
-     * 产品规格名称
+     * 图片主键
      */
-    private String speName;
-    /**
-     * 产品规格ID-名称
-     */
-    private String speIdName;
+    private String skuImageId;
+
 }

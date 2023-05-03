@@ -170,7 +170,7 @@
   </select>
 
   <select id="searchSpuBrand" parameterType="com.test.api.api.bean.TblSpuBrand" resultType="java.util.Map">
-    SELECT t.id as value,t.name label FROM tbl_spu_brand t
+    SELECT t.code as value,t.name label FROM tbl_spu_brand t
     <where>
       <if test="@com.test.api.api.utils.StringUtil@objIsNotEmpty(id)">
         and id = #{id,jdbcType=VARCHAR}

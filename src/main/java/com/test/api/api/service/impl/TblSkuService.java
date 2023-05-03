@@ -135,8 +135,7 @@ public class TblSkuService extends ServiceImpl<TblSkuExtendsDao, TblSku> impleme
         iCommonService.getInfo(skuExtendsDao, CommConstant.SELECT_BY_PRIMARY_KEY, record.getId());
         record.setDelTag(DelTagEnum.DEL_TAG_1.getCode());
         iCommonService.setObjectUpdateInfo(record, null);
-//        return skuExtendsDao.updateDelTag(record);
-        return 0;
+        return skuExtendsDao.updateDelTag(record);
     }
 
     @Override
