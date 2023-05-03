@@ -41,4 +41,16 @@ public class FileAction {
         logger.info("保存的文件路径是: " + filePath);
         return ResultUtil.success(filePath);
     }
+    /**
+     * 文件上传，不同类别的文件保存在不同的位置中
+     * @param filePath 文件路径
+     * @param fileType 上传文件类别【头像类图片、商品图片等】
+     * @return
+     */
+    @RequestMapping("/delFile")
+    public Result delFile(@RequestParam("fileType")String fileType,@RequestParam("filePath")String filePath){
+        boolean r = fileService.getFileDetail(fileType).delFile(filePath);
+        logger.info("文件删除结果: " + (r ? "删除成功" : "删除失败"));
+        return ResultUtil.success(r);
+    }
 }

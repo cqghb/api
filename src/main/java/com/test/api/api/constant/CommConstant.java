@@ -30,7 +30,7 @@ public class CommConstant {
     // 请求白名单
     public static final List<String> WHITE_LIST = Arrays.asList(new String[]{"/login", "/file/uploadFile",
             "/codeValue/searchCodeKeyValue", "/mail/sendVerificationCode", "/resetPass", "/insertUser", "/menu" +
-            "/queryMenu"});
+            "/queryMenu", "/file/delFile"});
 
     /** 文件类型常量 start **/
     // 头像文件

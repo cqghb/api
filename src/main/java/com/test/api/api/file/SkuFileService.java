@@ -2,7 +2,6 @@ package com.test.api.api.file;
 
 import com.test.api.api.constant.CommConstant;
 import com.test.api.api.custom.annotation.FileType;
-import com.test.api.api.utils.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +22,7 @@ import java.io.File;
  */
 @Component("2")/* 这里的1是前端上传文件组件送的参数 2表示商品展示的图片*/
 @FileType(CommConstant.FILE_TYPE_PRODUCT_DISPLAY_PICTURE)
-public class SkuFileService implements FileDetail{
+public class SkuFileService implements FileDetail {
     protected static Logger logger = LoggerFactory.getLogger(SkuFileService.class);
 
     // 保存位置
@@ -40,10 +39,9 @@ public class SkuFileService implements FileDetail{
         long fileSize = files[0].getSize();
         String fileType = files[0].getContentType();
 
-        // 换个名字存
         String originalFileName = files[0].getOriginalFilename();
         String suffix = originalFileName.substring(originalFileName.lastIndexOf(CommConstant.DOT));
-        String fileName = StringUtil.uuid() + suffix;  // 文件名
+        String fileName = originalFileName + suffix;  // 文件名
         File dest = new File(path + File.separator + fileName);
         if (!dest.getParentFile().exists()) {
             dest.getParentFile().mkdirs();

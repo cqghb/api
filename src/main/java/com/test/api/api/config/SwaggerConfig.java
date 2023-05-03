@@ -117,6 +117,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
         registry.addInterceptor(redisSessionInterceptor).addPathPatterns("/**")
                 .excludePathPatterns("/login")// 路径从controller开始，不要加/server
                 .excludePathPatterns("/file/uploadFile")// TODO 上传图片暂时不要拦截了,注册的时候可能会上传图片
+                .excludePathPatterns("/file/uploadFile")// TODO 删除图片暂时不要拦截了,可删除临时的商品图片
                 .excludePathPatterns("/codeValue/searchCodeKeyValue")// TODO 上传图片暂时不要拦截了,注册的时候可能会上传图片
                 .excludePathPatterns("/mail/sendVerificationCode")// TODO 上传图片暂时不要拦截了,注册的时候可能会上传图片
                 .excludePathPatterns("/resetPass")
