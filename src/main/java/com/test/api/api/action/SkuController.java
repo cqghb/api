@@ -59,7 +59,7 @@ public class SkuController {
      * @return
      */
     @ApiImplicitParam(name = "id", value = "角色主键")
-    @ApiOperation(value = "通过ID查询数据操作信息", notes = "通过ID查询数据操作信息")
+    @ApiOperation(value = "通过ID查询数据操作信息4343343", notes = "通过ID查询数据操作信息")
     @PostMapping(value = "/queryById")
     public Result queryById(@RequestBody @Validated CommonIdDto ddDto) {
         TblSku sku = skuService.selectByPrimaryKey(ddDto.getId());
